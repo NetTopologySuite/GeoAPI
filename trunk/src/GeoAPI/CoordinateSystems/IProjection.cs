@@ -40,9 +40,9 @@ namespace GeoAPI.CoordinateSystems
 		/// <summary>
 		/// Gets an indexed parameter of the projection.
 		/// </summary>
-		/// <param name="n">Index of parameter</param>
+		/// <param name="index">Index of parameter</param>
 		/// <returns>n'th parameter</returns>
-		ProjectionParameter GetParameter(int n);
+		ProjectionParameter GetParameter(int index);
 
 		/// <summary>
 		/// Gets an named parameter of the projection.

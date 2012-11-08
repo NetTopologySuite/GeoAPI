@@ -28,7 +28,8 @@ namespace GeoAPI.Geometries
         /// Build an appropriate <c>Geometry</c>, <c>MultiGeometry</c>, or
         /// <c>GeometryCollection</c> to contain the <c>Geometry</c>s in
         /// it.
-        /// <example>
+        /// </summary>
+        /// <remarks>
         ///  If <c>geomList</c> contains a single <c>Polygon</c>,
         /// the <c>Polygon</c> is returned.
         ///  If <c>geomList</c> contains several <c>Polygon</c>s, a
@@ -38,8 +39,7 @@ namespace GeoAPI.Geometries
         /// returned.
         ///  If <c>geomList</c> is empty, an empty <c>GeometryCollection</c>
         /// is returned.
-        /// </example>
-        /// </summary>
+        /// </remarks>
         /// <param name="geomList">The <c>Geometry</c> to combine.</param>
         /// <returns>
         /// A <c>Geometry</c> of the "smallest", "most type-specific" 
