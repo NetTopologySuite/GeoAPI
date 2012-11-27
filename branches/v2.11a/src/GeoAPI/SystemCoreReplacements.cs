@@ -24,26 +24,88 @@
 // able to run on .Net 2.0.
 
 #if !DOTNET35
-namespace System
+
+namespace GeoAPI.SystemCoreReplacement
 {
+    /// <summary>
+    /// An action
+    /// </summary>
     public delegate void Action();
 
+    /// <summary>
+    /// An action taking one argument.
+    /// </summary>
+    /// <param name="arg1">The first argument.</param>
+    public delegate void Action<T1>(T1 arg1);
+
+    /// <summary>
+    /// An action taking two argument.
+    /// </summary>
+    /// <param name="arg1">The first argument.</param>
+    /// <param name="arg2">The second argument.</param>
     public delegate void Action<T1, T2>(T1 arg1, T2 arg2);
 
+    /// <summary>
+    /// An action taking one argument.
+    /// </summary>
+    /// <param name="arg1">The first argument.</param>
+    /// <param name="arg2">The second argument.</param>
+    /// <param name="arg3">The third argument.</param>
     public delegate void Action<T1, T2, T3>(T1 arg1, T2 arg2, T3 arg3);
 
+    /// <summary>
+    /// An action taking one argument.
+    /// </summary>
+    /// <param name="arg1">The first argument.</param>
+    /// <param name="arg2">The second argument.</param>
+    /// <param name="arg3">The third argument.</param>
+    /// <param name="arg4">The fourth argument.</param>
     public delegate void Action<T1, T2, T3, T4>(T1 arg1, T2 arg2, T3 arg3, T4 arg4);
 
+    /// <summary>
+    /// A function returning a <typeparamref name="TResult"/>
+    /// </summary>
+    /// <typeparam name="TResult">The type of the function's result.</typeparam>
+    /// <returns>A <typeparamref name="TResult"/></returns>
     public delegate TResult Func<TResult>();
- 
-    public delegate TResult Func<T, TResult>(T arg);
 
+    /// <summary>
+    /// A function returning a <typeparamref name="TResult"/>
+    /// </summary>
+    /// <typeparam name="TResult">The type of the function's result.</typeparam>
+    /// <param name="arg1">The first argument</param>
+    /// <returns>A <typeparamref name="TResult"/></returns>
+    public delegate TResult Func<T, TResult>(T arg1);
+
+    /// <summary>
+    /// A function returning a <typeparamref name="TResult"/>
+    /// </summary>
+    /// <typeparam name="TResult">The type of the function's result.</typeparam>
+    /// <param name="arg1">The first argument</param>
+    /// <param name="arg2">The second argument</param>
+    /// <returns>A <typeparamref name="TResult"/></returns>
     public delegate TResult Func<T1, T2, TResult>(T1 arg1, T2 arg2);
 
+    /// <summary>
+    /// A function returning a <typeparamref name="TResult"/>
+    /// </summary>
+    /// <typeparam name="TResult">The type of the function's result.</typeparam>
+    /// <param name="arg1">The first argument</param>
+    /// <param name="arg2">The second argument</param>
+    /// <param name="arg3">The third argument</param>
+    /// <returns>A <typeparamref name="TResult"/></returns>
     public delegate TResult Func<T1, T2, T3, TResult>(T1 arg1, T2 arg2, T3 arg3);
 
+    /// <summary>
+    /// A function returning a <typeparamref name="TResult"/>
+    /// </summary>
+    /// <typeparam name="TResult">The type of the function's result.</typeparam>
+    /// <param name="arg1">The first argument</param>
+    /// <param name="arg2">The second argument</param>
+    /// <param name="arg3">The third argument</param>
+    /// <param name="arg4">The fourth argument</param>
+    /// <returns>A <typeparamref name="TResult"/></returns>
     public delegate TResult Func<T1, T2, T3, T4, TResult>(T1 arg1, T2 arg2, T3 arg3, T4 arg4);
-
-
 }
+
 #endif
