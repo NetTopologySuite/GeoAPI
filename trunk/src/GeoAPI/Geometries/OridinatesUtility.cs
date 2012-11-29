@@ -53,5 +53,20 @@ namespace GeoAPI.Geometries
             }
             return ordinateList.ToArray();
         }
+
+        /// <summary>
+        /// Converts an array of <see cref="Ordinate"/> values to an <see cref="Ordinates"/> flag.
+        /// </summary>
+        /// <param name="ordinates">An array of <see cref="Ordinate"/> values</param>
+        /// <returns>An <see cref="Ordinates"/> flag.</returns>
+        public static Ordinates ToOrdinatesFlag(params Ordinate[] ordinates)
+        {
+            var result = Ordinates.None;
+            foreach (var ordinate in ordinates)
+            {
+                result |= (Ordinates) (1 << ((int) ordinate-1));
+            }
+            return result;
+        }
     }
 }

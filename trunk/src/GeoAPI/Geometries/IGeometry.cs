@@ -1,5 +1,4 @@
 using System;
-using GeoAPI.IO;
 using GeoAPI.Operations.Buffer;
 
 namespace GeoAPI.Geometries
@@ -84,8 +83,13 @@ namespace GeoAPI.Geometries
         ///<summary>
         /// Gets an array of <see cref="Coordinate"/>s that make up this geometry.
         ///</summary>
-        Coordinate[] Coordinates { get; }       
-                        
+        Coordinate[] Coordinates { get; }
+
+        ///<summary>
+        /// Gets an array of <see cref="T:System.Double"/> ordinate values.
+        ///</summary>
+        Double[] GetOrdinates(Ordinate ordinate);
+        
         /// <summary>
         /// Gets the <see cref="Dimension"/> of this geometry
         /// </summary>
