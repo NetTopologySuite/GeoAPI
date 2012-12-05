@@ -135,6 +135,7 @@
     <Compile Include="IGeometryServices.cs" />
     <Compile Include="IO\ByteOrder.cs" />
     <Compile Include="IO\GeometryType.cs" />
+    <Compile Include="Geometries\ICoordinateBuffer.cs" />
     <Compile Include="IO\IGeometryWriter.cs" />
     <Compile Include="IO\IGeometryReader.cs" />
     <Compile Include="Geometries\OgcGeometryType.cs" />
