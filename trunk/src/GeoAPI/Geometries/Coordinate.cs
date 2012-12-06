@@ -92,13 +92,13 @@ namespace GeoAPI.Geometries
                 {
                     case Ordinate.X:
                         X = value;
-                        break;
+                        return;
                     case Ordinate.Y:
                         Y = value;
-                        break;
+                        return;
                     case Ordinate.Z:
                         Z = value;
-                        break;
+                        return;
                 }
                 throw new ArgumentOutOfRangeException("ordinateIndex");
             }
