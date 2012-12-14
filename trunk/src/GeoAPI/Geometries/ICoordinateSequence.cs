@@ -70,7 +70,7 @@ namespace GeoAPI.Geometries
 
         /// <summary>
         /// Copies the i'th coordinate in the sequence to the supplied Coordinate.  
-        /// Only the first two dimensions are copied.        
+        /// At least the first two dimensions <b>must</b> be copied.        
         /// </summary>
         /// <param name="index">The index of the coordinate to copy.</param>
         /// <param name="coord">A Coordinate to receive the value.</param>
