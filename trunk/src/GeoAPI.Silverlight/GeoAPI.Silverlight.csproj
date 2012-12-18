@@ -153,11 +153,17 @@
     <Compile Include="..\GeoAPI\CoordinateSystems\WGS84ConversionInfo.cs">
       <Link>CoordinateSystems\WGS84ConversionInfo.cs</Link>
     </Compile>
+    <Compile Include="..\GeoAPI\DataStructures\Interval.cs">
+      <Link>DataStructures\Interval.cs</Link>
+    </Compile>
     <Compile Include="..\GeoAPI\Geometries\Coordinate.cs">
       <Link>Geometries\Coordinate.cs</Link>
     </Compile>
     <Compile Include="..\GeoAPI\Geometries\Envelope.cs">
       <Link>Geometries\Envelope.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\Geometries\ICoordinateBuffer.cs">
+      <Link>Geometries\ICoordinateBuffer.cs</Link>
     </Compile>
     <Compile Include="..\GeoAPI\Geometries\ICoordinateFilter.cs">
       <Link>Geometries\ICoordinateFilter.cs</Link>
@@ -313,7 +319,7 @@
       <FlavorProperties GUID="{A1591282-1198-4647-A2B1-27E5FF5F6F3B}">
         <SilverlightProjectProperties />
       </FlavorProperties>
-      <UserProperties ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" ProjectLinkReference="ffb69466-79de-466a-ada7-5c47c5c5ca3a" />
+      <UserProperties ProjectLinkReference="ffb69466-79de-466a-ada7-5c47c5c5ca3a" ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

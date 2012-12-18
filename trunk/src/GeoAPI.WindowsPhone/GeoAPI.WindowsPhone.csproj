@@ -184,6 +184,9 @@
     <Compile Include="..\GeoAPI\Geometries\IMultiSurface.cs">
       <Link>Geometries\IMultiSurface.cs</Link>
     </Compile>
+    <Compile Include="..\GeoAPI\Geometries\Interval.cs">
+      <Link>Geometries\Interval.cs</Link>
+    </Compile>
     <Compile Include="..\GeoAPI\Geometries\IPrecisionModel.cs">
       <Link>Geometries\IPrecisionModel.cs</Link>
     </Compile>
