@@ -1,5 +1,8 @@
 namespace GeoAPI.Geometries
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public interface ICurve : IGeometry
     {
         ICoordinateSequence CoordinateSequence { get; }

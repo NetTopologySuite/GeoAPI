@@ -1,4 +1,4 @@
-﻿//#define AsClass
+﻿#define picky
 using System;
 using System.Globalization;
 using GeoAPI.Geometries;
@@ -9,40 +9,19 @@ namespace GeoAPI.DataStructures
     /// Structure for a closed 1-dimensional &#x211d;-interval
     /// </summary>
     [Serializable]
-#if AsClass
-    public class Interval : IEquatable<Interval>
-#else
     public struct Interval : IEquatable<Interval>
-#endif
     {
         /// <summary>
         /// The lower bound of the interval
         /// </summary>
-#if AsClass
-        public double Min;
-#else
-        public double Min;
-#endif
+        public readonly double Min;
 
         /// <summary>
         /// The upper bound of the interval
         /// </summary>
-#if AsClass
         public double Max;
-#else
-        public double Max;
-#endif
 
-#if AsClass
         /// <summary>
-        /// Initializes this structure with <see cref="Min"/> = <see cref="Max"/> = <paramref name="value"/>
-        /// </summary>
-        public Interval()
-        {
-            Min = Max = Coordinate.NullOrdinate;
-        }
-#endif
-            /// <summary>
         /// Initializes this structure with <see cref="Min"/> = <see cref="Max"/> = <paramref name="value"/>
         /// </summary>
         /// <param name="value">The value for min and max</param>
@@ -63,50 +42,26 @@ namespace GeoAPI.DataStructures
             Max = max;
         }
 
-        /// <summary>
-        /// Method to expand 
-        /// </summary>
-        /// <param name="p"></param>
-        /// <returns></returns>
-        public void ExpandByValue(double p)
-        {
-            // This is not a valid value, ignore it
-            if (p.Equals(Coordinate.NullOrdinate))
-                return;
+//        /// <summary>
+//        /// Method to expand 
+//        /// </summary>
+//        /// <param name="p"></param>
+//        /// <returns></returns>
+//        public void ExpandByValue(double p)
+//        {
+//#if picky
+//            // This is not a valid value, ignore it
+//            if (p.Equals(Coordinate.NullOrdinate))
+//                return;
 
-            // This interval has not seen a valid ordinate
-            if (Min.Equals(Coordinate.NullOrdinate))
-                return;
+//            // This interval has not seen a valid ordinate
+//            if (Min.Equals(Coordinate.NullOrdinate))
+//                return;
+//#endif
+//            Min = p < Min ? p : Min;
+//            Max = p > Max ? p : Max;
+//        }
 
-            Min = p < Min ? p : Min;
-            Max = p > Max ? p : Max;
-        }
-
-#if AsClass
-        /// <summary>
-        /// Method to expand 
-        /// </summary>
-        /// <param name="p"></param>
-        /// <returns></returns>
-        public Interval ExpandedByValue(double p)
-        {
-            // This is not a valid value, ignore it
-            if (p.Equals(Coordinate.NullOrdinate))
-                return this;
-
-            // This interval has not seen a valid ordinate
-            if (Min.Equals(Coordinate.NullOrdinate))
-            {
-                Min = p;
-                Max = p;
-                return this;
-            }
-
-            Min = p < Min ? p : Min;
-            Max = p > Max ? p : Max;
-            return this;
-        }
-#else
         /// <summary>
         /// Method to expand 
         /// </summary>
@@ -114,6 +69,7 @@ namespace GeoAPI.DataStructures
         /// <returns></returns>
         public Interval ExpandedByValue(double p)
         {
+#if picky
             // This is not a valid value, ignore it
             if (p.Equals(Coordinate.NullOrdinate))
                 return this;
@@ -121,12 +77,11 @@ namespace GeoAPI.DataStructures
             // This interval has not seen a valid ordinate
             if (Min.Equals(Coordinate.NullOrdinate))
                 return new Interval(p, p);
-
+#endif
             var min = p < Min ? p : Min;
             var max = p > Max ? p : Max;
             return new Interval(min, max);
         }
-#endif
 
         /// <summary>
         /// Gets a value if this interval is empty/undefined
@@ -179,7 +134,6 @@ namespace GeoAPI.DataStructures
         /// </summary>
         public double Centre { get { return Min + Width*0.5; } }
 
-#if AsClass
         /// <summary>
         /// Function to compute an interval that contains this and <paramref name="interval"/> <see cref="Interval"/>
         /// </summary>
@@ -187,31 +141,7 @@ namespace GeoAPI.DataStructures
         /// <returns>An interval</returns>
         public Interval ExpandedByInterval(Interval interval)
         {
-            if (IsEmpty && interval.IsEmpty)
-                return this;
-
-            if (!IsEmpty && interval.IsEmpty)
-                return this;
-
-            if (IsEmpty && !interval.IsEmpty)
-            {
-                Min = interval.Min;
-                Max = interval.Max;
-                return this;
-            }
-
-            Min = Min < interval.Min ? Min : interval.Min;
-            Max = Max > interval.Max ? Max : interval.Max;
-            return this;
-        }
-#else
-        /// <summary>
-        /// Function to compute an interval that contains this and <paramref name="interval"/> <see cref="Interval"/>
-        /// </summary>
-        /// <param name="interval">The interval</param>
-        /// <returns>An interval</returns>
-        public Interval ExpandedByInterval(Interval interval)
-        {
+#if picky
             if (IsEmpty && interval.IsEmpty)
                 return Create();
 
@@ -220,37 +150,36 @@ namespace GeoAPI.DataStructures
 
             if (IsEmpty && !interval.IsEmpty)
                 return interval;
-
+#endif
             var min = Min < interval.Min ? Min : interval.Min;
             var max = Max > interval.Max ? Max : interval.Max;
             return new Interval(min, max);
         }
-#endif
 
-        /// <summary>
-        /// Function to compute an interval that contains this and <paramref name="interval"/> <see cref="Interval"/>
-        /// </summary>
-        /// <param name="interval">The interval</param>
-        /// <returns>An interval</returns>
-        public void ExpandByInterval(Interval interval)
-        {
-            if (IsEmpty && interval.IsEmpty)
-                return;
+        ///// <summary>
+        ///// Function to compute an interval that contains this and <paramref name="interval"/> <see cref="Interval"/>
+        ///// </summary>
+        ///// <param name="interval">The interval</param>
+        ///// <returns>An interval</returns>
+        //public void ExpandByInterval(Interval interval)
+        //{
+        //    if (IsEmpty && interval.IsEmpty)
+        //        return;
 
-            if (!IsEmpty && interval.IsEmpty)
-                return;
+        //    if (!IsEmpty && interval.IsEmpty)
+        //        return;
 
-            if (IsEmpty)
-            {
-                Min = interval.Min;
-                Max = interval.Max;
-            }
-            else
-            {
-                Min = Min < interval.Min ? Min : interval.Min;
-                Max = Max > interval.Max ? Max : interval.Max;
-            }
-        }
+        //    if (IsEmpty)
+        //    {
+        //        Min = interval.Min;
+        //        Max = interval.Max;
+        //    }
+        //    else
+        //    {
+        //        Min = Min < interval.Min ? Min : interval.Min;
+        //        Max = Max > interval.Max ? Max : interval.Max;
+        //    }
+        //}
 
 
         /// <summary>

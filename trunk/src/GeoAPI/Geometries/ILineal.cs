@@ -1,9 +1,12 @@
 namespace GeoAPI.Geometries
 {
-    ///<summary>
-    /// Identifies <see cref="IGeometry"/> subclasses which are 1-dimensional and have components which are <see cref="ILineString"/>s.
-    ///</summary>
+    /// <summary>
+    /// Interface to identify all <c>IGeometry</c> subclasses that have a <c>Dimension</c> of <see cref="Dimension.Curve"/> 
+    /// and have components which are <see cref="ILineString"/>s.
+    /// </summary>
     /// <author>Martin Davis</author>
+    /// <seealso cref="IPuntal"/>
+    /// <seealso cref="IPolygonal"/>
     public interface ILineal
     {
         

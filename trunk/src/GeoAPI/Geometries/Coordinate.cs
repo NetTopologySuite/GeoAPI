@@ -28,7 +28,9 @@ namespace GeoAPI.Geometries
     /// </para>
     /// </summary>
     [Serializable]
+#pragma warning disable 612,618
     public class Coordinate : ICoordinate, IComparable<Coordinate>, IEquatable<Coordinate>
+#pragma warning restore 612,618
     {
         ///<summary>
         /// The value used to indicate a null or missing ordinate value.
@@ -114,6 +116,7 @@ namespace GeoAPI.Geometries
         /// <c>other</c>.
         /// </summary>
         /// <param name="c"><c>Coordinate</c> to copy.</param>
+        [Obsolete]
         public Coordinate(ICoordinate c) : this(c.X, c.Y, c.Z) { }
 
         /// <summary>
@@ -160,11 +163,14 @@ namespace GeoAPI.Geometries
         {
             if (other == null)
                 return false;
-            if (other is Coordinate)
-                return Equals((Coordinate)other);
+            var otherC = other as Coordinate;
+            if (otherC != null)
+                return Equals(otherC);
+#pragma warning disable 612,618
             if (!(other is ICoordinate))
                 return false;
             return ((ICoordinate)this).Equals((ICoordinate)other);
+#pragma warning restore 612,618
         }
 
         /// <summary>
@@ -291,8 +297,10 @@ namespace GeoAPI.Geometries
         public override int GetHashCode()
         {
             var result = 17;
+// ReSharper disable NonReadonlyFieldInGetHashCode
             result = 37 * result + GetHashCode(X);
             result = 37 * result + GetHashCode(Y);
+// ReSharper restore NonReadonlyFieldInGetHashCode
             return result;
         }
 
@@ -322,6 +330,7 @@ namespace GeoAPI.Geometries
         /// <summary>
         /// X coordinate.
         /// </summary>
+        [Obsolete]
         double ICoordinate.X
         {
             get { return X; }
@@ -331,6 +340,7 @@ namespace GeoAPI.Geometries
         /// <summary>
         /// Y coordinate.
         /// </summary>
+        [Obsolete]
         double ICoordinate.Y
         {
             get { return Y; }
@@ -340,6 +350,7 @@ namespace GeoAPI.Geometries
         /// <summary>
         /// Z coordinate.
         /// </summary>
+        [Obsolete]
         double ICoordinate.Z
         {
             get { return Z; }
@@ -349,6 +360,7 @@ namespace GeoAPI.Geometries
         /// <summary>
         /// The measure value
         /// </summary>
+        [Obsolete]
         double ICoordinate.M
         {
             get { return Double.NaN; }
@@ -358,6 +370,7 @@ namespace GeoAPI.Geometries
         /// <summary>
         /// Gets/Sets <c>Coordinate</c>s (x,y,z) values.
         /// </summary>
+        [Obsolete]
         ICoordinate ICoordinate.CoordinateValue
         {
             get { return this; }
@@ -374,6 +387,7 @@ namespace GeoAPI.Geometries
         /// </summary>
         /// <param name="index">The index of the ordinate</param>
         /// <returns>The ordinate value</returns>
+        [Obsolete]
         Double ICoordinate.this[Ordinate index]
         {
             get
@@ -415,6 +429,7 @@ namespace GeoAPI.Geometries
         /// <c>true</c> if the x- and y-coordinates are equal;
         /// the Z coordinates do not have to be equal.
         /// </returns>
+        [Obsolete]
         bool ICoordinate.Equals2D(ICoordinate other)
         {
             return X == other.X && Y == other.Y;
@@ -425,6 +440,7 @@ namespace GeoAPI.Geometries
         /// </summary>
         /// <param name="other"></param>
         /// <returns></returns>
+        [Obsolete]
         Boolean IEquatable<ICoordinate>.Equals(ICoordinate other)
         {
             return ((ICoordinate)this).Equals2D(other);
@@ -443,6 +459,7 @@ namespace GeoAPI.Geometries
         /// A negative integer, zero, or a positive integer as this <c>Coordinate</c>
         ///         is less than, equal to, or greater than the specified <c>Coordinate</c>.
         /// </returns>
+        [Obsolete]
         int IComparable<ICoordinate>.CompareTo(ICoordinate other)
         {
             if (X < other.X)
@@ -478,6 +495,7 @@ namespace GeoAPI.Geometries
         /// </summary>
         /// <param name="other"><c>Coordinate</c> with which to do the 3D comparison.</param>
         /// <returns><c>true</c> if <c>other</c> is a <c>Coordinate</c> with the same values for x, y and z.</returns>
+        [Obsolete]
         bool ICoordinate.Equals3D(ICoordinate other)
         {
             return (X == other.X) && (Y == other.Y) &&
@@ -490,6 +508,7 @@ namespace GeoAPI.Geometries
         /// </summary>
         /// <param name="p"><c>Coordinate</c> with which to do the distance comparison.</param>
         /// <returns>the 2-dimensional Euclidean distance between the locations</returns>
+        [Obsolete]
         double ICoordinate.Distance(ICoordinate p)
         {
             var dx = X - p.X;
@@ -499,7 +518,7 @@ namespace GeoAPI.Geometries
 
         #endregion ICoordinate
 
-        ///* BEGIN ADDED BY MPAUL42: monoGIS team */
+        /* BEGIN ADDED BY MPAUL42: monoGIS team */
 
         ///// <summary>
         ///// Overloaded + operator.
@@ -597,6 +616,6 @@ namespace GeoAPI.Geometries
         //    return coord1 / d;
         //}
 
-        ///* END ADDED BY MPAUL42: monoGIS team */
+        /* END ADDED BY MPAUL42: monoGIS team */
     }
 }

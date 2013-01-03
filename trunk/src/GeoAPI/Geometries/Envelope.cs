@@ -22,7 +22,9 @@ namespace GeoAPI.Geometries
     //#if !SILVERLIGHT
     [Serializable]
     //#endif
-    public class Envelope : IEnvelope
+#pragma warning disable 612,618
+    public class Envelope : IEnvelope, IEquatable<Envelope>, IComparable<Envelope>
+#pragma warning restore 612,618
     {
         /// <summary>
         /// Test the point q to see whether it intersects the Envelope
@@ -691,16 +693,18 @@ namespace GeoAPI.Geometries
             if (dy == 0.0)
                 return dx;
 
-            return System.Math.Sqrt(dx * dx + dy * dy);
+            return Math.Sqrt(dx * dx + dy * dy);
         }
 
+        /// <inheritdoc/>
         public override bool Equals(object other)
         {
             if (other == null)
                 return false;
 
-            if (other is Envelope)
-                return Equals((Envelope)other);
+            var otherE = other as Envelope;
+            if (otherE != null)
+                return Equals(otherE);
 
 #pragma warning disable 612,618
             if (!(other is IEnvelope))
@@ -710,6 +714,7 @@ namespace GeoAPI.Geometries
 #pragma warning restore 612,618
         }
 
+        /// <inheritdoc/>
         public bool Equals(Envelope other)
         {
             if (IsNull)
@@ -719,11 +724,13 @@ namespace GeoAPI.Geometries
                    _minx == other.MinX && _miny == other.MinY;
         }
 
+        /// <inheritdoc/>
         public int CompareTo(object other)
         {
             return CompareTo((Envelope)other);
         }
 
+        /// <inheritdoc/>
         public int CompareTo(Envelope other)
         {
             if (IsNull && other.IsNull)
@@ -740,19 +747,22 @@ namespace GeoAPI.Geometries
             return 0;
         }
 
+        /// <inheritdoc/>
         public override int GetHashCode()
         {
             var result = 17;
+// ReSharper disable NonReadonlyFieldInGetHashCode
             result = 37 * result + GetHashCode(_minx);
             result = 37 * result + GetHashCode(_maxx);
             result = 37 * result + GetHashCode(_miny);
             result = 37 * result + GetHashCode(_maxy);
+// ReSharper restore NonReadonlyFieldInGetHashCode
             return result;
         }
 
         private static int GetHashCode(double value)
         {
-            long f = BitConverter.DoubleToInt64Bits(value);
+            var f = BitConverter.DoubleToInt64Bits(value);
             return (int)(f ^ (f >> 32));
         }
 
@@ -1087,7 +1097,7 @@ namespace GeoAPI.Geometries
         /// </remarks>
         /// <para>The <c>Envelope</c> to check</para>
         /// <returns>true if <c>other</c> is contained in this <c>Envelope</c></returns>
-        /// <see cref="Covers(IEnvelope)"/>
+        /// <see cref="IEnvelope.Covers(IEnvelope)"/>
         bool IEnvelope.Contains(IEnvelope other)
         {
             return ((IEnvelope)this).Covers(other);
@@ -1102,7 +1112,7 @@ namespace GeoAPI.Geometries
         /// </remarks>
         /// <param name="p">the point which this <c>Envelope</c> is being checked for containing</param>
         /// <returns><c>true</c> if the point lies in the interior or on the boundary of this <c>Envelope</c>. </returns>
-        /// <see cref="Covers(ICoordinate)"/>
+        /// <see cref="IEnvelope.Covers(ICoordinate)"/>
         bool IEnvelope.Contains(ICoordinate p)
         {
             return ((IEnvelope)this).Covers(p);
@@ -1165,7 +1175,7 @@ namespace GeoAPI.Geometries
             if (dy == 0.0)
                 return dx;
 
-            return System.Math.Sqrt(dx * dx + dy * dy);
+            return Math.Sqrt(dx * dx + dy * dy);
         }
 
         bool IEquatable<IEnvelope>.Equals(IEnvelope other)
@@ -1193,7 +1203,7 @@ namespace GeoAPI.Geometries
             return 0;
         }
 
-#pragma warning enable 612,618
+#pragma warning restore 612,618
 
         #endregion BEGIN ADDED BY MPAUL42: monoGIS team
     }

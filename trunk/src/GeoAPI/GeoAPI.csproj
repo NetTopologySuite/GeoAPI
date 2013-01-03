@@ -37,7 +37,7 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
-    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <BootstrapperEnabled>false</BootstrapperEnabled>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -48,7 +48,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\GeoAPI.XML</DocumentationFile>
+    <DocumentationFile>$(SolutionDir)$(Configuration)\$(TargetFrameworkIdentifier)$(TargetFrameworkVersion)\$(Platform)\GeoAPI.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -57,7 +57,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\GeoAPI.XML</DocumentationFile>
+    <DocumentationFile>$(SolutionDir)$(Configuration)\$(TargetFrameworkIdentifier)$(TargetFrameworkVersion)\$(Platform)\GeoAPI.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="CoordinateSystems\AxisInfo.cs" />
@@ -182,10 +182,14 @@
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
+       Other similar extension points exist, see Microsoft.Common.targets.-->
   <Target Name="BeforeBuild">
+    <Message Text="Building for '$(TargetFrameworkVersion)'" />
   </Target>
   <Target Name="AfterBuild">
+    <MSBuild Condition=" '$(TargetFrameworkVersion)' == 'v2.0'" Projects="$(MSBuildProjectFile)" Properties="TargetFrameworkVersion=v3.5;TargetFrameworkProfile=Client" RunEachTargetSeparately="true"  />  
+    <MSBuild Condition=" '$(TargetFrameworkVersion)' == 'v2.0'" Projects="$(MSBuildProjectFile)" Properties="TargetFrameworkVersion=v4.0;TargetFrameworkProfile=Client" RunEachTargetSeparately="true"  />  
+    <MSBuild Condition=" '$(TargetFrameworkVersion)' == 'v2.0'" Projects="$(MSBuildProjectFile)" Properties="TargetFrameworkVersion=v4.0.3;TargetFrameworkProfile=Client" RunEachTargetSeparately="true"  />  
   </Target>
-  -->
+  <!-- -->
 </Project>
