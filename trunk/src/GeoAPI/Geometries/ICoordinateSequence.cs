@@ -22,12 +22,12 @@ namespace GeoAPI.Geometries
     /// The new Geometries will use the custom CoordinateSequence implementation.
     /// </para>
     /// </summary>
-    /// <remarks>
-    /// For an example see <see cref="ExtendedCoordinateSample"/>
-    /// </remarks>
-    /// <seealso cref="NetTopologySuite.Geometries.Implementation.CoordinateArraySequenceFactory"/>
-    /// <seealso cref="NetTopologySuite.Geometries.Implementation.ExtendedCoordinateExample"/>
-    /// <seealso cref="NetTopologySuite.Geometries.Implementation.PackedCoordinateSequenceFactory"/>
+    ///// <remarks>
+    ///// For an example see <see cref="ExtendedCoordinateSample"/>
+    ///// </remarks>
+    ///// <seealso cref="NetTopologySuite.Geometries.Implementation.CoordinateArraySequenceFactory"/>
+    ///// <seealso cref="NetTopologySuite.Geometries.Implementation.ExtendedCoordinateExample"/>
+    ///// <seealso cref="NetTopologySuite.Geometries.Implementation.PackedCoordinateSequenceFactory"/>
     public interface ICoordinateSequence : ICloneable
     {
         /// <summary>

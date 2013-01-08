@@ -1,5 +1,4 @@
-﻿using System.IO;
-using GeoAPI.Geometries;
+﻿using GeoAPI.Geometries;
 
 namespace GeoAPI
 {
@@ -86,7 +85,7 @@ namespace GeoAPI
 
         /// <summary>
         /// Creates a geometry factory using the given <paramref name="precisionModel"/>,
-        /// <paramref name="srid"/> and <paramref cref="coordinateSequenceFactory"/>.
+        /// <paramref name="srid"/> and <paramref name="coordinateSequenceFactory"/>.
         /// </summary>
         /// <param name="precisionModel">The coordinate sequence factory to use.</param>
         /// <param name="srid">The spatial reference id.</param>
@@ -133,10 +132,10 @@ namespace GeoAPI
         string GetCoordinateSystemInitializationString(string authority, int authorityCode);
 
         /// <summary>
-        /// Returns the 
+        /// Returns the coordinate system defined by <paramref name="init"/>
         /// </summary>
-        /// <typeparam name="TCoordinateSystem"></typeparam>
-        /// <returns></returns>
+        /// <param name="init">The initialization for the coordinate system</param>
+        /// <returns>The coordinate system.</returns>
         TCoordinateSystem GetCoordinateSytem(string init);
     }
 }

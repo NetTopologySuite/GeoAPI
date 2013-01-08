@@ -40,7 +40,7 @@ namespace GeoAPI.Geometries
         double this[Ordinate index] { get; set; }
 
         /// <summary>
-        /// Computes the 2-dimensional distance to the <see cref="other"/> coordiante.
+        /// Computes the 2-dimensional distance to the <paramref name="other"/> coordiante.
         /// </summary>
         /// <param name="other">The other coordinate</param>
         /// <returns>The 2-dimensional distance to other</returns>

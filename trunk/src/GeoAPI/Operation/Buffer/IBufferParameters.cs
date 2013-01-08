@@ -1,4 +1,6 @@
-namespace GeoAPI.Operations.Buffer
+using GeoAPI.Operations.Buffer;
+
+namespace GeoAPI.Operation.Buffer
 {
     /// <summary>
     /// An interface for classes that control the parameters for the buffer building process
@@ -33,9 +35,9 @@ namespace GeoAPI.Operations.Buffer
         ///</summary>
         /// <remarks>
         /// <para>
-        /// The styles supported are <see cref="EndCapStyle.Round"/>, <see cref="EndCapStyle.Flat"/>, and <see cref="EndCapStyle.Square"/>.
+        /// The styles supported are <see cref="GeoAPI.Operations.Buffer.EndCapStyle.Round"/>, <see cref="GeoAPI.Operations.Buffer.EndCapStyle.Flat"/>, and <see cref="GeoAPI.Operations.Buffer.EndCapStyle.Square"/>.
         /// </para>
-        /// <para>The default is <see cref="EndCapStyle.Round"/>.</para>
+        /// <para>The default is <see cref="GeoAPI.Operations.Buffer.EndCapStyle.Round"/>.</para>
         /// </remarks>
         EndCapStyle EndCapStyle { get; set; }
 
@@ -43,7 +45,7 @@ namespace GeoAPI.Operations.Buffer
         /// Gets/Sets the join style for outside (reflex) corners between line segments.
         ///</summary>
         /// <remarks>
-        /// <para>Allowable values are <see cref="JoinStyle.Round"/> (which is the default), <see cref="JoinStyle.Mitre"/> and <see cref="JoinStyle.Bevel"/></para>
+        /// <para>Allowable values are <see cref="GeoAPI.Operations.Buffer.JoinStyle.Round"/> (which is the default), <see cref="GeoAPI.Operations.Buffer.JoinStyle.Mitre"/> and <see cref="GeoAPI.Operations.Buffer.JoinStyle.Bevel"/></para>
         /// </remarks>
         JoinStyle JoinStyle { get; set; }
 

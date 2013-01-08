@@ -292,7 +292,7 @@ namespace GeoAPI.DataStructures
         }
 
         /// <summary>
-        /// Creates an interval with the range &#x211d;[<paramref name="interval.Min"/>,<paramref name="interval.Max"/>].
+        /// Creates an interval with the range &#x211d;[<see cref="Interval.Min"/>,<see cref="Interval.Max"/>].
         /// </summary>
         /// <param name="interval">The template interval</param>
         /// <returns>An <see cref="Interval"/></returns>

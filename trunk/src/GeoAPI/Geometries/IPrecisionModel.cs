@@ -69,7 +69,7 @@ namespace GeoAPI.Geometries
         double MakePrecise(double val);
 
         /// <summary>
-        /// Method to precise <see cref="coord"/>.
+        /// Method to precise <paramref name="coord"/>.
         /// </summary>
         /// <param name="coord">The coordinate to precise</param>
         void MakePrecise(Coordinate coord);
