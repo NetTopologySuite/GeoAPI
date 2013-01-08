@@ -154,6 +154,9 @@
     <Compile Include="..\GeoAPI\CoordinateSystems\WGS84ConversionInfo.cs">
       <Link>CoordinateSystems\WGS84ConversionInfo.cs</Link>
     </Compile>
+    <Compile Include="..\GeoAPI\DataStructures\Interval.cs">
+      <Link>DataStructures\Interval.cs</Link>
+    </Compile>
     <Compile Include="..\GeoAPI\Geometries\Coordinate.cs">
       <Link>Geometries\Coordinate.cs</Link>
     </Compile>
@@ -183,9 +186,6 @@
     </Compile>
     <Compile Include="..\GeoAPI\Geometries\IMultiSurface.cs">
       <Link>Geometries\IMultiSurface.cs</Link>
-    </Compile>
-    <Compile Include="..\GeoAPI\Geometries\Interval.cs">
-      <Link>Geometries\Interval.cs</Link>
     </Compile>
     <Compile Include="..\GeoAPI\Geometries\IPrecisionModel.cs">
       <Link>Geometries\IPrecisionModel.cs</Link>
