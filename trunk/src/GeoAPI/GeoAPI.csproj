@@ -59,6 +59,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>$(SolutionDir)$(Configuration)\$(TargetFrameworkIdentifier)$(TargetFrameworkVersion)\$(Platform)\GeoAPI.XML</DocumentationFile>
+    <NoWarn>1591</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="CoordinateSystems\AxisInfo.cs" />
@@ -100,13 +101,16 @@
     <Compile Include="CoordinateSystems\WGS84ConversionInfo.cs" />
     <Compile Include="Geometries\Coordinate.cs" />
     <Compile Include="Geometries\Envelope.cs" />
+    <Compile Include="Geometries\IBoundable.cs" />
     <Compile Include="Geometries\ICoordinateFilter.cs" />
     <Compile Include="Geometries\ICoordinateSequence.cs" />
     <Compile Include="Geometries\ICoordinateSequenceFactory.cs" />
     <Compile Include="Geometries\ICoordinateSequenceFilter.cs" />
+    <Compile Include="Geometries\IExpandable.cs" />
     <Compile Include="Geometries\IGeometryComponentFilter.cs" />
     <Compile Include="Geometries\IGeometryFactory.cs" />
     <Compile Include="Geometries\IGeometryFilter.cs" />
+    <Compile Include="Geometries\IIntersectable.cs" />
     <Compile Include="Geometries\ILineal.cs" />
     <Compile Include="Geometries\IMultiSurface.cs" />
     <Compile Include="DataStructures\Interval.cs" />

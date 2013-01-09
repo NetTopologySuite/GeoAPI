@@ -23,7 +23,7 @@ namespace GeoAPI.Geometries
     [Serializable]
     //#endif
 #pragma warning disable 612,618
-    public class Envelope : IEnvelope, IEquatable<Envelope>, IComparable<Envelope>
+    public class Envelope : IEnvelope, IEquatable<Envelope>, IComparable<Envelope>, IIntersectable<Envelope>, IExpandable<Envelope>
 #pragma warning restore 612,618
     {
         /// <summary>
@@ -454,6 +454,26 @@ namespace GeoAPI.Geometries
             }
         }
 
+        /// <summary>
+        /// Enlarges this <c>Envelope</c> so that it contains
+        /// the <c>other</c> Envelope.
+        /// Has no effect if <c>other</c> is wholly on or
+        /// within the envelope.
+        /// </summary>
+        /// <param name="other">the <c>Envelope</c> to expand to include.</param>
+        public Envelope ExpandedBy(Envelope other)
+        {
+            if (other.IsNull)
+                return this;
+            if (IsNull)
+                return other;
+
+            var minx = (other._minx < _minx) ? other._minx : _minx;
+            var maxx = (other._maxx > _maxx) ? other._maxx : _maxx;
+            var miny = (other._miny < _miny) ? other._miny : _miny;
+            var maxy = (other._maxy > _maxy) ? other._maxy : _maxy;
+            return new Envelope(minx, maxx, miny, maxy);
+        }
         /// <summary>
         /// Translates this envelope by given amounts in the X and Y direction.
         /// </summary>
