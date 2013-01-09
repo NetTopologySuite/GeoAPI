@@ -1,0 +1,312 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{897A3D5B-501C-49BB-9037-793B957C06A0}</ProjectGuid>
+    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>GeoAPI.MonoDroid</RootNamespace>
+    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
+    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
+    <AssemblyName>GeoAPI.MonoDroid</AssemblyName>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\GeoAPI\geoapi.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Debug\MonoDroid\AnyCPU</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <AndroidLinkMode>None</AndroidLinkMode>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Release\MonoDroid\AnyCPU</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <ConsolePause>false</ConsolePause>
+    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Mono.Android" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
+  <ItemGroup>
+    <Compile Include="..\GeoAPI\CoordinateSystems\AxisInfo.cs">
+      <Link>CoordinateSystems\AxisInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\CoordinateSystems\AxisOrientationEnum.cs">
+      <Link>CoordinateSystems\AxisOrientationEnum.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\CoordinateSystems\DatumType.cs">
+      <Link>CoordinateSystems\DatumType.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\CoordinateSystems\IAngularUnit.cs">
+      <Link>CoordinateSystems\IAngularUnit.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\CoordinateSystems\ICompoundCoordinateSystem.cs">
+      <Link>CoordinateSystems\ICompoundCoordinateSystem.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\CoordinateSystems\ICoordinateSystem.cs">
+      <Link>CoordinateSystems\ICoordinateSystem.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\CoordinateSystems\ICoordinateSystemAuthorityFactory.cs">
+      <Link>CoordinateSystems\ICoordinateSystemAuthorityFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\CoordinateSystems\ICoordinateSystemFactory.cs">
+      <Link>CoordinateSystems\ICoordinateSystemFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\CoordinateSystems\IDatum.cs">
+      <Link>CoordinateSystems\IDatum.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\CoordinateSystems\IEllipsoid.cs">
+      <Link>CoordinateSystems\IEllipsoid.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\CoordinateSystems\IFittedCoordinateSystem.cs">
+      <Link>CoordinateSystems\IFittedCoordinateSystem.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\CoordinateSystems\IGeocentricCoordinateSystem.cs">
+      <Link>CoordinateSystems\IGeocentricCoordinateSystem.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\CoordinateSystems\IGeodeticSpatialReference.cs">
+      <Link>CoordinateSystems\IGeodeticSpatialReference.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\CoordinateSystems\IGeographicCoordinateSystem.cs">
+      <Link>CoordinateSystems\IGeographicCoordinateSystem.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\CoordinateSystems\IGeographicTransform.cs">
+      <Link>CoordinateSystems\IGeographicTransform.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\CoordinateSystems\IHorizontalCoordinateSystem.cs">
+      <Link>CoordinateSystems\IHorizontalCoordinateSystem.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\CoordinateSystems\IHorizontalDatum.cs">
+      <Link>CoordinateSystems\IHorizontalDatum.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\CoordinateSystems\IInfo.cs">
+      <Link>CoordinateSystems\IInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\CoordinateSystems\ILinearUnit.cs">
+      <Link>CoordinateSystems\ILinearUnit.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\CoordinateSystems\ILocalCoordinateSystem.cs">
+      <Link>CoordinateSystems\ILocalCoordinateSystem.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\CoordinateSystems\ILocalDatum.cs">
+      <Link>CoordinateSystems\ILocalDatum.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\CoordinateSystems\IParameterInfo.cs">
+      <Link>CoordinateSystems\IParameterInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\CoordinateSystems\IPrimeMeridian.cs">
+      <Link>CoordinateSystems\IPrimeMeridian.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\CoordinateSystems\IProjectedCoordinateSystem.cs">
+      <Link>CoordinateSystems\IProjectedCoordinateSystem.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\CoordinateSystems\IProjection.cs">
+      <Link>CoordinateSystems\IProjection.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\CoordinateSystems\IUnit.cs">
+      <Link>CoordinateSystems\IUnit.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\CoordinateSystems\IVerticalCoordinateSystem.cs">
+      <Link>CoordinateSystems\IVerticalCoordinateSystem.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\CoordinateSystems\IVerticalDatum.cs">
+      <Link>CoordinateSystems\IVerticalDatum.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\CoordinateSystems\Parameter.cs">
+      <Link>CoordinateSystems\Parameter.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\CoordinateSystems\ProjectionParameter.cs">
+      <Link>CoordinateSystems\ProjectionParameter.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\CoordinateSystems\WGS84ConversionInfo.cs">
+      <Link>CoordinateSystems\WGS84ConversionInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\CoordinateSystems\Transformations\DomainFlags.cs">
+      <Link>CoordinateSystems\Transformations\DomainFlags.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\CoordinateSystems\Transformations\ICoordinateTransformation.cs">
+      <Link>CoordinateSystems\Transformations\ICoordinateTransformation.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\CoordinateSystems\Transformations\ICoordinateTransformationFactory.cs">
+      <Link>CoordinateSystems\Transformations\ICoordinateTransformationFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\CoordinateSystems\Transformations\IMathTransform.cs">
+      <Link>CoordinateSystems\Transformations\IMathTransform.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\CoordinateSystems\Transformations\IMathTransformFactory.cs">
+      <Link>CoordinateSystems\Transformations\IMathTransformFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\CoordinateSystems\Transformations\TransformType.cs">
+      <Link>CoordinateSystems\Transformations\TransformType.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\DataStructures\Interval.cs">
+      <Link>DataStructures\Interval.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\Geometries\Coordinate.cs">
+      <Link>Geometries\Coordinate.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\Geometries\Dimension.cs">
+      <Link>Geometries\Dimension.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\Geometries\Envelope.cs">
+      <Link>Geometries\Envelope.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\Geometries\ICoordinate.cs">
+      <Link>Geometries\ICoordinate.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\Geometries\ICoordinateBuffer.cs">
+      <Link>Geometries\ICoordinateBuffer.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\Geometries\ICoordinateFilter.cs">
+      <Link>Geometries\ICoordinateFilter.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\Geometries\ICoordinateSequence.cs">
+      <Link>Geometries\ICoordinateSequence.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\Geometries\ICoordinateSequenceFactory.cs">
+      <Link>Geometries\ICoordinateSequenceFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\Geometries\ICoordinateSequenceFilter.cs">
+      <Link>Geometries\ICoordinateSequenceFilter.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\Geometries\ICurve.cs">
+      <Link>Geometries\ICurve.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\Geometries\IEnvelope.cs">
+      <Link>Geometries\IEnvelope.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\Geometries\IGeometry.cs">
+      <Link>Geometries\IGeometry.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\Geometries\IGeometryCollection.cs">
+      <Link>Geometries\IGeometryCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\Geometries\IGeometryComponentFilter.cs">
+      <Link>Geometries\IGeometryComponentFilter.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\Geometries\IGeometryFactory.cs">
+      <Link>Geometries\IGeometryFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\Geometries\IGeometryFilter.cs">
+      <Link>Geometries\IGeometryFilter.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\Geometries\ILineal.cs">
+      <Link>Geometries\ILineal.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\Geometries\ILinearRing.cs">
+      <Link>Geometries\ILinearRing.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\Geometries\ILineString.cs">
+      <Link>Geometries\ILineString.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\Geometries\IMultiCurve.cs">
+      <Link>Geometries\IMultiCurve.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\Geometries\IMultiLineString.cs">
+      <Link>Geometries\IMultiLineString.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\Geometries\IMultiPoint.cs">
+      <Link>Geometries\IMultiPoint.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\Geometries\IMultiPolygon.cs">
+      <Link>Geometries\IMultiPolygon.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\Geometries\IMultiSurface.cs">
+      <Link>Geometries\IMultiSurface.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\Geometries\IntersectionMatrix.cs">
+      <Link>Geometries\IntersectionMatrix.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\Geometries\IPoint.cs">
+      <Link>Geometries\IPoint.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\Geometries\IPolygon.cs">
+      <Link>Geometries\IPolygon.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\Geometries\IPolygonal.cs">
+      <Link>Geometries\IPolygonal.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\Geometries\IPrecisionModel.cs">
+      <Link>Geometries\IPrecisionModel.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\Geometries\IPuntal.cs">
+      <Link>Geometries\IPuntal.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\Geometries\ISurface.cs">
+      <Link>Geometries\ISurface.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\Geometries\Location.cs">
+      <Link>Geometries\Location.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\Geometries\OgcGeometryType.cs">
+      <Link>Geometries\OgcGeometryType.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\Geometries\Ordinate.cs">
+      <Link>Geometries\Ordinate.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\Geometries\Ordinates.cs">
+      <Link>Geometries\Ordinates.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\Geometries\OridinatesUtility.cs">
+      <Link>Geometries\OridinatesUtility.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\Geometries\Prepared\IPreparedGeometry.cs">
+      <Link>Geometries\Prepared\IPreparedGeometry.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\IO\ByteOrder.cs">
+      <Link>IO\ByteOrder.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\IO\GeometryType.cs">
+      <Link>IO\GeometryType.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\IO\IGeometryReader.cs">
+      <Link>IO\IGeometryReader.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\IO\IGeometryWriter.cs">
+      <Link>IO\IGeometryWriter.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\IO\ParseException.cs">
+      <Link>IO\ParseException.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\Operation\Buffer\BufferStyle.cs">
+      <Link>Operation\Buffer\BufferStyle.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\Operation\Buffer\EndCapStyle.cs">
+      <Link>Operation\Buffer\EndCapStyle.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\Operation\Buffer\IBufferParameters.cs">
+      <Link>Operation\Buffer\IBufferParameters.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\Operation\Buffer\JoinStyle.cs">
+      <Link>Operation\Buffer\JoinStyle.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\GeometryServiceProvider.cs">
+      <Link>GeometryServiceProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\IGeometryServices.cs">
+      <Link>IGeometryServices.cs</Link>
+    </Compile>
+    <Compile Include="FrameworkReplacements\BitConverterEx.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\GeoAPI\geoapi.snk">
+      <Link>geoapi.snk</Link>
+    </None>
+  </ItemGroup>
+</Project>
