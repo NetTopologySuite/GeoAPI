@@ -162,6 +162,9 @@
     <Compile Include="..\GeoAPI\Geometries\Envelope.cs">
       <Link>Geometries\Envelope.cs</Link>
     </Compile>
+    <Compile Include="..\GeoAPI\Geometries\IBoundable.cs">
+      <Link>Geometries\IBoundable.cs</Link>
+    </Compile>
     <Compile Include="..\GeoAPI\Geometries\ICoordinateBuffer.cs">
       <Link>Geometries\ICoordinateBuffer.cs</Link>
     </Compile>
@@ -177,6 +180,9 @@
     <Compile Include="..\GeoAPI\Geometries\ICoordinateSequenceFilter.cs">
       <Link>Geometries\ICoordinateSequenceFilter.cs</Link>
     </Compile>
+    <Compile Include="..\GeoAPI\Geometries\IExpandable.cs">
+      <Link>Geometries\IExpandable.cs</Link>
+    </Compile>
     <Compile Include="..\GeoAPI\Geometries\IGeometryComponentFilter.cs">
       <Link>Geometries\IGeometryComponentFilter.cs</Link>
     </Compile>
@@ -185,6 +191,9 @@
     </Compile>
     <Compile Include="..\GeoAPI\Geometries\IGeometryFilter.cs">
       <Link>Geometries\IGeometryFilter.cs</Link>
+    </Compile>
+    <Compile Include="..\GeoAPI\Geometries\IIntersectable.cs">
+      <Link>Geometries\IIntersectable.cs</Link>
     </Compile>
     <Compile Include="..\GeoAPI\Geometries\IMultiSurface.cs">
       <Link>Geometries\IMultiSurface.cs</Link>
