@@ -11,7 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>GeoAPI.NET project provides a common framework based on OGC/ISO standards to improve interoperability among .NET GIS projects.</description>
     <releaseNotes>This version matches NetTopologySuite v1.13 API.</releaseNotes>
-    <copyright>Copyright 2007-2012</copyright>
+    <copyright>Copyright 2007-2013</copyright>
     <tags>OGC SFS NTS</tags>
   </metadata>
   <files>
