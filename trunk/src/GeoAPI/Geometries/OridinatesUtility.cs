@@ -64,7 +64,7 @@ namespace GeoAPI.Geometries
             var result = Ordinates.None;
             foreach (var ordinate in ordinates)
             {
-                result |= (Ordinates) (1 << ((int) ordinate-1));
+                result |= (Ordinates) (1 << ((int) ordinate));
             }
             return result;
         }
