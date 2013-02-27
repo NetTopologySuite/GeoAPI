@@ -23,6 +23,7 @@ namespace GeoAPI.CoordinateSystems
 	/// <summary>
 	/// Details of axis. This is used to label axes, and indicate the orientation.
 	/// </summary>
+	[Serializable]
 	public class AxisInfo
 	{
 		/// <summary>

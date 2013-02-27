@@ -311,6 +311,9 @@
     <Compile Include="..\GeoAPI\IGeometryServices.cs">
       <Link>IGeometryServices.cs</Link>
     </Compile>
+    <Compile Include="..\GeoAPI\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="FrameworkReplacements\BitConverterEx.cs" />
   </ItemGroup>
   <ItemGroup>

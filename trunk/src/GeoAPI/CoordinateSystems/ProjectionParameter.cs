@@ -30,7 +30,8 @@ namespace GeoAPI.CoordinateSystems
 	/// system is based on. (Notice that this is different from <see cref="Parameter"/>,
 	/// where the units are always meters and degrees.)
 	/// </remarks>
-	public class ProjectionParameter
+	[Serializable]
+	public class ProjectionParameter 
 	{
 		/// <summary>
 		/// Initializes an instance of a ProjectionParameter

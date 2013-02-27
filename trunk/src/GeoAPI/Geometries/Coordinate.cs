@@ -120,6 +120,13 @@ namespace GeoAPI.Geometries
         public Coordinate(ICoordinate c) : this(c.X, c.Y, c.Z) { }
 
         /// <summary>
+        /// Constructs a <c>Coordinate</c> having the same (x,y,z) values as
+        /// <c>other</c>.
+        /// </summary>
+        /// <param name="c"><c>Coordinate</c> to copy.</param>
+        public Coordinate(Coordinate c) : this(c.X, c.Y, c.Z) { }
+
+        /// <summary>
         /// Constructs a <c>Coordinate</c> at (x,y,NaN).
         /// </summary>
         /// <param name="x">X value.</param>
