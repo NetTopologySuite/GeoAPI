@@ -93,5 +93,10 @@ namespace GeoAPI.CoordinateSystems
                 return String.Format(CultureInfo.InvariantCulture.NumberFormat, "<CS_ProjectionParameter Name=\"{0}\" Value=\"{1}\"/>", Name, Value);
 			}
 		}
+
+        public override string ToString()
+        {
+            return string.Format("ProjektionParamter '{0}': {1}", Name, Value);
+        }
 	}
 }
