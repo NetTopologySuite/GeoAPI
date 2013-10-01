@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Reflection;
 
 namespace GeoAPI
@@ -45,6 +46,10 @@ namespace GeoAPI
                 return assembly.GetExportedTypes();
             }
             catch (TypeLoadException)
+            {
+                return new Type[0];
+            }
+            catch (FileNotFoundException)
             {
                 return new Type[0];
             }
