@@ -30,7 +30,11 @@ namespace GeoAPI.CoordinateSystems
 	/// system is based on. (Notice that this is different from <see cref="Parameter"/>,
 	/// where the units are always meters and degrees.)
 	/// </remarks>
-	[Serializable]
+#if SILVERLIGHT || PCL
+    [System.Runtime.Serialization.DataContract]
+#else
+    [Serializable]
+#endif
 	public class ProjectionParameter 
 	{
 		/// <summary>
@@ -44,12 +48,16 @@ namespace GeoAPI.CoordinateSystems
 			_Value = value;
 		}
 
+
 		private string _Name;
 
 		/// <summary>
 		/// Parameter name.
 		/// </summary>
-		public string Name
+#if SILVERLIGHT || PCL
+        [System.Runtime.Serialization.DataMember]
+#endif
+        public string Name
 		{
 			get { return _Name; }
 			set { _Name = value; }
@@ -64,7 +72,10 @@ namespace GeoAPI.CoordinateSystems
 		/// angular units of the geographic coordinate system that the projected coordinate 
 		/// system is based on.
 		/// </summary>
-		public double Value
+#if SILVERLIGHT || PCL
+        [System.Runtime.Serialization.DataMember]
+#endif
+        public double Value
 		{
 			get { return _Value; }
 			set { _Value = value; }

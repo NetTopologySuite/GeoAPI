@@ -22,8 +22,12 @@ namespace GeoAPI.CoordinateSystems
 	/// <summary>
 	/// A named parameter value.
 	/// </summary>
-	[Serializable]
-	public class Parameter
+#if SILVERLIGHT || PCL
+    [System.Runtime.Serialization.DataContract]
+#else
+    [Serializable]
+#endif
+    public class Parameter
 	{
 		/// <summary>
 		/// Creates an instance of a parameter
@@ -44,7 +48,10 @@ namespace GeoAPI.CoordinateSystems
 		/// <summary>
 		/// Parameter name
 		/// </summary>
-		public string Name
+#if SILVERLIGHT || PCL
+    [System.Runtime.Serialization.DataMember]
+#endif
+        public string Name
 		{
 			get { return _Name; }
 			set { _Name = value; }
@@ -55,7 +62,10 @@ namespace GeoAPI.CoordinateSystems
 		/// <summary>
 		/// Parameter value
 		/// </summary>
-		public double Value
+#if SILVERLIGHT || PCL
+        [System.Runtime.Serialization.DataMember]
+#endif
+        public double Value
 		{
 			get { return _Value; }
 			set { _Value = value; }

@@ -6,7 +6,11 @@ namespace GeoAPI.Geometries
     /// Interface for lightweight classes used to store coordinates on the 2-dimensional Cartesian plane.
     /// </summary>
     [Obsolete("Use Coordinate class instead")]
-    public interface ICoordinate : ICloneable, IComparable, IComparable<ICoordinate>, IEquatable<ICoordinate>
+    public interface ICoordinate : 
+#if !(SILVERLIGHT || PCL)
+        ICloneable,
+#endif
+        IComparable, IComparable<ICoordinate>, IEquatable<ICoordinate>
     {
         /// <summary>
         /// The x-ordinate value

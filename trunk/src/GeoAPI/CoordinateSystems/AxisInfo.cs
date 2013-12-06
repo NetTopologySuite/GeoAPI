@@ -23,8 +23,12 @@ namespace GeoAPI.CoordinateSystems
 	/// <summary>
 	/// Details of axis. This is used to label axes, and indicate the orientation.
 	/// </summary>
-	[Serializable]
-	public class AxisInfo
+#if SILVERLIGHT || PCL
+    [System.Runtime.Serialization.DataContract]
+#else
+    [Serializable]
+#endif
+    public class AxisInfo
 	{
 		/// <summary>
 		/// Initializes a new instance of an AxisInfo.
@@ -42,7 +46,10 @@ namespace GeoAPI.CoordinateSystems
 		/// <summary>
 		/// Human readable name for axis. Possible values are X, Y, Long, Lat or any other short string.
 		/// </summary>
-		public string Name
+#if SILVERLIGHT || PCL
+        [System.Runtime.Serialization.DataMember]
+#endif
+        public string Name
 		{
 			get { return _Name; }
 			set { _Name = value; }
@@ -53,7 +60,10 @@ namespace GeoAPI.CoordinateSystems
 		/// <summary>
 		/// Gets enumerated value for orientation.
 		/// </summary>
-		public AxisOrientationEnum Orientation
+#if SILVERLIGHT || PCL
+        [System.Runtime.Serialization.DataMember]
+#endif
+        public AxisOrientationEnum Orientation
 		{
 			get { return _Orientation; }
 			set { _Orientation = value; }
@@ -63,22 +73,38 @@ namespace GeoAPI.CoordinateSystems
 		/// Returns the Well-known text for this object
 		/// as defined in the simple features specification.
 		/// </summary>
-		public string WKT
+#if SILVERLIGHT || PCL
+        [System.Runtime.Serialization.IgnoreDataMember]
+#endif
+        public string WKT
 		{
 			get
 			{
+#if SILVERLIGHT || PCL
+			    return String.Format("AXIS[\"{0}\", {1}]", Name, Orientation.ToString().ToUpper());
+#else
 				return String.Format("AXIS[\"{0}\", {1}]", Name, Orientation.ToString().ToUpper(CultureInfo.InvariantCulture));
+#endif
 			}
 		}
 
 		/// <summary>
 		/// Gets an XML representation of this object
 		/// </summary>
-		public string XML
+#if SILVERLIGHT || PCL
+        [System.Runtime.Serialization.IgnoreDataMember]
+#endif
+        public string XML
 		{
 			get
 			{
-				return String.Format(CultureInfo.InvariantCulture.NumberFormat, "<CS_AxisInfo Name=\"{0}\" Orientation=\"{1}\"/>", Name, Orientation.ToString().ToUpper(CultureInfo.InvariantCulture));
+				return String.Format(CultureInfo.InvariantCulture.NumberFormat, 
+                    "<CS_AxisInfo Name=\"{0}\" Orientation=\"{1}\"/>", Name, Orientation.ToString()
+#if !(PCL || SILVERLIGHT)
+                    .ToUpper(CultureInfo.InvariantCulture));
+#else
+                    .ToUpper());
+#endif
 			}
 		}
 	}

@@ -66,7 +66,7 @@ namespace GeoAPI
 
         private static IGeometryServices ReflectInstance()
         {
-#if !SILVERLIGHT
+#if !(SILVERLIGHT || PCL)
             var a = AppDomain.CurrentDomain.GetAssemblies();
             foreach (var assembly in a)
             {

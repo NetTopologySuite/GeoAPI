@@ -1,4 +1,6 @@
+#if !(PCL || SILVERLIGHT)
 using System;
+#endif
 
 namespace GeoAPI.Geometries
 {
@@ -28,7 +30,10 @@ namespace GeoAPI.Geometries
     ///// <seealso cref="NetTopologySuite.Geometries.Implementation.CoordinateArraySequenceFactory"/>
     ///// <seealso cref="NetTopologySuite.Geometries.Implementation.ExtendedCoordinateExample"/>
     ///// <seealso cref="NetTopologySuite.Geometries.Implementation.PackedCoordinateSequenceFactory"/>
-    public interface ICoordinateSequence : ICloneable
+    public interface ICoordinateSequence 
+#if !(PCL || SILVERLIGHT)
+        : ICloneable
+#endif
     {
         /// <summary>
         /// Returns the dimension (number of ordinates in each coordinate) for this sequence.

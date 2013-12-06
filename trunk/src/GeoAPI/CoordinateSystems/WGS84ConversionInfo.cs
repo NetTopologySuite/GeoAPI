@@ -42,8 +42,12 @@ namespace GeoAPI.CoordinateSystems
 	/// application can assume that the writing application believed that the datum is approximately equal to
 	/// WGS84.</para>
 	/// </remarks>
-	[Serializable]
-	public class Wgs84ConversionInfo : IEquatable<Wgs84ConversionInfo>
+#if SILVERLIGHT || PCL
+    [System.Runtime.Serialization.DataContract]
+#else
+    [Serializable]
+#endif
+    public class Wgs84ConversionInfo : IEquatable<Wgs84ConversionInfo>
 	{
 		private const double SEC_TO_RAD = 4.84813681109535993589914102357e-6;
 
@@ -87,42 +91,67 @@ namespace GeoAPI.CoordinateSystems
 		/// <summary>
 		/// Bursa Wolf shift in meters.
 		/// </summary>
+
+#if SILVERLIGHT || PCL
+    [System.Runtime.Serialization.DataMember]
+#endif
 		public double Dx;
 
 		/// <summary>
 		/// Bursa Wolf shift in meters.
 		/// </summary>
-		public double Dy;
+#if SILVERLIGHT || PCL
+    [System.Runtime.Serialization.DataMember]
+#endif
+    public double Dy;
 
 		/// <summary>
 		/// Bursa Wolf shift in meters.
 		/// </summary>
-		public double Dz;
+#if SILVERLIGHT || PCL
+    [System.Runtime.Serialization.DataMember]
+#endif
+    public double Dz;
 
 		/// <summary>
 		/// Bursa Wolf rotation in arc seconds.
 		/// </summary>
-		public double Ex;
+#if SILVERLIGHT || PCL
+    [System.Runtime.Serialization.DataMember]
+#endif
+    public double Ex;
 
 		/// <summary>
 		/// Bursa Wolf rotation in arc seconds.
 		/// </summary>
-		public double Ey;
+#if SILVERLIGHT || PCL
+    [System.Runtime.Serialization.DataMember]
+#endif
+    public double Ey;
 
 		/// <summary>
 		/// Bursa Wolf rotation in arc seconds.
 		/// </summary>
-		public double Ez;
+#if SILVERLIGHT || PCL
+    [System.Runtime.Serialization.DataMember]
+#endif
+    public double Ez;
 
 		/// <summary>
 		/// Bursa Wolf scaling in parts per million.
 		/// </summary>
-		public double Ppm;
+#if SILVERLIGHT || PCL
+    [System.Runtime.Serialization.DataMember]
+#endif
+    public double Ppm;
 
 		/// <summary>
 		/// Human readable text describing intended region of transformation.
 		/// </summary>
-		public string AreaOfUse;
+#if SILVERLIGHT || PCL
+    [System.Runtime.Serialization.DataMember]
+#endif
+    public string AreaOfUse;
 
 		/// <summary>
 		/// Affine Bursa-Wolf matrix transformation
@@ -184,7 +213,10 @@ namespace GeoAPI.CoordinateSystems
 		/// </summary>
 		/// <remarks>The WKT format of this object is: <code>TOWGS84[dx, dy, dz, ex, ey, ez, ppm]</code></remarks>
 		/// <returns>WKT representaion</returns>
-		public string WKT
+#if SILVERLIGHT || PCL
+        [System.Runtime.Serialization.IgnoreDataMember]
+#endif
+        public string WKT
 		{
 			get
 			{
@@ -197,7 +229,10 @@ namespace GeoAPI.CoordinateSystems
 		/// <summary>
 		/// Gets an XML representation of this object
 		/// </summary>
-		public string XML
+#if SILVERLIGHT || PCL
+        [System.Runtime.Serialization.IgnoreDataMember]
+#endif
+        public string XML
 		{
 			get
 			{
@@ -221,7 +256,10 @@ namespace GeoAPI.CoordinateSystems
 		/// Returns true of all 7 parameter values are 0.0
 		/// </summary>
 		/// <returns></returns>
-		public bool HasZeroValuesOnly
+#if SILVERLIGHT || PCL
+        [System.Runtime.Serialization.IgnoreDataMember]
+#endif
+        public bool HasZeroValuesOnly
 		{
 			get {
 				return !(Dx != 0 || Dy != 0 || Dz != 0 || Ex != 0 || Ey != 0 || Ez != 0 || Ppm != 0);

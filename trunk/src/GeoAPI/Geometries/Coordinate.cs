@@ -1,6 +1,6 @@
 using System;
 
-#if !WINDOWS_PHONE
+#if !(WINDOWS_PHONE || PCL)
 using BitConverter = System.BitConverter;
 #else
 
@@ -27,7 +27,11 @@ namespace GeoAPI.Geometries
     /// (which is also the value of <see cref="NullOrdinate"/>).
     /// </para>
     /// </summary>
+#if SILVERLIGHT || PCL
+    [System.Runtime.Serialization.DataContract]
+#else
     [Serializable]
+#endif
 #pragma warning disable 612,618
     public class Coordinate : ICoordinate, IComparable<Coordinate>, IEquatable<Coordinate>
 #pragma warning restore 612,618
@@ -42,14 +46,23 @@ namespace GeoAPI.Geometries
         /// <summary>
         /// X coordinate.
         /// </summary>
+#if SILVERLIGHT || PCL
+    [System.Runtime.Serialization.DataMember]
+#endif
         public double X; // = Double.NaN;
         /// <summary>
         /// X coordinate.
         /// </summary>
+#if SILVERLIGHT || PCL
+    [System.Runtime.Serialization.DataMember]
+#endif
         public double Y; // = Double.NaN;
         /// <summary>
         /// X coordinate.
         /// </summary>
+#if SILVERLIGHT || PCL
+    [System.Runtime.Serialization.DataMember]
+#endif
         public double Z; // = Double.NaN;
 
         /// <summary>

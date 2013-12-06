@@ -1,6 +1,6 @@
 using System;
 
-#if !WINDOWS_PHONE
+#if !(WINDOWSPHONE || PCL)
 using BitConverter = System.BitConverter;
 #else
 
@@ -19,9 +19,11 @@ namespace GeoAPI.Geometries
     /// When Envelope objects are created or initialized,
     /// the supplies extent values are automatically sorted into the correct order.
     /// </summary>
-    //#if !SILVERLIGHT
+    #if SILVERLIGHT || PCL
+    [System.Runtime.Serialization.DataContract]
+    #else
     [Serializable]
-    //#endif
+    #endif
 #pragma warning disable 612,618
     public class Envelope : IEnvelope, IEquatable<Envelope>, IComparable<Envelope>, IIntersectable<Envelope>, IExpandable<Envelope>
 #pragma warning restore 612,618
@@ -78,21 +80,33 @@ namespace GeoAPI.Geometries
         /*
         *  the minimum x-coordinate
         */
+#if (SILVERLIGHT || PCL)
+        [System.Runtime.Serialization.DataMember]
+#endif
         private double _minx;
 
         /*
         *  the maximum x-coordinate
         */
+#if (SILVERLIGHT || PCL)
+        [System.Runtime.Serialization.DataMember]
+#endif
         private double _maxx;
 
         /*
         * the minimum y-coordinate
         */
+#if (SILVERLIGHT || PCL)
+        [System.Runtime.Serialization.DataMember]
+#endif
         private double _miny;
 
         /*
         *  the maximum y-coordinate
         */
+#if (SILVERLIGHT || PCL)
+        [System.Runtime.Serialization.DataMember]
+#endif
         private double _maxy;
 
         /// <summary>
@@ -805,18 +819,11 @@ namespace GeoAPI.Geometries
         /// Creates a new object that is a copy of the current instance.
         /// </summary>
         /// <returns>A new object that is a copy of this instance.</returns>
-#if !SILVERLIGHT
+#if !(SILVERLIGHT || PCL)
         object ICloneable.Clone()
         {
             return Clone();
         }
-#else
-
-        object GeoAPI.ICloneable.Clone()
-        {
-            return Clone();
-        }
-
 #endif
 
         #region BEGIN ADDED BY MPAUL42: monoGIS team

@@ -20,7 +20,11 @@ namespace GeoAPI.Geometries
     /// </para>
     /// </remarks>
     [Obsolete("Use Envelope class instead")]
-    public interface IEnvelope : ICloneable, IComparable, IComparable<IEnvelope>, IEquatable<IEnvelope>
+    public interface IEnvelope : 
+#if !(SILVERLIGHT || PCL)
+        ICloneable,
+#endif
+        IComparable, IComparable<IEnvelope>, IEquatable<IEnvelope>
     {
         /// <summary>
         /// Gets the area of the envelope
