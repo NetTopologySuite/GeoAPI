@@ -1,4 +1,7 @@
 using System;
+#if (SILVERLIGHT || PCL)
+using ICloneable = GeoAPI.ICloneable;
+#endif
 
 namespace GeoAPI.Geometries
 {
@@ -21,9 +24,7 @@ namespace GeoAPI.Geometries
     /// </remarks>
     [Obsolete("Use Envelope class instead")]
     public interface IEnvelope : 
-#if !(SILVERLIGHT || PCL)
         ICloneable,
-#endif
         IComparable, IComparable<IEnvelope>, IEquatable<IEnvelope>
     {
         /// <summary>

@@ -1,17 +1,16 @@
 using System;
 using GeoAPI.Operation.Buffer;
 using GeoAPI.Operations.Buffer;
+#if (SILVERLIGHT || PCL)
+using ICloneable = GeoAPI.ICloneable;
+#endif
 
 namespace GeoAPI.Geometries
 {
     /// <summary>  
     /// Interface for basic implementation of <c>Geometry</c>.
     /// </summary>
-    public interface IGeometry :
-#if !(SILVERLIGHT || PCL)
-        ICloneable,
-#endif
- IComparable, IComparable<IGeometry>, IEquatable<IGeometry>
+    public interface IGeometry : ICloneable, IComparable, IComparable<IGeometry>, IEquatable<IGeometry>
     {
         ///<summary>
         /// The <see cref="IGeometryFactory"/> used to create this geometry

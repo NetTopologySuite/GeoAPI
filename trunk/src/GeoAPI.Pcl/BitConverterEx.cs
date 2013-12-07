@@ -16,4 +16,9 @@ namespace GeoAPI
             return BitConverter.ToDouble(tmp, 0);
         }
     }
+
+    public interface ICloneable
+    {
+        object Clone();
+    }
 }

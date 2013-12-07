@@ -1,4 +1,7 @@
 using System;
+#if (SILVERLIGHT || PCL)
+using ICloneable = GeoAPI.ICloneable;
+#endif
 
 namespace GeoAPI.Geometries
 {
@@ -7,9 +10,7 @@ namespace GeoAPI.Geometries
     /// </summary>
     [Obsolete("Use Coordinate class instead")]
     public interface ICoordinate : 
-#if !(SILVERLIGHT || PCL)
         ICloneable,
-#endif
         IComparable, IComparable<ICoordinate>, IEquatable<ICoordinate>
     {
         /// <summary>

@@ -819,12 +819,10 @@ namespace GeoAPI.Geometries
         /// Creates a new object that is a copy of the current instance.
         /// </summary>
         /// <returns>A new object that is a copy of this instance.</returns>
-#if !(SILVERLIGHT || PCL)
         object ICloneable.Clone()
         {
             return Clone();
         }
-#endif
 
         #region BEGIN ADDED BY MPAUL42: monoGIS team
 
