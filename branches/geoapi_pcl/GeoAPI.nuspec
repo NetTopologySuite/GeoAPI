@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>GeoAPI</id>
+    <version>$version$</version>
+    <authors>NetTopologySuite - Team</authors>
+    <owners>NetTopologySuite - Team</owners>
+    <licenseUrl>http://geoapi.codeplex.com/license</licenseUrl>
+    <projectUrl>http://geoapi.codeplex.com</projectUrl>
+    <!--<iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>-->
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>GeoAPI.NET project provides a common framework based on OGC/ISO standards to improve interoperability among .NET GIS projects.</description>
+    <releaseNotes>This version matches NetTopologySuite v1.13 API.</releaseNotes>
+    <copyright>Copyright 2007-2013</copyright>
+    <tags>OGC SFS NTS</tags>
+  </metadata>
+  <files>
+    <file src="..\Release\v2.0\AnyCPU\GeoAPI.dll" target="lib\net20" />
+    <file src="..\Release\v3.5\AnyCPU\GeoAPI.dll" target="lib\net35-client" />
+    <file src="..\Release\v4.0\AnyCPU\GeoAPI.dll" target="lib\net40-client" />
+    <file src="..\Release\v4.0.3\AnyCPU\GeoAPI.dll" target="lib\net403-client" />
+    <file src="..\Release\SilverLightv4.0\AnyCPU\GeoAPI.SilverLight.dll" target="lib\sl40" />
+    <file src="..\Release\WP\AnyCPU\GeoAPI.WindowsPhone.dll" target="lib\sl40-wp" />
+  </files>
+</package>
