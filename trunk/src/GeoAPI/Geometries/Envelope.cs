@@ -1,6 +1,6 @@
 using System;
 
-#if !(WINDOWSPHONE || PCL)
+#if !(WINDOWS_PHONE || PCL)
 using BitConverter = System.BitConverter;
 #else
 
