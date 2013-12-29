@@ -30,17 +30,21 @@ namespace GeoAPI.Geometries
         /// Creates a <see cref="ICoordinateSequence" /> of the specified size and dimension.
         /// For this to be useful, the <see cref="ICoordinateSequence" /> implementation must be mutable.
         /// </summary>
+        /// <remarks>
+        /// If the requested dimension is larger than the CoordinateSequence implementation
+        /// can provide, then a sequence of maximum possible dimension should be created.
+        /// An error should not be thrown.
+        /// </remarks>
         /// <param name="size"></param>
         /// <param name="dimension">the dimension of the coordinates in the sequence 
         /// (if user-specifiable, otherwise ignored)</param>
         /// <returns>A coordinate sequence</returns>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown if dimension argument does not match the <see cref="ICoordinateSequence"/>'s coordinate seqeuence capabilities.</exception>
         ICoordinateSequence Create(int size, int dimension);
 
         /// <summary>
         /// Creates a <see cref="ICoordinateSequence" /> of the specified size and ordinates.
         /// For this to be useful, the <see cref="ICoordinateSequence" /> implementation must be mutable.
-        /// </summary>
+        /// </summary>        
         /// <param name="size">The number of coordinates.</param>
         /// <param name="ordinates">
         /// The ordinates each coordinate has. <see cref="GeoAPI.Geometries.Ordinates.XY"/> is fix, <see cref="GeoAPI.Geometries.Ordinates.Z"/> and <see cref="GeoAPI.Geometries.Ordinates.M"/> can be set.
