@@ -1,8 +1,4 @@
-#if (PCL || SILVERLIGHT)
 using ICloneable = GeoAPI.ICloneable;
-#else
-using System;
-#endif
 
 namespace GeoAPI.Geometries
 {

@@ -66,31 +66,31 @@ namespace GeoAPI
 
         private static IGeometryServices ReflectInstance()
         {
-#if !(SILVERLIGHT || PCL)
-            var a = AppDomain.CurrentDomain.GetAssemblies();
-            foreach (var assembly in a)
-            {
-                // Take a look at issue 114: http://code.google.com/p/nettopologysuite/issues/detail?id=114
-                if (assembly is System.Reflection.Emit.AssemblyBuilder) continue;
-                if (assembly.GetType().FullName == "System.Reflection.Emit.InternalAssemblyBuilder") continue;
-                if (assembly.GlobalAssemblyCache && assembly.CodeBase == Assembly.GetExecutingAssembly().CodeBase) continue;
+//#if !(SILVERLIGHT || PCL)
+//            var a = AppDomain.CurrentDomain.GetAssemblies();
+//            foreach (var assembly in a)
+//            {
+//                // Take a look at issue 114: http://code.google.com/p/nettopologysuite/issues/detail?id=114
+//                if (assembly is System.Reflection.Emit.AssemblyBuilder) continue;
+//                if (assembly.GetType().FullName == "System.Reflection.Emit.InternalAssemblyBuilder") continue;
+//                if (assembly.GlobalAssemblyCache && assembly.CodeBase == Assembly.GetExecutingAssembly().CodeBase) continue;
 
-                foreach (var t in GetLoadableTypes(assembly))
-                {
-                    if (t.IsInterface) continue;
-                    if (t.IsAbstract) continue;
-                    if (t.IsNotPublic) continue;
-                    if (!typeof(IGeometryServices).IsAssignableFrom(t)) continue;
+//                foreach (var t in GetLoadableTypes(assembly))
+//                {
+//                    if (t.IsInterface) continue;
+//                    if (t.IsAbstract) continue;
+//                    if (t.IsNotPublic) continue;
+//                    if (!typeof(IGeometryServices).IsAssignableFrom(t)) continue;
 
-                    var constuctors = t.GetConstructors();
-                    foreach (var constructorInfo in constuctors)
-                    {
-                        if (constructorInfo.IsPublic && constructorInfo.GetParameters().Length == 0)
-                            return (IGeometryServices)Activator.CreateInstance(t);
-                    }
-                }
-            }
-#endif
+//                    var constuctors = t.GetConstructors();
+//                    foreach (var constructorInfo in constuctors)
+//                    {
+//                        if (constructorInfo.IsPublic && constructorInfo.GetParameters().Length == 0)
+//                            return (IGeometryServices)Activator.CreateInstance(t);
+//                    }
+//                }
+//            }
+//#endif
             throw new InvalidOperationException("Cannot use GeometryServiceProvider without an assigned IGeometryServices class");
         }
     }

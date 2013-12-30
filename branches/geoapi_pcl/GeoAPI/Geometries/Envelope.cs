@@ -1,12 +1,6 @@
 using System;
 
-#if !(WINDOWSPHONE || PCL)
-using BitConverter = System.BitConverter;
-#else
-
 using BitConverter = GeoAPI.BitConverterEx;
-
-#endif
 
 namespace GeoAPI.Geometries
 {
@@ -19,11 +13,7 @@ namespace GeoAPI.Geometries
     /// When Envelope objects are created or initialized,
     /// the supplies extent values are automatically sorted into the correct order.
     /// </summary>
-    #if SILVERLIGHT || PCL
     [System.Runtime.Serialization.DataContract]
-    #else
-    [Serializable]
-    #endif
 #pragma warning disable 612,618
     public class Envelope : IEnvelope, IEquatable<Envelope>, IComparable<Envelope>, IIntersectable<Envelope>, IExpandable<Envelope>
 #pragma warning restore 612,618
@@ -80,33 +70,25 @@ namespace GeoAPI.Geometries
         /*
         *  the minimum x-coordinate
         */
-#if (SILVERLIGHT || PCL)
         [System.Runtime.Serialization.DataMember]
-#endif
         private double _minx;
 
         /*
         *  the maximum x-coordinate
         */
-#if (SILVERLIGHT || PCL)
         [System.Runtime.Serialization.DataMember]
-#endif
         private double _maxx;
 
         /*
         * the minimum y-coordinate
         */
-#if (SILVERLIGHT || PCL)
         [System.Runtime.Serialization.DataMember]
-#endif
         private double _miny;
 
         /*
         *  the maximum y-coordinate
         */
-#if (SILVERLIGHT || PCL)
         [System.Runtime.Serialization.DataMember]
-#endif
         private double _maxy;
 
         /// <summary>

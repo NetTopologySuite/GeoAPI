@@ -8,28 +8,20 @@ namespace GeoAPI.DataStructures
     /// <summary>
     /// Structure for a closed 1-dimensional &#x211d;-interval
     /// </summary>
-#if SILVERLIGHT || PCL
     [System.Runtime.Serialization.DataContract]
-#else
-    [Serializable]
-#endif
     public struct Interval : IEquatable<Interval>
     {
         /// <summary>
         /// The lower bound of the interval
         /// </summary>
-#if SILVERLIGHT || PCL
-    [System.Runtime.Serialization.DataMember]
-#endif
+        [System.Runtime.Serialization.DataMember]
         public readonly double Min;
 
         /// <summary>
         /// The upper bound of the interval
         /// </summary>
-#if SILVERLIGHT || PCL
-    [System.Runtime.Serialization.DataMember]
-#endif
-    public double Max;
+        [System.Runtime.Serialization.DataMember]
+        public double Max;
 
         /// <summary>
         /// Initializes this structure with <see cref="Min"/> = <see cref="Max"/> = <paramref name="value"/>
