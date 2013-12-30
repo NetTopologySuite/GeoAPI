@@ -14,6 +14,6 @@
     <tags>OGC SFS NTS</tags>
   </metadata>
   <files>
-    <file src="..\Release\PCL\AnyCPU\GeoAPI.dll" target="lib\portable-net40+sl4+win8+wp7" />
+    <file src="Release\PCL\GeoAPI.dll" target="lib\portable-net40+sl4+win8+wp7" />
   </files>
 </package>
