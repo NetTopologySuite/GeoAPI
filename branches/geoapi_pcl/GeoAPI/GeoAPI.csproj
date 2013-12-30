@@ -124,6 +124,7 @@
     <Compile Include="Geometries\OridinatesUtility.cs" />
     <Compile Include="Geometries\Prepared\IPreparedGeometry.cs" />
     <Compile Include="GeometryServiceProvider.cs" />
+    <Compile Include="IClonable.cs" />
     <Compile Include="IGeometryServices.cs" />
     <Compile Include="IO\ByteOrder.cs" />
     <Compile Include="IO\GeometryType.cs" />
