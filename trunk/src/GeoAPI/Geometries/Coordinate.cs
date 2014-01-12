@@ -16,17 +16,20 @@ namespace GeoAPI.Geometries
     /// It is distinct from <see cref="IPoint"/>, which is a subclass of <see cref="IGeometry"/>.
     /// Unlike objects of type <see cref="IPoint"/> (which contain additional
     /// information such as an envelope, a precision model, and spatial reference
-    /// system information), a <c>Coordinate</c> only contains ordinate values
+    /// system information), a <other>Coordinate</other> only contains ordinate values
     /// and propertied.
     /// </para>
     /// <para>
-    /// <c>Coordinate</c>s are two-dimensional points, with an additional Z-ordinate.
-    /// NTS does not support any operations on the Z-ordinate except the basic accessor functions.
+    /// <other>Coordinate</other>s are two-dimensional points, with an additional Z-ordinate.    
     /// If an Z-ordinate value is not specified or not defined,
     /// constructed coordinates have a Z-ordinate of <code>NaN</code>
     /// (which is also the value of <see cref="NullOrdinate"/>).
     /// </para>
     /// </summary>
+    /// <remarks>
+    /// Apart from the basic accessor functions, NTS supports
+    /// only specific operations involving the Z-ordinate.
+    /// </remarks>
 #if SILVERLIGHT || PCL
     [System.Runtime.Serialization.DataContract]
 #else
@@ -66,7 +69,7 @@ namespace GeoAPI.Geometries
         public double Z; // = Double.NaN;
 
         /// <summary>
-        /// Constructs a <c>Coordinate</c> at (x,y,z).
+        /// Constructs a <other>Coordinate</other> at (x,y,z).
         /// </summary>
         /// <param name="x">X value.</param>
         /// <param name="y">Y value.</param>
@@ -120,34 +123,34 @@ namespace GeoAPI.Geometries
         }
 
         /// <summary>
-        ///  Constructs a <c>Coordinate</c> at (0,0,NaN).
+        ///  Constructs a <other>Coordinate</other> at (0,0,NaN).
         /// </summary>
         public Coordinate() : this(0.0, 0.0, NullOrdinate) { }
 
         /// <summary>
-        /// Constructs a <c>Coordinate</c> having the same (x,y,z) values as
-        /// <c>other</c>.
+        /// Constructs a <other>Coordinate</other> having the same (x,y,z) values as
+        /// <other>other</other>.
         /// </summary>
-        /// <param name="c"><c>Coordinate</c> to copy.</param>
+        /// <param name="c"><other>Coordinate</other> to copy.</param>
         [Obsolete]
         public Coordinate(ICoordinate c) : this(c.X, c.Y, c.Z) { }
 
         /// <summary>
-        /// Constructs a <c>Coordinate</c> having the same (x,y,z) values as
-        /// <c>other</c>.
+        /// Constructs a <other>Coordinate</other> having the same (x,y,z) values as
+        /// <other>other</other>.
         /// </summary>
-        /// <param name="c"><c>Coordinate</c> to copy.</param>
+        /// <param name="c"><other>Coordinate</other> to copy.</param>
         public Coordinate(Coordinate c) : this(c.X, c.Y, c.Z) { }
 
         /// <summary>
-        /// Constructs a <c>Coordinate</c> at (x,y,NaN).
+        /// Constructs a <other>Coordinate</other> at (x,y,NaN).
         /// </summary>
         /// <param name="x">X value.</param>
         /// <param name="y">Y value.</param>
         public Coordinate(double x, double y) : this(x, y, NullOrdinate) { }
 
         /// <summary>
-        /// Gets/Sets <c>Coordinate</c>s (x,y,z) values.
+        /// Gets/Sets <other>Coordinate</other>s (x,y,z) values.
         /// </summary>
         public Coordinate CoordinateValue
         {
@@ -161,11 +164,11 @@ namespace GeoAPI.Geometries
         }
 
         /// <summary>
-        /// Returns whether the planar projections of the two <c>Coordinate</c>s are equal.
+        /// Returns whether the planar projections of the two <other>Coordinate</other>s are equal.
         ///</summary>
-        /// <param name="other"><c>Coordinate</c> with which to do the 2D comparison.</param>
+        /// <param name="other"><other>Coordinate</other> with which to do the 2D comparison.</param>
         /// <returns>
-        /// <c>true</c> if the x- and y-coordinates are equal;
+        /// <other>true</other> if the x- and y-coordinates are equal;
         /// the Z coordinates do not have to be equal.
         /// </returns>
         public bool Equals2D(Coordinate other)
@@ -174,11 +177,32 @@ namespace GeoAPI.Geometries
         }
 
         /// <summary>
-        /// Returns <c>true</c> if <c>other</c> has the same values for the x and y ordinates.
+        /// Tests if another coordinate has the same value for X and Y, within a tolerance.
+        /// </summary>
+        /// <param name="c">A <see cref="Coordinate"/>.</param>
+        /// <param name="tolerance">The tolerance value.</param>
+        /// <returns><c>true</c> if the X and Y ordinates are within the given tolerance.</returns>
+        /// <remarks>The Z ordinate is ignored.</remarks>
+        public bool Equals2D(Coordinate c, double tolerance)
+        {
+            if (!EqualsWithTolerance(X, c.X, tolerance))
+                return false;
+            if (!EqualsWithTolerance(Y, c.Y, tolerance))
+                return false;
+            return true;
+        }
+
+        private static bool EqualsWithTolerance(double x1, double x2, double tolerance)
+        {
+            return Math.Abs(x1 - x2) <= tolerance;
+        }
+
+        /// <summary>
+        /// Returns <other>true</other> if <other>other</other> has the same values for the x and y ordinates.
         /// Since Coordinates are 2.5D, this routine ignores the z value when making the comparison.
         /// </summary>
-        /// <param name="other"><c>Coordinate</c> with which to do the comparison.</param>
-        /// <returns><c>true</c> if <c>other</c> is a <c>Coordinate</c> with the same values for the x and y ordinates.</returns>
+        /// <param name="other"><other>Coordinate</other> with which to do the comparison.</param>
+        /// <returns><other>true</other> if <other>other</other> is a <other>Coordinate</other> with the same values for the x and y ordinates.</returns>
         public override bool Equals(object other)
         {
             if (other == null)
@@ -233,10 +257,10 @@ namespace GeoAPI.Geometries
         ///    0  : this.x == other.x AND this.y = other.y
         ///    1  : this.x greaterthan other.x || ((this.x == other.x) AND (this.y greaterthan other.y))
         /// </summary>
-        /// <param name="o"><c>Coordinate</c> with which this <c>Coordinate</c> is being compared.</param>
+        /// <param name="o"><other>Coordinate</other> with which this <other>Coordinate</other> is being compared.</param>
         /// <returns>
-        /// A negative integer, zero, or a positive integer as this <c>Coordinate</c>
-        ///         is less than, equal to, or greater than the specified <c>Coordinate</c>.
+        /// A negative integer, zero, or a positive integer as this <other>Coordinate</other>
+        ///         is less than, equal to, or greater than the specified <other>Coordinate</other>.
         /// </returns>
         public int CompareTo(object o)
         {
@@ -252,10 +276,10 @@ namespace GeoAPI.Geometries
         ///    0  : this.x == other.x AND this.y = other.y
         ///    1  : this.x greaterthan other.x || ((this.x == other.x) AND (this.y greaterthan other.y))
         /// </summary>
-        /// <param name="other"><c>Coordinate</c> with which this <c>Coordinate</c> is being compared.</param>
+        /// <param name="other"><other>Coordinate</other> with which this <other>Coordinate</other> is being compared.</param>
         /// <returns>
-        /// A negative integer, zero, or a positive integer as this <c>Coordinate</c>
-        ///         is less than, equal to, or greater than the specified <c>Coordinate</c>.
+        /// A negative integer, zero, or a positive integer as this <other>Coordinate</other>
+        ///         is less than, equal to, or greater than the specified <other>Coordinate</other>.
         /// </returns>
         public int CompareTo(Coordinate other)
         {
@@ -269,10 +293,14 @@ namespace GeoAPI.Geometries
         }
 
         /// <summary>
-        /// Returns <c>true</c> if <c>other</c> has the same values for x, y and z.
+        /// Returns <c>true</c> if <paramref name="other"/> 
+        /// has the same values for X, Y and Z.
         /// </summary>
-        /// <param name="other"><c>Coordinate</c> with which to do the 3D comparison.</param>
-        /// <returns><c>true</c> if <c>other</c> is a <c>Coordinate</c> with the same values for x, y and z.</returns>
+        /// <param name="other">A <see cref="Coordinate"/> with which to do the 3D comparison.</param>
+        /// <returns>
+        /// <c>true</c> if <paramref name="other"/> is a <see cref="Coordinate"/> 
+        /// with the same values for X, Y and Z.
+        /// </returns>
         public bool Equals3D(Coordinate other)
         {
             return (X == other.X) && (Y == other.Y) &&
@@ -280,9 +308,20 @@ namespace GeoAPI.Geometries
         }
 
         /// <summary>
-        /// Returns a <c>string</c> of the form <I>(x,y,z)</I> .
+        /// Tests if another coordinate has the same value for Z, within a tolerance.
         /// </summary>
-        /// <returns><c>string</c> of the form <I>(x,y,z)</I></returns>
+        /// <param name="c">A <see cref="Coordinate"/>.</param>
+        /// <param name="tolerance">The tolerance value.</param>
+        /// <returns><c>true</c> if the Z ordinates are within the given tolerance.</returns>
+        public bool EqualInZ(Coordinate c, double tolerance)
+        {
+            return EqualsWithTolerance(this.Z, c.Z, tolerance);
+        }
+
+        /// <summary>
+        /// Returns a <other>string</other> of the form <I>(x,y,z)</I> .
+        /// </summary>
+        /// <returns><other>string</other> of the form <I>(x,y,z)</I></returns>
         public override string ToString()
         {
             return "(" + X + ", " + Y + ", " + Z + ")";
@@ -299,15 +338,28 @@ namespace GeoAPI.Geometries
 
         /// <summary>
         /// Computes the 2-dimensional Euclidean distance to another location.
-        /// The Z-ordinate is ignored.
         /// </summary>
-        /// <param name="p"><c>Coordinate</c> with which to do the distance comparison.</param>
-        /// <returns>the 2-dimensional Euclidean distance between the locations</returns>
-        public double Distance(Coordinate p)
+        /// <param name="c">A <see cref="Coordinate"/> with which to do the distance comparison.</param>
+        /// <returns>the 2-dimensional Euclidean distance between the locations.</returns>
+        /// <remarks>The Z-ordinate is ignored.</remarks>
+        public double Distance(Coordinate c)
         {
-            var dx = X - p.X;
-            var dy = Y - p.Y;
+            var dx = X - c.X;
+            var dy = Y - c.Y;
             return Math.Sqrt(dx * dx + dy * dy);
+        }
+
+        /// <summary>
+        /// Computes the 3-dimensional Euclidean distance to another location.
+        /// </summary>
+        /// <param name="c">A <see cref="Coordinate"/> with which to do the distance comparison.</param>
+        /// <returns>the 3-dimensional Euclidean distance between the locations.</returns>
+        public double Distance3D(Coordinate c)
+        {
+            double dx = X - c.X;
+            double dy = Y - c.Y;
+            double dz = Z - c.Z;
+            return Math.Sqrt(dx * dx + dy * dy + dz * dz);
         }
 
         /// <summary>
@@ -317,10 +369,10 @@ namespace GeoAPI.Geometries
         public override int GetHashCode()
         {
             var result = 17;
-// ReSharper disable NonReadonlyFieldInGetHashCode
+            // ReSharper disable NonReadonlyFieldInGetHashCode
             result = 37 * result + GetHashCode(X);
             result = 37 * result + GetHashCode(Y);
-// ReSharper restore NonReadonlyFieldInGetHashCode
+            // ReSharper restore NonReadonlyFieldInGetHashCode
             return result;
         }
 
@@ -388,7 +440,7 @@ namespace GeoAPI.Geometries
         }
 
         /// <summary>
-        /// Gets/Sets <c>Coordinate</c>s (x,y,z) values.
+        /// Gets/Sets <other>Coordinate</other>s (x,y,z) values.
         /// </summary>
         [Obsolete]
         ICoordinate ICoordinate.CoordinateValue
@@ -442,11 +494,11 @@ namespace GeoAPI.Geometries
         }
 
         /// <summary>
-        /// Returns whether the planar projections of the two <c>Coordinate</c>s are equal.
+        /// Returns whether the planar projections of the two <other>Coordinate</other>s are equal.
         ///</summary>
-        /// <param name="other"><c>Coordinate</c> with which to do the 2D comparison.</param>
+        /// <param name="other"><other>Coordinate</other> with which to do the 2D comparison.</param>
         /// <returns>
-        /// <c>true</c> if the x- and y-coordinates are equal;
+        /// <other>true</other> if the x- and y-coordinates are equal;
         /// the Z coordinates do not have to be equal.
         /// </returns>
         [Obsolete]
@@ -474,10 +526,10 @@ namespace GeoAPI.Geometries
         ///    0  : this.x == other.x AND this.y = other.y
         ///    1  : this.x greaterthan other.x || ((this.x == other.x) AND (this.y greaterthan other.y))
         /// </summary>
-        /// <param name="other"><c>Coordinate</c> with which this <c>Coordinate</c> is being compared.</param>
+        /// <param name="other"><other>Coordinate</other> with which this <other>Coordinate</other> is being compared.</param>
         /// <returns>
-        /// A negative integer, zero, or a positive integer as this <c>Coordinate</c>
-        ///         is less than, equal to, or greater than the specified <c>Coordinate</c>.
+        /// A negative integer, zero, or a positive integer as this <other>Coordinate</other>
+        ///         is less than, equal to, or greater than the specified <other>Coordinate</other>.
         /// </returns>
         [Obsolete]
         int IComparable<ICoordinate>.CompareTo(ICoordinate other)
@@ -499,10 +551,10 @@ namespace GeoAPI.Geometries
         ///    0  : this.x == other.x AND this.y = other.y
         ///    1  : this.x greaterthan other.x || ((this.x == other.x) AND (this.y greaterthan other.y))
         /// </summary>
-        /// <param name="o"><c>Coordinate</c> with which this <c>Coordinate</c> is being compared.</param>
+        /// <param name="o"><other>Coordinate</other> with which this <other>Coordinate</other> is being compared.</param>
         /// <returns>
-        /// A negative integer, zero, or a positive integer as this <c>Coordinate</c>
-        ///         is less than, equal to, or greater than the specified <c>Coordinate</c>.
+        /// A negative integer, zero, or a positive integer as this <other>Coordinate</other>
+        ///         is less than, equal to, or greater than the specified <other>Coordinate</other>.
         /// </returns>
         int IComparable.CompareTo(object o)
         {
@@ -511,10 +563,10 @@ namespace GeoAPI.Geometries
         }
 
         /// <summary>
-        /// Returns <c>true</c> if <c>other</c> has the same values for x, y and z.
+        /// Returns <other>true</other> if <other>other</other> has the same values for x, y and z.
         /// </summary>
-        /// <param name="other"><c>Coordinate</c> with which to do the 3D comparison.</param>
-        /// <returns><c>true</c> if <c>other</c> is a <c>Coordinate</c> with the same values for x, y and z.</returns>
+        /// <param name="other"><other>Coordinate</other> with which to do the 3D comparison.</param>
+        /// <returns><other>true</other> if <other>other</other> is a <other>Coordinate</other> with the same values for x, y and z.</returns>
         [Obsolete]
         bool ICoordinate.Equals3D(ICoordinate other)
         {
@@ -526,7 +578,7 @@ namespace GeoAPI.Geometries
         /// Computes the 2-dimensional Euclidean distance to another location.
         /// The Z-ordinate is ignored.
         /// </summary>
-        /// <param name="p"><c>Coordinate</c> with which to do the distance comparison.</param>
+        /// <param name="p"><other>Coordinate</other> with which to do the distance comparison.</param>
         /// <returns>the 2-dimensional Euclidean distance between the locations</returns>
         [Obsolete]
         double ICoordinate.Distance(ICoordinate p)
