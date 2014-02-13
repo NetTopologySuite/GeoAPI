@@ -12,7 +12,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>GeoAPI</RootNamespace>
     <AssemblyName>GeoAPI</AssemblyName>
-    <SignAssembly>false</SignAssembly>
+    <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>geoapi.snk</AssemblyOriginatorKeyFile>
     <SccProjectName>
     </SccProjectName>
