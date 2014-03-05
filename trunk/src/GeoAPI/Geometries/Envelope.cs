@@ -1,6 +1,6 @@
 using System;
 
-#if !(WINDOWS_PHONE || PCL)
+#if !PCL
 using BitConverter = System.BitConverter;
 #else
 
@@ -80,7 +80,7 @@ namespace GeoAPI.Geometries
         /*
         *  the minimum x-coordinate
         */
-#if (PCL)
+#if PCL
         [System.Runtime.Serialization.DataMember]
 #endif
         private double _minx;
@@ -88,7 +88,7 @@ namespace GeoAPI.Geometries
         /*
         *  the maximum x-coordinate
         */
-#if (PCL)
+#if PCL
         [System.Runtime.Serialization.DataMember]
 #endif
         private double _maxx;
@@ -96,7 +96,7 @@ namespace GeoAPI.Geometries
         /*
         * the minimum y-coordinate
         */
-#if (PCL)
+#if PCL
         [System.Runtime.Serialization.DataMember]
 #endif
         private double _miny;
@@ -104,7 +104,7 @@ namespace GeoAPI.Geometries
         /*
         *  the maximum y-coordinate
         */
-#if (PCL)
+#if PCL
         [System.Runtime.Serialization.DataMember]
 #endif
         private double _maxy;
