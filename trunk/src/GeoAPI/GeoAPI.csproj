@@ -13,7 +13,7 @@
     <RootNamespace>GeoAPI</RootNamespace>
     <AssemblyName>GeoAPI</AssemblyName>
     <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>geoapi.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>..\geoapi.snk</AssemblyOriginatorKeyFile>
     <SccProjectName>
     </SccProjectName>
     <SccLocalPath>
@@ -158,9 +158,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="geoapi.snk" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="CoordinateSystems\Projections\" />
     <Folder Include="Features\" />
   </ItemGroup>
@@ -183,6 +180,11 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Data" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\geoapi.snk">
+      <Link>geoapi.snk</Link>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
