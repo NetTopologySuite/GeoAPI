@@ -1,7 +1,7 @@
 using System;
 using GeoAPI.Operation.Buffer;
 using GeoAPI.Operations.Buffer;
-#if (SILVERLIGHT || PCL)
+#if (PCL)
 using ICloneable = GeoAPI.ICloneable;
 #endif
 

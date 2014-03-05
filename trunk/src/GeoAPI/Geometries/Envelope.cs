@@ -19,7 +19,7 @@ namespace GeoAPI.Geometries
     /// When Envelope objects are created or initialized,
     /// the supplies extent values are automatically sorted into the correct order.
     /// </summary>
-    #if SILVERLIGHT || PCL
+    #if PCL
     [System.Runtime.Serialization.DataContract]
     #else
     [Serializable]
@@ -80,7 +80,7 @@ namespace GeoAPI.Geometries
         /*
         *  the minimum x-coordinate
         */
-#if (SILVERLIGHT || PCL)
+#if (PCL)
         [System.Runtime.Serialization.DataMember]
 #endif
         private double _minx;
@@ -88,7 +88,7 @@ namespace GeoAPI.Geometries
         /*
         *  the maximum x-coordinate
         */
-#if (SILVERLIGHT || PCL)
+#if (PCL)
         [System.Runtime.Serialization.DataMember]
 #endif
         private double _maxx;
@@ -96,7 +96,7 @@ namespace GeoAPI.Geometries
         /*
         * the minimum y-coordinate
         */
-#if (SILVERLIGHT || PCL)
+#if (PCL)
         [System.Runtime.Serialization.DataMember]
 #endif
         private double _miny;
@@ -104,7 +104,7 @@ namespace GeoAPI.Geometries
         /*
         *  the maximum y-coordinate
         */
-#if (SILVERLIGHT || PCL)
+#if (PCL)
         [System.Runtime.Serialization.DataMember]
 #endif
         private double _maxy;

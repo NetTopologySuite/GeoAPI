@@ -23,7 +23,7 @@ namespace GeoAPI.CoordinateSystems
 	/// <summary>
 	/// Details of axis. This is used to label axes, and indicate the orientation.
 	/// </summary>
-#if SILVERLIGHT || PCL
+#if PCL
     [System.Runtime.Serialization.DataContract]
 #else
     [Serializable]
@@ -46,7 +46,7 @@ namespace GeoAPI.CoordinateSystems
 		/// <summary>
 		/// Human readable name for axis. Possible values are X, Y, Long, Lat or any other short string.
 		/// </summary>
-#if SILVERLIGHT || PCL
+#if PCL
         [System.Runtime.Serialization.DataMember]
 #endif
         public string Name
@@ -60,7 +60,7 @@ namespace GeoAPI.CoordinateSystems
 		/// <summary>
 		/// Gets enumerated value for orientation.
 		/// </summary>
-#if SILVERLIGHT || PCL
+#if PCL
         [System.Runtime.Serialization.DataMember]
 #endif
         public AxisOrientationEnum Orientation
@@ -73,14 +73,14 @@ namespace GeoAPI.CoordinateSystems
 		/// Returns the Well-known text for this object
 		/// as defined in the simple features specification.
 		/// </summary>
-#if SILVERLIGHT || PCL
+#if PCL
         [System.Runtime.Serialization.IgnoreDataMember]
 #endif
         public string WKT
 		{
 			get
 			{
-#if SILVERLIGHT || PCL
+#if PCL
 			    return String.Format("AXIS[\"{0}\", {1}]", Name, Orientation.ToString().ToUpper());
 #else
 				return String.Format("AXIS[\"{0}\", {1}]", Name, Orientation.ToString().ToUpper(CultureInfo.InvariantCulture));
@@ -91,7 +91,7 @@ namespace GeoAPI.CoordinateSystems
 		/// <summary>
 		/// Gets an XML representation of this object
 		/// </summary>
-#if SILVERLIGHT || PCL
+#if PCL
         [System.Runtime.Serialization.IgnoreDataMember]
 #endif
         public string XML
@@ -100,7 +100,7 @@ namespace GeoAPI.CoordinateSystems
 			{
 				return String.Format(CultureInfo.InvariantCulture.NumberFormat, 
                     "<CS_AxisInfo Name=\"{0}\" Orientation=\"{1}\"/>", Name, Orientation.ToString()
-#if !(PCL || SILVERLIGHT)
+#if !PCL
                     .ToUpper(CultureInfo.InvariantCulture));
 #else
                     .ToUpper());

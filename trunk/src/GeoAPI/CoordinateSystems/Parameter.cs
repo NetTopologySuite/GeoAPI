@@ -22,7 +22,7 @@ namespace GeoAPI.CoordinateSystems
 	/// <summary>
 	/// A named parameter value.
 	/// </summary>
-#if SILVERLIGHT || PCL
+#if PCL
     [System.Runtime.Serialization.DataContract]
 #else
     [Serializable]
@@ -48,7 +48,7 @@ namespace GeoAPI.CoordinateSystems
 		/// <summary>
 		/// Parameter name
 		/// </summary>
-#if SILVERLIGHT || PCL
+#if PCL
     [System.Runtime.Serialization.DataMember]
 #endif
         public string Name
@@ -62,7 +62,7 @@ namespace GeoAPI.CoordinateSystems
 		/// <summary>
 		/// Parameter value
 		/// </summary>
-#if SILVERLIGHT || PCL
+#if PCL
         [System.Runtime.Serialization.DataMember]
 #endif
         public double Value

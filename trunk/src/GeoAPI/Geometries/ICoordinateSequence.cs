@@ -1,4 +1,4 @@
-#if (PCL || SILVERLIGHT)
+#if PCL
 using ICloneable = GeoAPI.ICloneable;
 #else
 using System;

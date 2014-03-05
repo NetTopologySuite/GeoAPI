@@ -14,7 +14,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCopyright("Copyright ©  2007-2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-#if !(SILVERLIGHT || PCL)
+#if !(PCL)
 [assembly: ComVisible(false)]
 [assembly: Guid("b6726fc4-0319-4a6d-84f5-aafc6ba530e3")]
 #endif

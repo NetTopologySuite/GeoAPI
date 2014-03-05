@@ -1,5 +1,5 @@
 using System;
-#if (SILVERLIGHT || PCL)
+#if (PCL)
 using ApplicationException = System.Exception;
 #endif
 

@@ -30,7 +30,7 @@ namespace GeoAPI.Geometries
     /// Apart from the basic accessor functions, NTS supports
     /// only specific operations involving the Z-ordinate.
     /// </remarks>
-#if SILVERLIGHT || PCL
+#if PCL
     [System.Runtime.Serialization.DataContract]
 #else
     [Serializable]
@@ -49,21 +49,21 @@ namespace GeoAPI.Geometries
         /// <summary>
         /// X coordinate.
         /// </summary>
-#if SILVERLIGHT || PCL
+#if PCL
     [System.Runtime.Serialization.DataMember]
 #endif
         public double X; // = Double.NaN;
         /// <summary>
         /// X coordinate.
         /// </summary>
-#if SILVERLIGHT || PCL
+#if PCL
     [System.Runtime.Serialization.DataMember]
 #endif
         public double Y; // = Double.NaN;
         /// <summary>
         /// X coordinate.
         /// </summary>
-#if SILVERLIGHT || PCL
+#if PCL
     [System.Runtime.Serialization.DataMember]
 #endif
         public double Z; // = Double.NaN;

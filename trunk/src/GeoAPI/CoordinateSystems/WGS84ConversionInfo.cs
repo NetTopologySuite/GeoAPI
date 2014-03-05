@@ -42,7 +42,7 @@ namespace GeoAPI.CoordinateSystems
 	/// application can assume that the writing application believed that the datum is approximately equal to
 	/// WGS84.</para>
 	/// </remarks>
-#if SILVERLIGHT || PCL
+#if PCL
     [System.Runtime.Serialization.DataContract]
 #else
     [Serializable]
@@ -92,7 +92,7 @@ namespace GeoAPI.CoordinateSystems
 		/// Bursa Wolf shift in meters.
 		/// </summary>
 
-#if SILVERLIGHT || PCL
+#if PCL
     [System.Runtime.Serialization.DataMember]
 #endif
 		public double Dx;
@@ -100,7 +100,7 @@ namespace GeoAPI.CoordinateSystems
 		/// <summary>
 		/// Bursa Wolf shift in meters.
 		/// </summary>
-#if SILVERLIGHT || PCL
+#if PCL
     [System.Runtime.Serialization.DataMember]
 #endif
     public double Dy;
@@ -108,7 +108,7 @@ namespace GeoAPI.CoordinateSystems
 		/// <summary>
 		/// Bursa Wolf shift in meters.
 		/// </summary>
-#if SILVERLIGHT || PCL
+#if PCL
     [System.Runtime.Serialization.DataMember]
 #endif
     public double Dz;
@@ -116,7 +116,7 @@ namespace GeoAPI.CoordinateSystems
 		/// <summary>
 		/// Bursa Wolf rotation in arc seconds.
 		/// </summary>
-#if SILVERLIGHT || PCL
+#if PCL
     [System.Runtime.Serialization.DataMember]
 #endif
     public double Ex;
@@ -124,7 +124,7 @@ namespace GeoAPI.CoordinateSystems
 		/// <summary>
 		/// Bursa Wolf rotation in arc seconds.
 		/// </summary>
-#if SILVERLIGHT || PCL
+#if PCL
     [System.Runtime.Serialization.DataMember]
 #endif
     public double Ey;
@@ -132,7 +132,7 @@ namespace GeoAPI.CoordinateSystems
 		/// <summary>
 		/// Bursa Wolf rotation in arc seconds.
 		/// </summary>
-#if SILVERLIGHT || PCL
+#if PCL
     [System.Runtime.Serialization.DataMember]
 #endif
     public double Ez;
@@ -140,7 +140,7 @@ namespace GeoAPI.CoordinateSystems
 		/// <summary>
 		/// Bursa Wolf scaling in parts per million.
 		/// </summary>
-#if SILVERLIGHT || PCL
+#if PCL
     [System.Runtime.Serialization.DataMember]
 #endif
     public double Ppm;
@@ -148,7 +148,7 @@ namespace GeoAPI.CoordinateSystems
 		/// <summary>
 		/// Human readable text describing intended region of transformation.
 		/// </summary>
-#if SILVERLIGHT || PCL
+#if PCL
     [System.Runtime.Serialization.DataMember]
 #endif
     public string AreaOfUse;
@@ -213,7 +213,7 @@ namespace GeoAPI.CoordinateSystems
 		/// </summary>
 		/// <remarks>The WKT format of this object is: <code>TOWGS84[dx, dy, dz, ex, ey, ez, ppm]</code></remarks>
 		/// <returns>WKT representaion</returns>
-#if SILVERLIGHT || PCL
+#if PCL
         [System.Runtime.Serialization.IgnoreDataMember]
 #endif
         public string WKT
@@ -229,7 +229,7 @@ namespace GeoAPI.CoordinateSystems
 		/// <summary>
 		/// Gets an XML representation of this object
 		/// </summary>
-#if SILVERLIGHT || PCL
+#if PCL
         [System.Runtime.Serialization.IgnoreDataMember]
 #endif
         public string XML
@@ -256,7 +256,7 @@ namespace GeoAPI.CoordinateSystems
 		/// Returns true of all 7 parameter values are 0.0
 		/// </summary>
 		/// <returns></returns>
-#if SILVERLIGHT || PCL
+#if PCL
         [System.Runtime.Serialization.IgnoreDataMember]
 #endif
         public bool HasZeroValuesOnly

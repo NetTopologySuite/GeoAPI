@@ -8,7 +8,7 @@ namespace GeoAPI.DataStructures
     /// <summary>
     /// Structure for a closed 1-dimensional &#x211d;-interval
     /// </summary>
-#if SILVERLIGHT || PCL
+#if PCL
     [System.Runtime.Serialization.DataContract]
 #else
     [Serializable]
@@ -18,7 +18,7 @@ namespace GeoAPI.DataStructures
         /// <summary>
         /// The lower bound of the interval
         /// </summary>
-#if SILVERLIGHT || PCL
+#if PCL
     [System.Runtime.Serialization.DataMember]
 #endif
         public readonly double Min;
@@ -26,7 +26,7 @@ namespace GeoAPI.DataStructures
         /// <summary>
         /// The upper bound of the interval
         /// </summary>
-#if SILVERLIGHT || PCL
+#if PCL
     [System.Runtime.Serialization.DataMember]
 #endif
     public double Max;
