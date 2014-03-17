@@ -1,4 +1,6 @@
-﻿using System;
+﻿#if !PCL
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
@@ -66,7 +68,6 @@ namespace GeoAPI
 
         private static IGeometryServices ReflectInstance()
         {
-#if !PCL
             var a = AppDomain.CurrentDomain.GetAssemblies();
             foreach (var assembly in a)
             {
@@ -90,8 +91,9 @@ namespace GeoAPI
                     }
                 }
             }
-#endif
             throw new InvalidOperationException("Cannot use GeometryServiceProvider without an assigned IGeometryServices class");
         }
     }
 }
+
+#endif
