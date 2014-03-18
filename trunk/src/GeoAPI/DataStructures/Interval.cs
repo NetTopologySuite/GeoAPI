@@ -9,7 +9,7 @@ namespace GeoAPI.DataStructures
     /// Structure for a closed 1-dimensional &#x211d;-interval
     /// </summary>
 #if PCL
-    [System.Runtime.Serialization.DataContract]
+    [System.Runtime.Serialization.DataContract()]
 #else
     [Serializable]
 #endif
