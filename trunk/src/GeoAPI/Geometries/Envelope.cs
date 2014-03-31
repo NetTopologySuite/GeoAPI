@@ -834,6 +834,11 @@ namespace GeoAPI.Geometries
         /// <returns></returns>
         public Envelope Clone()
         {
+            if (IsNull)
+            {
+                // #179: This will create a new 'NULL' envelope
+                return new Envelope();                
+            }
             return new Envelope(_minx, _maxx, _miny, _maxy);
         }
 
@@ -850,8 +855,8 @@ namespace GeoAPI.Geometries
         /// </summary>
         IEnvelope IEnvelope.Union(ICoordinate coord)
         {
-            var env = Clone();
-            ((IEnvelope)env).ExpandToInclude(coord);
+            IEnvelope env = Clone();
+            env.ExpandToInclude(coord);
             return env;
         }
 
