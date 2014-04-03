@@ -1,5 +1,6 @@
 using System;
-
+using System.Globalization;
+using System.Text;
 #if !PCL
 using BitConverter = System.BitConverter;
 #else
@@ -812,7 +813,19 @@ namespace GeoAPI.Geometries
 
         public override string ToString()
         {
-            return "Env[" + _minx + " : " + _maxx + ", " + _miny + " : " + _maxy + "]";
+            var sb = new StringBuilder("Env[");
+            if (IsNull)
+            {
+                sb.Append("Null]");
+            }
+            else
+            {
+                sb.AppendFormat(NumberFormatInfo.InvariantInfo, "{0:R} : {1:R}, ", _minx, _maxx);
+                sb.AppendFormat(NumberFormatInfo.InvariantInfo, "{0:R} : {1:R}]", _miny, _maxy);
+            }
+            return sb.ToString();
+
+            //return "Env[" + _minx + " : " + _maxx + ", " + _miny + " : " + _maxy + "]";
         }
 
         /// <summary>
@@ -1236,5 +1249,50 @@ namespace GeoAPI.Geometries
 #pragma warning restore 612,618
 
         #endregion BEGIN ADDED BY MPAUL42: monoGIS team
+
+        /// <summary>
+        /// Method to parse an envelope from its <see cref="Envelope.ToString"/> value
+        /// </summary>
+        /// <param name="envelope">The envelope string</param>
+        /// <returns>The envelope</returns>
+        public static Envelope Parse(string envelope)
+        {
+            if (string.IsNullOrEmpty(envelope))
+                throw new ArgumentNullException("envelope");
+            if (!(envelope.StartsWith("Env[") && envelope.EndsWith("]")))
+                throw new ArgumentException("Not a valid envelope string", "envelope");
+
+            // test for null
+            envelope = envelope.Substring(4, envelope.Length - 5);
+            if (envelope == "Null")
+                return new Envelope();
+
+            // Parse values
+            var ordinatesValues = new double[4];
+            var ordinateLabel = new [] {"x", "y"};
+            var j = 0;
+
+            // split into ranges
+            var parts = envelope.Split(',');
+            if (parts.Length != 2)
+                throw new ArgumentException("Does not provide two ranges", "envelope");
+
+            foreach (var part in parts)
+            {
+                // Split int min/max
+                var ordinates = part.Split(':');
+                if (ordinates.Length != 2)
+                    throw new ArgumentException("Does not provide just min and max values", "envelope");
+
+                if (!double.TryParse(ordinates[0].Trim(), NumberStyles.Number, NumberFormatInfo.InvariantInfo, out ordinatesValues[2*j]))
+                    throw new ArgumentException(string.Format("Could not parse min {0}-Ordinate", ordinateLabel[j]), "envelope");
+                if (!double.TryParse(ordinates[1].Trim(), NumberStyles.Number, NumberFormatInfo.InvariantInfo, out ordinatesValues[2*j+1]))
+                    throw new ArgumentException(string.Format("Could not parse max {0}-Ordinate", ordinateLabel[j]), "envelope");
+                j++;
+            }
+
+            return new Envelope(ordinatesValues[0], ordinatesValues[1], 
+                                ordinatesValues[2], ordinatesValues[3]);
+        }
     }
 }
