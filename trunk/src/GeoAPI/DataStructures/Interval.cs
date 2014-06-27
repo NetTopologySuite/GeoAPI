@@ -8,9 +8,7 @@ namespace GeoAPI.DataStructures
     /// <summary>
     /// Structure for a closed 1-dimensional &#x211d;-interval
     /// </summary>
-#if PCL
-    [System.Runtime.Serialization.DataContract()]
-#else
+#if !PCL
     [Serializable]
 #endif
     public struct Interval : IEquatable<Interval>
@@ -18,18 +16,12 @@ namespace GeoAPI.DataStructures
         /// <summary>
         /// The lower bound of the interval
         /// </summary>
-#if PCL
-    [System.Runtime.Serialization.DataMember]
-#endif
         public readonly double Min;
 
         /// <summary>
         /// The upper bound of the interval
         /// </summary>
-#if PCL
-    [System.Runtime.Serialization.DataMember]
-#endif
-    public double Max;
+        public double Max;
 
         /// <summary>
         /// Initializes this structure with <see cref="Min"/> = <see cref="Max"/> = <paramref name="value"/>
@@ -52,25 +44,25 @@ namespace GeoAPI.DataStructures
             Max = max;
         }
 
-//        /// <summary>
-//        /// Method to expand 
-//        /// </summary>
-//        /// <param name="p"></param>
-//        /// <returns></returns>
-//        public void ExpandByValue(double p)
-//        {
-//#if picky
-//            // This is not a valid value, ignore it
-//            if (p.Equals(Coordinate.NullOrdinate))
-//                return;
+        //        /// <summary>
+        //        /// Method to expand 
+        //        /// </summary>
+        //        /// <param name="p"></param>
+        //        /// <returns></returns>
+        //        public void ExpandByValue(double p)
+        //        {
+        //#if picky
+        //            // This is not a valid value, ignore it
+        //            if (p.Equals(Coordinate.NullOrdinate))
+        //                return;
 
-//            // This interval has not seen a valid ordinate
-//            if (Min.Equals(Coordinate.NullOrdinate))
-//                return;
-//#endif
-//            Min = p < Min ? p : Min;
-//            Max = p > Max ? p : Max;
-//        }
+        //            // This interval has not seen a valid ordinate
+        //            if (Min.Equals(Coordinate.NullOrdinate))
+        //                return;
+        //#endif
+        //            Min = p < Min ? p : Min;
+        //            Max = p > Max ? p : Max;
+        //        }
 
         /// <summary>
         /// Method to expand 
@@ -137,12 +129,12 @@ namespace GeoAPI.DataStructures
         /// <summary>
         /// Gets a value indicating the width of the <see cref="Interval"/>
         /// </summary>
-        public double Width { get { return Max - Min; }}
+        public double Width { get { return Max - Min; } }
 
         /// <summary>
         /// Gets a value indicating the centre of the interval (Min + Width * 0.5)
         /// </summary>
-        public double Centre { get { return Min + Width*0.5; } }
+        public double Centre { get { return Min + Width * 0.5; } }
 
         /// <summary>
         /// Function to compute an interval that contains this and <paramref name="interval"/> <see cref="Interval"/>
@@ -296,8 +288,8 @@ namespace GeoAPI.DataStructures
         /// <returns>An <see cref="Interval"/></returns>
         public static Interval Create(double val1, double val2)
         {
-            return val1 < val2 
-                ? new Interval(val1, val2) 
+            return val1 < val2
+                ? new Interval(val1, val2)
                 : new Interval(val2, val1);
         }
 

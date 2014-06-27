@@ -4,9 +4,7 @@ using System.Text;
 #if !PCL
 using BitConverter = System.BitConverter;
 #else
-
 using BitConverter = GeoAPI.BitConverterEx;
-
 #endif
 
 namespace GeoAPI.Geometries
@@ -20,11 +18,9 @@ namespace GeoAPI.Geometries
     /// When Envelope objects are created or initialized,
     /// the supplies extent values are automatically sorted into the correct order.
     /// </summary>
-    #if PCL
-    [System.Runtime.Serialization.DataContract]
-    #else
+#if !PCL
     [Serializable]
-    #endif
+#endif
 #pragma warning disable 612,618
     public class Envelope : IEnvelope, IEquatable<Envelope>, IComparable<Envelope>, IIntersectable<Envelope>, IExpandable<Envelope>
 #pragma warning restore 612,618
@@ -81,33 +77,21 @@ namespace GeoAPI.Geometries
         /*
         *  the minimum x-coordinate
         */
-#if PCL
-        [System.Runtime.Serialization.DataMember]
-#endif
         private double _minx;
 
         /*
         *  the maximum x-coordinate
         */
-#if PCL
-        [System.Runtime.Serialization.DataMember]
-#endif
         private double _maxx;
 
         /*
         * the minimum y-coordinate
         */
-#if PCL
-        [System.Runtime.Serialization.DataMember]
-#endif
         private double _miny;
 
         /*
         *  the maximum y-coordinate
         */
-#if PCL
-        [System.Runtime.Serialization.DataMember]
-#endif
         private double _maxy;
 
         /// <summary>
@@ -786,12 +770,12 @@ namespace GeoAPI.Geometries
         public override int GetHashCode()
         {
             var result = 17;
-// ReSharper disable NonReadonlyFieldInGetHashCode
+            // ReSharper disable NonReadonlyFieldInGetHashCode
             result = 37 * result + GetHashCode(_minx);
             result = 37 * result + GetHashCode(_maxx);
             result = 37 * result + GetHashCode(_miny);
             result = 37 * result + GetHashCode(_maxy);
-// ReSharper restore NonReadonlyFieldInGetHashCode
+            // ReSharper restore NonReadonlyFieldInGetHashCode
             return result;
         }
 
@@ -850,7 +834,7 @@ namespace GeoAPI.Geometries
             if (IsNull)
             {
                 // #179: This will create a new 'NULL' envelope
-                return new Envelope();                
+                return new Envelope();
             }
             return new Envelope(_minx, _maxx, _miny, _maxy);
         }
@@ -1269,7 +1253,7 @@ namespace GeoAPI.Geometries
 
             // Parse values
             var ordinatesValues = new double[4];
-            var ordinateLabel = new [] {"x", "y"};
+            var ordinateLabel = new[] { "x", "y" };
             var j = 0;
 
             // split into ranges
@@ -1284,14 +1268,14 @@ namespace GeoAPI.Geometries
                 if (ordinates.Length != 2)
                     throw new ArgumentException("Does not provide just min and max values", "envelope");
 
-                if (!double.TryParse(ordinates[0].Trim(), NumberStyles.Number, NumberFormatInfo.InvariantInfo, out ordinatesValues[2*j]))
+                if (!double.TryParse(ordinates[0].Trim(), NumberStyles.Number, NumberFormatInfo.InvariantInfo, out ordinatesValues[2 * j]))
                     throw new ArgumentException(string.Format("Could not parse min {0}-Ordinate", ordinateLabel[j]), "envelope");
-                if (!double.TryParse(ordinates[1].Trim(), NumberStyles.Number, NumberFormatInfo.InvariantInfo, out ordinatesValues[2*j+1]))
+                if (!double.TryParse(ordinates[1].Trim(), NumberStyles.Number, NumberFormatInfo.InvariantInfo, out ordinatesValues[2 * j + 1]))
                     throw new ArgumentException(string.Format("Could not parse max {0}-Ordinate", ordinateLabel[j]), "envelope");
                 j++;
             }
 
-            return new Envelope(ordinatesValues[0], ordinatesValues[1], 
+            return new Envelope(ordinatesValues[0], ordinatesValues[1],
                                 ordinatesValues[2], ordinatesValues[3]);
         }
     }

@@ -22,9 +22,7 @@ namespace GeoAPI.CoordinateSystems
 	/// <summary>
 	/// A named parameter value.
 	/// </summary>
-#if PCL
-    [System.Runtime.Serialization.DataContract]
-#else
+#if !PCL    
     [Serializable]
 #endif
     public class Parameter
@@ -41,16 +39,11 @@ namespace GeoAPI.CoordinateSystems
 			_Value = value;
 		}
 
-		#region IParameter Members
-
-		private string _Name;
+	    private string _Name;
 
 		/// <summary>
 		/// Parameter name
 		/// </summary>
-#if PCL
-    [System.Runtime.Serialization.DataMember]
-#endif
         public string Name
 		{
 			get { return _Name; }
@@ -62,15 +55,10 @@ namespace GeoAPI.CoordinateSystems
 		/// <summary>
 		/// Parameter value
 		/// </summary>
-#if PCL
-        [System.Runtime.Serialization.DataMember]
-#endif
         public double Value
 		{
 			get { return _Value; }
 			set { _Value = value; }
 		}
-	
-		#endregion
 	}
 }

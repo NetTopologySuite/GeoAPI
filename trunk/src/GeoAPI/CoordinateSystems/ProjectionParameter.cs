@@ -30,9 +30,7 @@ namespace GeoAPI.CoordinateSystems
 	/// system is based on. (Notice that this is different from <see cref="Parameter"/>,
 	/// where the units are always meters and degrees.)
 	/// </remarks>
-#if PCL
-    [System.Runtime.Serialization.DataContract]
-#else
+#if !PCL    
     [Serializable]
 #endif
 	public class ProjectionParameter 
@@ -54,9 +52,6 @@ namespace GeoAPI.CoordinateSystems
 		/// <summary>
 		/// Parameter name.
 		/// </summary>
-#if PCL
-        [System.Runtime.Serialization.DataMember]
-#endif
         public string Name
 		{
 			get { return _Name; }
@@ -72,15 +67,11 @@ namespace GeoAPI.CoordinateSystems
 		/// angular units of the geographic coordinate system that the projected coordinate 
 		/// system is based on.
 		/// </summary>
-#if PCL
-        [System.Runtime.Serialization.DataMember]
-#endif
         public double Value
 		{
 			get { return _Value; }
 			set { _Value = value; }
 		}
-
 
 		/// <summary>
 		/// Returns the Well-known text for this object

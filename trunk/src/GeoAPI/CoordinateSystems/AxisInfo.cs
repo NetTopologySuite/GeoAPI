@@ -23,9 +23,7 @@ namespace GeoAPI.CoordinateSystems
 	/// <summary>
 	/// Details of axis. This is used to label axes, and indicate the orientation.
 	/// </summary>
-#if PCL
-    [System.Runtime.Serialization.DataContract]
-#else
+#if !PCL    
     [Serializable]
 #endif
     public class AxisInfo
@@ -46,9 +44,6 @@ namespace GeoAPI.CoordinateSystems
 		/// <summary>
 		/// Human readable name for axis. Possible values are X, Y, Long, Lat or any other short string.
 		/// </summary>
-#if PCL
-        [System.Runtime.Serialization.DataMember]
-#endif
         public string Name
 		{
 			get { return _Name; }
@@ -60,9 +55,6 @@ namespace GeoAPI.CoordinateSystems
 		/// <summary>
 		/// Gets enumerated value for orientation.
 		/// </summary>
-#if PCL
-        [System.Runtime.Serialization.DataMember]
-#endif
         public AxisOrientationEnum Orientation
 		{
 			get { return _Orientation; }
@@ -73,9 +65,6 @@ namespace GeoAPI.CoordinateSystems
 		/// Returns the Well-known text for this object
 		/// as defined in the simple features specification.
 		/// </summary>
-#if PCL
-        [System.Runtime.Serialization.IgnoreDataMember]
-#endif
         public string WKT
 		{
 			get
@@ -91,9 +80,6 @@ namespace GeoAPI.CoordinateSystems
 		/// <summary>
 		/// Gets an XML representation of this object
 		/// </summary>
-#if PCL
-        [System.Runtime.Serialization.IgnoreDataMember]
-#endif
         public string XML
 		{
 			get

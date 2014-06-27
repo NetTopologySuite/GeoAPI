@@ -30,9 +30,7 @@ namespace GeoAPI.Geometries
     /// Apart from the basic accessor functions, NTS supports
     /// only specific operations involving the Z-ordinate.
     /// </remarks>
-#if PCL
-    [System.Runtime.Serialization.DataContract]
-#else
+#if !PCL    
     [Serializable]
 #endif
 #pragma warning disable 612,618
@@ -49,23 +47,14 @@ namespace GeoAPI.Geometries
         /// <summary>
         /// X coordinate.
         /// </summary>
-#if PCL
-    [System.Runtime.Serialization.DataMember]
-#endif
         public double X; // = Double.NaN;
         /// <summary>
         /// X coordinate.
         /// </summary>
-#if PCL
-    [System.Runtime.Serialization.DataMember]
-#endif
         public double Y; // = Double.NaN;
         /// <summary>
         /// X coordinate.
         /// </summary>
-#if PCL
-    [System.Runtime.Serialization.DataMember]
-#endif
         public double Z; // = Double.NaN;
 
         /// <summary>
