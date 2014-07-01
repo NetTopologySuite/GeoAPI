@@ -1,5 +1,5 @@
 using System;
-
+using System.Globalization;
 #if !PCL
 using BitConverter = System.BitConverter;
 #else
@@ -313,7 +313,9 @@ namespace GeoAPI.Geometries
         /// <returns><other>string</other> of the form <I>(x,y,z)</I></returns>
         public override string ToString()
         {
-            return "(" + X + ", " + Y + ", " + Z + ")";
+            return "(" + X.ToString("R", NumberFormatInfo.InvariantInfo) + ", " +
+                         Y.ToString("R", NumberFormatInfo.InvariantInfo) + ", " +
+                         Z.ToString("R", NumberFormatInfo.InvariantInfo) + ")";
         }
 
         /// <summary>
