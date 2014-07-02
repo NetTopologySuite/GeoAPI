@@ -3,7 +3,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("GeoAPI")]
-[assembly: AssemblyDescription("GeoAPI Version that matches NTS v.1.14")]
+[assembly: AssemblyDescription("GeoAPI Version that matches NTS v.1.13.3")]
 #if DEBUG
 [assembly: AssemblyConfiguration("Debug")]
 #else
@@ -18,6 +18,6 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 [assembly: Guid("b6726fc4-0319-4a6d-84f5-aafc6ba530e3")]
 #endif
-[assembly: AssemblyVersion("1.8.0.0")]
+[assembly: AssemblyVersion("1.7.3.0")]
 //[assembly: AssemblyFileVersion"1.5.0.0")]
 [assembly: CLSCompliant(true)]
