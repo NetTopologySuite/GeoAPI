@@ -25,7 +25,7 @@
 		
 		<file src="..\Release\v4.5\AnyCPU\GeoAPI.dll" target="lib\net45-client" />
     
-    <file src="..\Release\PCL\AnyCPU\GeoAPI.dll" target="lib\portable-net403+sl5+win8+wp8" />
+    <file src="..\Release\PCL\AnyCPU\GeoAPI.dll" target="lib\portable-net403+sl5+win8+wp8+MonoAndroid+MonoTouch" />
 
   </files>
 </package>
