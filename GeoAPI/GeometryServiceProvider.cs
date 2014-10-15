@@ -40,18 +40,12 @@ namespace GeoAPI
 
         private static IEnumerable<Type> GetLoadableTypes(Assembly assembly)
         {
-            if (assembly == null) throw new ArgumentNullException("assembly");
+            if (assembly == null)
+                return new Type[0];
+
             try
             {
                 return assembly.GetExportedTypes();
-            }
-            catch (TypeLoadException)
-            {
-                return new Type[0];
-            }
-            catch (FileNotFoundException)
-            {
-                return new Type[0];
             }
             catch (ReflectionTypeLoadException ex)
             {
@@ -62,6 +56,10 @@ namespace GeoAPI
                         list.Add(t);
                 return list;
             }
+            catch
+            {
+                return new Type[0];
+            }            
         }
 
         private static IGeometryServices ReflectInstance()
