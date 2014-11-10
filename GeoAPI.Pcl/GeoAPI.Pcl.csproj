@@ -33,7 +33,7 @@
     <DefineConstants>TRACE;PCL</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\Release\PCL\AnyCPU\GeoAPI.XML</DocumentationFile>
+    <DocumentationFile>..\Release\PCL\AnyCPU\GeoAPI.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
