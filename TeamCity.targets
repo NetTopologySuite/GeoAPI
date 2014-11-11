@@ -6,7 +6,7 @@
 		<AsmFileVersion Condition=" '$(AsmFileVersion)' == '' ">$(GeoAPIVersion)</AsmFileVersion>
 		<NuGetOutDir>"$(MSBuildProjectDirectory)\Release"</NuGetOutDir>	
 		<NuGetVersion Condition=" '$(NuGetVersion)' == '' ">$(AsmFileVersion)</NuGetVersion>
-		<NuGetCommand Condition=" '$(NuGetCommand)' == '' ">"$(MSBuildProjectDirectory)\.nuget\nuget.exe"</NuGetCommand>			
+		<NuGetCommand Condition=" '$(NuGetCommand)' == '' ">"$(MSBuildProjectDirectory)\.nuget\nuget.exe"</NuGetCommand>
 	</PropertyGroup>
 
 	<Target Name="BuildRelease20">
