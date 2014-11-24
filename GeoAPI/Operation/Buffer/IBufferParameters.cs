@@ -1,4 +1,4 @@
-using GeoAPI.Operations.Buffer;
+using GeoAPI.Operation.Buffer;
 
 namespace GeoAPI.Operation.Buffer
 {

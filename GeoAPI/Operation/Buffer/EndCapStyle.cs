@@ -1,4 +1,4 @@
-﻿namespace GeoAPI.Operations.Buffer
+﻿namespace GeoAPI.Operation.Buffer
 {
     ///<summary>
     /// End cap style constants

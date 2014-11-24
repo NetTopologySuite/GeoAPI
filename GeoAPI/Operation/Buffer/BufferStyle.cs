@@ -1,6 +1,6 @@
 using System;
 
-namespace GeoAPI.Operations.Buffer
+namespace GeoAPI.Operation.Buffer
 {
     /// <summary>
     /// Buffer style.
