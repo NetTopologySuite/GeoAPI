@@ -1,6 +1,5 @@
 using System;
 using GeoAPI.Operation.Buffer;
-using GeoAPI.Operations.Buffer;
 #if PCL
 using ICloneable = GeoAPI.ICloneable;
 #endif
