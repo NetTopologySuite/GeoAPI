@@ -82,5 +82,15 @@ namespace GeoAPI.Operation.Buffer
         /// </para>
         /// </summary>
         bool IsSingleSided { get; set; }
+
+        /// <summary>
+        /// Gets or sets the factor used to determine the simplify distance tolerance
+        /// for input simplification.
+        /// Simplifying can increase the performance of computing buffers.
+        /// Generally the simplify factor should be greater than 0.
+        /// Values between 0.01 and .1 produce relatively good accuracy for the generate buffer.
+        /// Larger values sacrifice accuracy in return for performance.
+        /// </summary>
+        double SimplifyFactor { get; set; }
     }
 }
