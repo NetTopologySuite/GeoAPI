@@ -1,4 +1,7 @@
-﻿using GeoAPI.Geometries;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using GeoAPI.Geometries;
 
 namespace GeoAPI
 {
@@ -7,6 +10,7 @@ namespace GeoAPI
     /// </summary>
     /// <param name="init">The initialization string</param>
     /// <typeparam name="TCoordinateSystem">The type of the coordinate sytem.</typeparam>
+    [Obsolete("Not used", true)]
     public delegate TCoordinateSystem GetCoordinateSystemDelegate<TCoordinateSystem>(string init);
     
     /// <summary>
@@ -95,47 +99,13 @@ namespace GeoAPI
                                                ICoordinateSequenceFactory coordinateSequenceFactory);
 
         /// <summary>
-        /// Reads the configuration from the stream
+        /// Reads the configuration from the configuration
         /// </summary>
         void ReadConfiguration();
 
         /// <summary>
-        /// Writes the current configuration to the stream
+        /// Writes the current configuration to the configuration
         /// </summary>
         void WriteConfiguration();
-
-    }
-
-    /// <summary>
-    /// An interface for classes that offer access to coordinate system creating facillities.
-    /// </summary>
-    public interface ICoordinateSystemServices<TCoordinateSystem>
-    {
-        /// <summary>
-        /// Gets or sets the default Authority
-        /// </summary>
-        string DefaultAuthority { get; set; }
-
-        /// <summary>
-        /// Gets the initialization string for the coordinate system defined by <paramref name="srid"/>.
-        /// </summary>
-        /// <param name="srid">The spatial reference id</param>
-        /// <returns>The initialization string</returns>
-        string GetCoordinateSystemInitializationString(int srid);
-
-        /// <summary>
-        /// Gets the initialization string for the coordinate system defined by <paramref name="authorityCode"/> and <paramref name="authority"/>.
-        /// </summary>
-        /// <param name="authority">The authority name</param>
-        /// <param name="authorityCode">The code assigned by <paramref name="authority"/></param>
-        /// <returns>The initialization string</returns>
-        string GetCoordinateSystemInitializationString(string authority, int authorityCode);
-
-        /// <summary>
-        /// Returns the coordinate system defined by <paramref name="init"/>
-        /// </summary>
-        /// <param name="init">The initialization for the coordinate system</param>
-        /// <returns>The coordinate system.</returns>
-        TCoordinateSystem GetCoordinateSytem(string init);
     }
 }

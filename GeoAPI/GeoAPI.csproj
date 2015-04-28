@@ -142,6 +142,7 @@
     <Compile Include="Geometries\Ordinates.cs" />
     <Compile Include="Geometries\Prepared\IPreparedGeometry.cs" />
     <Compile Include="GeometryServiceProvider.cs" />
+    <Compile Include="ICoordinateSystemServices.cs" />
     <Compile Include="IGeometryServices.cs" />
     <Compile Include="IO\ByteOrder.cs" />
     <Compile Include="IO\GeometryType.cs" />
