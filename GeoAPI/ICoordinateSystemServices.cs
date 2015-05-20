@@ -114,4 +114,5 @@ namespace GeoAPI
         /// <param name="init">The initialization for the coordinate system</param>
         /// <returns>The coordinate system.</returns>
         TCoordinateSystem GetCoordinateSystem(string init);
+    }
 }
