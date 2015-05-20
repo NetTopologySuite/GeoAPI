@@ -2,7 +2,7 @@
 	<PropertyGroup>
 		<SolutionFile>GeoAPI.sln</SolutionFile>
 		<SolutionDir>$(MSBuildProjectDirectory)</SolutionDir>
-		<GeoAPIVersion Condition=" '$(GeoAPIVersion)' == '' ">1.7.3.1</GeoAPIVersion>	
+		<GeoAPIVersion Condition=" '$(GeoAPIVersion)' == '' ">1.7.4</GeoAPIVersion>	
 		<AsmFileVersion Condition=" '$(AsmFileVersion)' == '' ">$(GeoAPIVersion)</AsmFileVersion>
 		<NuGetOutDir>"$(MSBuildProjectDirectory)\Release"</NuGetOutDir>	
 		<NuGetVersion Condition=" '$(NuGetVersion)' == '' ">$(AsmFileVersion)</NuGetVersion>

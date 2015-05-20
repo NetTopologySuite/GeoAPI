@@ -121,7 +121,8 @@
 		<file src="GeoAPI\Geometries\Prepared\IPreparedGeometry.cs" target="src\Geometries\Prepared\IPreparedGeometry.cs" />
 		<file src="GeoAPI\GeometryServiceProvider.cs" target="src\GeometryServiceProvider.cs" />
 		<file src="GeoAPI\IGeometryServices.cs" target="src\IGeometryServices.cs" />
-		<file src="GeoAPI\IO\ByteOrder.cs" target="src\IO\ByteOrder.cs" />
+    <file src="GeoAPI\ICoordinateSystemServices.cs" target="src\ICoordinateSystemServices.cs" />
+    <file src="GeoAPI\IO\ByteOrder.cs" target="src\IO\ByteOrder.cs" />
 		<file src="GeoAPI\IO\GeometryType.cs" target="src\IO\GeometryType.cs" />
 		<file src="GeoAPI\IO\IGeometryReader.cs" target="src\IO\IGeometryReader.cs" />
 		<file src="GeoAPI\IO\IGeometryWriter.cs" target="src\IO\IGeometryWriter.cs" />

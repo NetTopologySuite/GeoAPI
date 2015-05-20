@@ -81,7 +81,12 @@ namespace GeoAPI.Geometries
         /// <param name="p">The point</param>
         /// <returns>True if the point is contained by the envlope</returns>
         bool Contains(ICoordinate p);
-        
+
+        /// <summary>
+        /// Returns if the envelope specified by <see paramref="other"/> is contained by this envelope.
+        /// </summary>
+        /// <param name="other">The envelope to test</param>
+        /// <returns>True if the other envelope is contained by this envlope</returns>
         bool Contains(IEnvelope other);
 
         bool Covers(double x, double y);
@@ -102,6 +107,9 @@ namespace GeoAPI.Geometries
         
         void ExpandToInclude(IEnvelope other);
 
+        /// <summary>
+        /// Method to initialize the envelope. Calling this function will result in <see cref="IsNull""/>
+        /// </summary>
         void Init();
 
         void Init(ICoordinate p);

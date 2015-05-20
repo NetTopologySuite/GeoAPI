@@ -35,9 +35,9 @@ namespace GeoAPI.Operation.Buffer
         ///</summary>
         /// <remarks>
         /// <para>
-        /// The styles supported are <see cref="GeoAPI.Operations.Buffer.EndCapStyle.Round"/>, <see cref="GeoAPI.Operations.Buffer.EndCapStyle.Flat"/>, and <see cref="GeoAPI.Operations.Buffer.EndCapStyle.Square"/>.
+        /// The styles supported are <see cref="GeoAPI.Operation.Buffer.EndCapStyle.Round"/>, <see cref="GeoAPI.Operation.Buffer.EndCapStyle.Flat"/>, and <see cref="GeoAPI.Operation.Buffer.EndCapStyle.Square"/>.
         /// </para>
-        /// <para>The default is <see cref="GeoAPI.Operations.Buffer.EndCapStyle.Round"/>.</para>
+        /// <para>The default is <see cref="GeoAPI.Operation.Buffer.EndCapStyle.Round"/>.</para>
         /// </remarks>
         EndCapStyle EndCapStyle { get; set; }
 
@@ -45,7 +45,7 @@ namespace GeoAPI.Operation.Buffer
         /// Gets/Sets the join style for outside (reflex) corners between line segments.
         ///</summary>
         /// <remarks>
-        /// <para>Allowable values are <see cref="GeoAPI.Operations.Buffer.JoinStyle.Round"/> (which is the default), <see cref="GeoAPI.Operations.Buffer.JoinStyle.Mitre"/> and <see cref="GeoAPI.Operations.Buffer.JoinStyle.Bevel"/></para>
+        /// <para>Allowable values are <see cref="GeoAPI.Operation.Buffer.JoinStyle.Round"/> (which is the default), <see cref="GeoAPI.Operation.Buffer.JoinStyle.Mitre"/> and <see cref="GeoAPI.Operation.Buffer.JoinStyle.Bevel"/></para>
         /// </remarks>
         JoinStyle JoinStyle { get; set; }
 
@@ -78,7 +78,7 @@ namespace GeoAPI.Operation.Buffer
         /// The single-sided buffer of point geometries is  the same as the regular buffer.
         /// </para><para>
         /// The End Cap Style for single-sided buffers is always ignored,
-        /// and forced to the equivalent of <see cref="GeoAPI.Operations.Buffer.EndCapStyle.Flat"/>.
+        /// and forced to the equivalent of <see cref="GeoAPI.Operation.Buffer.EndCapStyle.Flat"/>.
         /// </para>
         /// </summary>
         bool IsSingleSided { get; set; }

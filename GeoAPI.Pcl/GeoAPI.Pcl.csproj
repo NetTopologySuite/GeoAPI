@@ -281,6 +281,9 @@
     <Compile Include="..\GeoAPI\GeometryServiceProvider.cs">
       <Link>GeometryServiceProvider.cs</Link>
     </Compile>
+    <Compile Include="..\GeoAPI\ICoordinateSystemServices.cs">
+      <Link>ICoordinateSystemServices.cs</Link>
+    </Compile>
     <Compile Include="..\GeoAPI\IGeometryServices.cs">
       <Link>IGeometryServices.cs</Link>
     </Compile>
