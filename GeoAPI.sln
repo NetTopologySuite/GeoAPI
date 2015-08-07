@@ -5,6 +5,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoAPI", "GeoAPI\GeoAPI.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoAPI.Pcl", "GeoAPI.Pcl\GeoAPI.Pcl.csproj", "{92B3B84B-50F1-4147-8B97-D93B90FA5514}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{D0DCE6F6-83C2-4214-8E8A-847D02A4461A}"
+	ProjectSection(SolutionItems) = preProject
+		GeoAPI.nuspec = GeoAPI.nuspec
+		TeamCity.targets = TeamCity.targets
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

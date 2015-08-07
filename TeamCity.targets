@@ -57,7 +57,7 @@
 		<RemoveDir Directories="$(MSBuildProjectDirectory)\obj\PCL" ContinueOnError="true"/>
 		<MSBuild Projects="$(SolutionFile)" 
              Targets="GeoAPI_PCL" 
-             Properties="Configuration=Release;TargetFrameworkVersion=v4.0;TargetFrameworkProfile=Profile147;DefineConstants=TRACE;PCL;BaseIntermediateOutputPath=$(MSBuildProjectDirectory)\obj\PCL\" 
+             Properties="Configuration=Release;TargetFrameworkVersion=v4.0;TargetFrameworkProfile=Profile336;DefineConstants=TRACE;PCL;BaseIntermediateOutputPath=$(MSBuildProjectDirectory)\obj\PCL\" 
              RunEachTargetSeparately="true" 
              ContinueOnError="true" 
              />

@@ -108,14 +108,27 @@ namespace GeoAPI.Geometries
         void ExpandToInclude(IEnvelope other);
 
         /// <summary>
-        /// Method to initialize the envelope. Calling this function will result in <see cref="IsNull""/>
+        /// Method to initialize the envelope. Calling this function will result in <see cref="IsNull"/> returning <value>true</value>
         /// </summary>
         void Init();
 
+        /// <summary>
+        /// Method to initialize the envelope with a <see cref="T:GeoAPI.Geometries.ICoordinate"/>. Calling this function will result in an envelope having no extent but a location.
+        /// </summary>
+        /// <param name="p">The point</param>
         void Init(ICoordinate p);
 
+        /// <summary>
+        /// Method to initialize the envelope. Calling this function will result in an envelope having the same extent as <paramref name="env"/>.
+        /// </summary>
+        /// <param name="env">The envelope</param>
         void Init(IEnvelope env);
 
+        /// <summary>
+        /// Method to initialize the envelope with two <see cref="T:GeoAPI.Geometries.ICoordinate"/>s.
+        /// </summary>
+        /// <param name="p1">The first point</param>
+        /// <param name="p2">The second point</param>
         void Init(ICoordinate p1, ICoordinate p2);
         
         void Init(double x1, double x2, double y1, double y2);
