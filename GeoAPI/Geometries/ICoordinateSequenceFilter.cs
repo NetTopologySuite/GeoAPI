@@ -3,31 +3,32 @@ using System;
 namespace GeoAPI.Geometries
 {
     ///<summary>
-    /// An interface for classes which provide operations that
-    /// can be applied to the coordinates in a <see cref="ICoordinateSequence"/>. 
-    /// A CoordinateSequence filter can either record information about each coordinate,
-    /// or change the coordinate in some way (although this is not recommended).
-    /// CoordinateSequence filters can be
-    /// used to implement such things as coordinate transformations, centroid and
+    /// An interface for classes which process the coordinates in a <see cref="ICoordinateSequence"/>. 
+    /// A filter can either record information about each coordinate,
+    /// or change the value of the coordinate. 
+    /// Filters can be
+    /// used to implement operations such as coordinate transformations, centroid and
     /// envelope computation, and many other functions.
     /// <see cref="IGeometry"/> classes support the concept of applying a
     /// <c>CoordinateSequenceFilter</c> to each 
     /// <see cref="ICoordinateSequence"/>s they contain. 
     /// <para/>
-    /// For maximum efficiency, the execution of filters can be short-circuited via the <see cref="ICoordinateSequenceFilter.Done"/> property.
+    /// For maximum efficiency, the execution of filters can be short-circuited by using the <see cref="ICoordinateSequenceFilter.Done"/> property.
     ///</summary>
     ///<see cref="IGeometry.Apply(ICoordinateSequenceFilter)"/>
     ///<remarks>
     /// <c>CoordinateSequenceFilter</c> is an example of the Gang-of-Four Visitor pattern.
-    /// <para><b>Note</b>: it is not recommended to use filters to mutate the coordinates.
-    /// In general, Geometrys should be treated as immutable, 
-    /// and mutation should be performed by creating a new Geometry object (see <see cref="T:NetTopologySuite.Geometries.Utilities.GeometryEditor"/> 
+    /// <para><b>Note</b>: In general, it is preferable to treat Geometrys as immutable. 
+    /// Mutation should be performed by creating a new Geometry object (see <see cref="T:NetTopologySuite.Geometries.Utilities.GeometryEditor"/> 
     /// and <see cref="T:NetTopologySuite.Geometries.Utilities.GeometryTransformer"/> for convenient ways to do this).
+    /// An exception to this rule is when a new Geometry has been created via <see cref="ICloneable.Clone()"/>.
+    /// In this case mutating the Geometry will not cause aliasing issues, 
+    /// and a filter is a convenient way to implement coordinate transformation.
+
     /// </para>
     ///</remarks>
     /// <author>Martin Davis</author>
     /// <seealso cref="IGeometry.Apply(ICoordinateFilter)"/>
-    /// <seealso cref="IGeometry.Apply(ICoordinateSequenceFilter)"/>
     /// <seealso cref="T:NetTopologySuite.Geometries.Utilities.GeometryTransformer"/> 
     /// <see cref="T:NetTopologySuite.Geometries.Utilities.GeometryEditor"/> 
     public interface ICoordinateSequenceFilter
