@@ -743,26 +743,49 @@ namespace GeoAPI.Geometries
                    _minx == other.MinX && _miny == other.MinY;
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Compares two envelopes using lexicographic ordering.
+        /// The ordering comparison is based on the usual numerical
+        /// comparison between the sequence of ordinates.
+        /// Null envelopes are less than all non-null envelopes.
+        /// </summary>
+        /// <param name="other">An envelope</param>
         public int CompareTo(object other)
         {
             return CompareTo((Envelope)other);
         }
 
-        /// <inheritdoc/>
-        public int CompareTo(Envelope other)
+        /// <summary>
+        /// Compares two envelopes using lexicographic ordering.
+        /// The ordering comparison is based on the usual numerical
+        /// comparison between the sequence of ordinates.
+        /// Null envelopes are less than all non-null envelopes.
+        /// </summary>
+        /// <param name="env">An envelope</param>
+        public int CompareTo(Envelope env)
         {
-            if (IsNull && other.IsNull)
-                return 0;
-            if (!IsNull && other.IsNull)
-                return 1;
-            if (IsNull && !other.IsNull)
-                return -1;
+            env = env ?? new Envelope();
 
-            if (Area > other.Area)
-                return 1;
-            if (Area < other.Area)
+            // compare nulls if present
+            if (IsNull)
+            {
+                if (env.IsNull) return 0;
                 return -1;
+            }
+            else
+            {
+                if (env.IsNull) return 1;
+            }
+
+            // compare based on numerical ordering of ordinates
+            if (MinX < env.MinX) return -1;
+            if (MinX > env.MinX) return 1;
+            if (MinY < env.MinY) return -1;
+            if (MinY > env.MinY) return 1;
+            if (MaxX < env.MaxX) return -1;
+            if (MaxX > env.MaxX) return 1;
+            if (MaxY < env.MaxY) return -1;
+            if (MaxY > env.MaxY) return 1;
             return 0;
         }
 
