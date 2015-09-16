@@ -21,6 +21,17 @@ namespace GeoAPI.IO
         /// </summary>
         /// <param name="e">An exception that occurred while a <c>WKTReader</c> was
         /// parsing a Well-known Text string.</param>
-        public ParseException(Exception e) : this(e.ToString()) { }
+        public ParseException(Exception e) : this(e.ToString(), e) { }
+
+        /// <summary>
+        /// Creates a <c>ParseException</c> with <paramref name="innerException"/>s detail message
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="innerException">The inner exception</param>
+        public ParseException(String message, Exception innerException)
+            : base(message, innerException)
+        {
+        }
+
     }
 }
