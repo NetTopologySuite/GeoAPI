@@ -1,4 +1,2 @@
-﻿language: csharp
-solution: TeamCity.targets
-script:
-  - xbuild TeamCity.targets /t:NuGetPack
+language: csharp
+solution: GeoAPI.sln
