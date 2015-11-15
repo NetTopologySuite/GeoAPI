@@ -818,6 +818,10 @@ namespace GeoAPI.Geometries
         //    return !(obj1 == obj2);
         //}
 
+            /// <summary>
+            /// Function to get a textual representation of this envelope
+            /// </summary>
+            /// <returns>A textual representation of this envelope</returns>
         public override string ToString()
         {
             var sb = new StringBuilder("Env[");

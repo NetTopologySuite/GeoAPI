@@ -24,7 +24,6 @@ namespace GeoAPI.Geometries
     /// An exception to this rule is when a new Geometry has been created via <see cref="ICloneable.Clone()"/>.
     /// In this case mutating the Geometry will not cause aliasing issues, 
     /// and a filter is a convenient way to implement coordinate transformation.
-
     /// </para>
     ///</remarks>
     /// <author>Martin Davis</author>

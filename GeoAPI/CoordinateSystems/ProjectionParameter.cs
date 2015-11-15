@@ -92,13 +92,17 @@ namespace GeoAPI.CoordinateSystems
 		{
 			get
 			{
-                return String.Format(CultureInfo.InvariantCulture.NumberFormat, "<CS_ProjectionParameter Name=\"{0}\" Value=\"{1}\"/>", Name, Value);
+                return string.Format(CultureInfo.InvariantCulture.NumberFormat, "<CS_ProjectionParameter Name=\"{0}\" Value=\"{1}\"/>", Name, Value);
 			}
 		}
 
+        /// <summary>
+        /// Function to get a textual representation of this envelope
+        /// </summary>
+        /// <returns>A textual representation of this envelope</returns>
         public override string ToString()
         {
-            return string.Format("ProjektionParamter '{0}': {1}", Name, Value);
+            return string.Format("ProjectionParameter '{0}': {1}", Name, Value);
         }
 	}
 }

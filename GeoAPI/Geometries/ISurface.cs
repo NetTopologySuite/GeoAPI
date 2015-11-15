@@ -1,4 +1,8 @@
 namespace GeoAPI.Geometries
 {
-    public interface ISurface : IGeometry { }
+    /// <summary>
+    /// Interface for surfaces
+    /// </summary>
+    public interface ISurface : IGeometry
+    { }
 }
