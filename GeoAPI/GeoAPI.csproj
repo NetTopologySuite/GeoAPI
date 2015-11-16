@@ -137,9 +137,6 @@
     <Folder Include="Features\" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="System.Data" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="..\geoapi.snk">
       <Link>geoapi.snk</Link>
     </None>
