@@ -426,7 +426,7 @@ namespace GeoAPI.Geometries
         [Obsolete]
         double ICoordinate.M
         {
-            get { return Double.NaN; }
+            get { return NullOrdinate; }
             set { }
         }
 
