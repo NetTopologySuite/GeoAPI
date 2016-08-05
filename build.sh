@@ -5,6 +5,6 @@ set -e
 
 dotnet build ./GeoAPI.NetCore
 
-xbuild /p:Configuration=Release GeoAPI.sln
+xbuild /p:Configuration=CIBuild GeoAPI.sln
 
  

@@ -39,6 +39,17 @@
     <DocumentationFile>..\Release\v4.0\AnyCPU\GeoAPI.xml</DocumentationFile>
     <NoWarn>1591</NoWarn>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'CIBuild|AnyCPU'">
+    <OutputPath>bin\CIBuild\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>..\Release\v4.0\AnyCPU\GeoAPI.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <NoWarn>1591</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="..\GeoAPI.NetCore\CoordinateSystems\AxisInfo.cs">
       <Link>CoordinateSystems\AxisInfo.cs</Link>

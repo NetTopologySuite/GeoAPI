@@ -41,6 +41,16 @@
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>..\geoapi.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'CIBuild|AnyCPU'">
+    <OutputPath>bin\CIBuild\</OutputPath>
+    <DefineConstants>TRACE;PCL</DefineConstants>
+    <DocumentationFile>..\Release\PCL\AnyCPU\GeoAPI.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
     <Folder Include="CoordinateSystems\Projections\" />
