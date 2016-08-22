@@ -57,8 +57,8 @@
     <Folder Include="Features\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\GeoAPI.NetCore\BitConverterEx.cs">
-      <Link>BitConverterEx.cs</Link>
+    <Compile Include="..\GeoAPI.NetCore\ICloneable.cs">
+      <Link>ICloneable.cs</Link>
     </Compile>
     <Compile Include="..\GeoAPI.NetCore\CoordinateSystems\AxisInfo.cs">
       <Link>CoordinateSystems\AxisInfo.cs</Link>
