@@ -1,12 +1,5 @@
 using System;
 using System.Globalization;
-#if !PCL
-using BitConverter = System.BitConverter;
-#else
-
-using BitConverter = GeoAPI.BitConverterEx;
-
-#endif
 
 namespace GeoAPI.Geometries
 {
@@ -374,18 +367,13 @@ namespace GeoAPI.Geometries
         /// <param name="value">A hashcode for the double value</param>
         public static int GetHashCode(double value)
         {
+            return value.GetHashCode();
+
+            // This was implemented as follows, but that's actually equivalent:
             /*
-             * From the java language specification, it says:
-             *
-             * The value of n>>>s is n right-shifted s bit positions with zero-extension.
-             * If n is positive, then the result is the same as that of n>>s; if n is
-             * negative, the result is equal to that of the expression (n>>s)+(2<<~s) if
-             * the type of the left-hand operand is int
-             */
             var f = BitConverter.DoubleToInt64Bits(value);
-            //if (f > 0)
             return (int)(f ^ (f >> 32));
-            //return (int) (f ^ ((f >> 32) + (2 << ~32)));
+            */
         }
 
         #region ICoordinate

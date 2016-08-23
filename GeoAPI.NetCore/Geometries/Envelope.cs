@@ -1,11 +1,6 @@
 using System;
 using System.Globalization;
 using System.Text;
-#if !PCL
-using BitConverter = System.BitConverter;
-#else
-using BitConverter = GeoAPI.BitConverterEx;
-#endif
 
 namespace GeoAPI.Geometries
 {
@@ -804,8 +799,13 @@ namespace GeoAPI.Geometries
 
         private static int GetHashCode(double value)
         {
+            return value.GetHashCode();
+            
+            // This was implemented as follows, but that's actually equivalent:
+            /*
             var f = BitConverter.DoubleToInt64Bits(value);
             return (int)(f ^ (f >> 32));
+            */
         }
 
         //public static bool operator ==(Envelope obj1, Envelope obj2)
