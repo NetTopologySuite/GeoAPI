@@ -57,6 +57,9 @@
     <Folder Include="Features\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\GeoAPI.NetCore\Consts.cs">
+      <Link>Consts.cs</Link>
+    </Compile>
     <Compile Include="..\GeoAPI.NetCore\ICloneable.cs">
       <Link>ICloneable.cs</Link>
     </Compile>
@@ -330,7 +333,7 @@
     <Compile Include="..\GeoAPI.NetCore\Operation\Buffer\JoinStyle.cs">
       <Link>Operation\Buffer\JoinStyle.cs</Link>
     </Compile>
-    <Compile Include="..\GeoAPI\Properties\AssemblyInfo.cs">
+    <Compile Include="..\GeoAPI.NetCore\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
   </ItemGroup>

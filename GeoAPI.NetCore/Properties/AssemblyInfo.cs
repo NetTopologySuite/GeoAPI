@@ -1,19 +1,27 @@
-﻿using System.Reflection;
-using System.Runtime.CompilerServices;
+﻿using System;
+using System.Reflection;
 using System.Runtime.InteropServices;
 
-// General Information about an assembly is controlled through the following
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Firma")]
-[assembly: AssemblyProduct("GeoAPI.NetCore")]
+[assembly: AssemblyTitle(Consts.Title)]
+[assembly: AssemblyDescription(Consts.Description)]
+[assembly: AssemblyCopyright(Consts.Copyright)]
+[assembly: AssemblyCulture("")]
+[assembly: AssemblyVersion(Consts.Version)]
+[assembly: AssemblyConfiguration(Consts.Configuration)]
+[assembly: AssemblyCompany(Consts.Company)]
+[assembly: AssemblyProduct(Consts.Product)]
 [assembly: AssemblyTrademark("")]
 
+#if !NET_CORE
+[assembly: CLSCompliant(Consts.CLSCompliant)]
+#endif
+
+#if !PCL
 // Setting ComVisible to false makes the types in this assembly not visible
 // to COM components.  If you need to access a type in this assembly from
 // COM, set the ComVisible attribute to true on that type.
-[assembly: ComVisible(false)]
+[assembly: ComVisible(Consts.ComVisible)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("eef37cab-4f83-4366-8533-3d7c16b449c7")]
+[assembly: Guid(Consts.Guid)]
+#endif
