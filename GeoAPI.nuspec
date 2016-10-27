@@ -3,11 +3,10 @@
 	<metadata>
 		<id>GeoAPI</id>
 		<version>$version$</version>
-		<authors>NetTopologySuite - Team</authors>
-		<owners>NetTopologySuite - Team</owners>
-		<licenseUrl>http://geoapi.codeplex.com/license</licenseUrl>
+		<authors>NetTopologySuite Team and Fabrício Godoy</authors>
+		<owners>nettopologysuite - team, skarllot, fgodoy-verion</owners>
+		<licenseUrl>https://raw.githubusercontent.com/NetTopologySuite/GeoAPI/master/GeoAPI/License.txt</licenseUrl>
 		<projectUrl>https://github.com/NetTopologySuite/GeoAPI</projectUrl>
-		<!--<iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>-->
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>GeoAPI.NET project provides a common framework based on OGC/ISO standards to improve interoperability among .NET GIS projects.</description>
 		<releaseNotes>This version matches NetTopologySuite v1.14 API.</releaseNotes>
@@ -43,7 +42,16 @@
 		<file src="Release\PCL\AnyCPU\GeoAPI.pdb" target="lib\portable-net403+sl5+netcore45+wpa81+wp8+MonoAndroid10+XamariniOS10+MonoTouch10" />
 		<file src="Release\PCL\AnyCPU\GeoAPI.xml" target="lib\portable-net403+sl5+netcore45+wpa81+wp8+MonoAndroid10+XamariniOS10+MonoTouch10" />
 
+		<file src="Release\netstandard1.6\GeoAPI.NetCore.dll" target="lib\netstandard1.6" />
+		<file src="Release\netstandard1.6\GeoAPI.NetCore.pdb" target="lib\netstandard1.6" />
+		<file src="Release\netstandard1.6\GeoAPI.NetCore.deps.json" target="lib\netstandard1.6" />
+
 		<file src="GeoAPI.NetCore\Consts.cs" target="src\Consts.cs" />
+		<file src="GeoAPI.NetCore\GeometryServiceProvider.cs" target="src\GeometryServiceProvider.cs" />
+		<file src="GeoAPI.NetCore\ICloneable.cs" target="src\ICloneable.cs" />
+		<file src="GeoAPI.NetCore\ICoordinateSystemServices.cs" target="src\ICoordinateSystemServices.cs" />
+		<file src="GeoAPI.NetCore\IGeometryServices.cs" target="src\IGeometryServices.cs" />
+		<file src="GeoAPI.NetCore\ValueParser.cs" target="src\ValueParser.cs" />
 		<file src="GeoAPI.NetCore\CoordinateSystems\AxisInfo.cs" target="src\CoordinateSystems\AxisInfo.cs" />
 		<file src="GeoAPI.NetCore\CoordinateSystems\AxisOrientationEnum.cs" target="src\CoordinateSystems\AxisOrientationEnum.cs" />
 		<file src="GeoAPI.NetCore\CoordinateSystems\DatumType.cs" target="src\CoordinateSystems\DatumType.cs" />
@@ -74,14 +82,13 @@
 		<file src="GeoAPI.NetCore\CoordinateSystems\IVerticalDatum.cs" target="src\CoordinateSystems\IVerticalDatum.cs" />
 		<file src="GeoAPI.NetCore\CoordinateSystems\Parameter.cs" target="src\CoordinateSystems\Parameter.cs" />
 		<file src="GeoAPI.NetCore\CoordinateSystems\ProjectionParameter.cs" target="src\CoordinateSystems\ProjectionParameter.cs" />
+		<file src="GeoAPI.NetCore\CoordinateSystems\WGS84ConversionInfo.cs" target="src\CoordinateSystems\WGS84ConversionInfo.cs" />
 		<file src="GeoAPI.NetCore\CoordinateSystems\Transformations\DomainFlags.cs" target="src\CoordinateSystems\Transformations\DomainFlags.cs" />
 		<file src="GeoAPI.NetCore\CoordinateSystems\Transformations\ICoordinateTransformation.cs" target="src\CoordinateSystems\Transformations\ICoordinateTransformation.cs" />
 		<file src="GeoAPI.NetCore\CoordinateSystems\Transformations\ICoordinateTransformationFactory.cs" target="src\CoordinateSystems\Transformations\ICoordinateTransformationFactory.cs" />
 		<file src="GeoAPI.NetCore\CoordinateSystems\Transformations\IMathTransform.cs" target="src\CoordinateSystems\Transformations\IMathTransform.cs" />
 		<file src="GeoAPI.NetCore\CoordinateSystems\Transformations\IMathTransformFactory.cs" target="src\CoordinateSystems\Transformations\IMathTransformFactory.cs" />
 		<file src="GeoAPI.NetCore\CoordinateSystems\Transformations\TransformType.cs" target="src\CoordinateSystems\Transformations\TransformType.cs" />
-		<file src="GeoAPI.NetCore\CoordinateSystems\Transformations\TransformType.cs" target="src\CoordinateSystems\TransformType.cs" />
-		<file src="GeoAPI.NetCore\CoordinateSystems\WGS84ConversionInfo.cs" target="src\CoordinateSystems\WGS84ConversionInfo.cs" />
 		<file src="GeoAPI.NetCore\DataStructures\Interval.cs" target="src\DataStructures\Interval.cs" />
 		<file src="GeoAPI.NetCore\Geometries\Coordinate.cs" target="src\Geometries\Coordinate.cs" />
 		<file src="GeoAPI.NetCore\Geometries\Dimension.cs" target="src\Geometries\Dimension.cs" />
@@ -123,9 +130,6 @@
 		<file src="GeoAPI.NetCore\Geometries\Ordinates.cs" target="src\Geometries\Ordinates.cs" />
 		<file src="GeoAPI.NetCore\Geometries\OridinatesUtility.cs" target="src\Geometries\OridinatesUtility.cs" />
 		<file src="GeoAPI.NetCore\Geometries\Prepared\IPreparedGeometry.cs" target="src\Geometries\Prepared\IPreparedGeometry.cs" />
-		<file src="GeoAPI.NetCore\GeometryServiceProvider.cs" target="src\GeometryServiceProvider.cs" />
-		<file src="GeoAPI.NetCore\IGeometryServices.cs" target="src\IGeometryServices.cs" />
-		<file src="GeoAPI.NetCore\ICoordinateSystemServices.cs" target="src\ICoordinateSystemServices.cs" />
 		<file src="GeoAPI.NetCore\IO\ByteOrder.cs" target="src\IO\ByteOrder.cs" />
 		<file src="GeoAPI.NetCore\IO\GeometryType.cs" target="src\IO\GeometryType.cs" />
 		<file src="GeoAPI.NetCore\IO\IGeometryReader.cs" target="src\IO\IGeometryReader.cs" />
@@ -136,6 +140,5 @@
 		<file src="GeoAPI.NetCore\Operation\Buffer\IBufferParameters.cs" target="src\Operation\Buffer\IBufferParameters.cs" />
 		<file src="GeoAPI.NetCore\Operation\Buffer\JoinStyle.cs" target="src\Operation\Buffer\JoinStyle.cs" />
 		<file src="GeoAPI.NetCore\Properties\AssemblyInfo.cs" target="src\Properties\AssemblyInfo.cs" />
-		<file src="GeoAPI.NetCore\ValueParser.cs" target="src\ValueParser.cs" />
 	</files>
 </package>
