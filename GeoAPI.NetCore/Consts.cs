@@ -1,6 +1,6 @@
 internal static class Consts
 {
-    public const string Version = "1.7.4";
+    public const string Version = "1.7.5";
     public const string Title = "GeoAPI";
     public const string Description = "GeoAPI Version that matches NTS v.1.14";
     public const string Company = "NetTopologySuite - Team";
@@ -25,7 +25,7 @@ internal static class Consts
     public const string Guid = "eef37cab-4f83-4366-8533-3d7c16b449c7";
 #elif WindowsCE
     public const string Product = "GeoAPI.Net35CF";
-    public const string Guid = "8CE966F8-D4FD-4437-A79C-314D9632384A";
+    public const string Guid = "8ce966f8-d4fd-4437-a79c-314d9632384a";
 #elif PCL
     public const string Product = "GeoAPI.PCL";
 #endif
