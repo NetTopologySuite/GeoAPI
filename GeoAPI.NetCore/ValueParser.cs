@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Linq;
-using System.Collections.Generic;
-using System.Text;
 
 // Ref: http://www.yortondotnet.com/2009/11/tryparse-for-compact-framework.html
 
@@ -68,7 +65,7 @@ namespace GeoAPI
         /// <param name="result">The result of the parsed string, or zero if parsing failed.</param>
         /// <returns>A boolean value indicating whether or not the parse succeeded.</returns>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "s")]
-        public static bool TryParse(string s, out Int16 result)
+        public static bool TryParse(string s, out short result)
         {
             bool retVal = false;
 #if WindowsCE
@@ -80,7 +77,7 @@ namespace GeoAPI
             catch (FormatException) { result = 0; }
             catch (InvalidCastException) { result = 0; }
 #else
-            retVal = Int16.TryParse(s, out result);
+            retVal = short.TryParse(s, out result);
 #endif
             return retVal;
         }
@@ -92,7 +89,7 @@ namespace GeoAPI
         /// <param name="result">The result of the parsed string, or zero if parsing failed.</param>
         /// <returns>A boolean value indicating whether or not the parse succeeded.</returns>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "s")]
-        public static bool TryParse(string s, out Int64 result)
+        public static bool TryParse(string s, out long result)
         {
             bool retVal = false;
 #if WindowsCE
@@ -104,7 +101,7 @@ namespace GeoAPI
             catch (FormatException) { result = 0; }
             catch (InvalidCastException) { result = 0; }
 #else
-            retVal = Int64.TryParse(s, out result);
+            retVal = long.TryParse(s, out result);
 #endif
             return retVal;
         }

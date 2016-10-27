@@ -11,7 +11,7 @@
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>GeoAPI.NET project provides a common framework based on OGC/ISO standards to improve interoperability among .NET GIS projects.</description>
 		<releaseNotes>This version matches NetTopologySuite v1.14 API.</releaseNotes>
-		<copyright>Copyright 2007-2015</copyright>
+		<copyright>Copyright 2007-2016</copyright>
 		<tags>OGC SFS NTS GIS</tags>
 	</metadata>
 	<files>
@@ -22,6 +22,10 @@
 		<file src="Release\v3.5\AnyCPU\GeoAPI.dll" target="lib\net35-client" />
 		<file src="Release\v3.5\AnyCPU\GeoAPI.pdb" target="lib\net35-client" />
 		<file src="Release\v3.5\AnyCPU\GeoAPI.xml" target="lib\net35-client" />
+
+		<file src="Release\v3.5\WindowsCE\GeoAPI.dll" target="lib\net35-cf" />
+		<file src="Release\v3.5\WindowsCE\GeoAPI.pdb" target="lib\net35-cf" />
+		<file src="Release\v3.5\WindowsCE\GeoAPI.xml" target="lib\net35-cf" />
 
 		<file src="Release\v4.0\AnyCPU\GeoAPI.dll" target="lib\net40-client" />
 		<file src="Release\v4.0\AnyCPU\GeoAPI.pdb" target="lib\net40-client" />
@@ -39,98 +43,99 @@
 		<file src="Release\PCL\AnyCPU\GeoAPI.pdb" target="lib\portable-net403+sl5+netcore45+wpa81+wp8+MonoAndroid10+XamariniOS10+MonoTouch10" />
 		<file src="Release\PCL\AnyCPU\GeoAPI.xml" target="lib\portable-net403+sl5+netcore45+wpa81+wp8+MonoAndroid10+XamariniOS10+MonoTouch10" />
 
-		<file src="GeoAPI.Pcl\BitConverterEx.cs" target="src\BitConverterEx.cs" />
-		<file src="GeoAPI\CoordinateSystems\AxisInfo.cs" target="src\CoordinateSystems\AxisInfo.cs" />
-		<file src="GeoAPI\CoordinateSystems\AxisOrientationEnum.cs" target="src\CoordinateSystems\AxisOrientationEnum.cs" />
-		<file src="GeoAPI\CoordinateSystems\DatumType.cs" target="src\CoordinateSystems\DatumType.cs" />
-		<file src="GeoAPI\CoordinateSystems\IAngularUnit.cs" target="src\CoordinateSystems\IAngularUnit.cs" />
-		<file src="GeoAPI\CoordinateSystems\ICompoundCoordinateSystem.cs" target="src\CoordinateSystems\ICompoundCoordinateSystem.cs" />
-		<file src="GeoAPI\CoordinateSystems\ICoordinateSystem.cs" target="src\CoordinateSystems\ICoordinateSystem.cs" />
-		<file src="GeoAPI\CoordinateSystems\ICoordinateSystemAuthorityFactory.cs" target="src\CoordinateSystems\ICoordinateSystemAuthorityFactory.cs" />
-		<file src="GeoAPI\CoordinateSystems\ICoordinateSystemFactory.cs" target="src\CoordinateSystems\ICoordinateSystemFactory.cs" />
-		<file src="GeoAPI\CoordinateSystems\IDatum.cs" target="src\CoordinateSystems\IDatum.cs" />
-		<file src="GeoAPI\CoordinateSystems\IEllipsoid.cs" target="src\CoordinateSystems\IEllipsoid.cs" />
-		<file src="GeoAPI\CoordinateSystems\IFittedCoordinateSystem.cs" target="src\CoordinateSystems\IFittedCoordinateSystem.cs" />
-		<file src="GeoAPI\CoordinateSystems\IGeocentricCoordinateSystem.cs" target="src\CoordinateSystems\IGeocentricCoordinateSystem.cs" />
-		<file src="GeoAPI\CoordinateSystems\IGeodeticSpatialReference.cs" target="src\CoordinateSystems\IGeodeticSpatialReference.cs" />
-		<file src="GeoAPI\CoordinateSystems\IGeographicCoordinateSystem.cs" target="src\CoordinateSystems\IGeographicCoordinateSystem.cs" />
-		<file src="GeoAPI\CoordinateSystems\IGeographicTransform.cs" target="src\CoordinateSystems\IGeographicTransform.cs" />
-		<file src="GeoAPI\CoordinateSystems\IHorizontalCoordinateSystem.cs" target="src\CoordinateSystems\IHorizontalCoordinateSystem.cs" />
-		<file src="GeoAPI\CoordinateSystems\IHorizontalDatum.cs" target="src\CoordinateSystems\IHorizontalDatum.cs" />
-		<file src="GeoAPI\CoordinateSystems\IInfo.cs" target="src\CoordinateSystems\IInfo.cs" />
-		<file src="GeoAPI\CoordinateSystems\ILinearUnit.cs" target="src\CoordinateSystems\ILinearUnit.cs" />
-		<file src="GeoAPI\CoordinateSystems\ILocalCoordinateSystem.cs" target="src\CoordinateSystems\ILocalCoordinateSystem.cs" />
-		<file src="GeoAPI\CoordinateSystems\ILocalDatum.cs" target="src\CoordinateSystems\ILocalDatum.cs" />
-		<file src="GeoAPI\CoordinateSystems\IParameterInfo.cs" target="src\CoordinateSystems\IParameterInfo.cs" />
-		<file src="GeoAPI\CoordinateSystems\IPrimeMeridian.cs" target="src\CoordinateSystems\IPrimeMeridian.cs" />
-		<file src="GeoAPI\CoordinateSystems\IProjectedCoordinateSystem.cs" target="src\CoordinateSystems\IProjectedCoordinateSystem.cs" />
-		<file src="GeoAPI\CoordinateSystems\IProjection.cs" target="src\CoordinateSystems\IProjection.cs" />
-		<file src="GeoAPI\CoordinateSystems\IUnit.cs" target="src\CoordinateSystems\IUnit.cs" />
-		<file src="GeoAPI\CoordinateSystems\IVerticalCoordinateSystem.cs" target="src\CoordinateSystems\IVerticalCoordinateSystem.cs" />
-		<file src="GeoAPI\CoordinateSystems\IVerticalDatum.cs" target="src\CoordinateSystems\IVerticalDatum.cs" />
-		<file src="GeoAPI\CoordinateSystems\Parameter.cs" target="src\CoordinateSystems\Parameter.cs" />
-		<file src="GeoAPI\CoordinateSystems\ProjectionParameter.cs" target="src\CoordinateSystems\ProjectionParameter.cs" />
-		<file src="GeoAPI\CoordinateSystems\Transformations\DomainFlags.cs" target="src\CoordinateSystems\Transformations\DomainFlags.cs" />
-		<file src="GeoAPI\CoordinateSystems\Transformations\ICoordinateTransformation.cs" target="src\CoordinateSystems\Transformations\ICoordinateTransformation.cs" />
-		<file src="GeoAPI\CoordinateSystems\Transformations\ICoordinateTransformationFactory.cs" target="src\CoordinateSystems\Transformations\ICoordinateTransformationFactory.cs" />
-		<file src="GeoAPI\CoordinateSystems\Transformations\IMathTransform.cs" target="src\CoordinateSystems\Transformations\IMathTransform.cs" />
-		<file src="GeoAPI\CoordinateSystems\Transformations\IMathTransformFactory.cs" target="src\CoordinateSystems\Transformations\IMathTransformFactory.cs" />
-		<file src="GeoAPI\CoordinateSystems\Transformations\TransformType.cs" target="src\CoordinateSystems\Transformations\TransformType.cs" />
-		<file src="GeoAPI\CoordinateSystems\Transformations\TransformType.cs" target="src\CoordinateSystems\TransformType.cs" />
-		<file src="GeoAPI\CoordinateSystems\WGS84ConversionInfo.cs" target="src\CoordinateSystems\WGS84ConversionInfo.cs" />
-		<file src="GeoAPI\DataStructures\Interval.cs" target="src\DataStructures\Interval.cs" />
-		<file src="GeoAPI\Geometries\Coordinate.cs" target="src\Geometries\Coordinate.cs" />
-		<file src="GeoAPI\Geometries\Dimension.cs" target="src\Geometries\Dimension.cs" />
-		<file src="GeoAPI\Geometries\Envelope.cs" target="src\Geometries\Envelope.cs" />
-		<file src="GeoAPI\Geometries\IBoundable.cs" target="src\Geometries\IBoundable.cs" />
-		<file src="GeoAPI\Geometries\ICoordinate.cs" target="src\Geometries\ICoordinate.cs" />
-		<file src="GeoAPI\Geometries\ICoordinateBuffer.cs" target="src\Geometries\ICoordinateBuffer.cs" />
-		<file src="GeoAPI\Geometries\ICoordinateFilter.cs" target="src\Geometries\ICoordinateFilter.cs" />
-		<file src="GeoAPI\Geometries\ICoordinateSequence.cs" target="src\Geometries\ICoordinateSequence.cs" />
-		<file src="GeoAPI\Geometries\ICoordinateSequenceFactory.cs" target="src\Geometries\ICoordinateSequenceFactory.cs" />
-		<file src="GeoAPI\Geometries\ICoordinateSequenceFilter.cs" target="src\Geometries\ICoordinateSequenceFilter.cs" />
-		<file src="GeoAPI\Geometries\ICurve.cs" target="src\Geometries\ICurve.cs" />
-		<file src="GeoAPI\Geometries\IEnvelope.cs" target="src\Geometries\IEnvelope.cs" />
-		<file src="GeoAPI\Geometries\IExpandable.cs" target="src\Geometries\IExpandable.cs" />
-		<file src="GeoAPI\Geometries\IGeometry.cs" target="src\Geometries\IGeometry.cs" />
-		<file src="GeoAPI\Geometries\IGeometryCollection.cs" target="src\Geometries\IGeometryCollection.cs" />
-		<file src="GeoAPI\Geometries\IGeometryComponentFilter.cs" target="src\Geometries\IGeometryComponentFilter.cs" />
-		<file src="GeoAPI\Geometries\IGeometryFactory.cs" target="src\Geometries\IGeometryFactory.cs" />
-		<file src="GeoAPI\Geometries\IGeometryFilter.cs" target="src\Geometries\IGeometryFilter.cs" />
-		<file src="GeoAPI\Geometries\IIntersectable.cs" target="src\Geometries\IIntersectable.cs" />
-		<file src="GeoAPI\Geometries\ILineal.cs" target="src\Geometries\ILineal.cs" />
-		<file src="GeoAPI\Geometries\ILinearRing.cs" target="src\Geometries\ILinearRing.cs" />
-		<file src="GeoAPI\Geometries\ILineString.cs" target="src\Geometries\ILineString.cs" />
-		<file src="GeoAPI\Geometries\IMultiCurve.cs" target="src\Geometries\IMultiCurve.cs" />
-		<file src="GeoAPI\Geometries\IMultiLineString.cs" target="src\Geometries\IMultiLineString.cs" />
-		<file src="GeoAPI\Geometries\IMultiPoint.cs" target="src\Geometries\IMultiPoint.cs" />
-		<file src="GeoAPI\Geometries\IMultiPolygon.cs" target="src\Geometries\IMultiPolygon.cs" />
-		<file src="GeoAPI\Geometries\IMultiSurface.cs" target="src\Geometries\IMultiSurface.cs" />
-		<file src="GeoAPI\Geometries\IntersectionMatrix.cs" target="src\Geometries\IntersectionMatrix.cs" />
-		<file src="GeoAPI\Geometries\IPoint.cs" target="src\Geometries\IPoint.cs" />
-		<file src="GeoAPI\Geometries\IPolygon.cs" target="src\Geometries\IPolygon.cs" />
-		<file src="GeoAPI\Geometries\IPolygonal.cs" target="src\Geometries\IPolygonal.cs" />
-		<file src="GeoAPI\Geometries\IPrecisionModel.cs" target="src\Geometries\IPrecisionModel.cs" />
-		<file src="GeoAPI\Geometries\IPuntal.cs" target="src\Geometries\IPuntal.cs" />
-		<file src="GeoAPI\Geometries\ISurface.cs" target="src\Geometries\ISurface.cs" />
-		<file src="GeoAPI\Geometries\Location.cs" target="src\Geometries\Location.cs" />
-		<file src="GeoAPI\Geometries\OgcGeometryType.cs" target="src\Geometries\OgcGeometryType.cs" />
-		<file src="GeoAPI\Geometries\Ordinate.cs" target="src\Geometries\Ordinate.cs" />
-		<file src="GeoAPI\Geometries\Ordinates.cs" target="src\Geometries\Ordinates.cs" />
-		<file src="GeoAPI\Geometries\OridinatesUtility.cs" target="src\Geometries\OridinatesUtility.cs" />
-		<file src="GeoAPI\Geometries\Prepared\IPreparedGeometry.cs" target="src\Geometries\Prepared\IPreparedGeometry.cs" />
-		<file src="GeoAPI\GeometryServiceProvider.cs" target="src\GeometryServiceProvider.cs" />
-		<file src="GeoAPI\IGeometryServices.cs" target="src\IGeometryServices.cs" />
-    <file src="GeoAPI\ICoordinateSystemServices.cs" target="src\ICoordinateSystemServices.cs" />
-    <file src="GeoAPI\IO\ByteOrder.cs" target="src\IO\ByteOrder.cs" />
-		<file src="GeoAPI\IO\GeometryType.cs" target="src\IO\GeometryType.cs" />
-		<file src="GeoAPI\IO\IGeometryReader.cs" target="src\IO\IGeometryReader.cs" />
-		<file src="GeoAPI\IO\IGeometryWriter.cs" target="src\IO\IGeometryWriter.cs" />
-		<file src="GeoAPI\IO\ParseException.cs" target="src\IO\ParseException.cs" />
-		<file src="GeoAPI\Operation\Buffer\BufferStyle.cs" target="src\Operation\Buffer\BufferStyle.cs" />
-		<file src="GeoAPI\Operation\Buffer\EndCapStyle.cs" target="src\Operation\Buffer\EndCapStyle.cs" />
-		<file src="GeoAPI\Operation\Buffer\IBufferParameters.cs" target="src\Operation\Buffer\IBufferParameters.cs" />
-		<file src="GeoAPI\Operation\Buffer\JoinStyle.cs" target="src\Operation\Buffer\JoinStyle.cs" />
-		<file src="GeoAPI\Properties\AssemblyInfo.cs" target="src\Properties\AssemblyInfo.cs" />
+		<file src="GeoAPI.NetCore\Consts.cs" target="src\Consts.cs" />
+		<file src="GeoAPI.NetCore\CoordinateSystems\AxisInfo.cs" target="src\CoordinateSystems\AxisInfo.cs" />
+		<file src="GeoAPI.NetCore\CoordinateSystems\AxisOrientationEnum.cs" target="src\CoordinateSystems\AxisOrientationEnum.cs" />
+		<file src="GeoAPI.NetCore\CoordinateSystems\DatumType.cs" target="src\CoordinateSystems\DatumType.cs" />
+		<file src="GeoAPI.NetCore\CoordinateSystems\IAngularUnit.cs" target="src\CoordinateSystems\IAngularUnit.cs" />
+		<file src="GeoAPI.NetCore\CoordinateSystems\ICompoundCoordinateSystem.cs" target="src\CoordinateSystems\ICompoundCoordinateSystem.cs" />
+		<file src="GeoAPI.NetCore\CoordinateSystems\ICoordinateSystem.cs" target="src\CoordinateSystems\ICoordinateSystem.cs" />
+		<file src="GeoAPI.NetCore\CoordinateSystems\ICoordinateSystemAuthorityFactory.cs" target="src\CoordinateSystems\ICoordinateSystemAuthorityFactory.cs" />
+		<file src="GeoAPI.NetCore\CoordinateSystems\ICoordinateSystemFactory.cs" target="src\CoordinateSystems\ICoordinateSystemFactory.cs" />
+		<file src="GeoAPI.NetCore\CoordinateSystems\IDatum.cs" target="src\CoordinateSystems\IDatum.cs" />
+		<file src="GeoAPI.NetCore\CoordinateSystems\IEllipsoid.cs" target="src\CoordinateSystems\IEllipsoid.cs" />
+		<file src="GeoAPI.NetCore\CoordinateSystems\IFittedCoordinateSystem.cs" target="src\CoordinateSystems\IFittedCoordinateSystem.cs" />
+		<file src="GeoAPI.NetCore\CoordinateSystems\IGeocentricCoordinateSystem.cs" target="src\CoordinateSystems\IGeocentricCoordinateSystem.cs" />
+		<file src="GeoAPI.NetCore\CoordinateSystems\IGeodeticSpatialReference.cs" target="src\CoordinateSystems\IGeodeticSpatialReference.cs" />
+		<file src="GeoAPI.NetCore\CoordinateSystems\IGeographicCoordinateSystem.cs" target="src\CoordinateSystems\IGeographicCoordinateSystem.cs" />
+		<file src="GeoAPI.NetCore\CoordinateSystems\IGeographicTransform.cs" target="src\CoordinateSystems\IGeographicTransform.cs" />
+		<file src="GeoAPI.NetCore\CoordinateSystems\IHorizontalCoordinateSystem.cs" target="src\CoordinateSystems\IHorizontalCoordinateSystem.cs" />
+		<file src="GeoAPI.NetCore\CoordinateSystems\IHorizontalDatum.cs" target="src\CoordinateSystems\IHorizontalDatum.cs" />
+		<file src="GeoAPI.NetCore\CoordinateSystems\IInfo.cs" target="src\CoordinateSystems\IInfo.cs" />
+		<file src="GeoAPI.NetCore\CoordinateSystems\ILinearUnit.cs" target="src\CoordinateSystems\ILinearUnit.cs" />
+		<file src="GeoAPI.NetCore\CoordinateSystems\ILocalCoordinateSystem.cs" target="src\CoordinateSystems\ILocalCoordinateSystem.cs" />
+		<file src="GeoAPI.NetCore\CoordinateSystems\ILocalDatum.cs" target="src\CoordinateSystems\ILocalDatum.cs" />
+		<file src="GeoAPI.NetCore\CoordinateSystems\IParameterInfo.cs" target="src\CoordinateSystems\IParameterInfo.cs" />
+		<file src="GeoAPI.NetCore\CoordinateSystems\IPrimeMeridian.cs" target="src\CoordinateSystems\IPrimeMeridian.cs" />
+		<file src="GeoAPI.NetCore\CoordinateSystems\IProjectedCoordinateSystem.cs" target="src\CoordinateSystems\IProjectedCoordinateSystem.cs" />
+		<file src="GeoAPI.NetCore\CoordinateSystems\IProjection.cs" target="src\CoordinateSystems\IProjection.cs" />
+		<file src="GeoAPI.NetCore\CoordinateSystems\IUnit.cs" target="src\CoordinateSystems\IUnit.cs" />
+		<file src="GeoAPI.NetCore\CoordinateSystems\IVerticalCoordinateSystem.cs" target="src\CoordinateSystems\IVerticalCoordinateSystem.cs" />
+		<file src="GeoAPI.NetCore\CoordinateSystems\IVerticalDatum.cs" target="src\CoordinateSystems\IVerticalDatum.cs" />
+		<file src="GeoAPI.NetCore\CoordinateSystems\Parameter.cs" target="src\CoordinateSystems\Parameter.cs" />
+		<file src="GeoAPI.NetCore\CoordinateSystems\ProjectionParameter.cs" target="src\CoordinateSystems\ProjectionParameter.cs" />
+		<file src="GeoAPI.NetCore\CoordinateSystems\Transformations\DomainFlags.cs" target="src\CoordinateSystems\Transformations\DomainFlags.cs" />
+		<file src="GeoAPI.NetCore\CoordinateSystems\Transformations\ICoordinateTransformation.cs" target="src\CoordinateSystems\Transformations\ICoordinateTransformation.cs" />
+		<file src="GeoAPI.NetCore\CoordinateSystems\Transformations\ICoordinateTransformationFactory.cs" target="src\CoordinateSystems\Transformations\ICoordinateTransformationFactory.cs" />
+		<file src="GeoAPI.NetCore\CoordinateSystems\Transformations\IMathTransform.cs" target="src\CoordinateSystems\Transformations\IMathTransform.cs" />
+		<file src="GeoAPI.NetCore\CoordinateSystems\Transformations\IMathTransformFactory.cs" target="src\CoordinateSystems\Transformations\IMathTransformFactory.cs" />
+		<file src="GeoAPI.NetCore\CoordinateSystems\Transformations\TransformType.cs" target="src\CoordinateSystems\Transformations\TransformType.cs" />
+		<file src="GeoAPI.NetCore\CoordinateSystems\Transformations\TransformType.cs" target="src\CoordinateSystems\TransformType.cs" />
+		<file src="GeoAPI.NetCore\CoordinateSystems\WGS84ConversionInfo.cs" target="src\CoordinateSystems\WGS84ConversionInfo.cs" />
+		<file src="GeoAPI.NetCore\DataStructures\Interval.cs" target="src\DataStructures\Interval.cs" />
+		<file src="GeoAPI.NetCore\Geometries\Coordinate.cs" target="src\Geometries\Coordinate.cs" />
+		<file src="GeoAPI.NetCore\Geometries\Dimension.cs" target="src\Geometries\Dimension.cs" />
+		<file src="GeoAPI.NetCore\Geometries\Envelope.cs" target="src\Geometries\Envelope.cs" />
+		<file src="GeoAPI.NetCore\Geometries\IBoundable.cs" target="src\Geometries\IBoundable.cs" />
+		<file src="GeoAPI.NetCore\Geometries\ICoordinate.cs" target="src\Geometries\ICoordinate.cs" />
+		<file src="GeoAPI.NetCore\Geometries\ICoordinateBuffer.cs" target="src\Geometries\ICoordinateBuffer.cs" />
+		<file src="GeoAPI.NetCore\Geometries\ICoordinateFilter.cs" target="src\Geometries\ICoordinateFilter.cs" />
+		<file src="GeoAPI.NetCore\Geometries\ICoordinateSequence.cs" target="src\Geometries\ICoordinateSequence.cs" />
+		<file src="GeoAPI.NetCore\Geometries\ICoordinateSequenceFactory.cs" target="src\Geometries\ICoordinateSequenceFactory.cs" />
+		<file src="GeoAPI.NetCore\Geometries\ICoordinateSequenceFilter.cs" target="src\Geometries\ICoordinateSequenceFilter.cs" />
+		<file src="GeoAPI.NetCore\Geometries\ICurve.cs" target="src\Geometries\ICurve.cs" />
+		<file src="GeoAPI.NetCore\Geometries\IEnvelope.cs" target="src\Geometries\IEnvelope.cs" />
+		<file src="GeoAPI.NetCore\Geometries\IExpandable.cs" target="src\Geometries\IExpandable.cs" />
+		<file src="GeoAPI.NetCore\Geometries\IGeometry.cs" target="src\Geometries\IGeometry.cs" />
+		<file src="GeoAPI.NetCore\Geometries\IGeometryCollection.cs" target="src\Geometries\IGeometryCollection.cs" />
+		<file src="GeoAPI.NetCore\Geometries\IGeometryComponentFilter.cs" target="src\Geometries\IGeometryComponentFilter.cs" />
+		<file src="GeoAPI.NetCore\Geometries\IGeometryFactory.cs" target="src\Geometries\IGeometryFactory.cs" />
+		<file src="GeoAPI.NetCore\Geometries\IGeometryFilter.cs" target="src\Geometries\IGeometryFilter.cs" />
+		<file src="GeoAPI.NetCore\Geometries\IIntersectable.cs" target="src\Geometries\IIntersectable.cs" />
+		<file src="GeoAPI.NetCore\Geometries\ILineal.cs" target="src\Geometries\ILineal.cs" />
+		<file src="GeoAPI.NetCore\Geometries\ILinearRing.cs" target="src\Geometries\ILinearRing.cs" />
+		<file src="GeoAPI.NetCore\Geometries\ILineString.cs" target="src\Geometries\ILineString.cs" />
+		<file src="GeoAPI.NetCore\Geometries\IMultiCurve.cs" target="src\Geometries\IMultiCurve.cs" />
+		<file src="GeoAPI.NetCore\Geometries\IMultiLineString.cs" target="src\Geometries\IMultiLineString.cs" />
+		<file src="GeoAPI.NetCore\Geometries\IMultiPoint.cs" target="src\Geometries\IMultiPoint.cs" />
+		<file src="GeoAPI.NetCore\Geometries\IMultiPolygon.cs" target="src\Geometries\IMultiPolygon.cs" />
+		<file src="GeoAPI.NetCore\Geometries\IMultiSurface.cs" target="src\Geometries\IMultiSurface.cs" />
+		<file src="GeoAPI.NetCore\Geometries\IntersectionMatrix.cs" target="src\Geometries\IntersectionMatrix.cs" />
+		<file src="GeoAPI.NetCore\Geometries\IPoint.cs" target="src\Geometries\IPoint.cs" />
+		<file src="GeoAPI.NetCore\Geometries\IPolygon.cs" target="src\Geometries\IPolygon.cs" />
+		<file src="GeoAPI.NetCore\Geometries\IPolygonal.cs" target="src\Geometries\IPolygonal.cs" />
+		<file src="GeoAPI.NetCore\Geometries\IPrecisionModel.cs" target="src\Geometries\IPrecisionModel.cs" />
+		<file src="GeoAPI.NetCore\Geometries\IPuntal.cs" target="src\Geometries\IPuntal.cs" />
+		<file src="GeoAPI.NetCore\Geometries\ISurface.cs" target="src\Geometries\ISurface.cs" />
+		<file src="GeoAPI.NetCore\Geometries\Location.cs" target="src\Geometries\Location.cs" />
+		<file src="GeoAPI.NetCore\Geometries\OgcGeometryType.cs" target="src\Geometries\OgcGeometryType.cs" />
+		<file src="GeoAPI.NetCore\Geometries\Ordinate.cs" target="src\Geometries\Ordinate.cs" />
+		<file src="GeoAPI.NetCore\Geometries\Ordinates.cs" target="src\Geometries\Ordinates.cs" />
+		<file src="GeoAPI.NetCore\Geometries\OridinatesUtility.cs" target="src\Geometries\OridinatesUtility.cs" />
+		<file src="GeoAPI.NetCore\Geometries\Prepared\IPreparedGeometry.cs" target="src\Geometries\Prepared\IPreparedGeometry.cs" />
+		<file src="GeoAPI.NetCore\GeometryServiceProvider.cs" target="src\GeometryServiceProvider.cs" />
+		<file src="GeoAPI.NetCore\IGeometryServices.cs" target="src\IGeometryServices.cs" />
+		<file src="GeoAPI.NetCore\ICoordinateSystemServices.cs" target="src\ICoordinateSystemServices.cs" />
+		<file src="GeoAPI.NetCore\IO\ByteOrder.cs" target="src\IO\ByteOrder.cs" />
+		<file src="GeoAPI.NetCore\IO\GeometryType.cs" target="src\IO\GeometryType.cs" />
+		<file src="GeoAPI.NetCore\IO\IGeometryReader.cs" target="src\IO\IGeometryReader.cs" />
+		<file src="GeoAPI.NetCore\IO\IGeometryWriter.cs" target="src\IO\IGeometryWriter.cs" />
+		<file src="GeoAPI.NetCore\IO\ParseException.cs" target="src\IO\ParseException.cs" />
+		<file src="GeoAPI.NetCore\Operation\Buffer\BufferStyle.cs" target="src\Operation\Buffer\BufferStyle.cs" />
+		<file src="GeoAPI.NetCore\Operation\Buffer\EndCapStyle.cs" target="src\Operation\Buffer\EndCapStyle.cs" />
+		<file src="GeoAPI.NetCore\Operation\Buffer\IBufferParameters.cs" target="src\Operation\Buffer\IBufferParameters.cs" />
+		<file src="GeoAPI.NetCore\Operation\Buffer\JoinStyle.cs" target="src\Operation\Buffer\JoinStyle.cs" />
+		<file src="GeoAPI.NetCore\Properties\AssemblyInfo.cs" target="src\Properties\AssemblyInfo.cs" />
+		<file src="GeoAPI.NetCore\ValueParser.cs" target="src\ValueParser.cs" />
 	</files>
 </package>

@@ -20,6 +20,9 @@ internal static class Consts
 #elif NET35
     public const string Product = "GeoAPI.Net35";
     public const string Guid = "8de32941-f422-41e6-a7e5-964bb4ab2d3b";
+#elif NET20
+    public const string Product = "GeoAPI.Net20";
+    public const string Guid = "2ac6149a-cb66-48d3-9c2b-6a5c19dcf203";
 #elif NET_CORE
     public const string Product = "GeoAPI.NetCore";
     public const string Guid = "eef37cab-4f83-4366-8533-3d7c16b449c7";
