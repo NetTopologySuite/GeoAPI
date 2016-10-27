@@ -3,7 +3,11 @@
     /// <summary>
     /// A spatial object in an AbstractSTRtree.
     /// </summary>
-    public interface IBoundable<out T, out TItem> //: IIntersectable<T>, IExpandable<T>
+#if !WindowsCE
+    public interface IBoundable<out T, out TItem>
+#else
+    public interface IBoundable<T, TItem>
+#endif
         where T: IIntersectable<T>, IExpandable<T>
     {
         /// <summary> 

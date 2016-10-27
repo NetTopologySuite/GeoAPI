@@ -37,6 +37,7 @@ namespace GeoAPI
             }
         }
 
+#if !WindowsCE
         private static IEnumerable<Type> GetLoadableTypes(Assembly assembly)
         {
             if (assembly == null)
@@ -66,10 +67,16 @@ namespace GeoAPI
                 return new Type[0];
             }            
         }
+#else
+        private static IEnumerable<Type> GetLoadableTypes(Assembly assembly)
+        {
+            throw new NotSupportedException("The compact framework does not support retrieve exported types from assembly");
+        }
+#endif
 
         private static IGeometryServices ReflectInstance()
         {
-#if !PCL && !NET_CORE
+#if !PCL && !NET_CORE && !WindowsCE
             var a = AppDomain.CurrentDomain.GetAssemblies();
             foreach (var assembly in a)
             {

@@ -327,6 +327,9 @@
     <Compile Include="..\GeoAPI.NetCore\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="..\GeoAPI.NetCore\ValueParser.cs">
+      <Link>ValueParser.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CoordinateSystems\Projections\" />
