@@ -8,7 +8,7 @@
   <PropertyGroup>
     <SolutionFile>$(MSBuildThisFileDirectory)GeoAPI.sln</SolutionFile>
 		<SolutionDir>$(MSBuildThisFileDirectory)</SolutionDir>
-		<GeoAPIVersion Condition=" '$(GeoAPIVersion)' == '' ">1.7.4</GeoAPIVersion>	
+		<GeoAPIVersion Condition=" '$(GeoAPIVersion)' == '' ">1.7.5</GeoAPIVersion>	
 		<AsmFileVersion Condition=" '$(AsmFileVersion)' == '' ">$(GeoAPIVersion)</AsmFileVersion>
 		<NuGetOutDir>"$(MSBuildProjectDirectory)\Release"</NuGetOutDir>	
 		<NuGetVersion Condition=" '$(NuGetVersion)' == '' ">$(AsmFileVersion)</NuGetVersion>
