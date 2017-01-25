@@ -40,15 +40,15 @@ namespace GeoAPI.Geometries
         /// <summary>
         /// X coordinate.
         /// </summary>
-        public double X; // = Double.NaN;
+        public double X { get; set; } // = Double.NaN;
         /// <summary>
-        /// X coordinate.
+        /// Y coordinate.
         /// </summary>
-        public double Y; // = Double.NaN;
+        public double Y { get; set; } // = Double.NaN;
         /// <summary>
-        /// X coordinate.
+        /// Z coordinate.
         /// </summary>
-        public double Z; // = Double.NaN;
+        public double Z { get; set; } // = Double.NaN;
 
         /// <summary>
         /// Constructs a <other>Coordinate</other> at (x,y,z).

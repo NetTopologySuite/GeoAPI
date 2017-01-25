@@ -2,7 +2,7 @@ GeoAPI is a set of .NET contracts and classes written in C# that
 define the fundamental operations required to validate a given
 geo-spatial data set to a known topological specification.
 
-Copyright (C) 2005-2014 NetTopologySuite team
+Copyright (C) 2005-2014 NetTopologySuite team, 2016 Airbus Defence and Space
 
 This library is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
