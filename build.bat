@@ -24,6 +24,9 @@ CALL :Build GeoAPI_PCL v4.0 Profile336 PCL "TRACE;PCL"
 
 echo building .NET Core
 rmdir /s/q "%SolutionDir%GeoAPI.NetCore\bin\Release\netstandard1.6"
+echo Tooling:
+dotnet --version
+Echo
 dotnet build -c Release %SolutionDir%GeoAPI.NetCore
 mkdir "%SolutionDir%Release\netstandard1.6"
 copy "%SolutionDir%GeoAPI.NetCore\bin\Release\netstandard1.6\GeoAPI.NetCore.*" "%SolutionDir%Release\netstandard1.6\*.*"
