@@ -42,9 +42,9 @@
 		<file src="Release\PCL\AnyCPU\GeoAPI.pdb" target="lib\portable-net403+sl5+netcore45+wpa81+wp8+MonoAndroid10+XamariniOS10+MonoTouch10" />
 		<file src="Release\PCL\AnyCPU\GeoAPI.xml" target="lib\portable-net403+sl5+netcore45+wpa81+wp8+MonoAndroid10+XamariniOS10+MonoTouch10" />
 
-		<file src="Release\netstandard1.6\GeoAPI.NetCore.dll" target="lib\netstandard1.6" />
-		<file src="Release\netstandard1.6\GeoAPI.NetCore.pdb" target="lib\netstandard1.6" />
-		<file src="Release\netstandard1.6\GeoAPI.NetCore.deps.json" target="lib\netstandard1.6" />
+		<file src="Release\netstandard1.0\GeoAPI.NetCore.dll" target="lib\netstandard1.0" />
+		<file src="Release\netstandard1.0\GeoAPI.NetCore.pdb" target="lib\netstandard1.0" />
+		<file src="Release\netstandard1.0\GeoAPI.NetCore.deps.json" target="lib\netstandard1.0" />
 
 		<file src="GeoAPI.NetCore\Consts.cs" target="src\Consts.cs" />
 		<file src="GeoAPI.NetCore\GeometryServiceProvider.cs" target="src\GeometryServiceProvider.cs" />

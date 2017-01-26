@@ -23,10 +23,10 @@ CALL :Build GeoAPI v4.5 "" v4.5 "TRACE;NET20;NET35;NET40"
 CALL :Build GeoAPI_PCL v4.0 Profile336 PCL "TRACE;PCL"
 
 echo building .NET Core
-rmdir /s/q "%SolutionDir%GeoAPI.NetCore\bin\Release\netstandard1.6"
+rmdir /s/q "%SolutionDir%GeoAPI.NetCore\bin\Release\netstandard1.0"
 dotnet build -c Release %SolutionDir%GeoAPI.NetCore
-mkdir "%SolutionDir%Release\netstandard1.6"
-copy "%SolutionDir%GeoAPI.NetCore\bin\Release\netstandard1.6\GeoAPI.NetCore.*" "%SolutionDir%Release\netstandard1.6\*.*"
+mkdir "%SolutionDir%Release\netstandard1.0"
+copy "%SolutionDir%GeoAPI.NetCore\bin\Release\netstandard1.0\GeoAPI.NetCore.*" "%SolutionDir%Release\netstandard1.0\*.*"
 
 echo build complete.
 
