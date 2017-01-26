@@ -29,7 +29,13 @@ mkdir "%SolutionDir%Release\netstandard1.0"
 copy "%SolutionDir%GeoAPI.NetCore\bin\Release\netstandard1.0\GeoAPI.NetCore.*" "%SolutionDir%Release\netstandard1.0\*.*"
 
 echo building for Windows CE
-%msbuild% GeoAPI.vs2008.sln /target:GeoAPI_CF /p:Configuration=Release
+REM check this: https://gist.github.com/skarllot/4953ddb6e23d8a6f0816029c4155997a
+set msbuild35="C:\Windows\Microsoft.NET\Framework\v3.5\MSBuild"
+if not exist %msbuild% (
+	echo "Error trying to find MSBuild 3.5 executable, cannot build for Windows CF"
+	exit 1
+)
+%msbuild35% GeoAPI.vs2008.sln /target:GeoAPI_CF /p:Configuration=Release
 
 echo build complete.
 
