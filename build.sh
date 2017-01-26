@@ -4,6 +4,7 @@
 set -e
 
 dotnet --version
+dotnet restore
 dotnet build ./GeoAPI.NetCore
 
 xbuild /p:Configuration=CIBuild GeoAPI.sln
