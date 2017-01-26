@@ -28,6 +28,9 @@ dotnet build -c Release %SolutionDir%GeoAPI.NetCore
 mkdir "%SolutionDir%Release\netstandard1.0"
 copy "%SolutionDir%GeoAPI.NetCore\bin\Release\netstandard1.0\GeoAPI.NetCore.*" "%SolutionDir%Release\netstandard1.0\*.*"
 
+echo building for Windows CE
+msbuild GeoAPI.vs2008.sln /target:GeoAPI_CF /p:Configuration=Release
+
 echo build complete.
 
 EXIT /B %ERRORLEVEL%
@@ -43,7 +46,7 @@ set OutputPath="%SolutionDir%Release\%TargetDir%\AnyCPU"
 set ObjOutputPath="%SolutionDir%GeoAPI\obj\%TargetDir%\"
 echo building for .NET Framework %Target% %Profile%
 rmdir /s/q "%OutputPath%" 2> nul
-%msbuild% %SolutionDir%GeoAPI.sln /target:%Project% /property:Configuration=Release;TargetFrameworkVersion=%TargetFX%;TargetFrameworkProfile=%Profile%;OutputPath=%OutputPath%\;DefineConstants="%Constants%;BaseIntermediateOutputPath=%ObjOutputPath%" /verbosity:minimal
+%msbuild% %SolutionDir%%Solution% /target:%Project% /property:Configuration=Release;TargetFrameworkVersion=%TargetFX%;TargetFrameworkProfile=%Profile%;OutputPath=%OutputPath%\;DefineConstants="%Constants%;BaseIntermediateOutputPath=%ObjOutputPath%" /verbosity:minimal
 
 REM Clean variables
 set Project=
