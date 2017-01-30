@@ -10,6 +10,12 @@
       "buildOptions": {
         "defines": [ "NET_CORE" ]
       }
+    },
+    "netstandard1.1": {
+      "imports": "dnxcore50",
+      "buildOptions": {
+        "defines": [ "NET_CORE" ]
+      }
     }
   },
   "buildOptions": {

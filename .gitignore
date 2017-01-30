@@ -187,3 +187,4 @@ FakesAssemblies/
 
 *.vs/
 *.old
+*.json.lock

@@ -334,7 +334,7 @@ namespace GeoAPI
         /// values that indicates the permitted format of <paramref name="s"/>.
         /// </param>
         /// <param name="provider">
-        /// An <see cref=System.IFormatProvider""/> that supplies
+        /// An <see cref="System.IFormatProvider"/> that supplies
         /// culture-specific formatting information about <paramref name="s"/>.
         /// </param>
         /// <param name="result">The result of the parsed string, or zero if parsing failed.</param>

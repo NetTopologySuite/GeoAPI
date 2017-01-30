@@ -37,7 +37,7 @@ namespace GeoAPI
             }
         }
 
-#if !WindowsCE
+#if !(WindowsCE || NET45)
         private static IEnumerable<Type> GetLoadableTypes(Assembly assembly)
         {
             if (assembly == null)
