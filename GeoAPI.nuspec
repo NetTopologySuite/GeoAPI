@@ -12,6 +12,12 @@
 		<releaseNotes>This version matches NetTopologySuite v1.14 API.</releaseNotes>
 		<copyright>Copyright 2007-2016</copyright>
 		<tags>OGC SFS NTS GIS</tags>
+      <dependencies>
+        <group targetFramework=".NETStandard1.0">
+          <dependency id="NETStandard.Library" version="[1.6.1, )" />
+          <dependency id="System.Reflection.TypeExtensions" version="[4.3.0, )" />
+        </group>
+      </dependencies>
 	</metadata>
 	<files>
 		<file src="Release\v2.0\AnyCPU\GeoAPI.dll" target="lib\net20" />
@@ -42,9 +48,8 @@
 		<file src="Release\PCL\AnyCPU\GeoAPI.pdb" target="lib\portable-net403+sl5+netcore45+wpa81+wp8+MonoAndroid10+XamariniOS10+MonoTouch10" />
 		<file src="Release\PCL\AnyCPU\GeoAPI.xml" target="lib\portable-net403+sl5+netcore45+wpa81+wp8+MonoAndroid10+XamariniOS10+MonoTouch10" />
 
-		<file src="Release\netstandard1.0\GeoAPI.NetCore.dll" target="lib\netstandard1.0" />
-		<file src="Release\netstandard1.0\GeoAPI.NetCore.pdb" target="lib\netstandard1.0" />
-		<file src="Release\netstandard1.0\GeoAPI.NetCore.deps.json" target="lib\netstandard1.0" />
+		<file src="Release\netstandard1.0\GeoAPI.dll" target="lib\netstandard1.0" />
+		<file src="Release\netstandard1.0\GeoAPI.pdb" target="lib\netstandard1.0" />
 
 		<file src="GeoAPI.NetCore\Consts.cs" target="src\Consts.cs" />
 		<file src="GeoAPI.NetCore\GeometryServiceProvider.cs" target="src\GeometryServiceProvider.cs" />
