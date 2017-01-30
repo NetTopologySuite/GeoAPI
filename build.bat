@@ -31,12 +31,12 @@ dotnet restore
 dotnet build -c Release %SolutionDir%GeoAPI.NetCore
 mkdir "%SolutionDir%Release\netstandard1.0"
 mkdir "%SolutionDir%Release\netstandard1.1"
-copy "%SolutionDir%GeoAPI.NetCore\bin\Release\netstandard1.0\GeoAPI.NetCore.deps.json" "%SolutionDir%Release\netstandard1.0\GeoAPI.deps.json"
-copy "%SolutionDir%GeoAPI.NetCore\bin\Release\netstandard1.0\GeoAPI.NetCore.dll" "%SolutionDir%Release\netstandard1.0\GeoAPI.dll"
-copy "%SolutionDir%GeoAPI.NetCore\bin\Release\netstandard1.0\GeoAPI.NetCore.pdb" "%SolutionDir%Release\netstandard1.0\GeoAPI.pdb"
-copy "%SolutionDir%GeoAPI.NetCore\bin\Release\netstandard1.1\GeoAPI.NetCore.deps.json" "%SolutionDir%Release\netstandard1.1\GeoAPI.deps.json"
-copy "%SolutionDir%GeoAPI.NetCore\bin\Release\netstandard1.1\GeoAPI.NetCore.dll" "%SolutionDir%Release\netstandard1.1\GeoAPI.dll"
-copy "%SolutionDir%GeoAPI.NetCore\bin\Release\netstandard1.1\GeoAPI.NetCore.pdb" "%SolutionDir%Release\netstandard1.1\GeoAPI.pdb"
+copy "%SolutionDir%GeoAPI.NetCore\bin\Release\netstandard1.0\GeoAPI.deps.json" "%SolutionDir%Release\netstandard1.0\GeoAPI.deps.json"
+copy "%SolutionDir%GeoAPI.NetCore\bin\Release\netstandard1.0\GeoAPI.dll" "%SolutionDir%Release\netstandard1.0\GeoAPI.dll"
+copy "%SolutionDir%GeoAPI.NetCore\bin\Release\netstandard1.0\GeoAPI.pdb" "%SolutionDir%Release\netstandard1.0\GeoAPI.pdb"
+copy "%SolutionDir%GeoAPI.NetCore\bin\Release\netstandard1.1\GeoAPI.deps.json" "%SolutionDir%Release\netstandard1.1\GeoAPI.deps.json"
+copy "%SolutionDir%GeoAPI.NetCore\bin\Release\netstandard1.1\GeoAPI.dll" "%SolutionDir%Release\netstandard1.1\GeoAPI.dll"
+copy "%SolutionDir%GeoAPI.NetCore\bin\Release\netstandard1.1\GeoAPI.pdb" "%SolutionDir%Release\netstandard1.1\GeoAPI.pdb"
 
 
 echo building for Windows CE
