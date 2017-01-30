@@ -26,7 +26,7 @@ echo building .NET Core
 rmdir /s/q "%SolutionDir%GeoAPI.NetCore\bin\Release\netstandard1.0"
 dotnet build -c Release %SolutionDir%GeoAPI.NetCore
 mkdir "%SolutionDir%Release\netstandard1.0"
-copy "%SolutionDir%GeoAPI.NetCore\bin\Release\netstandard1.0\GeoAPI.NetCore.*" "%SolutionDir%Release\netstandard1.0\*.*"
+copy "%SolutionDir%GeoAPI.NetCore\bin\Release\netstandard1.0\GeoAPI.*" "%SolutionDir%Release\netstandard1.0\*.*"
 
 echo building for Windows CE
 REM check this: https://gist.github.com/skarllot/4953ddb6e23d8a6f0816029c4155997a
