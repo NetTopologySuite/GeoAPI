@@ -59,20 +59,30 @@
 		<RemoveDir Directories="$(MSBuildThisFileDirectory)obj\v4.5" ContinueOnError="true"/>
 		<MSBuild Projects="$(SolutionFile)" 
              Targets="GeoAPI" 
-             Properties="Configuration=Release;TargetFrameworkVersion=v4.5;TargetFrameworkProfile=;DefineConstants=TRACE;NET20;NET35;NET40;BaseIntermediateOutputPath=$(MSBuildThisFileDirectory)obj\v4.5\" 
+             Properties="Configuration=Release;TargetFrameworkVersion=v4.5;TargetFrameworkProfile=;DefineConstants=TRACE;NET20;NET35;NET40;NET45;BaseIntermediateOutputPath=$(MSBuildThisFileDirectory)obj\v4.5\" 
              RunEachTargetSeparately="true" 
              ContinueOnError="true" 
              />
 	</Target>
-	<Target Name="BuildReleasePCL">
+	<Target Name="BuildReleasePCL40">
 		<RemoveDir Directories="$(MSBuildThisFileDirectory)obj\PCL" ContinueOnError="true"/>
 		<MSBuild Projects="$(SolutionFile)" 
              Targets="GeoAPI_PCL" 
-             Properties="Configuration=Release;TargetFrameworkVersion=v4.0;TargetFrameworkProfile=Profile336;DefineConstants=TRACE;PCL;BaseIntermediateOutputPath=$(MSBuildThisFileDirectory)obj\PCL\" 
+             Properties="Configuration=Release;TargetFrameworkVersion=v4.0;TargetFrameworkProfile=Profile328;DefineConstants=TRACE;PCL40;BaseIntermediateOutputPath=$(MSBuildThisFileDirectory)obj\PCL40\" 
              RunEachTargetSeparately="true" 
              ContinueOnError="true" 
              />
 	</Target>
+
+    <Target Name="BuildReleasePCL">
+        <RemoveDir Directories="$(MSBuildThisFileDirectory)obj\PCL" ContinueOnError="true"/>
+        <MSBuild Projects="$(SolutionFile)" 
+             Targets="GeoAPI_PCL" 
+             Properties="Configuration=Release;TargetFrameworkVersion=v4.5;TargetFrameworkProfile=Profile259;DefineConstants=TRACE;PCL;NET45;BaseIntermediateOutputPath=$(MSBuildThisFileDirectory)obj\PCL\" 
+             RunEachTargetSeparately="true" 
+             ContinueOnError="true" 
+             />
+    </Target>
 
 	<Target Name="BuildRelease" DependsOnTargets="BuildRelease20;BuildRelease35;BuildRelease40;BuildRelease403;BuildRelease45;BuildReleasePCL"/>    
 
