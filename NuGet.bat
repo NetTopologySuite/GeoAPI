@@ -8,6 +8,7 @@ set VersionInfoCommand=%SolutionDir%.nuget\VersionInfo.vbs
 for /f %%i in ('cscript //nologo %VersionInfoCommand% %NuGetOutDir%\v4.0\AnyCPU\GeoAPI.dll') do set GeoAPIVersion=%%i
 set AsmFileVersion=%GeoAPIVersion%
 set NuGetVersion=%AsmFileVersion%
+if not "%~1"=="" SET NuGetVersion=%NuGetVersion%-%~1
 
 %NuGetCommand% update -self
 %NuGetCommand% pack GeoAPI.nuspec -Version %NuGetVersion% -outputdirectory %NuGetOutDir% -symbols

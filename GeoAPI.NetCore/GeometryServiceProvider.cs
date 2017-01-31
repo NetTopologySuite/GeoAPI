@@ -37,7 +37,7 @@ namespace GeoAPI
             }
         }
 
-#if !(WindowsCE || NET45)
+#if !(WindowsCE || PCL || NET_CORE)
         private static IEnumerable<Type> GetLoadableTypes(Assembly assembly)
         {
             if (assembly == null)
@@ -45,18 +45,18 @@ namespace GeoAPI
 
             try
             {
+#if (!NET45)
                 return assembly.GetExportedTypes();
+#else
+                return assembly.ExportedTypes;
+#endif
             }
             catch (ReflectionTypeLoadException ex)
             {
                 var types = ex.Types;
                 IList<Type> list = new List<Type>(types.Length);
                 foreach (var t in types)
-#if !NET_CORE
                     if (t != null && t.IsPublic)
-#else
-                    if (t != null)
-#endif
                     {
                         list.Add(t);
                     }
@@ -65,7 +65,7 @@ namespace GeoAPI
             catch
             {
                 return new Type[0];
-            }            
+            }
         }
 #else
         private static IEnumerable<Type> GetLoadableTypes(Assembly assembly)
@@ -76,7 +76,7 @@ namespace GeoAPI
 
         private static IGeometryServices ReflectInstance()
         {
-#if !PCL && !NET_CORE && !WindowsCE
+#if !(WindowsCE || PCL || NET_CORE)
             var a = AppDomain.CurrentDomain.GetAssemblies();
             foreach (var assembly in a)
             {
