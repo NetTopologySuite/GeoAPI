@@ -6,6 +6,7 @@ env:
 addons:  
   apt:
     packages:
+    - referenceassemblies-pcl
     - gettext
     - libcurl4-openssl-dev
     - libicu-dev
