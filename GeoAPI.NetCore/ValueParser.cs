@@ -353,7 +353,7 @@ namespace GeoAPI
             catch (FormatException) { result = 0; }
             catch (InvalidCastException) { result = 0; }
 #else
-            retVal = double.TryParse(s, out result);
+            retVal = double.TryParse(s, style, provider, out result);
 #endif
             return retVal;
         }
