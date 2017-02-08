@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoAPI.CF", "GeoAPI.CF\GeoAPI.CF.csproj", "{FC13A43A-6170-4EF5-9ADA-EB44388DDC9E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoAPI.CF", "GeoAPI\GeoAPI.CF.csproj", "{FC13A43A-6170-4EF5-9ADA-EB44388DDC9E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

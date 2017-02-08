@@ -1,0 +1,134 @@
+{
+  "version": "1.7.5-*",
+  "language": "en-US",
+  "dependencies": {
+
+  },
+  "frameworks": {
+    "net20": {
+      "frameworkAssemblies": {
+        "System": "",
+      },
+      "buildOptions":{
+        "compile":{
+          "excludeFiles": ["ICloneable.cs"]
+        }
+      }
+    },
+    "net35-client": {
+      "frameworkAssemblies": {
+        "System": "",
+        "System.Core": ""
+      },
+      "buildOptions":{
+        "compile":{
+          "excludeFiles": ["ICloneable.cs"]
+        }
+      }
+    },
+    "net35-cf": {
+      "frameworkAssemblies": {
+        "System": "",
+        "System.Core": ""
+      },
+      "buildOptions":{
+        "compile":{
+          "excludeFiles": ["ICloneable.cs"]
+        }
+      }
+    },
+    "net40-client": {
+      "frameworkAssemblies": {
+        "System": "",
+        "System.Core": ""
+      },
+      "buildOptions":{
+        "compile":{
+          "excludeFiles": ["ICloneable.cs"]
+        }
+      }
+    },
+    ".NETFramework,Version=v4.5": {
+      "frameworkAssemblies": {
+        "System.Numerics": "",
+        "System.Runtime.Serialization": "",
+      },
+      "buildOptions":{
+        "compile":{
+          "excludeFiles": ["ICloneable.cs"]
+        }
+      }
+    },
+    ".NETPortable,Version=v4.5,Profile=Profile259": {
+      "buildOptions": {
+        "define": [
+          "PCL;NET45"
+        ]
+      },
+      "frameworkAssemblies": {
+        "Microsoft.CSharp": "",
+        "System": "",
+        "System.Collections": "",
+        "System.Core": "",
+        "System.Diagnostics.Debug": "",
+        "System.Dynamic.Runtime": "",
+        "System.Globalization": "",
+        "System.IO": "",
+        "System.Linq": "",
+        "System.Linq.Expressions": "",
+        "System.ObjectModel": "",
+        "System.Reflection": "",
+        "System.Reflection.Extensions": "",
+        "System.Resources.ResourceManager": "",
+        "System.Runtime": "",
+        "System.Runtime.Extensions": "",
+        "System.Runtime.Serialization": "",
+        "System.Runtime.Serialization.Primitives": "",
+        "System.Text.Encoding": "",
+        "System.Text.Encoding.Extensions": "",
+        "System.Text.RegularExpressions": "",
+        "System.Threading": "",
+        "System.Threading.Tasks": "",
+        "System.Xml": "",
+        "System.Xml.Linq": "",
+        "System.Xml.ReaderWriter": "",
+        "System.Xml.XDocument": ""
+      }
+    },
+    ".NETPortable,Version=v4.0,Profile=Profile328": {
+      "buildOptions": {
+        "define": [
+          "PCL40"
+        ]
+      },
+      "frameworkAssemblies": {
+        "mscorlib": "",
+        "System": "",
+        "System.Core": "",
+        "System.Runtime.Serialization": "",
+        "System.Xml": ""
+      }
+    },
+    "netstandard1.0": {
+      "dependencies": {
+        "NETStandard.Library": "1.6.1",
+      },
+      "imports": "dnxcore50",
+      "buildOptions": {
+        "define": [ "NET_CORE" ]
+      }
+    },
+    "netstandard1.1": {
+      "dependencies": {
+        "NETStandard.Library": "1.6.1",
+      },
+      "imports": "dnxcore50",
+      "buildOptions": {
+        "define": [ "NET_CORE" ]
+      }
+    }
+  },
+  "configurations": {
+    "CIBuild": {}
+  }
+}

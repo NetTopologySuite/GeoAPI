@@ -1,0 +1,169 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{FC13A43A-6170-4EF5-9ADA-EB44388DDC9E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GeoAPI</RootNamespace>
+    <AssemblyName>GeoAPI</AssemblyName>
+    <ProjectTypeGuids>{4D628B5B-2FBC-4AA6-8C16-197242AEB884};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <PlatformFamilyName>WindowsCE</PlatformFamilyName>
+    <PlatformID>E2BECB1F-8C8C-41ba-B736-9BE7D946A398</PlatformID>
+    <OSVersion>5.0</OSVersion>
+    <DeployDirSuffix>GeoAPI</DeployDirSuffix>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <NativePlatformName>Windows CE</NativePlatformName>
+    <FormFactorID>
+    </FormFactorID>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\geoapi.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>$(SolutionDir)$(Configuration)\$(TargetFrameworkIdentifier)$(TargetFrameworkVersion)\$(PlatformFamilyName)\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;$(PlatformFamilyName)</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <FileAlignment>512</FileAlignment>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <DocumentationFile>$(SolutionDir)$(Configuration)\$(TargetFrameworkIdentifier)$(TargetFrameworkVersion)\$(PlatformFamilyName)\GeoAPI.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>$(SolutionDir)$(Configuration)\$(TargetFrameworkVersion)\$(PlatformFamilyName)\</OutputPath>
+    <DefineConstants>TRACE;$(PlatformFamilyName)</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <FileAlignment>512</FileAlignment>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+	<DocumentationFile>$(SolutionDir)$(Configuration)\$(TargetFrameworkVersion)\$(PlatformFamilyName)\GeoAPI.XML</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Consts.cs" />
+    <Compile Include="CoordinateSystems\AxisInfo.cs" />
+    <Compile Include="CoordinateSystems\AxisOrientationEnum.cs" />
+    <Compile Include="CoordinateSystems\DatumType.cs" />
+    <Compile Include="CoordinateSystems\IAngularUnit.cs" />
+    <Compile Include="CoordinateSystems\ICompoundCoordinateSystem.cs" />
+    <Compile Include="CoordinateSystems\ICoordinateSystem.cs" />
+    <Compile Include="CoordinateSystems\ICoordinateSystemAuthorityFactory.cs" />
+    <Compile Include="CoordinateSystems\ICoordinateSystemFactory.cs" />
+    <Compile Include="CoordinateSystems\IDatum.cs" />
+    <Compile Include="CoordinateSystems\IEllipsoid.cs" />
+    <Compile Include="CoordinateSystems\IFittedCoordinateSystem.cs" />
+    <Compile Include="CoordinateSystems\IGeocentricCoordinateSystem.cs" />
+    <Compile Include="CoordinateSystems\IGeodeticSpatialReference.cs" />
+    <Compile Include="CoordinateSystems\IGeographicCoordinateSystem.cs" />
+    <Compile Include="CoordinateSystems\IGeographicTransform.cs" />
+    <Compile Include="CoordinateSystems\IHorizontalCoordinateSystem.cs" />
+    <Compile Include="CoordinateSystems\IHorizontalDatum.cs" />
+    <Compile Include="CoordinateSystems\IInfo.cs" />
+    <Compile Include="CoordinateSystems\ILinearUnit.cs" />
+    <Compile Include="CoordinateSystems\ILocalCoordinateSystem.cs" />
+    <Compile Include="CoordinateSystems\ILocalDatum.cs" />
+    <Compile Include="CoordinateSystems\IParameterInfo.cs" />
+    <Compile Include="CoordinateSystems\IPrimeMeridian.cs" />
+    <Compile Include="CoordinateSystems\IProjectedCoordinateSystem.cs" />
+    <Compile Include="CoordinateSystems\IProjection.cs" />
+    <Compile Include="CoordinateSystems\IUnit.cs" />
+    <Compile Include="CoordinateSystems\IVerticalCoordinateSystem.cs" />
+    <Compile Include="CoordinateSystems\IVerticalDatum.cs" />
+    <Compile Include="CoordinateSystems\Parameter.cs" />
+    <Compile Include="CoordinateSystems\ProjectionParameter.cs" />
+    <Compile Include="CoordinateSystems\Transformations\DomainFlags.cs" />
+    <Compile Include="CoordinateSystems\Transformations\ICoordinateTransformation.cs" />
+    <Compile Include="CoordinateSystems\Transformations\ICoordinateTransformationFactory.cs" />
+    <Compile Include="CoordinateSystems\Transformations\IMathTransform.cs" />
+    <Compile Include="CoordinateSystems\Transformations\IMathTransformFactory.cs" />
+    <Compile Include="CoordinateSystems\Transformations\TransformType.cs" />
+    <Compile Include="CoordinateSystems\WGS84ConversionInfo.cs" />
+    <Compile Include="DataStructures\Interval.cs" />
+    <Compile Include="Geometries\Coordinate.cs" />
+    <Compile Include="Geometries\Dimension.cs" />
+    <Compile Include="Geometries\Envelope.cs" />
+    <Compile Include="Geometries\IBoundable.cs" />
+    <Compile Include="Geometries\ICoordinate.cs" />
+    <Compile Include="Geometries\ICoordinateBuffer.cs" />
+    <Compile Include="Geometries\ICoordinateFilter.cs" />
+    <Compile Include="Geometries\ICoordinateSequence.cs" />
+    <Compile Include="Geometries\ICoordinateSequenceFactory.cs" />
+    <Compile Include="Geometries\ICoordinateSequenceFilter.cs" />
+    <Compile Include="Geometries\ICurve.cs" />
+    <Compile Include="Geometries\IEnvelope.cs" />
+    <Compile Include="Geometries\IExpandable.cs" />
+    <Compile Include="Geometries\IGeometry.cs" />
+    <Compile Include="Geometries\IGeometryCollection.cs" />
+    <Compile Include="Geometries\IGeometryComponentFilter.cs" />
+    <Compile Include="Geometries\IGeometryFactory.cs" />
+    <Compile Include="Geometries\IGeometryFilter.cs" />
+    <Compile Include="Geometries\IIntersectable.cs" />
+    <Compile Include="Geometries\ILineal.cs" />
+    <Compile Include="Geometries\ILinearRing.cs" />
+    <Compile Include="Geometries\ILineString.cs" />
+    <Compile Include="Geometries\IMultiCurve.cs" />
+    <Compile Include="Geometries\IMultiLineString.cs" />
+    <Compile Include="Geometries\IMultiPoint.cs" />
+    <Compile Include="Geometries\IMultiPolygon.cs" />
+    <Compile Include="Geometries\IMultiSurface.cs" />
+    <Compile Include="Geometries\IntersectionMatrix.cs" />
+    <Compile Include="Geometries\IPoint.cs" />
+    <Compile Include="Geometries\IPolygon.cs" />
+    <Compile Include="Geometries\IPolygonal.cs" />
+    <Compile Include="Geometries\IPrecisionModel.cs" />
+    <Compile Include="Geometries\IPuntal.cs" />
+    <Compile Include="Geometries\ISurface.cs" />
+    <Compile Include="Geometries\Location.cs" />
+    <Compile Include="Geometries\OgcGeometryType.cs" />
+    <Compile Include="Geometries\Ordinate.cs" />
+    <Compile Include="Geometries\Ordinates.cs" />
+    <Compile Include="Geometries\OridinatesUtility.cs" />
+    <Compile Include="Geometries\Prepared\IPreparedGeometry.cs" />
+    <Compile Include="GeometryServiceProvider.cs" />
+    <Compile Include="ICoordinateSystemServices.cs" />
+    <Compile Include="IGeometryServices.cs" />
+    <Compile Include="IO\ByteOrder.cs" />
+    <Compile Include="IO\GeometryType.cs" />
+    <Compile Include="IO\IGeometryReader.cs" />
+    <Compile Include="IO\IGeometryWriter.cs" />
+    <Compile Include="IO\ParseException.cs" />
+    <Compile Include="Operation\Buffer\BufferStyle.cs" />
+    <Compile Include="Operation\Buffer\EndCapStyle.cs" />
+    <Compile Include="Operation\Buffer\IBufferParameters.cs" />
+    <Compile Include="Operation\Buffer\JoinStyle.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ValueParser.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\geoapi.snk" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}">
+        <HostingProcess disable="1" />
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

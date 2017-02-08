@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoAPI", "GeoAPI\GeoAPI.csproj", "{FFB69466-79DE-466A-ADA7-5C47C5C5CA3A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoAPI.Pcl", "GeoAPI.Pcl\GeoAPI.Pcl.csproj", "{92B3B84B-50F1-4147-8B97-D93B90FA5514}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoAPI.Pcl", "GeoAPI\GeoAPI.csproj", "{92B3B84B-50F1-4147-8B97-D93B90FA5514}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{D0DCE6F6-83C2-4214-8E8A-847D02A4461A}"
 	ProjectSection(SolutionItems) = preProject
@@ -15,7 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{D0DCE6F6
 		TeamCity.targets = TeamCity.targets
 	EndProjectSection
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "GeoAPI.NetCore", "GeoAPI.NetCore\GeoAPI.NetCore.xproj", "{EEF37CAB-4F83-4366-8533-3D7C16B449C7}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "GeoAPI.NetCore", "GeoAPI\GeoAPI.xproj", "{EEF37CAB-4F83-4366-8533-3D7C16B449C7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

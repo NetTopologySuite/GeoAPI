@@ -1,4 +1,4 @@
-echo off
+@echo off
 
 set msbuild="C:\Program Files (x86)\MSBuild\14.0\bin\msbuild"
 if not exist %msbuild% (
@@ -9,6 +9,8 @@ if not exist %msbuild% (
 	)
 )
 set SolutionDir=%~dp0
+
+%msbuild% TeamCity.targets /t:RemoveProjectJson /v:minimal
 
 echo building all projects in the solution (Release)
 
@@ -22,22 +24,6 @@ CALL :Build GeoAPI v4.0.3 "" v4.0.3 "TRACE;NET20;NET35;NET40"
 CALL :Build GeoAPI v4.5 "" v4.5 "TRACE;NET20;NET35;NET40"
 CALL :Build GeoAPI_PCL v4.0 Profile328 PCL40 "TRACE;PCL"
 CALL :Build GeoAPI_PCL v4.5 Profile259 PCL "TRACE;PCL;NET45"
-
-echo building .NET Core
-rmdir /s/q "%SolutionDir%GeoAPI.NetCore\bin\Release\netstandard1.0"
-rmdir /s/q "%SolutionDir%GeoAPI.NetCore\bin\Release\netstandard1.1"
-dotnet --version
-dotnet restore
-dotnet build -c Release %SolutionDir%GeoAPI.NetCore
-mkdir "%SolutionDir%Release\netstandard1.0"
-mkdir "%SolutionDir%Release\netstandard1.1"
-copy "%SolutionDir%GeoAPI.NetCore\bin\Release\netstandard1.0\GeoAPI.deps.json" "%SolutionDir%Release\netstandard1.0\GeoAPI.deps.json"
-copy "%SolutionDir%GeoAPI.NetCore\bin\Release\netstandard1.0\GeoAPI.dll" "%SolutionDir%Release\netstandard1.0\GeoAPI.dll"
-copy "%SolutionDir%GeoAPI.NetCore\bin\Release\netstandard1.0\GeoAPI.pdb" "%SolutionDir%Release\netstandard1.0\GeoAPI.pdb"
-copy "%SolutionDir%GeoAPI.NetCore\bin\Release\netstandard1.1\GeoAPI.deps.json" "%SolutionDir%Release\netstandard1.1\GeoAPI.deps.json"
-copy "%SolutionDir%GeoAPI.NetCore\bin\Release\netstandard1.1\GeoAPI.dll" "%SolutionDir%Release\netstandard1.1\GeoAPI.dll"
-copy "%SolutionDir%GeoAPI.NetCore\bin\Release\netstandard1.1\GeoAPI.pdb" "%SolutionDir%Release\netstandard1.1\GeoAPI.pdb"
-
 
 echo building for Windows CE
 REM check this: https://gist.github.com/skarllot/4953ddb6e23d8a6f0816029c4155997a
@@ -55,8 +41,27 @@ if not exist "C:\Windows\Microsoft.NET\Framework\v3.5\Microsoft.CompactFramework
 %msbuild35% GeoAPI.vs2008.sln /target:GeoAPI_CF /p:Configuration=Release
 
 :SKIP_CF
+
+%msbuild% TeamCity.targets /t:RestoreProjectJson /v:minimal
+echo building .NET Core
+rmdir /s /q "%SolutionDir%GeoAPI\bin\Release\netstandard1.0"
+rmdir /s /q "%SolutionDir%GeoAPI\bin\Release\netstandard1.1"
+dotnet --version
+dotnet restore
+dotnet build -c Release %SolutionDir%GeoAPI
+mkdir "%SolutionDir%Release\netstandard1.0"
+mkdir "%SolutionDir%Release\netstandard1.1"
+copy "%SolutionDir%GeoAPI\bin\Release\netstandard1.0\GeoAPI.deps.json" "%SolutionDir%Release\netstandard1.0\GeoAPI.deps.json"
+copy "%SolutionDir%GeoAPI\bin\Release\netstandard1.0\GeoAPI.dll" "%SolutionDir%Release\netstandard1.0\GeoAPI.dll"
+copy "%SolutionDir%GeoAPI\bin\Release\netstandard1.0\GeoAPI.pdb" "%SolutionDir%Release\netstandard1.0\GeoAPI.pdb"
+copy "%SolutionDir%GeoAPI\bin\Release\netstandard1.1\GeoAPI.deps.json" "%SolutionDir%Release\netstandard1.1\GeoAPI.deps.json"
+copy "%SolutionDir%GeoAPI\bin\Release\netstandard1.1\GeoAPI.dll" "%SolutionDir%Release\netstandard1.1\GeoAPI.dll"
+copy "%SolutionDir%GeoAPI\bin\Release\netstandard1.1\GeoAPI.pdb" "%SolutionDir%Release\netstandard1.1\GeoAPI.pdb"
+
 echo build complete.
 
+ECHO ON
+ENDLOCAL
 EXIT /B %ERRORLEVEL%
 
 :Build
