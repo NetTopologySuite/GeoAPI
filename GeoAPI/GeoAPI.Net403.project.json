@@ -1,0 +1,8 @@
+{
+  "frameworks": {
+    "net403-client": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

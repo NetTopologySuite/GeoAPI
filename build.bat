@@ -38,7 +38,7 @@ if not exist "C:\Windows\Microsoft.NET\Framework\v3.5\Microsoft.CompactFramework
 	goto SKIP_CF
 )
 
-%msbuild35% GeoAPI.vs2008.sln /target:GeoAPI_CF /p:Configuration=Release
+%msbuild35% GeoAPI.vs2008.sln /target:GeoAPI_CF /p:Configuration=Release /v:minimal
 
 :SKIP_CF
 
@@ -49,6 +49,7 @@ rmdir /s /q "%SolutionDir%GeoAPI\bin\Release\netstandard1.1"
 dotnet --version
 dotnet restore
 dotnet build -c Release %SolutionDir%GeoAPI
+if %errorlevel%==0 (
 mkdir "%SolutionDir%Release\netstandard1.0"
 mkdir "%SolutionDir%Release\netstandard1.1"
 copy "%SolutionDir%GeoAPI\bin\Release\netstandard1.0\GeoAPI.deps.json" "%SolutionDir%Release\netstandard1.0\GeoAPI.deps.json"
@@ -57,12 +58,15 @@ copy "%SolutionDir%GeoAPI\bin\Release\netstandard1.0\GeoAPI.pdb" "%SolutionDir%R
 copy "%SolutionDir%GeoAPI\bin\Release\netstandard1.1\GeoAPI.deps.json" "%SolutionDir%Release\netstandard1.1\GeoAPI.deps.json"
 copy "%SolutionDir%GeoAPI\bin\Release\netstandard1.1\GeoAPI.dll" "%SolutionDir%Release\netstandard1.1\GeoAPI.dll"
 copy "%SolutionDir%GeoAPI\bin\Release\netstandard1.1\GeoAPI.pdb" "%SolutionDir%Release\netstandard1.1\GeoAPI.pdb"
+) else (
+ECHO Build using dotnet.exe failed.
+)
 
 echo build complete.
 
-ECHO ON
 ENDLOCAL
-EXIT /B %ERRORLEVEL%
+ECHO ON
+@EXIT /B %ERRORLEVEL%
 
 :Build
 set Project=%~1

@@ -7,7 +7,6 @@
   "frameworks": {
     "net20": {
       "frameworkAssemblies": {
-        "System": "",
       },
       "buildOptions":{
         "compile":{
@@ -17,8 +16,6 @@
     },
     "net35-client": {
       "frameworkAssemblies": {
-        "System": "",
-        "System.Core": ""
       },
       "buildOptions":{
         "compile":{
@@ -28,8 +25,6 @@
     },
     "net35-cf": {
       "frameworkAssemblies": {
-        "System": "",
-        "System.Core": ""
       },
       "buildOptions":{
         "compile":{
@@ -39,8 +34,6 @@
     },
     "net40-client": {
       "frameworkAssemblies": {
-        "System": "",
-        "System.Core": ""
       },
       "buildOptions":{
         "compile":{
@@ -48,10 +41,17 @@
         }
       }
     },
-    ".NETFramework,Version=v4.5": {
+    "net403-client": {
       "frameworkAssemblies": {
-        "System.Numerics": "",
-        "System.Runtime.Serialization": "",
+      },
+      "buildOptions":{
+        "compile":{
+          "excludeFiles": ["ICloneable.cs"]
+        }
+      }
+    },
+    "net45": {
+      "frameworkAssemblies": {
       },
       "buildOptions":{
         "compile":{
@@ -127,8 +127,5 @@
         "define": [ "NET_CORE" ]
       }
     }
-  },
-  "configurations": {
-    "CIBuild": {}
   }
 }
