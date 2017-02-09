@@ -16,7 +16,9 @@ namespace GeoAPI
         /// <param name="s">The string to attempt to parse.</param>
         /// <param name="result">The result of the parsed string, or zero if parsing failed.</param>
         /// <returns>A boolean value indicating whether or not the parse succeeded.</returns>
+#if !(NET45 || NET_CORE)
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "s")]
+#endif
         public static bool TryParse(string s, out int result)
         {
             bool retVal = false;
@@ -40,7 +42,9 @@ namespace GeoAPI
         /// <param name="s">The string to attempt to parse.</param>
         /// <param name="result">The result of the parsed string, or zero if parsing failed.</param>
         /// <returns>A boolean value indicating whether or not the parse succeeded.</returns>
+#if !(NET45 || NET_CORE)
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "s")]
+#endif
         public static bool TryParse(string s, out byte result)
         {
             bool retVal = false;
@@ -64,7 +68,9 @@ namespace GeoAPI
         /// <param name="s">The string to attempt to parse.</param>
         /// <param name="result">The result of the parsed string, or zero if parsing failed.</param>
         /// <returns>A boolean value indicating whether or not the parse succeeded.</returns>
+#if !(NET45 || NET_CORE)
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "s")]
+#endif
         public static bool TryParse(string s, out short result)
         {
             bool retVal = false;
@@ -88,7 +94,9 @@ namespace GeoAPI
         /// <param name="s">The string to attempt to parse.</param>
         /// <param name="result">The result of the parsed string, or zero if parsing failed.</param>
         /// <returns>A boolean value indicating whether or not the parse succeeded.</returns>
+#if !(NET45 || NET_CORE)
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "s")]
+#endif
         public static bool TryParse(string s, out long result)
         {
             bool retVal = false;
@@ -112,7 +120,9 @@ namespace GeoAPI
         /// <param name="s">The string to attempt to parse.</param>
         /// <param name="result">The result of the parsed string, or zero if parsing failed.</param>
         /// <returns>A boolean value indicating whether or not the parse succeeded.</returns>
+#if !(NET45 || NET_CORE)
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "s")]
+#endif
         public static bool TryParse(string s, out decimal result)
         {
             bool retVal = false;
@@ -136,7 +146,9 @@ namespace GeoAPI
         /// <param name="s">The string to attempt to parse.</param>
         /// <param name="result">The result of the parsed string, or zero if parsing failed.</param>
         /// <returns>A boolean value indicating whether or not the parse succeeded.</returns>
+#if !(NET45 || NET_CORE)
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "s")]
+#endif
         public static bool TryParse(string s, out float result)
         {
             bool retVal = false;
@@ -160,7 +172,9 @@ namespace GeoAPI
         /// <param name="s">The string to attempt to parse.</param>
         /// <param name="result">The result of the parsed string, or zero if parsing failed.</param>
         /// <returns>A boolean value indicating whether or not the parse succeeded.</returns>
+#if !(NET45 || NET_CORE)
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "s")]
+#endif
         public static bool TryParse(string s, out double result)
         {
             bool retVal = false;
@@ -184,7 +198,9 @@ namespace GeoAPI
         /// <param name="s">The string to attempt to parse.</param>
         /// <param name="result">The result of the parsed string, or zero if parsing failed.</param>
         /// <returns>A boolean value indicating whether or not the parse succeeded.</returns>
+#if !(NET45 || NET_CORE)
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "s")]
+#endif
         public static bool TryParse(string s, out sbyte result)
         {
             bool retVal = false;
@@ -208,7 +224,9 @@ namespace GeoAPI
         /// <param name="s">The string to attempt to parse.</param>
         /// <param name="result">The result of the parsed string, or zero if parsing failed.</param>
         /// <returns>A boolean value indicating whether or not the parse succeeded.</returns>
+#if !(NET45 || NET_CORE)
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "s")]
+#endif
         public static bool TryParse(string s, out uint result)
         {
             bool retVal = false;
@@ -232,7 +250,9 @@ namespace GeoAPI
         /// <param name="s">The string to attempt to parse.</param>
         /// <param name="result">The result of the parsed string, or zero if parsing failed.</param>
         /// <returns>A boolean value indicating whether or not the parse succeeded.</returns>
+#if !(NET45 || NET_CORE)
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "s")]
+#endif
         public static bool TryParse(string s, out ulong result)
         {
             bool retVal = false;
@@ -256,7 +276,9 @@ namespace GeoAPI
         /// <param name="s">The string to attempt to parse.</param>
         /// <param name="result">The result of the parsed string, or zero if parsing failed.</param>
         /// <returns>A boolean value indicating whether or not the parse succeeded.</returns>
+#if !(NET45 || NET_CORE)
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "s")]
+#endif
         public static bool TryParse(string s, out ushort result)
         {
             bool retVal = false;
@@ -280,7 +302,9 @@ namespace GeoAPI
         /// <param name="s">The string to attempt to parse.</param>
         /// <param name="result">The result of the parsed string, or <see cref="System.DateTime.MinValue"/> if parsing failed.</param>
         /// <returns>A boolean value indicating whether or not the parse succeeded.</returns>
+#if !(NET45 || NET_CORE)
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "s")]
+#endif
         public static bool TryParse(string s, out DateTime result)
         {
             bool retVal = false;
@@ -304,7 +328,9 @@ namespace GeoAPI
         /// <param name="s">The string to attempt to parse.</param>
         /// <param name="result">The result of the parsed string, or false if parsing failed.</param>
         /// <returns>A boolean value indicating whether or not the parse succeeded.</returns>
+#if !(NET45 || NET_CORE)
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "s")]
+#endif
         public static bool TryParse(string s, out bool result)
         {
             bool retVal = false;
@@ -334,13 +360,15 @@ namespace GeoAPI
         /// values that indicates the permitted format of <paramref name="s"/>.
         /// </param>
         /// <param name="provider">
-        /// An <see cref="System.IFormatProvider"/> that supplies
+        /// A <see cref="System.IFormatProvider"/> that supplies
         /// culture-specific formatting information about <paramref name="s"/>.
         /// </param>
         /// <param name="result">The result of the parsed string, or zero if parsing failed.</param>
         /// <returns>A boolean value indicating whether or not the parse succeeded.</returns>
         /// <remarks>Returns 0 in the result parameter if the parse fails.</remarks>
+#if !(NET45 || NET_CORE)
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "s")]
+#endif
         public static bool TryParse(string s, System.Globalization.NumberStyles style, IFormatProvider provider, out double result)
         {
             bool retVal = false;
@@ -353,7 +381,7 @@ namespace GeoAPI
             catch (FormatException) { result = 0; }
             catch (InvalidCastException) { result = 0; }
 #else
-            retVal = double.TryParse(s, style, provider, out result);
+			retVal = double.TryParse(s, style, provider, out result);
 #endif
             return retVal;
         }

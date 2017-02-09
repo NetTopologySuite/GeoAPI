@@ -22,7 +22,29 @@
         }
       }
     },
+    "net35-cf": {
+      "frameworkAssemblies": {
+	"System.Core": "",
+      },
+      "buildOptions":{
+	"define": ["WindowsCE"],
+        "compile":{
+          "excludeFiles": ["ICloneable.cs"]
+        }
+      }
+    },
     "net40": {
+      "buildOptions":{
+	"define": ["NET20;NET35;NET40"],
+        "compile":{
+          "excludeFiles": ["ICloneable.cs"]
+        }
+      }
+    },
+    "net403": {
+      "frameworkAssemblies": {
+        "System.Core": "",
+      },
       "buildOptions":{
 	"define": ["NET20;NET35;NET40"],
         "compile":{

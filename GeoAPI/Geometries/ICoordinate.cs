@@ -55,14 +55,14 @@ namespace GeoAPI.Geometries
         /// Compares equality for x- and y-ordinates
         /// </summary>
         /// <param name="other">The other coordinate</param>
-        /// <returns><c>true</c> if x- and y-ordinates of <see cref="this"/> coordinate and <see paramref="other"/> coordiante are equal.</returns>
+        /// <returns><c>true</c> if x- and y-ordinates of this coordinate and <see paramref="other"/> coordiante are equal.</returns>
         bool Equals2D(ICoordinate other);
 
         /// <summary>
         /// Compares equality for x-, y- and z-ordinates
         /// </summary>
         /// <param name="other">The other coordinate</param>
-        /// <returns><c>true</c> if x-, y- and z-ordinates of <see cref="this"/> coordinate and <see paramref="other"/> coordiante are equal.</returns>
+        /// <returns><c>true</c> if x-, y- and z-ordinates of this coordinate and <see paramref="other"/> coordiante are equal.</returns>
         bool Equals3D(ICoordinate other);        
     }
 }

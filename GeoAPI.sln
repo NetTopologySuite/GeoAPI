@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
+# Visual Studio 2012
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoAPI", "GeoAPI\GeoAPI.csproj", "{FFB69466-79DE-466A-ADA7-5C47C5C5CA3A}"
@@ -21,34 +21,27 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoAPI.Tests", "GeoAPI.Test
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		CIBuild|Any CPU = CIBuild|Any CPU
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{FFB69466-79DE-466A-ADA7-5C47C5C5CA3A}.CIBuild|Any CPU.ActiveCfg = CIBuild|Any CPU
-		{FFB69466-79DE-466A-ADA7-5C47C5C5CA3A}.CIBuild|Any CPU.Build.0 = CIBuild|Any CPU
-		{FFB69466-79DE-466A-ADA7-5C47C5C5CA3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FFB69466-79DE-466A-ADA7-5C47C5C5CA3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FFB69466-79DE-466A-ADA7-5C47C5C5CA3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FFB69466-79DE-466A-ADA7-5C47C5C5CA3A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{92B3B84B-50F1-4147-8B97-D93B90FA5514}.CIBuild|Any CPU.ActiveCfg = CIBuild|Any CPU
-		{92B3B84B-50F1-4147-8B97-D93B90FA5514}.CIBuild|Any CPU.Build.0 = CIBuild|Any CPU
 		{92B3B84B-50F1-4147-8B97-D93B90FA5514}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{92B3B84B-50F1-4147-8B97-D93B90FA5514}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92B3B84B-50F1-4147-8B97-D93B90FA5514}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92B3B84B-50F1-4147-8B97-D93B90FA5514}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A2CC5645-37A7-4762-ACC4-6C8AA18B1574}.CIBuild|Any CPU.ActiveCfg = Release|Any CPU
-		{A2CC5645-37A7-4762-ACC4-6C8AA18B1574}.CIBuild|Any CPU.Build.0 = Release|Any CPU
 		{A2CC5645-37A7-4762-ACC4-6C8AA18B1574}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A2CC5645-37A7-4762-ACC4-6C8AA18B1574}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A2CC5645-37A7-4762-ACC4-6C8AA18B1574}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A2CC5645-37A7-4762-ACC4-6C8AA18B1574}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
+		{FFB69466-79DE-466A-ADA7-5C47C5C5CA3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFB69466-79DE-466A-ADA7-5C47C5C5CA3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFB69466-79DE-466A-ADA7-5C47C5C5CA3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFB69466-79DE-466A-ADA7-5C47C5C5CA3A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{A2CC5645-37A7-4762-ACC4-6C8AA18B1574} = {76B6EFF2-4A17-4C0A-904C-66B20C88BF42}
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal

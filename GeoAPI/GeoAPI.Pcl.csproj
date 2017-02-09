@@ -19,37 +19,25 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\Debug\PCL\AnyCPU\</OutputPath>
+    <OutputPath>$(SolutionDir)$(Configuration)\PCL\$(Platform)\</OutputPath>
     <DefineConstants>TRACE;DEBUG;PCL;NET45</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>
-    </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\Release\PCL\AnyCPU\</OutputPath>
+    <OutputPath>$(SolutionDir)$(Configuration)\PCL\$(Platform)\</OutputPath>
     <DefineConstants>TRACE;PCL;NET45</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\Release\PCL\AnyCPU\GeoAPI.xml</DocumentationFile>
+    <DocumentationFile>$(SolutionDir)$(Configuration)\PCL\$(Platform)\GeoAPI.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>..\geoapi.snk</AssemblyOriginatorKeyFile>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'CIBuild|AnyCPU'">
-    <OutputPath>bin\CIBuild\</OutputPath>
-    <DefineConstants>TRACE;PCL;NET45</DefineConstants>
-    <DocumentationFile>..\Release\PCL\AnyCPU\GeoAPI.xml</DocumentationFile>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
@@ -158,7 +146,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\GeoAPI\License.txt" />
+    <Content Include="License.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
