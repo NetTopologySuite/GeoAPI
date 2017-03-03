@@ -42,11 +42,11 @@ namespace GeoAPI.Geometries
         /// </summary>
         public double X; // = Double.NaN;
         /// <summary>
-        /// X coordinate.
+        /// Y coordinate.
         /// </summary>
         public double Y; // = Double.NaN;
         /// <summary>
-        /// X coordinate.
+        /// Z coordinate.
         /// </summary>
         public double Z; // = Double.NaN;
 
