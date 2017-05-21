@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net20;net35-client;net35-cf;net40-client;net403-client;net45;netstandard1.0;portable40-net40+sl5+win8+wpa81+wp8;portable40-net403+sl5+win8+wpa81+wp8</TargetFrameworks>
+    <TargetFrameworks>net20;net35-client;net35-cf;net40-client;net403-client;net45;netstandard1.0;portable-net4+sl50+win8+wpa81+wp8;portable-net403+sl50+win8+wpa81+wp8</TargetFrameworks>
     <NoWarn>1591</NoWarn>
     <OutputPath>$(SolutionDir)$(Configuration)\$(Platform)</OutputPath>
     <DocumentationFile>$(OutputPath)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
@@ -59,7 +59,7 @@
   <!-- .NETStandard is the replacement for traditional / "old-style" PCLs, but
        there are still some platforms not covered by even .NETStandard 1.0 that
        we'd like to target, thus we still build some "old-style" PCLs. -->
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'portable40-net40+sl5+win8+wpa81+wp8' ">
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'portable-net4+sl50+win8+wpa81+wp8' ">
     <TargetFrameworkIdentifier>.NETPortable</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Profile328</TargetFrameworkProfile>
@@ -77,7 +77,7 @@
        whereas the former does not, even though LINQ-to-XML was added in .NET 3.5.  So if we want
        the PCL version of NetTopologySuite to support LINQ-to-XML, it needs to be on Profile336, so
        it needs to have GeoAPI target Profile336. -->
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'portable40-net403+sl5+win8+wpa81+wp8' ">
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'portable-net403+sl50+win8+wpa81+wp8' ">
     <TargetFrameworkIdentifier>.NETPortable</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Profile336</TargetFrameworkProfile>
