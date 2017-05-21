@@ -14,6 +14,7 @@
 		<tags>OGC SFS NTS GIS</tags>
 		<dependencies>
 			<group targetFramework=".NETFramework2.0" />
+			<group targetFramework=".NETFramework3.5-CompactFramework" />
 			<group targetFramework=".NETFramework3.5-Client" />
 			<group targetFramework=".NETFramework4.0-Client" />
 			<group targetFramework=".NETFramework4.0.3-Client" />
