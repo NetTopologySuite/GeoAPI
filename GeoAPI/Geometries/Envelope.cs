@@ -13,7 +13,7 @@ namespace GeoAPI.Geometries
     /// When Envelope objects are created or initialized,
     /// the supplies extent values are automatically sorted into the correct order.
     /// </summary>
-#if !PCL && !NET_CORE
+#if HAS_SERIALIZABLE_ATTRIBUTE
     [Serializable]
 #endif
 #pragma warning disable 612,618

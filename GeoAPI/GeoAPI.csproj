@@ -1,161 +1,156 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <!-- Define SolutionDir if not already set -->
-    <SolutionDir Condition=" '$(SolutionDir)' == '' ">$(MSBuildThisFileDirectory)\..\</SolutionDir>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{FFB69466-79DE-466A-ADA7-5C47C5C5CA3A}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GeoAPI</RootNamespace>
-    <AssemblyName>GeoAPI</AssemblyName>
+    <TargetFrameworks>net20;net35-client;net35-cf;net40-client;net403-client;net45;netstandard1.0;portable40-net40+sl5+win8+wpa81+wp8;portable40-net403+sl5+win8+wpa81+wp8</TargetFrameworks>
+    <NoWarn>1591</NoWarn>
+    <OutputPath>$(SolutionDir)$(Configuration)\$(Platform)</OutputPath>
+    <DocumentationFile>$(OutputPath)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\geoapi.snk</AssemblyOriginatorKeyFile>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>$(SolutionDir)$(Configuration)\$(TargetFrameworkVersion)\$(Platform)\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;NET45</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <NoWarn>1591</NoWarn>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>$(SolutionDir)$(Configuration)\$(TargetFrameworkVersion)\$(Platform)\</OutputPath>
-    <DefineConstants>TRACE;NET45</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>$(SolutionDir)$(Configuration)\$(TargetFrameworkVersion)\$(Platform)\GeoAPI.xml</DocumentationFile>
-    <NoWarn>1591</NoWarn>
   </PropertyGroup>
-  <ItemGroup>
-    <Compile Include="Consts.cs" />
-    <Compile Include="CoordinateSystems\AxisInfo.cs" />
-    <Compile Include="CoordinateSystems\AxisOrientationEnum.cs" />
-    <Compile Include="CoordinateSystems\DatumType.cs" />
-    <Compile Include="CoordinateSystems\IAngularUnit.cs" />
-    <Compile Include="CoordinateSystems\ICompoundCoordinateSystem.cs" />
-    <Compile Include="CoordinateSystems\ICoordinateSystem.cs" />
-    <Compile Include="CoordinateSystems\ICoordinateSystemAuthorityFactory.cs" />
-    <Compile Include="CoordinateSystems\ICoordinateSystemFactory.cs" />
-    <Compile Include="CoordinateSystems\IDatum.cs" />
-    <Compile Include="CoordinateSystems\IEllipsoid.cs" />
-    <Compile Include="CoordinateSystems\IFittedCoordinateSystem.cs" />
-    <Compile Include="CoordinateSystems\IGeocentricCoordinateSystem.cs" />
-    <Compile Include="CoordinateSystems\IGeodeticSpatialReference.cs" />
-    <Compile Include="CoordinateSystems\IGeographicCoordinateSystem.cs" />
-    <Compile Include="CoordinateSystems\IGeographicTransform.cs" />
-    <Compile Include="CoordinateSystems\IHorizontalCoordinateSystem.cs" />
-    <Compile Include="CoordinateSystems\IHorizontalDatum.cs" />
-    <Compile Include="CoordinateSystems\IInfo.cs" />
-    <Compile Include="CoordinateSystems\ILinearUnit.cs" />
-    <Compile Include="CoordinateSystems\ILocalCoordinateSystem.cs" />
-    <Compile Include="CoordinateSystems\ILocalDatum.cs" />
-    <Compile Include="CoordinateSystems\IParameterInfo.cs" />
-    <Compile Include="CoordinateSystems\IPrimeMeridian.cs" />
-    <Compile Include="CoordinateSystems\IProjectedCoordinateSystem.cs" />
-    <Compile Include="CoordinateSystems\IProjection.cs" />
-    <Compile Include="CoordinateSystems\IUnit.cs" />
-    <Compile Include="CoordinateSystems\IVerticalCoordinateSystem.cs" />
-    <Compile Include="CoordinateSystems\IVerticalDatum.cs" />
-    <Compile Include="CoordinateSystems\Parameter.cs" />
-    <Compile Include="CoordinateSystems\ProjectionParameter.cs" />
-    <Compile Include="CoordinateSystems\Transformations\DomainFlags.cs" />
-    <Compile Include="CoordinateSystems\Transformations\ICoordinateTransformation.cs" />
-    <Compile Include="CoordinateSystems\Transformations\ICoordinateTransformationFactory.cs" />
-    <Compile Include="CoordinateSystems\Transformations\IMathTransform.cs" />
-    <Compile Include="CoordinateSystems\Transformations\IMathTransformFactory.cs" />
-    <Compile Include="CoordinateSystems\Transformations\TransformType.cs" />
-    <Compile Include="CoordinateSystems\WGS84ConversionInfo.cs" />
-    <Compile Include="DataStructures\Interval.cs" />
-    <Compile Include="Geometries\Coordinate.cs" />
-    <Compile Include="Geometries\Dimension.cs" />
-    <Compile Include="Geometries\Envelope.cs" />
-    <Compile Include="Geometries\IBoundable.cs" />
-    <Compile Include="Geometries\ICoordinate.cs" />
-    <Compile Include="Geometries\ICoordinateBuffer.cs" />
-    <Compile Include="Geometries\ICoordinateFilter.cs" />
-    <Compile Include="Geometries\ICoordinateSequence.cs" />
-    <Compile Include="Geometries\ICoordinateSequenceFactory.cs" />
-    <Compile Include="Geometries\ICoordinateSequenceFilter.cs" />
-    <Compile Include="Geometries\ICurve.cs" />
-    <Compile Include="Geometries\IEnvelope.cs" />
-    <Compile Include="Geometries\IExpandable.cs" />
-    <Compile Include="Geometries\IGeometry.cs" />
-    <Compile Include="Geometries\IGeometryCollection.cs" />
-    <Compile Include="Geometries\IGeometryComponentFilter.cs" />
-    <Compile Include="Geometries\IGeometryFactory.cs" />
-    <Compile Include="Geometries\IGeometryFilter.cs" />
-    <Compile Include="Geometries\IIntersectable.cs" />
-    <Compile Include="Geometries\ILineal.cs" />
-    <Compile Include="Geometries\ILinearRing.cs" />
-    <Compile Include="Geometries\ILineString.cs" />
-    <Compile Include="Geometries\IMultiCurve.cs" />
-    <Compile Include="Geometries\IMultiLineString.cs" />
-    <Compile Include="Geometries\IMultiPoint.cs" />
-    <Compile Include="Geometries\IMultiPolygon.cs" />
-    <Compile Include="Geometries\IMultiSurface.cs" />
-    <Compile Include="Geometries\IntersectionMatrix.cs" />
-    <Compile Include="Geometries\IPoint.cs" />
-    <Compile Include="Geometries\IPolygon.cs" />
-    <Compile Include="Geometries\IPolygonal.cs" />
-    <Compile Include="Geometries\IPrecisionModel.cs" />
-    <Compile Include="Geometries\IPuntal.cs" />
-    <Compile Include="Geometries\ISurface.cs" />
-    <Compile Include="Geometries\Location.cs" />
-    <Compile Include="Geometries\OgcGeometryType.cs" />
-    <Compile Include="Geometries\Ordinate.cs" />
-    <Compile Include="Geometries\Ordinates.cs" />
-    <Compile Include="Geometries\OridinatesUtility.cs" />
-    <Compile Include="Geometries\Prepared\IPreparedGeometry.cs" />
-    <Compile Include="GeometryServiceProvider.cs" />
-    <Compile Include="ICoordinateSystemServices.cs" />
-    <Compile Include="IGeometryServices.cs" />
-    <Compile Include="IO\ByteOrder.cs" />
-    <Compile Include="IO\GeometryType.cs" />
-    <Compile Include="IO\IGeometryReader.cs" />
-    <Compile Include="IO\IGeometryWriter.cs" />
-    <Compile Include="IO\ParseException.cs" />
-    <Compile Include="Operation\Buffer\BufferStyle.cs" />
-    <Compile Include="Operation\Buffer\EndCapStyle.cs" />
-    <Compile Include="Operation\Buffer\IBufferParameters.cs" />
-    <Compile Include="Operation\Buffer\JoinStyle.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ValueParser.cs" />
+
+  <!-- Target CompactFramework 3.5 -->
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net35-cf'">
+    <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>CompactFramework</TargetFrameworkProfile>
+
+    <FrameworkPathOverride>$(MSBuildProgramFiles32)\Microsoft.NET\SDK\CompactFramework\v3.5\WindowsCE</FrameworkPathOverride>
+
+    <RequiresFrameworkAssemblyReferences>true</RequiresFrameworkAssemblyReferences>
+
+    <DefineConstants>$(DefineConstants);WindowsCE</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAS_SERIALIZABLE_ATTRIBUTE</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAS_NATIVE_ICLONEABLE</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAS_APPLICATION_EXCEPTION</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAS_COM_VISIBLE_ATTRIBUTE</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAS_GUID_ATTRIBUTE</DefineConstants>
+  </PropertyGroup>
+
+  <!-- Client Profile frameworks don't have built-in shortcuts, so we need to specify these. -->
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net35-client' ">
+    <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net40-client' ">
+    <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net403-client' ">
+    <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.0.3</TargetFrameworkVersion>
+  </PropertyGroup>
+
+  <!-- .NETStandard is the replacement for traditional / "old-style" PCLs, but
+       there are still some platforms not covered by even .NETStandard 1.0 that
+       we'd like to target, thus we still build some "old-style" PCLs. -->
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'portable40-net40+sl5+win8+wpa81+wp8' ">
+    <TargetFrameworkIdentifier>.NETPortable</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile328</TargetFrameworkProfile>
+
+    <RequiresFrameworkAssemblyReferences>true</RequiresFrameworkAssemblyReferences>
+
+    <DefineConstants>$(DefineConstants);PCL</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAS_INTERFACE_VARIANCE</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAS_DOUBLE_TRYPARSE</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAS_STRING_TOUPPERINVARIANT</DefineConstants>
+  </PropertyGroup>
+
+  <!-- Profile328 does not support LINQ-to-XML.  Weirdly, even though the only apparent difference
+       between Profile328 and Profile336 is .NET 4.0 vs. 4.0.3, the latter supports LINQ-to-XML,
+       whereas the former does not, even though LINQ-to-XML was added in .NET 3.5.  So if we want
+       the PCL version of NetTopologySuite to support LINQ-to-XML, it needs to be on Profile336, so
+       it needs to have GeoAPI target Profile336. -->
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'portable40-net403+sl5+win8+wpa81+wp8' ">
+    <TargetFrameworkIdentifier>.NETPortable</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile336</TargetFrameworkProfile>
+
+    <RequiresFrameworkAssemblyReferences>true</RequiresFrameworkAssemblyReferences>
+
+    <DefineConstants>$(DefineConstants);PCL</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAS_INTERFACE_VARIANCE</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAS_DOUBLE_TRYPARSE</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAS_STRING_TOUPPERINVARIANT</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net20' Or
+                             '$(TargetFramework)' == 'net35' Or
+                             '$(TargetFramework)' == 'net35-client' Or
+                             '$(TargetFramework)' == 'net40' Or
+                             '$(TargetFramework)' == 'net40-client' Or
+                             '$(TargetFramework)' == 'net403' Or
+                             '$(TargetFramework)' == 'net403-client' Or
+                             '$(TargetFramework)' == 'net45' ">
+    <RequiresFrameworkAssemblyReferences>true</RequiresFrameworkAssemblyReferences>
+
+    <DefineConstants>$(DefineConstants);HAS_SERIALIZABLE_ATTRIBUTE</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAS_NATIVE_ICLONEABLE</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAS_APPLICATION_EXCEPTION</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAS_COM_VISIBLE_ATTRIBUTE</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAS_GUID_ATTRIBUTE</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAS_INTERFACE_VARIANCE</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAS_DEFAULT_PARAMETERS</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAS_DOUBLE_TRYPARSE</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAS_APPDOMAIN_GETASSEMBLIES</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAS_ASSEMBLY_GETEXPORTEDTYPES</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAS_STRING_TOUPPERINVARIANT</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.0' ">
+    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+    <NETStandardPackageVersion>4.3.0</NETStandardPackageVersion>
+
+    <DefineConstants>$(DefineConstants);HAS_INTERFACE_VARIANCE</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAS_DEFAULT_PARAMETERS</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAS_DOUBLE_TRYPARSE</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAS_STRING_TOUPPERINVARIANT</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup Condition=" '$(RequiresFrameworkAssemblyReferences)' == 'true' ">
+    <Reference Include="System" />
+    <Reference Include="System.Core" Condition=" '$(TargetFramework)' != 'net20' " />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="CoordinateSystems\Projections\" />
-    <Folder Include="Features\" />
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.0' ">
+    <PackageReference Include="System.Collections" Version="$(NETStandardPackageVersion)" />
+    <PackageReference Include="System.Diagnostics.Tools" Version="$(NETStandardPackageVersion)" />
+    <PackageReference Include="System.Globalization" Version="$(NETStandardPackageVersion)" />
+    <PackageReference Include="System.IO" Version="$(NETStandardPackageVersion)" />
+    <PackageReference Include="System.Reflection" Version="$(NETStandardPackageVersion)" />
+    <PackageReference Include="System.Runtime" Version="$(NETStandardPackageVersion)" />
+    <PackageReference Include="System.Runtime.Extensions" Version="$(NETStandardPackageVersion)" />
+    <PackageReference Include="System.Threading" Version="$(NETStandardPackageVersion)" />
   </ItemGroup>
+
   <ItemGroup>
+    <Content Include="License.txt" />
     <None Include="..\geoapi.snk">
       <Link>geoapi.snk</Link>
     </None>
   </ItemGroup>
+
   <ItemGroup>
-    <Content Include="License.txt" />
+    <None Include="$(SolutionDir)geoapi.snk" />
   </ItemGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-  </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
-       Other similar extension points exist, see Microsoft.Common.targets.-->
+
   <Target Name="BeforeBuild">
-    <Message Text="Building for '$(TargetFrameworkVersion)'" />
+    <Message Text="Building for '$(TargetFramework)'" />
   </Target>
-  <!--
-  <Target Name="AfterBuild">
-    <MSBuild Condition=" '$(TargetFrameworkVersion)' == 'v2.0'" Projects="$(MSBuildProjectFile)" Properties="TargetFrameworkVersion=v3.5;TargetFrameworkProfile=Client" ContinueOnError="true" RunEachTargetSeparately="true" />
-    <MSBuild Condition=" '$(TargetFrameworkVersion)' == 'v2.0'" Projects="$(MSBuildProjectFile)" Properties="TargetFrameworkVersion=v4.0;TargetFrameworkProfile=Client" ContinueOnError="true" RunEachTargetSeparately="true" />
-    <MSBuild Condition=" '$(TargetFrameworkVersion)' == 'v2.0'" Projects="$(MSBuildProjectFile)" Properties="TargetFrameworkVersion=v4.0.3;TargetFrameworkProfile=Client" ContinueOnError="true" RunEachTargetSeparately="true" />
-  </Target>
-  -->
 </Project>

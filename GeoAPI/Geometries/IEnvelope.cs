@@ -1,5 +1,5 @@
 using System;
-#if PCL
+#if !HAS_NATIVE_ICLONEABLE
 using ICloneable = GeoAPI.ICloneable;
 #endif
 
@@ -252,7 +252,6 @@ namespace GeoAPI.Geometries
         /// </summary>
         void SetToNull();
 
-#pragma warning disable 1591
         void Zoom(double perCent);
                 
         bool Overlaps(IEnvelope other);

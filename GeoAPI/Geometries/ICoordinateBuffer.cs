@@ -17,7 +17,7 @@ namespace GeoAPI.Geometries
         /// </summary>
         int Count { get; }
 
-#if !WindowsCE
+#if HAS_DEFAULT_PARAMETERS
         /// <summary>
         /// Adds a coordinate made up of the ordinates (x, y, z, m) to the buffer.
         /// </summary>
@@ -51,7 +51,7 @@ namespace GeoAPI.Geometries
         bool AddCoordinate(double x, double y, double? z, double? m, bool allowRepeated);
 #endif
 
-#if !WindowsCE
+#if HAS_DEFAULT_PARAMETERS
         /// <summary>
         /// Inserts a coordinate made up of the ordinates (<paramref name="x"/>, <paramref name="y"/>, <paramref name="z"/>, <paramref name="m"/>) at index <paramref name="index"/> to the buffer.
         ///  </summary>
@@ -102,7 +102,7 @@ namespace GeoAPI.Geometries
         /// <param name="z">The value</param>
         void SetZ(int index, double z);
 
-#if !WindowsCE
+#if HAS_DEFAULT_PARAMETERS
         /// <summary>
         /// Converts the contents of this <see cref="ICoordinateBuffer"/> to a <see cref="ICoordinateSequence"/>.
         /// <br/>Optionally you may assign a factory to create the sequence

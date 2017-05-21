@@ -1,7 +1,7 @@
-#if PCL
-using ICloneable = GeoAPI.ICloneable;
-#else
+#if HAS_NATIVE_ICLONEABLE
 using System;
+#else
+using ICloneable = GeoAPI.ICloneable;
 #endif
 
 namespace GeoAPI.Geometries

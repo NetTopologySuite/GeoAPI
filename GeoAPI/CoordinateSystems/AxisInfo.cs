@@ -23,7 +23,7 @@ namespace GeoAPI.CoordinateSystems
 	/// <summary>
 	/// Details of axis. This is used to label axes, and indicate the orientation.
 	/// </summary>
-#if !PCL && !NET_CORE
+#if HAS_SERIALIZABLE_ATTRIBUTE
     [Serializable]
 #endif
     public class AxisInfo
@@ -68,14 +68,14 @@ namespace GeoAPI.CoordinateSystems
         public string WKT
 		{
 			get
-			{
-#if PCL || NET_CORE
-			    return String.Format("AXIS[\"{0}\", {1}]", Name, Orientation.ToString().ToUpper());
+            {
+#if HAS_STRING_TOUPPERINVARIANT
+			    return String.Format("AXIS[\"{0}\", {1}]", Name, Orientation.ToString().ToUpperInvariant());
 #else
-                return String.Format("AXIS[\"{0}\", {1}]", Name, Orientation.ToString().ToUpper(CultureInfo.InvariantCulture));
+                return String.Format("AXIS[\"{0}\", {1}]", Name, Orientation.ToString().ToUpper());
 #endif
-			}
-		}
+            }
+        }
 
 		/// <summary>
 		/// Gets an XML representation of this object
@@ -86,12 +86,12 @@ namespace GeoAPI.CoordinateSystems
 			{
 				return String.Format(CultureInfo.InvariantCulture.NumberFormat, 
                     "<CS_AxisInfo Name=\"{0}\" Orientation=\"{1}\"/>", Name, Orientation.ToString()
-#if !PCL && !NET_CORE
-                    .ToUpper(CultureInfo.InvariantCulture));
+#if HAS_STRING_TOUPPERINVARIANT
+                    .ToUpperInvariant());
 #else
                     .ToUpper());
 #endif
-			}
-		}
+            }
+        }
 	}
 }

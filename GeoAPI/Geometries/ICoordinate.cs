@@ -1,5 +1,5 @@
 using System;
-#if PCL
+#if !HAS_NATIVE_ICLONEABLE
 using ICloneable = GeoAPI.ICloneable;
 #endif
 

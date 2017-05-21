@@ -1,7 +1,6 @@
-#pragma warning disable 1591
 using System;
 using GeoAPI.Operation.Buffer;
-#if PCL
+#if !HAS_NATIVE_ICLONEABLE
 using ICloneable = GeoAPI.ICloneable;
 #endif
 

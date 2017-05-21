@@ -1,5 +1,5 @@
 using System;
-#if PCL || NET_CORE
+#if !HAS_APPLICATION_EXCEPTION
 using ApplicationException = System.Exception;
 #endif
 
