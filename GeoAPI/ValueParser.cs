@@ -30,7 +30,7 @@ namespace GeoAPI
         public static bool TryParse(string s, System.Globalization.NumberStyles style, IFormatProvider provider, out double result)
         {
             bool retVal = false;
-#if HAS_DOUBLE_TRYPARSE
+#if HAS_SYSTEM_DOUBLE_TRYPARSE
             retVal = double.TryParse(s, style, provider, out result);
 #else
             try

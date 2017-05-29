@@ -30,11 +30,11 @@
     <RequiresFrameworkAssemblyReferences>true</RequiresFrameworkAssemblyReferences>
 
     <DefineConstants>$(DefineConstants);WindowsCE</DefineConstants>
-    <DefineConstants>$(DefineConstants);HAS_SERIALIZABLE_ATTRIBUTE</DefineConstants>
-    <DefineConstants>$(DefineConstants);HAS_NATIVE_ICLONEABLE</DefineConstants>
-    <DefineConstants>$(DefineConstants);HAS_APPLICATION_EXCEPTION</DefineConstants>
-    <DefineConstants>$(DefineConstants);HAS_COM_VISIBLE_ATTRIBUTE</DefineConstants>
-    <DefineConstants>$(DefineConstants);HAS_GUID_ATTRIBUTE</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAS_SYSTEM_APPLICATIONEXCEPTION</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAS_SYSTEM_ICLONEABLE</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAS_SYSTEM_RUNTIME_INTEROPSERVICES_COMVISIBLEATTRIBUTE</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAS_SYSTEM_RUNTIME_INTEROPSERVICES_GUIDATTRIBUTE</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAS_SYSTEM_SERIALIZABLEATTRIBUTE</DefineConstants>
   </PropertyGroup>
 
   <!-- Client Profile frameworks don't have built-in shortcuts, so we need to specify these. -->
@@ -67,10 +67,10 @@
     <RequiresFrameworkAssemblyReferences>true</RequiresFrameworkAssemblyReferences>
 
     <DefineConstants>$(DefineConstants);PCL</DefineConstants>
-    <DefineConstants>$(DefineConstants);HAS_INTERFACE_VARIANCE</DefineConstants>
-    <DefineConstants>$(DefineConstants);HAS_DOUBLE_TRYPARSE</DefineConstants>
-    <DefineConstants>$(DefineConstants);HAS_STRING_TOUPPERINVARIANT</DefineConstants>
-    <DefineConstants>$(DefineConstants);HAS_DEFAULT_PARAMETERS</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_DEFAULT_PARAMETERS</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_INTERFACE_VARIANCE</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAS_SYSTEM_DOUBLE_TRYPARSE</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAS_SYSTEM_STRING_TOUPPERINVARIANT</DefineConstants>
   </PropertyGroup>
 
   <!-- Profile328 does not support LINQ-to-XML.  Weirdly, even though the only apparent difference
@@ -86,43 +86,36 @@
     <RequiresFrameworkAssemblyReferences>true</RequiresFrameworkAssemblyReferences>
 
     <DefineConstants>$(DefineConstants);PCL</DefineConstants>
-    <DefineConstants>$(DefineConstants);HAS_INTERFACE_VARIANCE</DefineConstants>
-    <DefineConstants>$(DefineConstants);HAS_DOUBLE_TRYPARSE</DefineConstants>
-    <DefineConstants>$(DefineConstants);HAS_STRING_TOUPPERINVARIANT</DefineConstants>
-    <DefineConstants>$(DefineConstants);HAS_DEFAULT_PARAMETERS</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_DEFAULT_PARAMETERS</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_INTERFACE_VARIANCE</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAS_SYSTEM_DOUBLE_TRYPARSE</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAS_SYSTEM_STRING_TOUPPERINVARIANT</DefineConstants>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'net20' Or
-                             '$(TargetFramework)' == 'net35' Or
-                             '$(TargetFramework)' == 'net35-client' Or
-                             '$(TargetFramework)' == 'net40' Or
-                             '$(TargetFramework)' == 'net40-client' Or
-                             '$(TargetFramework)' == 'net403' Or
-                             '$(TargetFramework)' == 'net403-client' Or
-                             '$(TargetFramework)' == 'net45' ">
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net20' Or '$(TargetFramework)' == 'net35' Or '$(TargetFramework)' == 'net35-client' Or '$(TargetFramework)' == 'net40' Or '$(TargetFramework)' == 'net40-client' Or '$(TargetFramework)' == 'net403' Or '$(TargetFramework)' == 'net403-client' Or '$(TargetFramework)' == 'net45' ">
     <RequiresFrameworkAssemblyReferences>true</RequiresFrameworkAssemblyReferences>
 
-    <DefineConstants>$(DefineConstants);HAS_SERIALIZABLE_ATTRIBUTE</DefineConstants>
-    <DefineConstants>$(DefineConstants);HAS_NATIVE_ICLONEABLE</DefineConstants>
-    <DefineConstants>$(DefineConstants);HAS_APPLICATION_EXCEPTION</DefineConstants>
-    <DefineConstants>$(DefineConstants);HAS_COM_VISIBLE_ATTRIBUTE</DefineConstants>
-    <DefineConstants>$(DefineConstants);HAS_GUID_ATTRIBUTE</DefineConstants>
-    <DefineConstants>$(DefineConstants);HAS_INTERFACE_VARIANCE</DefineConstants>
-    <DefineConstants>$(DefineConstants);HAS_DEFAULT_PARAMETERS</DefineConstants>
-    <DefineConstants>$(DefineConstants);HAS_DOUBLE_TRYPARSE</DefineConstants>
-    <DefineConstants>$(DefineConstants);HAS_APPDOMAIN_GETASSEMBLIES</DefineConstants>
-    <DefineConstants>$(DefineConstants);HAS_ASSEMBLY_GETEXPORTEDTYPES</DefineConstants>
-    <DefineConstants>$(DefineConstants);HAS_STRING_TOUPPERINVARIANT</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_DEFAULT_PARAMETERS</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_INTERFACE_VARIANCE</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAS_SYSTEM_APPDOMAIN_GETASSEMBLIES</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAS_SYSTEM_APPLICATIONEXCEPTION</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAS_SYSTEM_DOUBLE_TRYPARSE</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAS_SYSTEM_ICLONEABLE</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAS_SYSTEM_REFLECTION_ASSEMBLY_GETEXPORTEDTYPES</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAS_SYSTEM_RUNTIME_INTEROPSERVICES_COMVISIBLEATTRIBUTE</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAS_SYSTEM_RUNTIME_INTEROPSERVICES_GUIDATTRIBUTE</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAS_SYSTEM_SERIALIZABLEATTRIBUTE</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAS_SYSTEM_STRING_TOUPPERINVARIANT</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.0' ">
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
     <NETStandardPackageVersion>4.3.0</NETStandardPackageVersion>
 
-    <DefineConstants>$(DefineConstants);HAS_INTERFACE_VARIANCE</DefineConstants>
-    <DefineConstants>$(DefineConstants);HAS_DEFAULT_PARAMETERS</DefineConstants>
-    <DefineConstants>$(DefineConstants);HAS_DOUBLE_TRYPARSE</DefineConstants>
-    <DefineConstants>$(DefineConstants);HAS_STRING_TOUPPERINVARIANT</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_DEFAULT_PARAMETERS</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_INTERFACE_VARIANCE</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAS_SYSTEM_DOUBLE_TRYPARSE</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAS_SYSTEM_STRING_TOUPPERINVARIANT</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup Condition=" '$(RequiresFrameworkAssemblyReferences)' == 'true' ">

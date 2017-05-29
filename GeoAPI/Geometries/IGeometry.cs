@@ -1,11 +1,14 @@
 using System;
 using GeoAPI.Operation.Buffer;
-#if !HAS_NATIVE_ICLONEABLE
-using ICloneable = GeoAPI.ICloneable;
-#endif
 
 namespace GeoAPI.Geometries
 {
+#if HAS_SYSTEM_ICLONEABLE
+    using ICloneable = System.ICloneable;
+#else
+    using ICloneable = GeoAPI.ICloneable;
+#endif
+
     /// <summary>  
     /// Interface for basic implementation of <c>Geometry</c>.
     /// </summary>

@@ -23,7 +23,7 @@ namespace GeoAPI.CoordinateSystems
 	/// <summary>
 	/// Details of axis. This is used to label axes, and indicate the orientation.
 	/// </summary>
-#if HAS_SERIALIZABLE_ATTRIBUTE
+#if HAS_SYSTEM_SERIALIZABLEATTRIBUTE
     [Serializable]
 #endif
     public class AxisInfo
@@ -69,7 +69,7 @@ namespace GeoAPI.CoordinateSystems
 		{
 			get
             {
-#if HAS_STRING_TOUPPERINVARIANT
+#if HAS_SYSTEM_STRING_TOUPPERINVARIANT
 			    return String.Format("AXIS[\"{0}\", {1}]", Name, Orientation.ToString().ToUpperInvariant());
 #else
                 return String.Format("AXIS[\"{0}\", {1}]", Name, Orientation.ToString().ToUpper());
@@ -86,7 +86,7 @@ namespace GeoAPI.CoordinateSystems
 			{
 				return String.Format(CultureInfo.InvariantCulture.NumberFormat, 
                     "<CS_AxisInfo Name=\"{0}\" Orientation=\"{1}\"/>", Name, Orientation.ToString()
-#if HAS_STRING_TOUPPERINVARIANT
+#if HAS_SYSTEM_STRING_TOUPPERINVARIANT
                     .ToUpperInvariant());
 #else
                     .ToUpper());

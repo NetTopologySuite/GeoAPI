@@ -22,7 +22,7 @@ namespace GeoAPI.CoordinateSystems
 	/// <summary>
 	/// A named parameter value.
 	/// </summary>
-#if HAS_SERIALIZABLE_ATTRIBUTE
+#if HAS_SYSTEM_SERIALIZABLEATTRIBUTE
     [Serializable]
 #endif
     public class Parameter

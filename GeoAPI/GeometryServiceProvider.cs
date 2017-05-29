@@ -37,7 +37,7 @@ namespace GeoAPI
             }
         }
 
-#if HAS_ASSEMBLY_GETEXPORTEDTYPES
+#if HAS_SYSTEM_REFLECTION_ASSEMBLY_GETEXPORTEDTYPES
         private static IEnumerable<Type> GetLoadableTypes(Assembly assembly)
         {
             if (assembly == null)
@@ -72,7 +72,7 @@ namespace GeoAPI
 
         private static IGeometryServices ReflectInstance()
         {
-#if HAS_APPDOMAIN_GETASSEMBLIES
+#if HAS_SYSTEM_APPDOMAIN_GETASSEMBLIES
             var a = AppDomain.CurrentDomain.GetAssemblies();
             foreach (var assembly in a)
             {

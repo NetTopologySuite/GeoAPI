@@ -4,6 +4,12 @@ using System.Text;
 
 namespace GeoAPI.Geometries
 {
+#if HAS_SYSTEM_ICLONEABLE
+    using ICloneable = System.ICloneable;
+#else
+    using ICloneable = GeoAPI.ICloneable;
+#endif
+
     /// <summary>
     /// Defines a rectangular region of the 2D coordinate plane.
     /// It is often used to represent the bounding box of a <c>Geometry</c>,
@@ -13,7 +19,7 @@ namespace GeoAPI.Geometries
     /// When Envelope objects are created or initialized,
     /// the supplies extent values are automatically sorted into the correct order.
     /// </summary>
-#if HAS_SERIALIZABLE_ATTRIBUTE
+#if HAS_SYSTEM_SERIALIZABLEATTRIBUTE
     [Serializable]
 #endif
 #pragma warning disable 612,618

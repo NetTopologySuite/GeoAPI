@@ -36,7 +36,7 @@ namespace GeoAPI.Geometries
             return Ordinates.XY;
         }
 
-#if !HAS_DEFAULT_PARAMETERS
+#if !FEATURE_DEFAULT_PARAMETERS
         /// <summary>
         /// Converts an <see cref="Ordinates"/> encoded flag to an array of <see cref="Ordinate"/> indices.
         /// </summary>
@@ -54,7 +54,7 @@ namespace GeoAPI.Geometries
         /// <param name="ordinates">The ordinate flags</param>
         /// <param name="maxEval">The maximum oridinate flag that is to be checked</param>
         /// <returns>The ordinate indices</returns>
-#if HAS_DEFAULT_PARAMETERS
+#if FEATURE_DEFAULT_PARAMETERS
         public static Ordinate[] ToOrdinateArray(Ordinates ordinates, int maxEval = 4)
 #else
         public static Ordinate[] ToOrdinateArray(Ordinates ordinates, int maxEval)

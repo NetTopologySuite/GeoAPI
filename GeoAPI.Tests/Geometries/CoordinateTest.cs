@@ -6,7 +6,7 @@ namespace GeoAPI.Tests.Geometries
 {
     public class CoordinateTest
     {
-        [TestAttribute]
+        [Test]
         public void TestConstructor3D()
         {
             Coordinate c = new Coordinate(350.2, 4566.8, 5266.3);
@@ -15,7 +15,7 @@ namespace GeoAPI.Tests.Geometries
             Assert.AreEqual(c.Z, 5266.3);
         }
 
-        [TestAttribute]
+        [Test]
         public void TestConstructor2D()
         {
             Coordinate c = new Coordinate(350.2, 4566.8);
@@ -24,7 +24,7 @@ namespace GeoAPI.Tests.Geometries
             Assert.AreEqual(c.Z, Coordinate.NullOrdinate);
         }
 
-        [TestAttribute]
+        [Test]
         public void TestDefaultConstructor()
         {
             Coordinate c = new Coordinate();
@@ -33,7 +33,7 @@ namespace GeoAPI.Tests.Geometries
             Assert.AreEqual(c.Z, Coordinate.NullOrdinate);
         }
 
-        [TestAttribute]
+        [Test]
         public void TestCopyConstructor3D()
         {
             Coordinate orig = new Coordinate(350.2, 4566.8, 5266.3);
@@ -43,7 +43,7 @@ namespace GeoAPI.Tests.Geometries
             Assert.AreEqual(c.Z, 5266.3);
         }
 
-        [TestAttribute]
+        [Test]
         public void TestSetCoordinate()
         {
             Coordinate orig = new Coordinate(350.2, 4566.8, 5266.3);
@@ -53,7 +53,7 @@ namespace GeoAPI.Tests.Geometries
             Assert.AreEqual(c.Z, 5266.3);
         }
 
-        [TestAttribute]
+        [Test]
         public void TestGetOrdinate()
         {
             Coordinate c = new Coordinate(350.2, 4566.8, 5266.3);
@@ -62,7 +62,7 @@ namespace GeoAPI.Tests.Geometries
             Assert.AreEqual(c[Ordinate.Z], 5266.3);
         }
 
-        [TestAttribute]
+        [Test]
         public void TestSetOrdinate()
         {
             Coordinate c = new Coordinate();
@@ -74,7 +74,7 @@ namespace GeoAPI.Tests.Geometries
             Assert.AreEqual(c[Ordinate.Z], 333.0);
         }
 
-        [TestAttribute]
+        [Test]
         public void TestEquals()
         {
             Coordinate c1 = new Coordinate(1, 2, 3);
@@ -88,7 +88,7 @@ namespace GeoAPI.Tests.Geometries
             Assert.IsFalse(c1.Equals2D(c3));
         }
 
-        [TestAttribute]
+        [Test]
         public void TestEquals2D()
         {
             Coordinate c1 = new Coordinate(1, 2, 3);
@@ -99,7 +99,7 @@ namespace GeoAPI.Tests.Geometries
             Assert.IsFalse(c1.Equals2D(c3));
         }
 
-        [TestAttribute]
+        [Test]
         public void TestEquals3D()
         {
             Coordinate c1 = new Coordinate(1, 2, 3);
@@ -110,7 +110,7 @@ namespace GeoAPI.Tests.Geometries
             Assert.IsFalse(c1.Equals3D(c3));
         }
 
-        [TestAttribute]
+        [Test]
         public void TestEquals2DWithinTolerance()
         {
             Coordinate c = new Coordinate(100.0, 200.0, 50.0);
@@ -118,7 +118,7 @@ namespace GeoAPI.Tests.Geometries
             Assert.IsTrue(c.Equals2D(aBitOff, 0.2));
         }
 
-        [TestAttribute]
+        [Test]
         public void TestEqualsInZ()
         {
 
@@ -127,7 +127,7 @@ namespace GeoAPI.Tests.Geometries
             Assert.IsTrue(c.EqualInZ(withSameZ, 0.2));
         }
 
-        [TestAttribute]
+        [Test]
         public void TestCompareTo()
         {
             Coordinate lowest = new Coordinate(10.0, 100.0, 50.0);
@@ -141,7 +141,7 @@ namespace GeoAPI.Tests.Geometries
             Assert.AreEqual(0, highest.CompareTo(equalToHighest));
         }
 
-        [TestAttribute]
+        [Test]
         public void TestToString()
         {
             const string expectedResult = "(100, 200, 50)";
@@ -149,7 +149,7 @@ namespace GeoAPI.Tests.Geometries
             Assert.AreEqual(expectedResult, actualResult);
         }
 
-        [TestAttribute]
+        [Test]
         public void TestClone()
         {
             Coordinate c = new Coordinate(100.0, 200.0, 50.0);
@@ -157,7 +157,7 @@ namespace GeoAPI.Tests.Geometries
             Assert.IsTrue(c.Equals3D(clone));
         }
 
-        [TestAttribute]
+        [Test]
         public void TestDistance()
         {
             Coordinate coord1 = new Coordinate(0.0, 0.0, 0.0);
@@ -166,7 +166,7 @@ namespace GeoAPI.Tests.Geometries
             Assert.AreEqual(distance, 223.60679774997897, 0.00001);
         }
 
-        [TestAttribute]
+        [Test]
         public void TestDistance3D()
         {
             Coordinate coord1 = new Coordinate(0.0, 0.0, 0.0);
@@ -175,7 +175,7 @@ namespace GeoAPI.Tests.Geometries
             Assert.AreEqual(distance, 229.128784747792, 0.000001);
         }
 
-        [TestAttribute]
+        [Test]
         public void TestSettingOrdinateValuesViaIndexer()
         {
             var c = new Coordinate();

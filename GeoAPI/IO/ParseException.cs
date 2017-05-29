@@ -1,14 +1,16 @@
 using System;
-#if !HAS_APPLICATION_EXCEPTION
+#if HAS_SYSTEM_APPLICATIONEXCEPTION
+using ApplicationException = System.ApplicationException;
+#else
 using ApplicationException = System.Exception;
 #endif
 
 namespace GeoAPI.IO
 {
-    /// <summary>  
+    /// <summary>
     /// Thrown by a <c>WKTReader</c> when a parsing problem occurs.
     /// </summary>
-    public class ParseException : ApplicationException 
+    public class ParseException : ApplicationException
     {
         /// <summary>
         /// Creates a <c>ParseException</c> with the given detail message.
@@ -16,7 +18,7 @@ namespace GeoAPI.IO
         /// <param name="message">A description of this <c>ParseException</c>.</param>
         public ParseException(String message) : base(message) { }
 
-        /// <summary>  
+        /// <summary>
         /// Creates a <c>ParseException</c> with <c>e</c>s detail message.
         /// </summary>
         /// <param name="e">An exception that occurred while a <c>WKTReader</c> was
@@ -32,6 +34,5 @@ namespace GeoAPI.IO
             : base(message, innerException)
         {
         }
-
     }
 }
