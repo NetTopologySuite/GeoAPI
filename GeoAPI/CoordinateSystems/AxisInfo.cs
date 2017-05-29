@@ -24,9 +24,9 @@ namespace GeoAPI.CoordinateSystems
 	/// Details of axis. This is used to label axes, and indicate the orientation.
 	/// </summary>
 #if HAS_SYSTEM_SERIALIZABLEATTRIBUTE
-    [Serializable]
+	[Serializable]
 #endif
-    public class AxisInfo
+	public class AxisInfo
 	{
 		/// <summary>
 		/// Initializes a new instance of an AxisInfo.
@@ -44,7 +44,7 @@ namespace GeoAPI.CoordinateSystems
 		/// <summary>
 		/// Human readable name for axis. Possible values are X, Y, Long, Lat or any other short string.
 		/// </summary>
-        public string Name
+		public string Name
 		{
 			get { return _Name; }
 			set { _Name = value; }
@@ -55,7 +55,7 @@ namespace GeoAPI.CoordinateSystems
 		/// <summary>
 		/// Gets enumerated value for orientation.
 		/// </summary>
-        public AxisOrientationEnum Orientation
+		public AxisOrientationEnum Orientation
 		{
 			get { return _Orientation; }
 			set { _Orientation = value; }
@@ -65,33 +65,37 @@ namespace GeoAPI.CoordinateSystems
 		/// Returns the Well-known text for this object
 		/// as defined in the simple features specification.
 		/// </summary>
-        public string WKT
+		public string WKT
 		{
 			get
-            {
+			{
 #if HAS_SYSTEM_STRING_TOUPPERINVARIANT
-			    return String.Format("AXIS[\"{0}\", {1}]", Name, Orientation.ToString().ToUpperInvariant());
+				return String.Format("AXIS[\"{0}\", {1}]", Name, Orientation.ToString().ToUpperInvariant());
+#elif HAS_SYSTEM_STRING_TOUPPER_CULTUREINFO
+				return String.Format("AXIS[\"{0}\", {1}]", Name, Orientation.ToString().ToUpper(CultureInfo.InvariantCulture));
 #else
-                return String.Format("AXIS[\"{0}\", {1}]", Name, Orientation.ToString().ToUpper());
+#error Must have at least one or the other.
 #endif
-            }
-        }
+			}
+		}
 
 		/// <summary>
 		/// Gets an XML representation of this object
 		/// </summary>
-        public string XML
+		public string XML
 		{
 			get
 			{
-				return String.Format(CultureInfo.InvariantCulture.NumberFormat, 
-                    "<CS_AxisInfo Name=\"{0}\" Orientation=\"{1}\"/>", Name, Orientation.ToString()
+				return String.Format(CultureInfo.InvariantCulture.NumberFormat,
+					"<CS_AxisInfo Name=\"{0}\" Orientation=\"{1}\"/>", Name, Orientation.ToString()
 #if HAS_SYSTEM_STRING_TOUPPERINVARIANT
-                    .ToUpperInvariant());
+					.ToUpperInvariant());
+#elif HAS_SYSTEM_STRING_TOUPPER_CULTUREINFO
+					.ToUpper(CultureInfo.InvariantCulture));
 #else
-                    .ToUpper());
+#error Must have at least one or the other.
 #endif
-            }
-        }
+			}
+		}
 	}
 }

@@ -35,6 +35,7 @@
     <DefineConstants>$(DefineConstants);HAS_SYSTEM_RUNTIME_INTEROPSERVICES_COMVISIBLEATTRIBUTE</DefineConstants>
     <DefineConstants>$(DefineConstants);HAS_SYSTEM_RUNTIME_INTEROPSERVICES_GUIDATTRIBUTE</DefineConstants>
     <DefineConstants>$(DefineConstants);HAS_SYSTEM_SERIALIZABLEATTRIBUTE</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAS_SYSTEM_STRING_TOUPPER_CULTUREINFO</DefineConstants>
   </PropertyGroup>
 
   <!-- Client Profile frameworks don't have built-in shortcuts, so we need to specify these. -->
@@ -106,6 +107,7 @@
     <DefineConstants>$(DefineConstants);HAS_SYSTEM_RUNTIME_INTEROPSERVICES_GUIDATTRIBUTE</DefineConstants>
     <DefineConstants>$(DefineConstants);HAS_SYSTEM_SERIALIZABLEATTRIBUTE</DefineConstants>
     <DefineConstants>$(DefineConstants);HAS_SYSTEM_STRING_TOUPPERINVARIANT</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAS_SYSTEM_STRING_TOUPPER_CULTUREINFO</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.0' ">
