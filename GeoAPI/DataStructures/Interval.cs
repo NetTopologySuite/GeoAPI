@@ -8,7 +8,7 @@ namespace GeoAPI.DataStructures
     /// <summary>
     /// Structure for a closed 1-dimensional &#x211d;-interval
     /// </summary>
-#if !PCL && !NET_CORE
+#if HAS_SYSTEM_SERIALIZABLEATTRIBUTE
     [Serializable]
 #endif
     public struct Interval : IEquatable<Interval>

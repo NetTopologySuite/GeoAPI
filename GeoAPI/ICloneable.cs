@@ -1,4 +1,5 @@
-﻿namespace GeoAPI
+﻿#if !HAS_SYSTEM_ICLONEABLE
+namespace GeoAPI
 {
     /// <summary>
     /// A framework replacement for the System.ICloneable interface.
@@ -12,3 +13,4 @@
         object Clone();
     }
 }
+#endif

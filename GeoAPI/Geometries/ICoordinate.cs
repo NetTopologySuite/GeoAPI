@@ -1,10 +1,13 @@
 using System;
-#if PCL
-using ICloneable = GeoAPI.ICloneable;
-#endif
 
 namespace GeoAPI.Geometries
 {
+#if HAS_SYSTEM_ICLONEABLE
+    using ICloneable = System.ICloneable;
+#else
+    using ICloneable = GeoAPI.ICloneable;
+#endif
+
     /// <summary>
     /// Interface for lightweight classes used to store coordinates on the 2-dimensional Cartesian plane.
     /// </summary>

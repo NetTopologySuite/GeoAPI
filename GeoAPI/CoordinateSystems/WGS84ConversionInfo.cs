@@ -42,7 +42,7 @@ namespace GeoAPI.CoordinateSystems
     /// application can assume that the writing application believed that the datum is approximately equal to
     /// WGS84.</para>
     /// </remarks>
-#if !PCL && !NET_CORE
+#if HAS_SYSTEM_SERIALIZABLEATTRIBUTE
     [Serializable]
 #endif
     public class Wgs84ConversionInfo : IEquatable<Wgs84ConversionInfo>

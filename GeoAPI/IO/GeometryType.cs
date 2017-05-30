@@ -6,9 +6,7 @@ namespace GeoAPI.IO
     /// <summary>
     /// Lightweight class that handles OGC Geometry type declaration
     /// </summary>
-#if !NET_CORE
     [CLSCompliant(false)]
-#endif
     public struct GeometryType
     {
         /// <summary>

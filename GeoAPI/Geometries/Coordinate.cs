@@ -23,7 +23,7 @@ namespace GeoAPI.Geometries
     /// Apart from the basic accessor functions, NTS supports
     /// only specific operations involving the Z-ordinate.
     /// </remarks>
-#if !PCL && !NET_CORE
+#if HAS_SYSTEM_SERIALIZABLEATTRIBUTE
     [Serializable]
 #endif
 #pragma warning disable 612,618

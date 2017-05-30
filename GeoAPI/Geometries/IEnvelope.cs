@@ -1,10 +1,13 @@
 using System;
-#if PCL
-using ICloneable = GeoAPI.ICloneable;
-#endif
 
 namespace GeoAPI.Geometries
 {
+#if HAS_SYSTEM_ICLONEABLE
+    using ICloneable = System.ICloneable;
+#else
+    using ICloneable = GeoAPI.ICloneable;
+#endif
+
     /// <summary>
     /// Defines a rectangular region of the 2D coordinate plane.
     /// </summary>
@@ -252,7 +255,6 @@ namespace GeoAPI.Geometries
         /// </summary>
         void SetToNull();
 
-#pragma warning disable 1591
         void Zoom(double perCent);
                 
         bool Overlaps(IEnvelope other);

@@ -1,4 +1,3 @@
-#pragma warning disable 1591
 using System.Collections.Generic;
 
 namespace GeoAPI.Geometries

@@ -4,10 +4,10 @@ using NUnit.Framework;
 
 namespace GeoAPI.Tests.Geometries
 {
-    [TestFixtureAttribute]
+    [TestFixture]
     public class EnvelopeTest
     {
-        [TestAttribute]
+        [Test]
         public void TestEverything()
         {
             Envelope e1 = new Envelope();
@@ -48,7 +48,7 @@ namespace GeoAPI.Tests.Geometries
             Assert.IsTrue(e1.Intersects(e4));
         }
 
-        [TestAttribute]
+        [Test]
         public void TestIntersectsEmpty()
         {
             Assert.IsTrue(!new Envelope(-5, 5, -5, 5).Intersects(new Envelope()));
@@ -57,7 +57,7 @@ namespace GeoAPI.Tests.Geometries
             Assert.IsTrue(!new Envelope(100, 101, 100, 101).Intersects(new Envelope()));
         }
 
-        [TestAttribute]
+        [Test]
         public void TestContainsEmpty()
         {
             Assert.IsTrue(!new Envelope(-5, 5, -5, 5).Contains(new Envelope()));
@@ -66,7 +66,7 @@ namespace GeoAPI.Tests.Geometries
             Assert.IsTrue(!new Envelope(100, 101, 100, 101).Contains(new Envelope()));
         }
 
-        [TestAttribute]
+        [Test]
         public void TestExpandToIncludeEmpty()
         {
             Assert.AreEqual(new Envelope(-5, 5, -5, 5), ExpandToInclude(new Envelope(-5,
@@ -85,7 +85,7 @@ namespace GeoAPI.Tests.Geometries
             return a;
         }
 
-        [TestAttribute]
+        [Test]
         public void TestEmpty()
         {
             Assert.AreEqual(0, new Envelope().Height, 0);
@@ -96,7 +96,7 @@ namespace GeoAPI.Tests.Geometries
             Assert.AreEqual(new Envelope(), e);
         }
 
-        [TestAttribute]
+        [Test]
         public void TestSetToNull()
         {
             Envelope e1 = new Envelope();
@@ -107,7 +107,7 @@ namespace GeoAPI.Tests.Geometries
             Assert.IsTrue(e1.IsNull);
         }
 
-        [TestAttribute]
+        [Test]
         public void TestEquals()
         {
             Envelope e1 = new Envelope(1, 2, 3, 4);
@@ -126,7 +126,7 @@ namespace GeoAPI.Tests.Geometries
             Assert.AreEqual(e1.GetHashCode(), e2.GetHashCode());
         }
 
-        [TestAttribute]
+        [Test]
         public void TestEquals2()
         {
             Assert.IsTrue(new Envelope().Equals(new Envelope()));
@@ -134,7 +134,7 @@ namespace GeoAPI.Tests.Geometries
             Assert.IsTrue(!new Envelope(1, 2, 1.5, 2).Equals(new Envelope(1, 2, 1, 2)));
         }
 
-        [TestAttribute]
+        [Test]
         public void TestCopyConstructor()
         {
             Envelope e1 = new Envelope(1, 2, 3, 4);
