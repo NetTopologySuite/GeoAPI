@@ -6,7 +6,6 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription(Consts.Description)]
 [assembly: AssemblyCopyright(Consts.Copyright)]
 [assembly: AssemblyCulture("")]
-[assembly: AssemblyVersion(Consts.Version)]
 [assembly: AssemblyConfiguration(Consts.Configuration)]
 [assembly: AssemblyCompany(Consts.Company)]
 [assembly: AssemblyProduct(Consts.Product)]

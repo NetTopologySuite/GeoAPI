@@ -10,6 +10,10 @@
     <AssemblyOriginatorKeyFile>..\geoapi.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
+
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
@@ -134,6 +138,10 @@
     <PackageReference Include="System.Runtime" Version="$(NETStandardPackageVersion)" />
     <PackageReference Include="System.Runtime.Extensions" Version="$(NETStandardPackageVersion)" />
     <PackageReference Include="System.Threading" Version="$(NETStandardPackageVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\SharedAssemblyVersion.cs" Link="Properties\SharedAssemblyVersion.cs" />
   </ItemGroup>
 
   <ItemGroup>
