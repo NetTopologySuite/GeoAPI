@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>net20;net35-client;net35-cf;net40-client;net403-client;net45;netstandard1.0;portable40-net40+sl5+win8+wp8+wpa81;portable40-net403+sl5+win8+wp8+wpa81</TargetFrameworks>
     <NoWarn>1591</NoWarn>
+    <OutputPath>$(SolutionDir)$(Configuration)\$(Platform)</OutputPath>
     <DocumentationFile>$(OutputPath)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <SignAssembly>true</SignAssembly>
