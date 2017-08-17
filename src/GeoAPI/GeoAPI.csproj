@@ -118,6 +118,9 @@
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
     <NETStandardPackageVersion>4.3.0</NETStandardPackageVersion>
 
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile></AssemblyOriginatorKeyFile>
+
     <DefineConstants>$(DefineConstants);FEATURE_DEFAULT_PARAMETERS</DefineConstants>
     <DefineConstants>$(DefineConstants);FEATURE_INTERFACE_VARIANCE</DefineConstants>
     <DefineConstants>$(DefineConstants);HAS_SYSTEM_DOUBLE_TRYPARSE</DefineConstants>
