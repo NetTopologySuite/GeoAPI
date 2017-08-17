@@ -5,7 +5,7 @@ set -e
 
 dotnet --version
 dotnet restore
-dotnet build ./GeoAPI
+dotnet build ./src/GeoAPI
 
 #
 # Build the project
