@@ -38,6 +38,6 @@
 
 	<files>
 		<file src="Release\AnyCPU\**\*.*" target="lib" />
-		<file src="GeoAPI\**\*.cs" exclude="**\obj\**\*.*" target="src" />
+		<file src="src\GeoAPI\**\*.cs" exclude="**\obj\**\*.*" target="src" />
 	</files>
 </package>
