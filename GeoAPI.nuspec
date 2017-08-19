@@ -37,7 +37,11 @@
 	</metadata>
 
 	<files>
-		<file src="Release\AnyCPU\**\*.*" target="lib" />
+		<file src="Release\AnyCPU\**\GeoAPI.deps.json" target="lib" />
+		<file src="Release\AnyCPU\**\GeoAPI.dll" target="lib" />
+		<file src="Release\AnyCPU\**\GeoAPI.pdb" target="lib" />
+		<file src="Release\AnyCPU\**\GeoAPI.xml" target="lib" />
+
 		<file src="src\GeoAPI\**\*.cs" exclude="**\obj\**\*.*" target="src" />
 	</files>
 </package>
