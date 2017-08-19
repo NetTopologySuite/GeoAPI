@@ -1,26 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
+    <SolutionDir Condition=" '$(SolutionDir)' == '' ">$(ProjectDir)..\..\</SolutionDir>
     <TargetFrameworks>net20;net35-client;net35-cf;net40-client;net403-client;net45;netstandard1.0;portable40-net40+sl5+win8+wp8+wpa81;portable40-net403+sl5+win8+wp8+wpa81</TargetFrameworks>
     <NoWarn>1591</NoWarn>
     <OutputPath>$(SolutionDir)$(Configuration)\$(Platform)</OutputPath>
     <DocumentationFile>$(OutputPath)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>..\..\geoapi.snk</AssemblyOriginatorKeyFile>
-  </PropertyGroup>
-
-  <PropertyGroup>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-  </PropertyGroup>
-
-  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-  </PropertyGroup>
-
-  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-    <DebugType>pdbonly</DebugType>
+    <AssemblyOriginatorKeyFile>$(SolutionDir)geoapi.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <!-- Target CompactFramework 3.5 -->
@@ -99,6 +87,7 @@
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net20' Or '$(TargetFramework)' == 'net35' Or '$(TargetFramework)' == 'net35-client' Or '$(TargetFramework)' == 'net40' Or '$(TargetFramework)' == 'net40-client' Or '$(TargetFramework)' == 'net403' Or '$(TargetFramework)' == 'net403-client' Or '$(TargetFramework)' == 'net45' ">
     <RequiresFrameworkAssemblyReferences>true</RequiresFrameworkAssemblyReferences>
+    <DebugType>full</DebugType>
 
     <DefineConstants>$(DefineConstants);FEATURE_DEFAULT_PARAMETERS</DefineConstants>
     <DefineConstants>$(DefineConstants);FEATURE_INTERFACE_VARIANCE</DefineConstants>
@@ -116,7 +105,6 @@
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.0' ">
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
-    <NETStandardPackageVersion>4.3.0</NETStandardPackageVersion>
 
     <SignAssembly>false</SignAssembly>
     <AssemblyOriginatorKeyFile></AssemblyOriginatorKeyFile>
@@ -133,28 +121,22 @@
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.0' ">
-    <PackageReference Include="System.Collections" Version="$(NETStandardPackageVersion)" />
-    <PackageReference Include="System.Diagnostics.Tools" Version="$(NETStandardPackageVersion)" />
-    <PackageReference Include="System.Globalization" Version="$(NETStandardPackageVersion)" />
-    <PackageReference Include="System.IO" Version="$(NETStandardPackageVersion)" />
-    <PackageReference Include="System.Reflection" Version="$(NETStandardPackageVersion)" />
-    <PackageReference Include="System.Runtime" Version="$(NETStandardPackageVersion)" />
-    <PackageReference Include="System.Runtime.Extensions" Version="$(NETStandardPackageVersion)" />
-    <PackageReference Include="System.Threading" Version="$(NETStandardPackageVersion)" />
+    <PackageReference Include="System.Collections" Version="4.3.0" />
+    <PackageReference Include="System.Diagnostics.Tools" Version="4.3.0" />
+    <PackageReference Include="System.Globalization" Version="4.3.0" />
+    <PackageReference Include="System.IO" Version="4.3.0" />
+    <PackageReference Include="System.Reflection" Version="4.3.0" />
+    <PackageReference Include="System.Runtime" Version="4.3.0" />
+    <PackageReference Include="System.Runtime.Extensions" Version="4.3.0" />
+    <PackageReference Include="System.Threading" Version="4.3.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="..\..\SharedAssemblyVersion.cs" Link="Properties\SharedAssemblyVersion.cs" />
+    <Compile Include="$(SolutionDir)SharedAssemblyVersion.cs" Link="Properties\SharedAssemblyVersion.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="License.txt" />
-    <None Include="..\..\geoapi.snk">
-      <Link>geoapi.snk</Link>
-    </None>
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="$(SolutionDir)geoapi.snk" />
   </ItemGroup>
 

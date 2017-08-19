@@ -1,39 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net45</TargetFrameworks>
+    <SolutionDir Condition=" '$(SolutionDir)' == '' ">$(ProjectDir)..\..\</SolutionDir>
+    <TargetFramework>net45</TargetFramework>
     <NoWarn>1591</NoWarn>
     <OutputPath>$(SolutionDir)$(Configuration)\$(Platform)</OutputPath>
     <DocumentationFile>$(OutputPath)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-  </PropertyGroup>
-
-  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-    <DebugType>pdbonly</DebugType>
-  </PropertyGroup>
-
   <ItemGroup>
     <Reference Include="System" />
 
-    <PackageReference Include="NUnit" Version="3.6.1" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.0.0" />
-    <PackageReference Include="NUnit3TestAdapter" Version="3.8.0-alpha1" />
+    <PackageReference Include="NUnit" Version="3.7.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.8.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\GeoAPI\GeoAPI.csproj" />
+    <ProjectReference Include="$(SolutionDir)src\GeoAPI\GeoAPI.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Service Include="{82a7f48d-3b50-4b1e-b82e-3ada8210c358}" />
   </ItemGroup>
-
-  <Target Name="BeforeBuild">
-    <Message Text="Building for '$(TargetFramework)'" />
-  </Target>
 </Project>
