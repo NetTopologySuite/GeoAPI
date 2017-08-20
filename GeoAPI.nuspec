@@ -12,6 +12,7 @@
 		<releaseNotes>This version matches NetTopologySuite v1.15 API.</releaseNotes>
 		<copyright>Copyright 2007-2017</copyright>
 		<tags>OGC SFS NTS GIS</tags>
+		<iconUrl>https://raw.githubusercontent.com/NetTopologySuite/GeoAPI/develop/icon.png</iconUrl>
 		<dependencies>
 			<group targetFramework=".NETFramework2.0" />
 			<group targetFramework=".NETFramework3.5-CompactFramework" />

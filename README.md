@@ -1,7 +1,7 @@
 [![Travis](https://travis-ci.org/NetTopologySuite/GeoAPI.svg?branch=master)](https://travis-ci.org/NetTopologySuite/GeoAPI)
 [![LGPL licensed](https://img.shields.io/badge/license-LGPL-blue.svg)](https://github.com/NetTopologySuite/GeoAPI/blob/develop/LICENSE.md)
 
-- GeoAPI: [![NuGet](https://img.shields.io/nuget/v/GeoAPI.svg?style=flat)](https://www.nuget.org/packages/GeoAPI/))  
+- GeoAPI: [![NuGet](https://img.shields.io/nuget/v/GeoAPI.svg?style=flat)](https://www.nuget.org/packages/GeoAPI/)  
 
 # GeoAPI
 
