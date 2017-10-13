@@ -28,7 +28,7 @@ namespace GeoAPI.Geometries
     [Obsolete("Use Envelope class instead")]
     public interface IEnvelope : 
         ICloneable,
-        IComparable, IComparable<IEnvelope>, IEquatable<IEnvelope>
+        IComparable, IComparable<IEnvelope>
     {
         /// <summary>
         /// Gets the area of the envelope

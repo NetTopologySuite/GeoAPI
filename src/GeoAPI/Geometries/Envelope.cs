@@ -23,7 +23,7 @@ namespace GeoAPI.Geometries
     [Serializable]
 #endif
 #pragma warning disable 612,618
-    public class Envelope : IEnvelope, IEquatable<Envelope>, IComparable<Envelope>, IIntersectable<Envelope>, IExpandable<Envelope>
+    public class Envelope : IEnvelope, IComparable<Envelope>, IIntersectable<Envelope>, IExpandable<Envelope>
 #pragma warning restore 612,618
     {
         /// <summary>
@@ -1236,15 +1236,6 @@ namespace GeoAPI.Geometries
                 return dx;
 
             return Math.Sqrt(dx * dx + dy * dy);
-        }
-
-        bool IEquatable<IEnvelope>.Equals(IEnvelope other)
-        {
-            if (IsNull)
-                return other.IsNull;
-
-            return _maxx == other.MaxX && _maxy == other.MaxY &&
-                   _minx == other.MinX && _miny == other.MinY;
         }
 
         int IComparable<IEnvelope>.CompareTo(IEnvelope other)
