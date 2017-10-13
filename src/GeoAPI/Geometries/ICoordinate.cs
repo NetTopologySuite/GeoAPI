@@ -14,7 +14,7 @@ namespace GeoAPI.Geometries
     [Obsolete("Use Coordinate class instead")]
     public interface ICoordinate : 
         ICloneable,
-        IComparable, IComparable<ICoordinate>, IEquatable<ICoordinate>
+        IComparable, IComparable<ICoordinate>
     {
         /// <summary>
         /// The x-ordinate value

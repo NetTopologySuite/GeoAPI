@@ -12,7 +12,7 @@ namespace GeoAPI.Geometries
     /// <summary>  
     /// Interface for basic implementation of <c>Geometry</c>.
     /// </summary>
-    public interface IGeometry : ICloneable, IComparable, IComparable<IGeometry>, IEquatable<IGeometry>
+    public interface IGeometry : ICloneable, IComparable, IComparable<IGeometry>
     {
         ///<summary>
         /// The <see cref="IGeometryFactory"/> used to create this geometry
@@ -189,6 +189,9 @@ namespace GeoAPI.Geometries
         IGeometry Union(IGeometry other);
 
         IGeometry Union();
+
+        [Obsolete("Favor either EqualsTopologically or EqualsExact instead.")]
+        bool Equals(IGeometry other);
 
         /// <summary>
         /// Tests whether this geometry is topologically equal to the argument geometry
