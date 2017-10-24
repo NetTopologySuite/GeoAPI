@@ -7,7 +7,7 @@ addons:
       - referenceassemblies-pcl
 mono:  
   - latest
-solution: NetTopologySuite.sln
+solution: GeoAPI.sln
 install:  
   - nuget install NUnit.Runners -version 3.6.0 -OutputDirectory .testRunner
 script:
