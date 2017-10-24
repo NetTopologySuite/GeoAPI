@@ -72,7 +72,7 @@ namespace GeoAPI
 
         private static IGeometryServices ReflectInstance()
         {
-#if HAS_SYSTEM_APPDOMAIN_GETASSEMBLIES
+#if COMPAT_BOOTSTRAP_USING_REFLECTION && HAS_SYSTEM_APPDOMAIN_GETASSEMBLIES
             var a = AppDomain.CurrentDomain.GetAssemblies();
             foreach (var assembly in a)
             {
