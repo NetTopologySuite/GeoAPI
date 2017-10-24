@@ -1,24 +1,14 @@
 language: csharp
 sudo: required  
 dist: trusty  
-dotnet: 1.0.1
 addons:  
   apt:
     packages:
-    - referenceassemblies-pcl
-    - gettext
-    - libcurl4-openssl-dev
-    - libicu-dev
-    - libssl-dev
-    - libunwind8
-    - zlib1g
+      - referenceassemblies-pcl
 mono:  
-  - 4.2.3
-os:  
-  - linux
-osx_image: xcode7.1  
+  - latest
+solution: NetTopologySuite.sln
 install:  
-  - nuget restore GeoAPI.sln
   - nuget install NUnit.Runners -version 3.6.0 -OutputDirectory .testRunner
 script:
   - ./build.sh

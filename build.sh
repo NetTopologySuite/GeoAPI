@@ -3,16 +3,5 @@
 #exit if any command fails
 set -e
 
-dotnet --version
-dotnet restore
-dotnet build ./src/GeoAPI -f netstandard1.0
-
-# TODO: replace this with the Mono 5.0 mbuild.
-#
-# Build the project
-#
-# xbuild /p:Configuration=Release /t:"Build" GeoAPI.sln /v:minimal
-#
-# Run unit tests
-#
-# mono .testRunner/NUnit.ConsoleRunner.3.6.0/tools/nunit3-console.exe ./Release/v4.5/AnyCPU/GeoAPI.Tests.dll 
+msbuild GeoAPI.sln "/t:Restore;Build" /p:Configuration=Release "/p:FrameworkPathOverride=$(dirname $(which mono))/../lib/mono/4.5/" /v:minimal /p:WarningLevel=3
+mono ./testrunner/NUnit.Runners.3.6.0/tools/nunit-console.exe ./test/GeoAPI.Tests/bin/Release/net45/GeoAPI.Tests.dll
