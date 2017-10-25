@@ -18,6 +18,7 @@ GeoAPI supports a wide range of .NET versions:
 - net403-client
 - net45
 - netstandard1.0
+- netstandard2.0
 - portable40-net40+sl5+win8+wp8+wpa81
 - portable40-net403+sl5+win8+wp8+wpa81
 
