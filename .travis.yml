@@ -1,13 +1,9 @@
 language: csharp
 sudo: required  
 dist: trusty  
-addons:  
-  apt:
-    packages:
-      - referenceassemblies-pcl
+dotnet: 2.0.0
 mono:  
   - latest
-solution: NetTopologySuite.sln
 install:  
   - nuget install NUnit.Runners -version 3.6.0 -OutputDirectory .testRunner
 script:

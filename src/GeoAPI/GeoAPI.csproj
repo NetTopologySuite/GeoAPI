@@ -2,7 +2,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <SolutionDir Condition=" '$(SolutionDir)' == '' ">$(ProjectDir)..\..\</SolutionDir>
-    <TargetFrameworks>net20;net35-client;net35-cf;net40-client;net403-client;net45;netstandard1.0;portable40-net40+sl5+win8+wp8+wpa81;portable40-net403+sl5+win8+wp8+wpa81</TargetFrameworks>
+    <TargetFrameworks>net20;net35-client;net35-cf;net40-client;net403-client;net45;netstandard1.0;netstandard2.0;portable40-net40+sl5+win8+wp8+wpa81;portable40-net403+sl5+win8+wp8+wpa81</TargetFrameworks>
     <NoWarn>1591</NoWarn>
     <OutputPath>$(SolutionDir)$(Configuration)\$(Platform)</OutputPath>
     <DocumentationFile>$(OutputPath)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
@@ -89,8 +89,15 @@
     <RequiresFrameworkAssemblyReferences>true</RequiresFrameworkAssemblyReferences>
     <DebugType>full</DebugType>
 
+    <!-- NetFX targets set GeometryServiceProvider.Instance using reflection if it's not explicitly
+         set externally before the first access.  This is sketchy at best (it won't work if, e.g.,
+         someone tries this before the first thing loads NetTopologySuite into the AppDomain), so
+         other targets need to either explicitly bootstrap or just not use that global variable. -->
+    <DefineConstants>$(DefineConstants);COMPAT_BOOTSTRAP_USING_REFLECTION</DefineConstants>
+
     <DefineConstants>$(DefineConstants);FEATURE_DEFAULT_PARAMETERS</DefineConstants>
     <DefineConstants>$(DefineConstants);FEATURE_INTERFACE_VARIANCE</DefineConstants>
+
     <DefineConstants>$(DefineConstants);HAS_SYSTEM_APPDOMAIN_GETASSEMBLIES</DefineConstants>
     <DefineConstants>$(DefineConstants);HAS_SYSTEM_APPLICATIONEXCEPTION</DefineConstants>
     <DefineConstants>$(DefineConstants);HAS_SYSTEM_DOUBLE_TRYPARSE</DefineConstants>
@@ -105,11 +112,22 @@
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.0' ">
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+  </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.0' Or '$(TargetFramework)' == 'netstandard2.0' ">
     <DefineConstants>$(DefineConstants);FEATURE_DEFAULT_PARAMETERS</DefineConstants>
     <DefineConstants>$(DefineConstants);FEATURE_INTERFACE_VARIANCE</DefineConstants>
+
     <DefineConstants>$(DefineConstants);HAS_SYSTEM_DOUBLE_TRYPARSE</DefineConstants>
     <DefineConstants>$(DefineConstants);HAS_SYSTEM_STRING_TOUPPERINVARIANT</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+    <DefineConstants>$(DefineConstants);HAS_SYSTEM_APPDOMAIN_GETASSEMBLIES</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAS_SYSTEM_APPLICATIONEXCEPTION</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAS_SYSTEM_ICLONEABLE</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAS_SYSTEM_SERIALIZABLEATTRIBUTE</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAS_SYSTEM_STRING_TOUPPER_CULTUREINFO</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup Condition=" '$(RequiresFrameworkAssemblyReferences)' == 'true' ">

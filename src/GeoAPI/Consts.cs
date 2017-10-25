@@ -35,6 +35,8 @@ internal static class Consts
     public const string Guid = FullFrameworkGuid;
 #elif NETSTANDARD1_0
     public const string Product = "GeoAPI.NetStandard10";
+#elif NETSTANDARD2_0
+    public const string Product = "GeoAPI.NetStandard20";
 #elif PCL
     public const string Product = "GeoAPI.PCL";
 #endif
