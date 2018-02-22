@@ -522,13 +522,13 @@ namespace GeoAPI.Geometries
 
         /// <summary>
         /// Check if the region defined by <c>other</c>
-        /// overlaps (intersects) the region of this <c>Envelope</c>.
+        /// intersects the region of this <c>Envelope</c>.
         /// </summary>
-        /// <param name="other"> the <c>Envelope</c> which this <c>Envelope</c> is
-        /// being checked for overlapping.
+        /// <param name="other">The <c>Envelope</c> which this <c>Envelope</c> is
+        /// being checked for intersecting.
         /// </param>
         /// <returns>
-        /// <c>true</c> if the <c>Envelope</c>s overlap.
+        /// <c>true</c> if the <c>Envelope</c>s intersect.
         /// </returns>
         public bool Intersects(Envelope other)
         {
@@ -592,6 +592,32 @@ namespace GeoAPI.Geometries
         public bool Intersects(double x, double y)
         {
             return !(x > _maxx || x < _minx || y > _maxy || y < _miny);
+        }
+
+        /// <summary>
+        /// Check if the extent defined by two extremal points
+        /// intersects the extent of this <code>Envelope</code>.
+        /// </summary>
+        /// <param name="a">A point</param>
+        /// <param name="b">Another point</param>
+        /// <returns><c>true</c> if the extents intersect</returns>
+        public bool Intersects(Coordinate a, Coordinate b)
+        {
+            if (IsNull) return false;
+
+            var envminx = (a.X < b.X) ? a.X : b.X;
+            if (envminx > _maxx) return false;
+
+            var envmaxx = (a.X > b.X) ? a.X : b.X;
+            if (envmaxx < _minx) return false;
+
+            var envminy = (a.Y < b.Y) ? a.Y : b.Y;
+            if (envminy > _maxy) return false;
+
+            var envmaxy = (a.Y > b.Y) ? a.Y : b.Y;
+            if (envmaxy < _miny) return false;
+
+            return true;
         }
 
         ///<summary>
