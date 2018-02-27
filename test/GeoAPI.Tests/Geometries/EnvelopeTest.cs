@@ -153,6 +153,19 @@ namespace GeoAPI.Tests.Geometries
         }
 
         [Test]
+        public void TestCopyMethod()
+        {
+            Envelope e1 = new Envelope(1, 2, 3, 4);
+            Envelope e2 = e1.Copy();
+            Assert.AreEqual(1, e2.MinX, 1E-5);
+            Assert.AreEqual(2, e2.MaxX, 1E-5);
+            Assert.AreEqual(3, e2.MinY, 1E-5);
+            Assert.AreEqual(4, e2.MaxY, 1E-5);
+
+            Assert.That(ReferenceEquals(e1, e2), Is.False);
+        }
+
+        [Test]
         public void TestCompareTo()
         {
             CheckCompareTo(0, new Envelope(), new Envelope());

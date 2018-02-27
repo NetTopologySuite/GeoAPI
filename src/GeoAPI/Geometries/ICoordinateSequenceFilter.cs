@@ -21,7 +21,7 @@ namespace GeoAPI.Geometries
     /// <para><b>Note</b>: In general, it is preferable to treat Geometrys as immutable. 
     /// Mutation should be performed by creating a new Geometry object (see <see cref="T:NetTopologySuite.Geometries.Utilities.GeometryEditor"/> 
     /// and <see cref="T:NetTopologySuite.Geometries.Utilities.GeometryTransformer"/> for convenient ways to do this).
-    /// An exception to this rule is when a new Geometry has been created via <see cref="ICloneable.Clone()"/>.
+    /// An exception to this rule is when a new Geometry has been created via <see cref="ICoordinateSequence.Copy"/>.
     /// In this case mutating the Geometry will not cause aliasing issues, 
     /// and a filter is a convenient way to implement coordinate transformation.
     /// </para>

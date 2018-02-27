@@ -315,9 +315,19 @@ namespace GeoAPI.Geometries
         /// Create a new object as copy of this instance.
         /// </summary>
         /// <returns></returns>
-        public object Clone()
+        public Coordinate Copy()
         {
             return new Coordinate(X, Y, Z);
+        }
+
+        /// <summary>
+        /// Create a new object as copy of this instance.
+        /// </summary>
+        /// <returns></returns>
+        [Obsolete("Use Copy")]
+        public object Clone()
+        {
+            return MemberwiseClone();
         }
 
         /// <summary>

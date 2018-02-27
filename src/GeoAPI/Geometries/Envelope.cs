@@ -877,9 +877,23 @@ namespace GeoAPI.Geometries
         /// <returns>A new object that is a copy of this instance.</returns>
         object ICloneable.Clone()
         {
-            return Clone();
+            return MemberwiseClone();
         }
 
+        /// <summary>
+        /// Creates a deep copy of the current envelope.
+        /// </summary>
+        /// <returns></returns>
+        public Envelope Copy()
+        {
+            if (IsNull)
+            {
+                // #179: This will create a new 'NULL' envelope
+                return new Envelope();
+            }
+            return new Envelope(_minx, _maxx, _miny, _maxy);
+        }        
+        
         #region BEGIN ADDED BY MPAUL42: monoGIS team
 
 #pragma warning disable 612,618
@@ -888,14 +902,10 @@ namespace GeoAPI.Geometries
         /// Creates a deep copy of the current envelope.
         /// </summary>
         /// <returns></returns>
+        [Obsolete("Use Copy()")]
         public Envelope Clone()
         {
-            if (IsNull)
-            {
-                // #179: This will create a new 'NULL' envelope
-                return new Envelope();
-            }
-            return new Envelope(_minx, _maxx, _miny, _maxy);
+            return Copy();
         }
 
         /// <summary>
@@ -911,7 +921,7 @@ namespace GeoAPI.Geometries
         /// </summary>
         IEnvelope IEnvelope.Union(ICoordinate coord)
         {
-            IEnvelope env = Clone();
+            IEnvelope env = Copy();
             env.ExpandToInclude(coord);
             return env;
         }

@@ -44,6 +44,18 @@ namespace GeoAPI.Tests.Geometries
         }
 
         [Test]
+        public void TestCopyMethod()
+        {
+            Coordinate orig = new Coordinate(350.2, 4566.8, 5266.3);
+            Coordinate c = orig.Copy();
+            Assert.AreEqual(c.X, 350.2);
+            Assert.AreEqual(c.Y, 4566.8);
+            Assert.AreEqual(c.Z, 5266.3);
+
+            Assert.That(ReferenceEquals(orig, c), Is.False);
+        }
+
+        [Test]
         public void TestSetCoordinate()
         {
             Coordinate orig = new Coordinate(350.2, 4566.8, 5266.3);

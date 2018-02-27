@@ -142,6 +142,16 @@ namespace GeoAPI.Geometries
         IGeometry Normalized();
 
         /// <summary>
+        /// Creates and returns a full copy of this <see cref="IGeometry"/> object
+        /// (including all coordinates contained by it).
+        /// <para/>
+        /// Subclasses are responsible for implementing this method and copying
+        /// their internal data.
+        /// </summary>
+        /// <returns>A clone of this instance</returns>
+        IGeometry Copy();
+
+        /// <summary>
         /// Gets the Well-Known-Binary representation of this geometry
         /// </summary>
         /// <returns>A byte array describing this geometry</returns>
