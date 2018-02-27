@@ -35,6 +35,8 @@
 				<dependency id="System.Threading" version="[4.3.0, )" />
 			</group>
 			<group targetFramework=".NETStandard2.0" />
+
+		  <dependency id="GeoAPI.Core" version="$version$" />
 		</dependencies>
 	</metadata>
 

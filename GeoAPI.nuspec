@@ -14,7 +14,7 @@
 		<tags>OGC SFS NTS GIS</tags>
 		<iconUrl>https://raw.githubusercontent.com/NetTopologySuite/GeoAPI/develop/icon.png</iconUrl>
     <dependencies>
-      <dependency id="GeoAPI.Core" version="$version$" />
+      <!--<dependency id="GeoAPI.Core" version="$version$" />-->
       <dependency id="GeoAPI.CoordinateSystems" version="$version$" />
     </dependencies>
 	</metadata>
