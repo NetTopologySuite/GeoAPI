@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
 	<metadata>
-		<id>GeoAPI.Core</id>
+		<id>GeoAPI</id>
 		<version>$version$</version>
 		<authors>NetTopologySuite Team</authors>
 		<owners>nettopologysuite - team</owners>
@@ -14,8 +14,8 @@
 		<tags>OGC SFS NTS GIS</tags>
 		<iconUrl>https://raw.githubusercontent.com/NetTopologySuite/GeoAPI/develop/icon.png</iconUrl>
     <dependencies>
-      <dependency id="GeoAPI" version="[$version$,)" />
-      <dependency id="GeoAPI.CoordinateSystems" version="[$version$,)" />
+      <dependency id="GeoAPI.Core" version="$version$" />
+      <dependency id="GeoAPI.CoordinateSystems" version="$version$" />
     </dependencies>
 	</metadata>
 </package>

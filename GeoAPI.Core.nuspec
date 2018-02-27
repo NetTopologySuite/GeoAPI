@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
 	<metadata>
-		<id>GeoAPI</id>
+		<id>GeoAPI.Core</id>
 		<version>$version$</version>
 		<authors>NetTopologySuite Team and Fabrício Godoy</authors>
 		<owners>nettopologysuite - team</owners>
