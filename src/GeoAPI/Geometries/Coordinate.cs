@@ -315,7 +315,7 @@ namespace GeoAPI.Geometries
         /// Create a new object as copy of this instance.
         /// </summary>
         /// <returns></returns>
-        public Coordinate Copy()
+        public virtual Coordinate Copy()
         {
             return new Coordinate(X, Y, Z);
         }
