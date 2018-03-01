@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace GeoAPI.Geometries
@@ -181,7 +182,16 @@ namespace GeoAPI.Geometries
         /// </summary>
         /// <param name="coordinates">An array (without null elements), or an empty array, or <c>null</c></param>
         /// <returns>A <see cref="IMultiPoint"/> object</returns>
+        [Obsolete("Use CreateMultiPointFromCoords")]
         IMultiPoint CreateMultiPoint(Coordinate[] coordinates);
+
+        /// <summary> 
+        /// Creates a <see cref="IMultiPoint"/> using the given Coordinates.
+        /// A null or empty array will create an empty MultiPoint.
+        /// </summary>
+        /// <param name="coordinates">An array (without null elements), or an empty array, or <c>null</c></param>
+        /// <returns>A <see cref="IMultiPoint"/> object</returns>
+        IMultiPoint CreateMultiPointFromCoords(Coordinate[] coordinates);
 
         /// <summary> 
         /// Creates a <see cref="IMultiPoint"/> using the given Points.
