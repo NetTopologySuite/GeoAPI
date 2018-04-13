@@ -9,14 +9,23 @@ namespace GeoAPI
     /// </summary>
     public static class GeometryServiceProvider
     {
-        private static IGeometryServices _instance;
+#if HAS_SYSTEM_LAZY_T
+        private static readonly Lazy<IGeometryServices> ReflectedInstance = new Lazy<IGeometryServices>(ReflectInstance);
+#else
         private static readonly object LockObject = new object();
+#endif
+
+        private static volatile IGeometryServices _instance;
 
         /// <summary>
         /// Gets or sets the <see cref="IGeometryServices"/> instance.
         /// </summary>
         public static IGeometryServices Instance
         {
+#if HAS_SYSTEM_LAZY_T
+            get => _instance ?? ReflectedInstance.Value;
+            set => _instance = value ?? throw new ArgumentNullException(nameof(value));
+#else
             get
             {
                 lock (LockObject)
@@ -35,6 +44,7 @@ namespace GeoAPI
                     _instance = value;
                 }
             }
+#endif
         }
 
 #if HAS_SYSTEM_REFLECTION_ASSEMBLY_GETEXPORTEDTYPES
