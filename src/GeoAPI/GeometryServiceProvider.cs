@@ -1,7 +1,6 @@
 ﻿using System;
 #if COMPAT_BOOTSTRAP_USING_REFLECTION && HAS_SYSTEM_APPDOMAIN_GETASSEMBLIES && HAS_SYSTEM_REFLECTION_ASSEMBLY_GETEXPORTEDTYPES
 using System.Reflection;
-using System.Threading;
 #endif
 
 namespace GeoAPI
@@ -12,7 +11,22 @@ namespace GeoAPI
     public static class GeometryServiceProvider
     {
         private static volatile IGeometryServices s_instance;
-        private static readonly object s_lock = new object();
+
+        /// <summary>
+        /// Make sure only one thread runs <see cref="InitializeInstance"/> at a time.
+        /// </summary>
+        private static readonly object s_autoInitLock = new object();
+
+        /// <summary>
+        /// Make sure that anyone who directly sets <see cref="Instance"/> 
+        /// </summary>
+        private static readonly object s_explicitInitLock = new object();
+
+        /// <summary>
+        /// Indicates whether or not <see cref="s_instance"/> has been set directly (i.e., outside
+        /// of the reflection-based initializer).
+        /// </summary>
+        private static bool s_instanceSetDirectly = false;
 
         /// <summary>
         /// Gets or sets the <see cref="IGeometryServices"/> instance.
@@ -20,14 +34,63 @@ namespace GeoAPI
         public static IGeometryServices Instance
         {
             get => s_instance ?? InitializeInstance();
-            set => s_instance = value ?? throw new ArgumentNullException(nameof(value));
+            set
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException(nameof(value));
+                }
+
+                lock (s_explicitInitLock)
+                {
+                    s_instance = value;
+                    s_instanceSetDirectly = true;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Sets <see cref="Instance"/> to the given value, unless it has already been set directly.
+        /// Both this method and the property's setter itself count as setting it "directly".
+        /// </summary>
+        /// <param name="instance">
+        /// The new value to put into <see cref="Instance"/> if it hasn't already been set directly.
+        /// </param>
+        /// <returns>
+        /// <c>true</c> if <see cref="Instance"/> was set, <c>false</c> otherwise.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown when <paramref name="instance"/> is <see langword="null"/>.
+        /// </exception>
+        public static bool SetInstanceIfNotAlreadySetDirectly(IGeometryServices instance)
+        {
+            if (instance == null)
+            {
+                throw new ArgumentNullException(nameof(instance));
+            }
+
+            lock (s_explicitInitLock)
+            {
+                if (s_instanceSetDirectly)
+                {
+                    // someone has already set the value directly before.
+                    return false;
+                }
+
+                s_instance = instance;
+
+                // calling this method counts.
+                s_instanceSetDirectly = true;
+                return true;
+            }
         }
 
         private static IGeometryServices InitializeInstance()
         {
 #if COMPAT_BOOTSTRAP_USING_REFLECTION && HAS_SYSTEM_APPDOMAIN_GETASSEMBLIES && HAS_SYSTEM_REFLECTION_ASSEMBLY_GETEXPORTEDTYPES
-            lock (s_lock)
+            lock (s_autoInitLock)
             {
+                // see if someone has already set it while we were waiting for the lock.
                 var instance = s_instance;
                 if (instance != null) return instance;
                 foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
@@ -64,8 +127,16 @@ namespace GeoAPI
                         foreach (var constructor in type.GetConstructors())
                             if (constructor.IsPublic && constructor.GetParameters().Length == 0)
                             {
-                                Interlocked.CompareExchange(ref s_instance, (IGeometryServices)Activator.CreateInstance(type), null);
-                                return s_instance;
+                                instance = (IGeometryServices)Activator.CreateInstance(type);
+                                lock (s_explicitInitLock)
+                                {
+                                    if (!s_instanceSetDirectly)
+                                    {
+                                        s_instance = instance;
+                                    }
+
+                                    return s_instance;
+                                }
                             }
                     }
                 }
