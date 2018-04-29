@@ -18,7 +18,9 @@ namespace GeoAPI
         private static readonly object s_autoInitLock = new object();
 
         /// <summary>
-        /// Make sure that anyone who directly sets <see cref="Instance"/> 
+        /// Make sure that anyone who directly sets <see cref="Instance"/>, including the automatic
+        /// initializer, behaves consistently, regarding <see cref="s_instanceSetDirectly"/> and the
+        /// semantics of <see cref="SetInstanceIfNotAlreadySetDirectly"/>.
         /// </summary>
         private static readonly object s_explicitInitLock = new object();
 
