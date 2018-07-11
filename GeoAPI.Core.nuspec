@@ -5,14 +5,14 @@
 		<version>$version$</version>
 		<authors>NetTopologySuite Team and Fabrício Godoy</authors>
 		<owners>nettopologysuite - team</owners>
-		<licenseUrl>https://raw.githubusercontent.com/NetTopologySuite/GeoAPI/master/GeoAPI/License.txt</licenseUrl>
+		<licenseUrl>https://raw.githubusercontent.com/NetTopologySuite/GeoAPI/master/src/GeoAPI/License.txt</licenseUrl>
 		<projectUrl>https://github.com/NetTopologySuite/GeoAPI</projectUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>GeoAPI.NET project provides a common framework based on OGC/ISO standards to improve interoperability among .NET GIS projects.</description>
 		<releaseNotes>This version matches NetTopologySuite v1.15 API.</releaseNotes>
-		<copyright>Copyright 2007-2017</copyright>
+		<copyright>Copyright 2007-2018</copyright>
 		<tags>OGC SFS NTS GIS</tags>
-		<iconUrl>https://raw.githubusercontent.com/NetTopologySuite/GeoAPI/develop/icon.png</iconUrl>
+		<iconUrl>https://raw.githubusercontent.com/NetTopologySuite/GeoAPI/master/icon.png</iconUrl>
 		<dependencies>
 			<group targetFramework=".NETFramework2.0" />
 			<group targetFramework=".NETFramework3.5-CompactFramework" />
