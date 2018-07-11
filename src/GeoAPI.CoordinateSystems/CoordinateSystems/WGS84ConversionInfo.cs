@@ -45,7 +45,7 @@ namespace GeoAPI.CoordinateSystems
 #if HAS_SYSTEM_SERIALIZABLEATTRIBUTE
     [Serializable]
 #endif
-    public class Wgs84ConversionInfo : IEquatable<Wgs84ConversionInfo>
+    public class Wgs84ConversionInfo
     {
         private const double SEC_TO_RAD = 4.84813681109535993589914102357e-6;
 

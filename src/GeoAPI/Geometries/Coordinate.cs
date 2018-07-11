@@ -27,7 +27,7 @@ namespace GeoAPI.Geometries
     [Serializable]
 #endif
 #pragma warning disable 612,618
-    public class Coordinate : ICoordinate, IComparable<Coordinate>, IEquatable<Coordinate>
+    public class Coordinate : ICoordinate, IComparable<Coordinate>
 #pragma warning restore 612,618
     {
         ///<summary>
@@ -315,9 +315,19 @@ namespace GeoAPI.Geometries
         /// Create a new object as copy of this instance.
         /// </summary>
         /// <returns></returns>
-        public object Clone()
+        public virtual Coordinate Copy()
         {
             return new Coordinate(X, Y, Z);
+        }
+
+        /// <summary>
+        /// Create a new object as copy of this instance.
+        /// </summary>
+        /// <returns></returns>
+        [Obsolete("Use Copy")]
+        public object Clone()
+        {
+            return MemberwiseClone();
         }
 
         /// <summary>
@@ -484,17 +494,6 @@ namespace GeoAPI.Geometries
         bool ICoordinate.Equals2D(ICoordinate other)
         {
             return X == other.X && Y == other.Y;
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="other"></param>
-        /// <returns></returns>
-        [Obsolete]
-        Boolean IEquatable<ICoordinate>.Equals(ICoordinate other)
-        {
-            return ((ICoordinate)this).Equals2D(other);
         }
 
         /// <summary>

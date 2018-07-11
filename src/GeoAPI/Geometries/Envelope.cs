@@ -23,7 +23,7 @@ namespace GeoAPI.Geometries
     [Serializable]
 #endif
 #pragma warning disable 612,618
-    public class Envelope : IEnvelope, IEquatable<Envelope>, IComparable<Envelope>, IIntersectable<Envelope>, IExpandable<Envelope>
+    public class Envelope : IEnvelope, IComparable<Envelope>, IIntersectable<Envelope>, IExpandable<Envelope>
 #pragma warning restore 612,618
     {
         /// <summary>
@@ -522,13 +522,13 @@ namespace GeoAPI.Geometries
 
         /// <summary>
         /// Check if the region defined by <c>other</c>
-        /// overlaps (intersects) the region of this <c>Envelope</c>.
+        /// intersects the region of this <c>Envelope</c>.
         /// </summary>
-        /// <param name="other"> the <c>Envelope</c> which this <c>Envelope</c> is
-        /// being checked for overlapping.
+        /// <param name="other">The <c>Envelope</c> which this <c>Envelope</c> is
+        /// being checked for intersecting.
         /// </param>
         /// <returns>
-        /// <c>true</c> if the <c>Envelope</c>s overlap.
+        /// <c>true</c> if the <c>Envelope</c>s intersect.
         /// </returns>
         public bool Intersects(Envelope other)
         {
@@ -592,6 +592,32 @@ namespace GeoAPI.Geometries
         public bool Intersects(double x, double y)
         {
             return !(x > _maxx || x < _minx || y > _maxy || y < _miny);
+        }
+
+        /// <summary>
+        /// Check if the extent defined by two extremal points
+        /// intersects the extent of this <code>Envelope</code>.
+        /// </summary>
+        /// <param name="a">A point</param>
+        /// <param name="b">Another point</param>
+        /// <returns><c>true</c> if the extents intersect</returns>
+        public bool Intersects(Coordinate a, Coordinate b)
+        {
+            if (IsNull) return false;
+
+            var envminx = (a.X < b.X) ? a.X : b.X;
+            if (envminx > _maxx) return false;
+
+            var envmaxx = (a.X > b.X) ? a.X : b.X;
+            if (envmaxx < _minx) return false;
+
+            var envminy = (a.Y < b.Y) ? a.Y : b.Y;
+            if (envminy > _maxy) return false;
+
+            var envmaxy = (a.Y > b.Y) ? a.Y : b.Y;
+            if (envmaxy < _miny) return false;
+
+            return true;
         }
 
         ///<summary>
@@ -851,9 +877,23 @@ namespace GeoAPI.Geometries
         /// <returns>A new object that is a copy of this instance.</returns>
         object ICloneable.Clone()
         {
-            return Clone();
+            return MemberwiseClone();
         }
 
+        /// <summary>
+        /// Creates a deep copy of the current envelope.
+        /// </summary>
+        /// <returns></returns>
+        public Envelope Copy()
+        {
+            if (IsNull)
+            {
+                // #179: This will create a new 'NULL' envelope
+                return new Envelope();
+            }
+            return new Envelope(_minx, _maxx, _miny, _maxy);
+        }        
+        
         #region BEGIN ADDED BY MPAUL42: monoGIS team
 
 #pragma warning disable 612,618
@@ -862,14 +902,10 @@ namespace GeoAPI.Geometries
         /// Creates a deep copy of the current envelope.
         /// </summary>
         /// <returns></returns>
+        [Obsolete("Use Copy()")]
         public Envelope Clone()
         {
-            if (IsNull)
-            {
-                // #179: This will create a new 'NULL' envelope
-                return new Envelope();
-            }
-            return new Envelope(_minx, _maxx, _miny, _maxy);
+            return Copy();
         }
 
         /// <summary>
@@ -885,7 +921,7 @@ namespace GeoAPI.Geometries
         /// </summary>
         IEnvelope IEnvelope.Union(ICoordinate coord)
         {
-            IEnvelope env = Clone();
+            IEnvelope env = Copy();
             env.ExpandToInclude(coord);
             return env;
         }
@@ -1236,15 +1272,6 @@ namespace GeoAPI.Geometries
                 return dx;
 
             return Math.Sqrt(dx * dx + dy * dy);
-        }
-
-        bool IEquatable<IEnvelope>.Equals(IEnvelope other)
-        {
-            if (IsNull)
-                return other.IsNull;
-
-            return _maxx == other.MaxX && _maxy == other.MaxY &&
-                   _minx == other.MinX && _miny == other.MinY;
         }
 
         int IComparable<IEnvelope>.CompareTo(IEnvelope other)

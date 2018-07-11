@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <SolutionDir Condition=" '$(SolutionDir)' == '' ">$(ProjectDir)..\..\</SolutionDir>
+    <TargetFrameworks>net20;net35-client;net35-cf;net40-client;net403-client;net45;netstandard1.0;netstandard2.0;portable40-net40+sl5+win8+wp8+wpa81;portable40-net403+sl5+win8+wp8+wpa81</TargetFrameworks>
+    <NoWarn>1591</NoWarn>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>$(SolutionDir)geoapi.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+
+  <Import Project="$(SolutionDir)GeoAPI.Common.props" />
+
+  <ItemGroup Condition=" '$(RequiresFrameworkAssemblyReferences)' == 'true' ">
+    <Reference Include="System" />
+    <Reference Include="System.Core" Condition=" '$(TargetFramework)' != 'net20' " />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.0' ">
+    <PackageReference Include="System.Collections" Version="4.3.0" />
+    <PackageReference Include="System.Diagnostics.Tools" Version="4.3.0" />
+    <PackageReference Include="System.Globalization" Version="4.3.0" />
+    <PackageReference Include="System.IO" Version="4.3.0" />
+    <PackageReference Include="System.Reflection" Version="4.3.0" />
+    <PackageReference Include="System.Runtime" Version="4.3.0" />
+    <PackageReference Include="System.Runtime.Extensions" Version="4.3.0" />
+    <PackageReference Include="System.Threading" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="$(SolutionDir)SharedAssemblyVersion.cs" Link="Properties\SharedAssemblyVersion.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="License.txt" />
+    <None Include="$(SolutionDir)geoapi.snk" />
+  </ItemGroup>
+
+  <Target Name="CheckNet35CompactFramework" BeforeTargets="ResolveAssemblyReferences">
+    <Error Condition=" '$(TargetFramework)' == 'net35-cf' And !Exists('$(FrameworkPathOverride)\mscorlib.dll') " Text=".NET 3.5 Compact Framework reference assemblies must be installed.  Expected to see $(FrameworkPathOverride)\mscorlib.dll." />
+  </Target>
+</Project>

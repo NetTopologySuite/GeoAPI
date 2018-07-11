@@ -12,7 +12,7 @@ namespace GeoAPI.Geometries
     /// <summary>  
     /// Interface for basic implementation of <c>Geometry</c>.
     /// </summary>
-    public interface IGeometry : ICloneable, IComparable, IComparable<IGeometry>, IEquatable<IGeometry>
+    public interface IGeometry : ICloneable, IComparable, IComparable<IGeometry>
     {
         ///<summary>
         /// The <see cref="IGeometryFactory"/> used to create this geometry
@@ -142,6 +142,16 @@ namespace GeoAPI.Geometries
         IGeometry Normalized();
 
         /// <summary>
+        /// Creates and returns a full copy of this <see cref="IGeometry"/> object
+        /// (including all coordinates contained by it).
+        /// <para/>
+        /// Subclasses are responsible for implementing this method and copying
+        /// their internal data.
+        /// </summary>
+        /// <returns>A clone of this instance</returns>
+        IGeometry Copy();
+
+        /// <summary>
         /// Gets the Well-Known-Binary representation of this geometry
         /// </summary>
         /// <returns>A byte array describing this geometry</returns>
@@ -189,6 +199,9 @@ namespace GeoAPI.Geometries
         IGeometry Union(IGeometry other);
 
         IGeometry Union();
+
+        [Obsolete("Favor either EqualsTopologically or EqualsExact instead.")]
+        bool Equals(IGeometry other);
 
         /// <summary>
         /// Tests whether this geometry is topologically equal to the argument geometry

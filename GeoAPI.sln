@@ -1,21 +1,31 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.6
+VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeoAPI", "GeoAPI\GeoAPI.csproj", "{FFB69466-79DE-466A-ADA7-5C47C5C5CA3A}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{ADD926A0-1731-43C4-84F9-EF5B04B71A79}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{D0DCE6F6-83C2-4214-8E8A-847D02A4461A}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{B253C30C-EB42-412F-9F0C-BE46167473E3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeoAPI", "src\GeoAPI\GeoAPI.csproj", "{39745112-2F69-44F3-9F9C-73BE02264E99}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeoAPI.Tests", "test\GeoAPI.Tests\GeoAPI.Tests.csproj", "{1214745F-03FE-471A-BB83-00D030A3C984}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D38CF6A7-3C8E-429F-A98B-D559F1AB8A6F}"
 	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		.travis.yml = .travis.yml
 		build.bat = build.bat
 		build.sh = build.sh
+		GeoAPI.Common.props = GeoAPI.Common.props
+		GeoAPI.CoordinateSystems.nuspec = GeoAPI.CoordinateSystems.nuspec
+		GeoAPI.Core.nuspec = GeoAPI.Core.nuspec
 		GeoAPI.nuspec = GeoAPI.nuspec
-		TeamCity.targets = TeamCity.targets
+		README.md = README.md
+		SharedAssemblyVersion.cs = SharedAssemblyVersion.cs
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{76B6EFF2-4A17-4C0A-904C-66B20C88BF42}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoAPI.Tests", "GeoAPI.Tests\GeoAPI.Tests.csproj", "{A2CC5645-37A7-4762-ACC4-6C8AA18B1574}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeoAPI.CoordinateSystems", "src\GeoAPI.CoordinateSystems\GeoAPI.CoordinateSystems.csproj", "{D20D909C-67FB-4D17-ADC3-785ED79AFCFE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,19 +33,28 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{FFB69466-79DE-466A-ADA7-5C47C5C5CA3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FFB69466-79DE-466A-ADA7-5C47C5C5CA3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FFB69466-79DE-466A-ADA7-5C47C5C5CA3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FFB69466-79DE-466A-ADA7-5C47C5C5CA3A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A2CC5645-37A7-4762-ACC4-6C8AA18B1574}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A2CC5645-37A7-4762-ACC4-6C8AA18B1574}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A2CC5645-37A7-4762-ACC4-6C8AA18B1574}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A2CC5645-37A7-4762-ACC4-6C8AA18B1574}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39745112-2F69-44F3-9F9C-73BE02264E99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39745112-2F69-44F3-9F9C-73BE02264E99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39745112-2F69-44F3-9F9C-73BE02264E99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39745112-2F69-44F3-9F9C-73BE02264E99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1214745F-03FE-471A-BB83-00D030A3C984}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1214745F-03FE-471A-BB83-00D030A3C984}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1214745F-03FE-471A-BB83-00D030A3C984}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1214745F-03FE-471A-BB83-00D030A3C984}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D20D909C-67FB-4D17-ADC3-785ED79AFCFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D20D909C-67FB-4D17-ADC3-785ED79AFCFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D20D909C-67FB-4D17-ADC3-785ED79AFCFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D20D909C-67FB-4D17-ADC3-785ED79AFCFE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{A2CC5645-37A7-4762-ACC4-6C8AA18B1574} = {76B6EFF2-4A17-4C0A-904C-66B20C88BF42}
+		{39745112-2F69-44F3-9F9C-73BE02264E99} = {ADD926A0-1731-43C4-84F9-EF5B04B71A79}
+		{1214745F-03FE-471A-BB83-00D030A3C984} = {B253C30C-EB42-412F-9F0C-BE46167473E3}
+		{D20D909C-67FB-4D17-ADC3-785ED79AFCFE} = {ADD926A0-1731-43C4-84F9-EF5B04B71A79}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {085CAF45-62F1-4B30-A1FE-24637905C262}
 	EndGlobalSection
 EndGlobal

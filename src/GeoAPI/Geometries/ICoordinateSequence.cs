@@ -144,5 +144,11 @@ namespace GeoAPI.Geometries
         /// </summary>
         /// <returns>A reversed version of this sequence</returns>
         ICoordinateSequence Reversed();
+
+        /// <summary>
+        /// Returns a deep copy of this collection.
+        /// </summary>
+        /// <returns>A copy of the coordinate sequence containing copies of all points</returns>
+        ICoordinateSequence Copy();
     }
 }

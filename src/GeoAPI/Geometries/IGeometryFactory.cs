@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace GeoAPI.Geometries
@@ -54,6 +55,12 @@ namespace GeoAPI.Geometries
         IGeometry CreateGeometry(IGeometry g);
 
         /// <summary>
+        /// Creates an empty Point
+        /// </summary>
+        /// <returns>An empty Point</returns>
+        IPoint CreatePoint();
+
+        /// <summary>
         /// Creates a Point using the given Coordinate; a null Coordinate will create
         /// an empty Geometry.
         /// </summary>
@@ -65,9 +72,15 @@ namespace GeoAPI.Geometries
         /// Creates a <c>Point</c> using the given <c>CoordinateSequence</c>; a null or empty
         /// CoordinateSequence will create an empty Point.
         /// </summary>
-        /// <param name="coordinates">The coordiante sequence.</param>
+        /// <param name="coordinates">The coordinate sequence.</param>
         /// <returns>A Point</returns>
         IPoint CreatePoint(ICoordinateSequence coordinates);
+
+        /// <summary>
+        /// Creates an empty LineString
+        /// </summary>
+        /// <returns>An empty LineString</returns>
+        ILineString CreateLineString();
 
         /// <summary> 
         /// Creates a LineString using the given Coordinates; a null or empty array will
@@ -86,9 +99,15 @@ namespace GeoAPI.Geometries
         ILineString CreateLineString(ICoordinateSequence coordinates);
 
         /// <summary>
+        /// Creates an empty LinearRing
+        /// </summary>
+        /// <returns>An empty LinearRing</returns>
+        ILinearRing CreateLinearRing();
+        
+        /// <summary>
         /// Creates a <c>LinearRing</c> using the given <c>Coordinates</c>; a null or empty array will
         /// create an empty LinearRing. The points must form a closed and simple
-        /// linestring. Consecutive points must not be equal.
+        /// LineString. Consecutive points must not be equal.
         /// </summary>
         /// <param name="coordinates">An array without null elements, or an empty array, or null.</param>
         ILinearRing CreateLinearRing(Coordinate[] coordinates);
@@ -96,10 +115,16 @@ namespace GeoAPI.Geometries
         /// <summary> 
         /// Creates a <c>LinearRing</c> using the given <c>CoordinateSequence</c>; a null or empty CoordinateSequence will
         /// create an empty LinearRing. The points must form a closed and simple
-        /// linestring. Consecutive points must not be equal.
+        /// LineString. Consecutive points must not be equal.
         /// </summary>
         /// <param name="coordinates">A CoordinateSequence possibly empty, or null.</param>
         ILinearRing CreateLinearRing(ICoordinateSequence coordinates);
+
+        /// <summary>
+        /// Creates an empty Polygon
+        /// </summary>
+        /// <returns>An empty Polygon</returns>
+        IPolygon CreatePolygon();
 
         /// <summary> 
         /// Constructs a <c>Polygon</c> with the given exterior boundary and
@@ -145,13 +170,28 @@ namespace GeoAPI.Geometries
         /// <returns>The polygon</returns>
         IPolygon CreatePolygon(ILinearRing shell);
 
-            /// <summary> 
+        /// <summary>
+        /// Creates an empty MultiPoint
+        /// </summary>
+        /// <returns>An empty MultiPoint</returns>
+        IMultiPoint CreateMultiPoint();
+
+        /// <summary> 
         /// Creates a <see cref="IMultiPoint"/> using the given Coordinates.
         /// A null or empty array will create an empty MultiPoint.
         /// </summary>
         /// <param name="coordinates">An array (without null elements), or an empty array, or <c>null</c></param>
         /// <returns>A <see cref="IMultiPoint"/> object</returns>
+        [Obsolete("Use CreateMultiPointFromCoords")]
         IMultiPoint CreateMultiPoint(Coordinate[] coordinates);
+
+        /// <summary> 
+        /// Creates a <see cref="IMultiPoint"/> using the given Coordinates.
+        /// A null or empty array will create an empty MultiPoint.
+        /// </summary>
+        /// <param name="coordinates">An array (without null elements), or an empty array, or <c>null</c></param>
+        /// <returns>A <see cref="IMultiPoint"/> object</returns>
+        IMultiPoint CreateMultiPointFromCoords(Coordinate[] coordinates);
 
         /// <summary> 
         /// Creates a <see cref="IMultiPoint"/> using the given Points.
@@ -169,11 +209,23 @@ namespace GeoAPI.Geometries
         IMultiPoint CreateMultiPoint(ICoordinateSequence coordinates);
 
         /// <summary>
+        /// Creates an empty MultiLineString
+        /// </summary>
+        /// <returns>An empty MultiLineString</returns>
+        IMultiLineString CreateMultiLineString();
+
+        /// <summary>
         /// Creates a <c>MultiLineString</c> using the given <c>LineStrings</c>; a null or empty
         /// array will create an empty MultiLineString.
         /// </summary>
         /// <param name="lineStrings">LineStrings, each of which may be empty but not null-</param>
         IMultiLineString CreateMultiLineString(ILineString[] lineStrings);
+
+        /// <summary>
+        /// Creates an empty MultiPolygon
+        /// </summary>
+        /// <returns>An empty MultiPolygon</returns>
+        IMultiPolygon CreateMultiPolygon();
 
         /// <summary>
         /// Creates a <c>MultiPolygon</c> using the given <c>Polygons</c>; a null or empty array
@@ -183,6 +235,12 @@ namespace GeoAPI.Geometries
         /// </summary>
         /// <param name="polygons">Polygons, each of which may be empty but not null.</param>
         IMultiPolygon CreateMultiPolygon(IPolygon[] polygons);
+
+        /// <summary>
+        /// Creates an empty GeometryCollection
+        /// </summary>
+        /// <returns>An empty GeometryCollection</returns>
+        IGeometryCollection CreateGeometryCollection();
 
         /// <summary>
         /// Creates a <c>GeometryCollection</c> using the given <c>Geometries</c>; a null or empty

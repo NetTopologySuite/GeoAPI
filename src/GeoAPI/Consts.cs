@@ -1,8 +1,7 @@
 internal static class Consts
 {
-    public const string Version = "1.7.5";
     public const string Title = "GeoAPI";
-    public const string Description = "GeoAPI Version that matches NTS v.1.15";
+    public const string Description = "GeoAPI";
     public const string Company = "NetTopologySuite - Team";
     public const string Copyright = "Copyright © NetTopologySuite - Team 2007-2017";
     public const bool ComVisible = false;
@@ -36,6 +35,8 @@ internal static class Consts
     public const string Guid = FullFrameworkGuid;
 #elif NETSTANDARD1_0
     public const string Product = "GeoAPI.NetStandard10";
+#elif NETSTANDARD2_0
+    public const string Product = "GeoAPI.NetStandard20";
 #elif PCL
     public const string Product = "GeoAPI.PCL";
 #endif

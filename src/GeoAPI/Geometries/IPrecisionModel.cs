@@ -32,7 +32,7 @@ namespace GeoAPI.Geometries
     /// Interface for classes specifying the precision model of the <c>Coordinate</c>s in a <c>IGeometry</c>.
     /// In other words, specifies the grid of allowable points for all <c>IGeometry</c>s.
     /// </summary>
-    public interface IPrecisionModel : IComparable, IComparable<IPrecisionModel>, IEquatable<IPrecisionModel>
+    public interface IPrecisionModel : IComparable, IComparable<IPrecisionModel>
     {
         /// <summary>
         /// Gets a value indicating the <see cref="PrecisionModels">precision model</see> type

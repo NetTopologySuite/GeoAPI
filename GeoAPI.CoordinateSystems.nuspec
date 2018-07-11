@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<package>
+	<metadata>
+		<id>GeoAPI.CoordinateSystems</id>
+		<version>$version$</version>
+		<authors>NetTopologySuite Team</authors>
+		<owners>nettopologysuite - team</owners>
+		<licenseUrl>https://raw.githubusercontent.com/NetTopologySuite/GeoAPI/master/src/GeoAPI.CoordinateSystems/License.txt</licenseUrl>
+		<projectUrl>https://github.com/NetTopologySuite/GeoAPI</projectUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>GeoAPI.NET project provides a common framework based on OGC/ISO standards to improve interoperability among .NET GIS projects.</description>
+		<releaseNotes>This version matches ProjNet4GeoAPI v1.4 API.</releaseNotes>
+		<copyright>Copyright 2007-2017</copyright>
+		<tags>OGC SFS NTS GIS</tags>
+		<iconUrl>https://raw.githubusercontent.com/NetTopologySuite/GeoAPI/master/icon.png</iconUrl>
+		<dependencies>
+			<group targetFramework=".NETFramework2.0" >
+			  <dependency id="GeoAPI.Core" version="$version$" />
+			</group>
+			<group targetFramework=".NETFramework3.5-CompactFramework" >
+			  <dependency id="GeoAPI.Core" version="$version$" />
+			</group>
+			<group targetFramework=".NETFramework3.5-Client" >
+			  <dependency id="GeoAPI.Core" version="$version$" />
+			</group>
+			<group targetFramework=".NETFramework4.0-Client" >
+			    <dependency id="GeoAPI.Core" version="$version$" />
+			</group>
+			<group targetFramework=".NETFramework4.0.3-Client" >
+			  <dependency id="GeoAPI.Core" version="$version$" />
+			</group>
+			<group targetFramework=".NETFramework4.5" >
+			  <dependency id="GeoAPI.Core" version="$version$" />
+			</group>
+
+
+			<group targetFramework=".NETPortable4.0-Profile328" >
+			  <dependency id="GeoAPI.Core" version="$version$" />
+			</group>
+			<group targetFramework=".NETPortable4.0-Profile336" >
+			  <dependency id="GeoAPI.Core" version="$version$" />
+			</group>
+
+
+			<group targetFramework=".NETStandard1.0">
+				<dependency id="System.Collections" version="[4.3.0, )" />
+				<dependency id="System.Diagnostics.Tools" version="[4.3.0, )" />
+				<dependency id="System.Globalization" version="[4.3.0, )" />
+				<dependency id="System.IO" version="[4.3.0, )" />
+				<dependency id="System.Reflection" version="[4.3.0, )" />
+				<dependency id="System.Runtime" version="[4.3.0, )" />
+				<dependency id="System.Runtime.Extensions" version="[4.3.0, )" />
+				<dependency id="System.Threading" version="[4.3.0, )" />
+			  <dependency id="GeoAPI.Core" version="$version$" />
+			</group>
+			<group targetFramework=".NETStandard2.0" >
+			  <dependency id="GeoAPI.Core" version="$version$" />
+			</group>
+
+		</dependencies>
+	</metadata>
+
+	<files>
+		<file src="Release\AnyCPU\**\GeoAPI.CoordinateSystems.deps.json" target="lib" />
+		<file src="Release\AnyCPU\**\GeoAPI.CoordinateSystems.dll" target="lib" />
+		<file src="Release\AnyCPU\**\GeoAPI.CoordinateSystems.pdb" target="lib" />
+		<file src="Release\AnyCPU\**\GeoAPI.CoordinateSystems.xml" target="lib" />
+
+		<file src="src\GeoAPI.CoordinateSystems\**\*.cs" exclude="**\obj\**\*.*" target="src" />
+	</files>
+</package>
