@@ -1,3 +1,5 @@
+using System;
+
 namespace GeoAPI.Geometries
 {
 #if HAS_SYSTEM_ICLONEABLE
@@ -41,7 +43,12 @@ namespace GeoAPI.Geometries
         int Dimension { get; }
 
         /// <summary>
-        /// Returns the kind of ordinates this sequence supplys. .
+        /// Returns the number of measures in each coordinate for this sequence
+        /// </summary>
+        int NumberOfMeasures { get; }
+
+        /// <summary>
+        /// Returns the kind of ordinates this sequence supplies.
         /// </summary>
         Ordinates Ordinates { get; }
 
@@ -105,7 +112,7 @@ namespace GeoAPI.Geometries
         /// If the sequence does not provide value for the required ordinate, the implementation <b>must not</b> throw an exception, it should return <see cref="Coordinate.NullOrdinate"/>.
         /// </remarks>
         /// <param name="index">The coordinate index in the sequence.</param>
-        /// <param name="ordinate">The ordinate index in the coordinate (in range [0, dimension-1]).</param>
+        /// <param name="ordinate">The ordinate index in the coordinate (in range [0, dimension-numberOfMeasures-1]).</param>
         /// <returns>The ordinate value, or <see cref="Coordinate.NullOrdinate"/> if the sequence does not provide values for <paramref name="ordinate"/>"/></returns>       
         double GetOrdinate(int index, Ordinate ordinate);
 
@@ -116,7 +123,7 @@ namespace GeoAPI.Geometries
         /// If the sequence can't store the ordinate value, the implementation <b>must not</b> throw an exception, it should simply ignore the call.
         /// </remarks>
         /// <param name="index">The coordinate index in the sequence.</param>
-        /// <param name="ordinate">The ordinate index in the coordinate (in range [0, dimension-1]).</param>
+        /// <param name="ordinate">The ordinate index in the coordinate (in range [0, dimension-numberOfMeasures-1]).</param>
         /// <param name="value">The new ordinate value.</param>       
         void SetOrdinate(int index, Ordinate ordinate, double value);
 
@@ -143,6 +150,7 @@ namespace GeoAPI.Geometries
         /// Creates a reversed version of this coordinate sequence with cloned <see cref="Coordinate"/>s
         /// </summary>
         /// <returns>A reversed version of this sequence</returns>
+        [Obsolete("Not conform with JTS")]
         ICoordinateSequence Reversed();
 
         /// <summary>
