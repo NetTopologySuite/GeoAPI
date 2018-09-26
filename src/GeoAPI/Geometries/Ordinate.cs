@@ -4,25 +4,35 @@
     /// Standard ordinate index values.
     /// </summary>
     public enum Ordinate
-    {        
+    {
         /// <summary>
-        /// X Ordinate = 0.
+        /// Standard ordinate index value for, where X is 0
         /// </summary>
         X = 0,
 
         /// <summary>
-        /// Y Ordinate = 1.
+        /// Standard ordinate index value for, where Y is 1
         /// </summary>
         Y = 1,
 
         /// <summary>
-        /// Z Ordinate = 2.
+        /// Standard ordinate index value for, where Z is 2.
         /// </summary>
+        /// <remarks>
+        /// This constant assumes <see cref="Ordinates.XYZM"/> coordinate sequence definition,
+        /// please check this assumption using <see cref="ICoordinateSequence.Dimension"/> and
+        /// <see cref="ICoordinateSequence.Measures"/> before use.
+        /// </remarks>
         Z = 2,
 
         /// <summary>
-        /// M Ordinate = 3
+        /// Standard ordinate index value for, where M is 3.
         /// </summary>
+        /// <remarks>
+        /// This constant assumes <see cref="Ordinates.XYZM"/> coordinate sequence definition,
+        /// please check this assumption using <see cref="ICoordinateSequence.Dimension"/> and
+        /// <see cref="ICoordinateSequence.Measures"/> before use.
+        /// </remarks>
         M = 3,
 
         /// <summary>

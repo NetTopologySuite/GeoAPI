@@ -13,6 +13,7 @@ namespace GeoAPI.Tests.Geometries
             Assert.AreEqual(c.X, 350.2);
             Assert.AreEqual(c.Y, 4566.8);
             Assert.AreEqual(c.Z, 5266.3);
+            Assert.AreEqual(c.M, Coordinate.NullOrdinate);
         }
 
         [Test]
@@ -22,6 +23,7 @@ namespace GeoAPI.Tests.Geometries
             Assert.AreEqual(c.X, 350.2);
             Assert.AreEqual(c.Y, 4566.8);
             Assert.AreEqual(c.Z, Coordinate.NullOrdinate);
+            Assert.AreEqual(c.M, Coordinate.NullOrdinate);
         }
 
         [Test]
@@ -31,6 +33,7 @@ namespace GeoAPI.Tests.Geometries
             Assert.AreEqual(c.X, 0.0);
             Assert.AreEqual(c.Y, 0.0);
             Assert.AreEqual(c.Z, Coordinate.NullOrdinate);
+            Assert.AreEqual(c.M, Coordinate.NullOrdinate);
         }
 
         [Test]
@@ -41,6 +44,7 @@ namespace GeoAPI.Tests.Geometries
             Assert.AreEqual(c.X, 350.2);
             Assert.AreEqual(c.Y, 4566.8);
             Assert.AreEqual(c.Z, 5266.3);
+            Assert.AreEqual(c.M, Coordinate.NullOrdinate);
         }
 
         [Test]
@@ -51,6 +55,7 @@ namespace GeoAPI.Tests.Geometries
             Assert.AreEqual(c.X, 350.2);
             Assert.AreEqual(c.Y, 4566.8);
             Assert.AreEqual(c.Z, 5266.3);
+            Assert.AreEqual(c.M, Coordinate.NullOrdinate);
 
             Assert.That(ReferenceEquals(orig, c), Is.False);
         }
@@ -63,6 +68,7 @@ namespace GeoAPI.Tests.Geometries
             Assert.AreEqual(c.X, 350.2);
             Assert.AreEqual(c.Y, 4566.8);
             Assert.AreEqual(c.Z, 5266.3);
+            Assert.AreEqual(c.M, Coordinate.NullOrdinate);
         }
 
         [Test]
@@ -72,6 +78,7 @@ namespace GeoAPI.Tests.Geometries
             Assert.AreEqual(c[Ordinate.X], 350.2);
             Assert.AreEqual(c[Ordinate.Y], 4566.8);
             Assert.AreEqual(c[Ordinate.Z], 5266.3);
+            Assert.AreEqual(c.M, Coordinate.NullOrdinate);
         }
 
         [Test]
@@ -81,9 +88,11 @@ namespace GeoAPI.Tests.Geometries
             c[Ordinate.X] = 111;
             c[Ordinate.Y] = 222;
             c[Ordinate.Z] = 333;
+            Assert.Throws<ArgumentOutOfRangeException>(() => c[Ordinate.M] = 444);
             Assert.AreEqual(c[Ordinate.X], 111.0);
             Assert.AreEqual(c[Ordinate.Y], 222.0);
             Assert.AreEqual(c[Ordinate.Z], 333.0);
+            Assert.AreEqual(c.M, Coordinate.NullOrdinate);
         }
 
         [Test]
@@ -91,6 +100,7 @@ namespace GeoAPI.Tests.Geometries
         {
             Coordinate c1 = new Coordinate(1, 2, 3);
             const string s = "Not a coordinate";
+            // ReSharper disable once SuspiciousTypeConversion.Global
             Assert.IsFalse(c1.Equals(s));
 
             Coordinate c2 = new Coordinate(1, 2, 3);

@@ -39,13 +39,25 @@ namespace GeoAPI.Geometries
     {
         /// <summary>
         /// Returns the dimension (number of ordinates in each coordinate) for this sequence.
+        /// <para>
+        /// This total includes any measures, indicated by non-zero <see cref="Measures"/>.
+        /// </para>
         /// </summary>
         int Dimension { get; }
 
         /// <summary>
-        /// Returns the number of measures in each coordinate for this sequence
+        /// Returns the number of measures included in {@link #getDimension()} for each coordinate for this
+        /// sequence.
+        /// For a measured coordinate sequence a non-zero value is returned.
+        /// <list type="Bullet">
+        /// <item>For <see cref="Geometries.Ordinates.XY"/> sequence measures is zero</item>
+        /// <item>For <see cref="Geometries.Ordinates.XYM"/> sequence measure is one</item>
+        /// <item>For <see cref="Geometries.Ordinates.XYZ"/> sequence measure is zero</item>
+        /// <item>For <see cref="Geometries.Ordinates.XYZM"/> sequence measure is one</item>
+        /// <item>Values greater than one are supported</item>
+        /// </list>
         /// </summary>
-        int NumberOfMeasures { get; }
+        int Measures { get; }
 
         /// <summary>
         /// Returns the kind of ordinates this sequence supplies.
@@ -103,10 +115,63 @@ namespace GeoAPI.Geometries
         double GetY(int index);
 
         /// <summary>
+        /// Returns ordinate Z of the specified coordinate if available.
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns>
+        /// The value of the Z ordinate in the index'th coordinate, or
+        /// <see cref="Coordinate.NullOrdinate"/> if not defined.
+        /// </returns>
+        /// <remarks>Default implementation (C#)
+        /// <code>
+        /// double GetZ(int index)
+        /// {
+        ///     if ((Dimension - Measures) > 2)
+        ///     {
+        ///         return GetOrdinate(index, 2);
+        ///     }
+        ///     else
+        ///     {
+        ///         return Coordinate.NullOrdinate;
+        ///     }
+        /// }
+        /// </code>
+        /// </remarks>
+        double GetZ(int index);
+
+        /// <summary>
+        /// Returns ordinate M of the specified coordinate if available.
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns>
+        /// The value of the Z ordinate in the index'th coordinate, or
+        /// <see cref="Coordinate.NullOrdinate"/> if not defined.
+        /// </returns>
+        /// <remarks>
+        /// <code>
+        /// double GetM(int index)
+        /// {
+        ///     if (Dimension > 2 &amp;&amp; Measures > 0)
+        ///     {
+        ///         int mIndex = Dimension - Measures;
+        ///         return getOrdinate(index, mIndex);
+        ///     }
+        ///     else
+        ///     {
+        ///         return double.NaN;
+        ///     }
+        /// }
+        /// </code>
+        /// </remarks>
+        double GetM(int index);
+
+        /// <summary>
         /// Returns the ordinate of a coordinate in this sequence.
         /// Ordinate indices 0 and 1 are assumed to be X and Y.
+        /// <para/>
         /// Ordinate indices greater than 1 have user-defined semantics
-        /// (for instance, they may contain other dimensions or measure values).         
+        /// (for instance, they may contain other dimensions or measure
+        /// values as described by <see cref="Dimension"/> and <see cref="Measures"/>.
         /// </summary>
         /// <remarks>
         /// If the sequence does not provide value for the required ordinate, the implementation <b>must not</b> throw an exception, it should return <see cref="Coordinate.NullOrdinate"/>.

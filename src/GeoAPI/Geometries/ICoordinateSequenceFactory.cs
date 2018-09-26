@@ -1,5 +1,3 @@
-using System;
-
 namespace GeoAPI.Geometries
 {
     /// <summary>
@@ -40,6 +38,32 @@ namespace GeoAPI.Geometries
         /// (if user-specifiable, otherwise ignored)</param>
         /// <returns>A coordinate sequence</returns>
         ICoordinateSequence Create(int size, int dimension);
+
+        /// <summary>
+        /// Creates a <see cref="ICoordinateSequence" /> of the specified size and dimension
+        /// with measure support. For this to be useful, the <see cref="ICoordinateSequence" />
+        /// implementation must be mutable.
+        /// </summary>
+        /// <remarks>
+        /// If the requested dimension or measures are larger than the CoordinateSequence implementation
+        /// can provide, then a sequence of maximum possible dimension should be created.
+        /// An error should not be thrown.
+        /// <para/>
+        /// A default implementation of this method could look like this:
+        /// <code>
+        /// public ICoordinateSequence Create(int size, int dimension, int measures)
+        /// {
+        ///     return create(size, dimension);
+        /// }
+        /// </code>
+        /// </remarks>
+        /// <param name="size">The number of coordinates in the sequence</param>
+        /// <param name="dimension">The dimension of the coordinates in the sequence (if user-specifiable,
+        /// otherwise ignored)</param>
+        /// <param name="measures">The number of measures of the coordinates in the sequence (if user-specifiable,
+        /// otherwise ignored)</param>
+        /// 
+        ICoordinateSequence Create(int size, int dimension, int measures);
 
         /// <summary>
         /// Creates a <see cref="ICoordinateSequence" /> of the specified size and ordinates.

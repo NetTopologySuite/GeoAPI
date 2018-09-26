@@ -28,8 +28,8 @@ namespace GeoAPI.Geometries
 #endif
 #pragma warning disable 612,618
     public class Coordinate : ICoordinate, IComparable<Coordinate>
-#pragma warning restore 612,618
     {
+
         ///<summary>
         /// The value used to indicate a null or missing ordinate value.
         /// In particular, used for the value of ordinates for dimensions
@@ -38,70 +38,40 @@ namespace GeoAPI.Geometries
         public const double NullOrdinate = Double.NaN;
 
         /// <summary>
-        /// X coordinate.
+        /// Gets or sets the X-ordinate value.
         /// </summary>
-        public double X; // = Double.NaN;
+        public double X { get; set; }
+
         /// <summary>
-        /// Y coordinate.
+        /// Gets or sets the Y-ordinate value.
         /// </summary>
-        public double Y; // = Double.NaN;
+        public double Y { get; set; }
+
         /// <summary>
-        /// Z coordinate.
+        /// Gets or sets the Z-ordinate value.
         /// </summary>
-        public double Z; // = Double.NaN;
+        public virtual double Z { get; set; }
+
+        /// <summary>
+        /// Gets the default m-measure (<see cref="NullOrdinate"/>).
+        /// </summary>
+        public virtual double M
+        {
+            get => NullOrdinate;
+            set { }
+        }
 
         /// <summary>
         /// Constructs a <other>Coordinate</other> at (x,y,z).
         /// </summary>
-        /// <param name="x">X value.</param>
-        /// <param name="y">Y value.</param>
-        /// <param name="z">Z value.</param>
+        /// <param name="x">The X value</param>
+        /// <param name="y">The Y value</param>
+        /// <param name="z">The Z value</param>
         public Coordinate(double x, double y, double z)
         {
             X = x;
             Y = y;
             Z = z;
-        }
-
-        /// <summary>
-        /// Gets or sets the ordinate value for the given index.
-        /// The supported values for the index are 
-        /// <see cref="Ordinate.X"/>, <see cref="Ordinate.Y"/> and <see cref="Ordinate.Z"/>.
-        /// </summary>
-        /// <param name="ordinateIndex">The ordinate index</param>
-        /// <returns>The ordinate value</returns>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown if <paramref name="ordinateIndex"/> is not in the valid range.</exception>
-        public double this[Ordinate ordinateIndex]
-        {
-            get
-            {
-                switch (ordinateIndex)
-                {
-                    case Ordinate.X:
-                        return X;
-                    case Ordinate.Y:
-                        return Y;
-                    case Ordinate.Z:
-                        return Z;
-                }
-                throw new ArgumentOutOfRangeException("ordinateIndex");
-            }
-            set
-            {
-                switch (ordinateIndex)
-                {
-                    case Ordinate.X:
-                        X = value;
-                        return;
-                    case Ordinate.Y:
-                        Y = value;
-                        return;
-                    case Ordinate.Z:
-                        Z = value;
-                        return;
-                }
-                throw new ArgumentOutOfRangeException("ordinateIndex");
-            }
         }
 
         /// <summary>
@@ -130,6 +100,49 @@ namespace GeoAPI.Geometries
         /// <param name="x">X value.</param>
         /// <param name="y">Y value.</param>
         public Coordinate(double x, double y) : this(x, y, NullOrdinate) { }
+
+
+        /// <summary>
+        /// Gets or sets the ordinate value for the given index.
+        /// </summary>
+        /// <remarks>
+        /// The base implementation supports  <see cref="Ordinate.X"/>, <see cref="Ordinate.Y"/> and <see cref="Ordinate.Z"/> as values for the index.
+        /// </remarks>
+        /// <param name="ordinateIndex">The ordinate index</param>
+        /// <returns>The ordinate value</returns>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown if <paramref name="ordinateIndex"/> is not in the valid range.</exception>
+        public double this[Ordinate ordinateIndex]
+        {
+            get
+            {
+                switch (ordinateIndex)
+                {
+                    case Ordinate.X:
+                        return X;
+                    case Ordinate.Y:
+                        return Y;
+                    case Ordinate.Z:
+                        return Z;
+                }
+                throw new ArgumentOutOfRangeException(nameof(ordinateIndex));
+            }
+            set
+            {
+                switch (ordinateIndex)
+                {
+                    case Ordinate.X:
+                        X = value;
+                        return;
+                    case Ordinate.Y:
+                        Y = value;
+                        return;
+                    case Ordinate.Z:
+                        Z = value;
+                        return;
+                }
+                throw new ArgumentOutOfRangeException(nameof(ordinateIndex));
+            }
+        }
 
         /// <summary>
         /// Gets/Sets <other>Coordinate</other>s (x,y,z) values.
@@ -174,9 +187,9 @@ namespace GeoAPI.Geometries
             return true;
         }
 
-        private static bool EqualsWithTolerance(double x1, double x2, double tolerance)
+        private static bool EqualsWithTolerance(double v1, double v2, double tolerance)
         {
-            return Math.Abs(x1 - x2) <= tolerance;
+            return Math.Abs(v1 - v2) <= tolerance;
         }
 
         /// <summary>
@@ -235,9 +248,9 @@ namespace GeoAPI.Geometries
         /// Compares this object with the specified object for order.
         /// Since Coordinates are 2.5D, this routine ignores the z value when making the comparison.
         /// Returns
-        ///   -1  : this.x lowerthan other.x || ((this.x == other.x) AND (this.y lowerthan other.y))
+        ///   -1  : this.x &lt; other.x || ((this.x == other.x) AND (this.y &lt; other.y))
         ///    0  : this.x == other.x AND this.y = other.y
-        ///    1  : this.x greaterthan other.x || ((this.x == other.x) AND (this.y greaterthan other.y))
+        ///    1  : this.x &gt; other.x || ((this.x == other.x) AND (this.y &gt; other.y))
         /// </summary>
         /// <param name="o"><other>Coordinate</other> with which this <other>Coordinate</other> is being compared.</param>
         /// <returns>
@@ -246,17 +259,18 @@ namespace GeoAPI.Geometries
         /// </returns>
         public int CompareTo(object o)
         {
-            var other = (Coordinate)o;
-            return CompareTo(other);
+            if (o is Coordinate other)
+                return CompareTo(other);
+            return 1;
         }
 
         /// <summary>
         /// Compares this object with the specified object for order.
         /// Since Coordinates are 2.5D, this routine ignores the z value when making the comparison.
         /// Returns
-        ///   -1  : this.x lowerthan other.x || ((this.x == other.x) AND (this.y lowerthan other.y))
+        ///   -1  : this.x &lt; other.x || ((this.x == other.x) AND (this.y &lt; other.y))
         ///    0  : this.x == other.x AND this.y = other.y
-        ///    1  : this.x greaterthan other.x || ((this.x == other.x) AND (this.y greaterthan other.y))
+        ///    1  : this.x &gt; other.x || ((this.x == other.x) AND (this.y &gt; other.y))
         /// </summary>
         /// <param name="other"><other>Coordinate</other> with which this <other>Coordinate</other> is being compared.</param>
         /// <returns>
