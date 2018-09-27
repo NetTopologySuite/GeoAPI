@@ -154,7 +154,7 @@ namespace GeoAPI.Geometries
         /// </summary>
         /// <param name="index"></param>
         /// <returns>
-        /// The value of the Z ordinate in the index'th coordinate, or
+        /// The value of the M ordinate in the index'th coordinate, or
         /// <see cref="Coordinate.NullOrdinate"/> if not defined.
         /// </returns>
         /// <remarks>
