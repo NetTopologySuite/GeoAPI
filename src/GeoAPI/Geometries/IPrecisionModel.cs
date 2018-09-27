@@ -72,6 +72,6 @@ namespace GeoAPI.Geometries
         /// Method to precise <paramref name="coord"/>.
         /// </summary>
         /// <param name="coord">The coordinate to precise</param>
-        void MakePrecise(Coordinate coord);
+        void MakePrecise(CoordinateXY coord);
     }
 }

@@ -84,12 +84,12 @@ namespace GeoAPI.Geometries
         ///<summary>
         /// Gets a <see cref="Coordinate"/> that is guaranteed to be part of the geometry, usually the first.
         ///</summary>
-        Coordinate Coordinate { get; }
+        CoordinateXY Coordinate { get; }
         
         ///<summary>
         /// Gets an array of <see cref="Coordinate"/>s that make up this geometry.
         ///</summary>
-        Coordinate[] Coordinates { get; }
+        CoordinateXY[] Coordinates { get; }
 
         ///<summary>
         /// Gets an array of <see cref="T:System.Double"/> ordinate values.

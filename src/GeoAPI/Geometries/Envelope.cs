@@ -1,6 +1,7 @@
 using System;
 using System.Globalization;
 using System.Text;
+using Coordinate = GeoAPI.Geometries.CoordinateXY;
 
 namespace GeoAPI.Geometries
 {
@@ -12,13 +13,15 @@ namespace GeoAPI.Geometries
 
     /// <summary>
     /// Defines a rectangular region of the 2D coordinate plane.
+    /// </summary>
+    /// <remarks>
     /// It is often used to represent the bounding box of a <c>Geometry</c>,
     /// e.g. the minimum and maximum x and y values of the <c>Coordinate</c>s.
     /// Note that Envelopes support infinite or half-infinite regions, by using the values of
     /// <c>Double.PositiveInfinity</c> and <c>Double.NegativeInfinity</c>.
     /// When Envelope objects are created or initialized,
-    /// the supplies extent values are automatically sorted into the correct order.
-    /// </summary>
+    /// the supplied extent values are automatically sorted into the correct order.
+    /// </remarks>
 #if HAS_SYSTEM_SERIALIZABLEATTRIBUTE
     [Serializable]
 #endif

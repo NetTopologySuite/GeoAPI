@@ -1,6 +1,7 @@
 using System;
 using GeoAPI.Geometries;
 using NUnit.Framework;
+using Coordinate=GeoAPI.Geometries.CoordinateXY;
 
 namespace GeoAPI.Tests.Geometries
 {
