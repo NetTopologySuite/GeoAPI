@@ -48,7 +48,7 @@ namespace GeoAPI.Geometries
         double this[Ordinate index] { get; set; }
 
         /// <summary>
-        /// Computes the 2-dimensional distance to the <paramref name="other"/> coordiante.
+        /// Computes the 2-dimensional distance to the <paramref name="other"/> coordinate.
         /// </summary>
         /// <param name="other">The other coordinate</param>
         /// <returns>The 2-dimensional distance to other</returns>
@@ -58,14 +58,14 @@ namespace GeoAPI.Geometries
         /// Compares equality for x- and y-ordinates
         /// </summary>
         /// <param name="other">The other coordinate</param>
-        /// <returns><c>true</c> if x- and y-ordinates of this coordinate and <see paramref="other"/> coordiante are equal.</returns>
+        /// <returns><c>true</c> if x- and y-ordinates of this coordinate and <see paramref="other"/> coordinate are equal.</returns>
         bool Equals2D(ICoordinate other);
 
         /// <summary>
         /// Compares equality for x-, y- and z-ordinates
         /// </summary>
         /// <param name="other">The other coordinate</param>
-        /// <returns><c>true</c> if x-, y- and z-ordinates of this coordinate and <see paramref="other"/> coordiante are equal.</returns>
+        /// <returns><c>true</c> if x-, y- and z-ordinates of this coordinate and <see paramref="other"/> coordinate are equal.</returns>
         bool Equals3D(ICoordinate other);        
     }
 }

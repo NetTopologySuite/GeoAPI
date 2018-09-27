@@ -67,7 +67,17 @@ namespace GeoAPI.Geometries
         /// <summary>
         /// Returns the number of coordinates in this sequence.
         /// </summary>        
-        int Count { get;} 
+        int Count { get; }
+
+        /// <summary>
+        /// Creates a coordinate for use in this sequence.
+        /// </summary>
+        /// <remarks>
+        /// The coordinate is created supporting the same number of <see cref="Dimension"/> and <see cref="Measures"/>
+        /// as this sequence and is suitable for use with <see cref="GetCoordinate(int, CoordinateXY)"/>.
+        /// </remarks>
+        /// <returns>A coordinate for use with this sequence</returns>
+        CoordinateXY CreateCoordinate();
 
         /// <summary>
         /// Returns (possibly a copy of) the ith Coordinate in this collection.
