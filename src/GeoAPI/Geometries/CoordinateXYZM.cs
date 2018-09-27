@@ -21,6 +21,10 @@ namespace GeoAPI.Geometries
     /// <para/>
     /// Apart from the basic accessor functions, NTS supports
     /// only specific operations involving the Z- and/or M-ordinate.
+    /// <para/>
+    /// Implementations may optionally support Z-ordinate and M-measure values
+    /// as appropriate for a <see cref="ICoordinateSequence"/>. Use of <see cref="Z"/>
+    /// and <see cref="M"/> setters or <see cref="P:GeoAPI.Geometries.CoordinateXYZM.this[Ordinate]" /> indexer are recommended.
     /// </remarks>
 #if HAS_SYSTEM_SERIALIZABLEATTRIBUTE
     [Serializable]
@@ -63,14 +67,7 @@ namespace GeoAPI.Geometries
         /// <paramref name="c"/>.
         /// </summary>
         /// <param name="c"><c>CoordinateXY</c> to copy.</param>
-        public CoordinateXYZM(CoordinateXY c) /*: this(c.X, c.Y, NullOrdinate, NullOrdinate) { }
-
-        /// <summary>
-        /// Constructs a <c>CoordinateXYZM</c> having the same (x,y) values as
-        /// <paramref name="c"/>.
-        /// </summary>
-        /// <param name="c"><c>CoordinateXYZM</c> to copy.</param>
-        public CoordinateXYZM(CoordinateXYZM c) */: this(c.X, c.Y, c.Z, c.M) { }
+        public CoordinateXYZM(CoordinateXY c) : this(c.X, c.Y, c.Z, c.M) { }
 
         /// <summary>
         /// Constructs a <c>CoordinateXYZM</c> at (x,y,NaN).

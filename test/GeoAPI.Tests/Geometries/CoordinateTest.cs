@@ -118,6 +118,8 @@ namespace GeoAPI.Tests.Geometries
             T c = CreateCoordinate();
             c.CoordinateValue = orig;
 
+            Assert.AreNotSame(orig, c);
+
             Assert.AreEqual(c.X, 350.2);
             Assert.AreEqual(c.Y, 4566.8);
             CheckGetter(Ordinate.Z, 5266.3, c.Z);
@@ -172,13 +174,17 @@ namespace GeoAPI.Tests.Geometries
             c[Ordinate.Y] = 222;
             if (ZIndexValid)
                 c[Ordinate.Z] = 333;
-            else
+            else {
                 Assert.Throws<ArgumentOutOfRangeException>(() => c[Ordinate.Z] = 333);
+                Assert.Throws<InvalidOperationException>(() => c.Z = 333);
+            }
 
             if (MIndexValid)
                 c[Ordinate.M] = 444;
-            else
+            else {
                 Assert.Throws<ArgumentOutOfRangeException>(() => c[Ordinate.M] = 444);
+                Assert.Throws<InvalidOperationException>(() => c.M = 444);
+            }
 
             Assert.AreEqual(c[Ordinate.X], 111.0);
             Assert.AreEqual(c[Ordinate.Y], 222.0);

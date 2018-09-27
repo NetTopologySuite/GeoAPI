@@ -20,6 +20,10 @@ namespace GeoAPI.Geometries
     /// (which is also the value of <see cref="CoordinateXY.NullOrdinate"/>).
     /// Apart from the basic accessor functions, NTS supports
     /// only specific operations involving the M-ordinate.
+    /// <para/>
+    /// Implementations may optionally support Z-ordinate and M-measure values
+    /// as appropriate for a <see cref="ICoordinateSequence"/>. Use of <see cref="Z"/>
+    /// and <see cref="M"/> setters or <see cref="P:GeoAPI.Geometries.CoordinateXYM.this[Ordinate]" /> indexer are recommended.
     /// </remarks>
 #if HAS_SYSTEM_SERIALIZABLEATTRIBUTE
     [Serializable]
@@ -61,14 +65,7 @@ namespace GeoAPI.Geometries
         /// <paramref name="c"/>.
         /// </summary>
         /// <param name="c"><c>CoordinateXY</c> to copy.</param>
-        public CoordinateXYM(CoordinateXY c) : this(c.X, c.Y, NullOrdinate) { }
-
-        /// <summary>
-        /// Constructs a <c>CoordinateXYM</c> having the same (x,y) values as
-        /// <paramref name="c"/>.
-        /// </summary>
-        /// <param name="c"><c>CoordinateXYM</c> to copy.</param>
-        public CoordinateXYM(CoordinateXYM c) : this(c.X, c.Y, c.M) { }
+        public CoordinateXYM(CoordinateXY c) : this(c.X, c.Y, c.M) { }
 
         /// <summary>
         /// Constructs a <c>CoordinateXYM</c> at (x,y,NaN).

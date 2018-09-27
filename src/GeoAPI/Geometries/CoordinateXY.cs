@@ -12,6 +12,10 @@ namespace GeoAPI.Geometries
     /// information such as an envelope, a precision model, and spatial reference
     /// system information), a <c>Coordinate</c> only contains ordinate values
     /// and properties.
+    /// <para/>
+    /// Implementations may optionally support Z-ordinate and M-measure values
+    /// as appropriate for a <see cref="ICoordinateSequence"/>. Use of <see cref="Z"/>
+    /// and <see cref="M"/> setters or <see cref="P:GeoAPI.Geometries.Coordinate.this[Ordinate]" /> indexer are recommended.
     /// </remarks>
 #if HAS_SYSTEM_SERIALIZABLEATTRIBUTE
     [Serializable]
@@ -39,19 +43,27 @@ namespace GeoAPI.Geometries
         /// <summary>
         /// Gets or sets the Z-ordinate value (<see cref="NullOrdinate"/>).
         /// </summary>
+        /// <remarks>The Z-ordinate is not supported</remarks>
+        /// <exception cref="InvalidOperationException">
+        /// Thrown if an attempt is made to <b>set</b> the Z-ordinate value
+        /// </exception>
         public virtual double Z
         {
             get => NullOrdinate; 
-            set { }
+            set { throw new InvalidOperationException($"{GetType().Name} does not support setting Z-ordinate");}
         }
 
         /// <summary>
-        /// Gets the default m-measure (<see cref="NullOrdinate"/>).
+        /// Gets or sets the default m-measure (<see cref="NullOrdinate"/>) if supported.
         /// </summary>
+        /// <remarks>The M-measure is not supported</remarks>
+        /// <exception cref="InvalidOperationException">
+        /// Thrown if an attempt is made to <b>set</b> the M-Measure value
+        /// </exception>
         public virtual double M
         {
             get => NullOrdinate;
-            set { }
+            set { throw new InvalidOperationException($"{GetType().Name} does not support setting M-measure"); }
         }
 
         /// <summary>

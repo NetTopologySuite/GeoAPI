@@ -20,6 +20,10 @@ namespace GeoAPI.Geometries
     /// <para/>
     /// Apart from the basic accessor functions, NTS supports
     /// only specific operations involving the Z-ordinate.
+    /// <para/>
+    /// Implementations may optionally support Z-ordinate and M-measure values
+    /// as appropriate for a <see cref="ICoordinateSequence"/>. Use of <see cref="Z"/>
+    /// and <see cref="M"/> setters or <see cref="P:GeoAPI.Geometries.Coordinate.this[Ordinate]" /> indexer are recommended.
     /// </remarks>
 #if HAS_SYSTEM_SERIALIZABLEATTRIBUTE
     [Serializable]
@@ -57,7 +61,7 @@ namespace GeoAPI.Geometries
         public virtual double M
         {
             get => NullOrdinate;
-            set { }
+            set { throw new InvalidOperationException($"{nameof(Coordinate)} does not support setting M-measure"); }
         }
 
         /// <summary>
