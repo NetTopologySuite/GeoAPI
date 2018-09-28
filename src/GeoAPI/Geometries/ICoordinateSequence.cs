@@ -46,8 +46,10 @@ namespace GeoAPI.Geometries
         int Dimension { get; }
 
         /// <summary>
-        /// Returns the number of measures included in {@link #getDimension()} for each coordinate for this
+        /// Gets the number of measures included in <see cref="Dimension"/> for each coordinate for this
         /// sequence.
+        /// </summary>
+        /// <remarks>
         /// For a measured coordinate sequence a non-zero value is returned.
         /// <list type="Bullet">
         /// <item>For <see cref="Geometries.Ordinates.XY"/> sequence measures is zero</item>
@@ -56,18 +58,37 @@ namespace GeoAPI.Geometries
         /// <item>For <see cref="Geometries.Ordinates.XYZM"/> sequence measure is one</item>
         /// <item>Values greater than one are supported</item>
         /// </list>
-        /// </summary>
+        /// </remarks>
         int Measures { get; }
 
         /// <summary>
-        /// Returns the kind of ordinates this sequence supplies.
+        /// Gets the kind of ordinates this sequence supplies.
         /// </summary>
         Ordinates Ordinates { get; }
 
         /// <summary>
-        /// Returns the number of coordinates in this sequence.
-        /// </summary>        
-        int Count { get; }
+        /// Gets a value indicating if <see cref="GetZ(int)"/> is supported.
+        /// </summary>
+        /// <remarks>
+        /// A possible implementation is to use <see cref="Dimension"/> and <see cref="Measures"/> to determine if
+        /// <see cref="GetZ(int)"/> is supported.
+        /// <code lang="C#">
+        /// public bool HasZ { get => (Dimension - Measures) > 2; }
+        /// </code>
+        /// </remarks>
+        bool HasZ { get; }
+  
+        /// <summary>
+        /// Gets a value indicating if <see cref="GetM(int)"/> is supported.
+        /// </summary>
+        /// <remarks>
+        /// A possible implementation is to use <see cref="Dimension"/> and <see cref="Measures"/> to determine if
+        /// <see cref="GetM(int)"/> is supported.
+        /// <code lang="C#">
+        /// public bool HasM { get => Dimension > 2 &amp;&amp; Measures > 0; }
+        /// </code>
+        /// </remarks>
+        bool HasM { get; }
 
         /// <summary>
         /// Creates a coordinate for use in this sequence.
@@ -133,10 +154,10 @@ namespace GeoAPI.Geometries
         /// <see cref="Coordinate.NullOrdinate"/> if not defined.
         /// </returns>
         /// <remarks>Default implementation (C#)
-        /// <code>
+        /// <code lang="C#">
         /// double GetZ(int index)
         /// {
-        ///     if ((Dimension - Measures) > 2)
+        ///     if (HasZ)
         ///     {
         ///         return GetOrdinate(index, 2);
         ///     }
@@ -158,10 +179,10 @@ namespace GeoAPI.Geometries
         /// <see cref="Coordinate.NullOrdinate"/> if not defined.
         /// </returns>
         /// <remarks>
-        /// <code>
+        /// <code lang="C#">
         /// double GetM(int index)
         /// {
-        ///     if (Dimension > 2 &amp;&amp; Measures > 0)
+        ///     if (HasM)
         ///     {
         ///         int mIndex = Dimension - Measures;
         ///         return getOrdinate(index, mIndex);
@@ -190,6 +211,11 @@ namespace GeoAPI.Geometries
         /// <param name="ordinate">The ordinate index in the coordinate (in range [0, dimension-1]).</param>
         /// <returns>The ordinate value, or <see cref="Coordinate.NullOrdinate"/> if the sequence does not provide values for <paramref name="ordinate"/>"/></returns>       
         double GetOrdinate(int index, Ordinate ordinate);
+
+        /// <summary>
+        /// Gets a value indicating the number of coordinates in this sequence.
+        /// </summary>        
+        int Count { get; }
 
         /// <summary>
         /// Sets the value for a given ordinate of a coordinate in this sequence.       
