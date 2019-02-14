@@ -184,12 +184,6 @@ namespace GeoAPI.Geometries
 
         IGeometry Buffer(double distance, int quadrantSegments);
         
-        [Obsolete]
-        IGeometry Buffer(double distance, BufferStyle endCapStyle);
-
-        [Obsolete]
-        IGeometry Buffer(double distance, int quadrantSegments, BufferStyle endCapStyle);
-
         IGeometry Buffer(double distance, int quadrantSegments, EndCapStyle endCapStyle);
 
         IGeometry Buffer(double distance, IBufferParameters bufferParameters);
@@ -199,9 +193,6 @@ namespace GeoAPI.Geometries
         IGeometry Union(IGeometry other);
 
         IGeometry Union();
-
-        [Obsolete("Favor either EqualsTopologically or EqualsExact instead.")]
-        bool Equals(IGeometry other);
 
         /// <summary>
         /// Tests whether this geometry is topologically equal to the argument geometry

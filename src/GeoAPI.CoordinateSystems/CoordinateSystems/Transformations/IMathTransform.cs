@@ -22,7 +22,7 @@ using GeoAPI.Geometries;
 namespace GeoAPI.CoordinateSystems.Transformations
 {
 	/// <summary>
-	/// Transforms muti-dimensional coordinate points.
+	/// Transforms multi-dimensional coordinate points.
 	/// </summary>
 	/// <remarks>
 	/// If a client application wishes to query the source and target coordinate 
@@ -131,15 +131,7 @@ namespace GeoAPI.CoordinateSystems.Transformations
         /// </summary>
         /// <param name="coordinate">The coordinate to transform</param>
         /// <returns>The transformed coordinate</returns>
-        [Obsolete("Use Coordinate Transform(Coordinate coordinate) instead.")]
-        ICoordinate Transform(ICoordinate coordinate);
-
-        /// <summary>
-        /// Transforms a a coordinate. The input coordinate remains unchanged.
-        /// </summary>
-        /// <param name="coordinate">The coordinate to transform</param>
-        /// <returns>The transformed coordinate</returns>
-        Coordinate Transform(Coordinate coordinate);
+        CoordinateXY Transform(CoordinateXY coordinate);
 
 
 		/// <summary>
@@ -178,7 +170,7 @@ namespace GeoAPI.CoordinateSystems.Transformations
         /// </remarks>
         /// <param name="points"></param>
         /// <returns></returns>
-        IList<Coordinate> TransformList(IList<Coordinate> points); 
+        IList<CoordinateXY> TransformList(IList<CoordinateXY> points); 
 
 
 		/// <summary>

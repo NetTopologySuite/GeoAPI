@@ -22,7 +22,7 @@ namespace GeoAPI.Geometries
     /// only specific operations involving the M-ordinate.
     /// <para/>
     /// Implementations may optionally support Z-ordinate and M-measure values
-    /// as appropriate for a <see cref="ICoordinateSequence"/>. Use of <see cref="Z"/>
+    /// as appropriate for a <see cref="ICoordinateSequence"/>. Use of <see cref="CoordinateXYZ.Z"/>
     /// and <see cref="M"/> setters or <see cref="P:GeoAPI.Geometries.CoordinateXYM.this[Ordinate]" /> indexer are recommended.
     /// </remarks>
 #if HAS_SYSTEM_SERIALIZABLEATTRIBUTE
@@ -51,14 +51,6 @@ namespace GeoAPI.Geometries
         ///  Constructs a <c>CoordinateXYM</c> at (0,0,NaN).
         /// </summary>
         public CoordinateXYM() : this(0.0, 0.0, NullOrdinate) { }
-
-        /// <summary>
-        /// Constructs a <c>CoordinateXYM</c> having the same (x,y,z) values as
-        /// <c>other</c>.
-        /// </summary>
-        /// <param name="c"><c>ICoordinate</c> to copy.</param>
-        [Obsolete]
-        public CoordinateXYM(ICoordinate c) : this(c.X, c.Y, c.M) { }
 
         /// <summary>
         /// Constructs a <c>CoordinateXYM</c> having the same (x,y) values as
@@ -141,24 +133,13 @@ namespace GeoAPI.Geometries
             return string.Format(NumberFormatInfo.InvariantInfo, "({0:R}, {1:R}, m={2:R})", X, Y, M);
         }
 
-        /// <summary>
-        /// Create a new object as copy of this instance.
-        /// </summary>
-        /// <returns></returns>
-        public override CoordinateXY Copy()
-        {
-            return new CoordinateXYM(X, Y, M);
-        }
-        /*
-        /// <summary>
-        /// Create a new object as copy of this instance.
-        /// </summary>
-        /// <returns></returns>
-        [Obsolete("Use Copy")]
-        public object Clone()
-        {
-            return MemberwiseClone();
-        }
-        */
+        ///// <summary>
+        ///// Create a new object as copy of this instance.
+        ///// </summary>
+        ///// <returns></returns>
+        //public override CoordinateXY Copy()
+        //{
+        //    return new CoordinateXYM(X, Y, M);
+        //}
     }
 }

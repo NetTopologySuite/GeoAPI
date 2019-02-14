@@ -23,7 +23,7 @@ namespace GeoAPI.Geometries
     /// <para/>
     /// Implementations may optionally support Z-ordinate and M-measure values
     /// as appropriate for a <see cref="ICoordinateSequence"/>. Use of <see cref="Z"/>
-    /// and <see cref="M"/> setters or <see cref="P:GeoAPI.Geometries.CoordinateXYZ.this[Ordinate]" /> indexer are recommended.
+    /// and <see cref="CoordinateXY.M"/> setters or <see cref="P:GeoAPI.Geometries.CoordinateXYZ.this[Ordinate]" /> indexer are recommended.
     /// </remarks>
 #if HAS_SYSTEM_SERIALIZABLEATTRIBUTE
     [Serializable]
@@ -51,14 +51,6 @@ namespace GeoAPI.Geometries
         ///  Constructs a <c>CoordinateXYZ</c> at (0,0,NaN).
         /// </summary>
         public CoordinateXYZ() : this(0.0, 0.0, NullOrdinate) { }
-
-        /// <summary>
-        /// Constructs a <c>CoordinateXYZ</c> having the same (x,y,z) values as
-        /// <c>other</c>.
-        /// </summary>
-        /// <param name="c"><c>ICoordinate</c> to copy.</param>
-        [Obsolete]
-        public CoordinateXYZ(ICoordinate c) : this(c.X, c.Y, c.Z) { }
 
         /// <summary>
         /// Constructs a <c>CoordinateXYZ</c> having the same (x,y) values as
@@ -166,13 +158,13 @@ namespace GeoAPI.Geometries
             return string.Format(NumberFormatInfo.InvariantInfo, "({0:R}, {1:R}, {2:R})", X, Y, Z);
         }
 
-        /// <summary>
-        /// Create a new object as copy of this instance.
-        /// </summary>
-        public override CoordinateXY Copy()
-        {
-            return new CoordinateXYZ(X, Y, Z);
-        }
+        ///// <summary>
+        ///// Create a new object as copy of this instance.
+        ///// </summary>
+        //public override CoordinateXY Copy()
+        //{
+        //    return new CoordinateXYZ(X, Y, Z);
+        //}
 
         /// <summary>
         /// Computes the 3-dimensional Euclidean distance to another location.

@@ -5,7 +5,7 @@ namespace GeoAPI.Geometries
 {
     /// <summary>
     /// A lightweight class used to store coordinates on the 2-dimensional Cartesian plane
-    /// and additional z- and m-ordinate values (<see cref="Z"/>, <see cref="M"/>).
+    /// and additional z- and m-ordinate values (<see cref="CoordinateXYZ.Z"/>, <see cref="M"/>).
     /// </summary>
     /// <remarks>
     /// It is distinct from <see cref="IPoint"/>, which is a subclass of <see cref="IGeometry"/>.
@@ -23,7 +23,7 @@ namespace GeoAPI.Geometries
     /// only specific operations involving the Z- and/or M-ordinate.
     /// <para/>
     /// Implementations may optionally support Z-ordinate and M-measure values
-    /// as appropriate for a <see cref="ICoordinateSequence"/>. Use of <see cref="Z"/>
+    /// as appropriate for a <see cref="ICoordinateSequence"/>. Use of <see cref="CoordinateXYZ.Z"/>
     /// and <see cref="M"/> setters or <see cref="P:GeoAPI.Geometries.CoordinateXYZM.this[Ordinate]" /> indexer are recommended.
     /// </remarks>
 #if HAS_SYSTEM_SERIALIZABLEATTRIBUTE
@@ -53,14 +53,6 @@ namespace GeoAPI.Geometries
         ///  Constructs a <c>CoordinateXYZM</c> at (0,0,NaN,NaN).
         /// </summary>
         public CoordinateXYZM() : this(0.0, 0.0, NullOrdinate, NullOrdinate) { }
-
-        /// <summary>
-        /// Constructs a <c>CoordinateXYZM</c> having the same (x,y,z,m) values as
-        /// <c>other</c>.
-        /// </summary>
-        /// <param name="c"><c>ICoordinate</c> to copy.</param>
-        [Obsolete]
-        public CoordinateXYZM(ICoordinate c) : this(c.X, c.Y, c.Z, c.M) { }
 
         /// <summary>
         /// Constructs a <c>CoordinateXYZM</c> having the same (x,y) values as
@@ -148,13 +140,13 @@ namespace GeoAPI.Geometries
             return string.Format(NumberFormatInfo.InvariantInfo, "({0:R}, {1:R}, {2:R}, m={3:R})", X, Y, Z, M);
         }
 
-        /// <summary>
-        /// Create a new object as copy of this instance.
-        /// </summary>
-        /// <returns></returns>
-        public override CoordinateXY Copy()
-        {
-            return new CoordinateXYZM(X, Y, Z, M);
-        }
+        ///// <summary>
+        ///// Create a new object as copy of this instance.
+        ///// </summary>
+        ///// <returns></returns>
+        //public override CoordinateXY Copy()
+        //{
+        //    return new CoordinateXYZM(X, Y, Z, M);
+        //}
     }
 }

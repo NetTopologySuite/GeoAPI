@@ -111,6 +111,18 @@ namespace GeoAPI.Tests.Geometries
             Assert.That(ReferenceEquals(orig, c), Is.False);
         }
 
+        [Test, Obsolete]
+        public void TestCloneable()
+        {
+            var orig = CreateCoordinate();
+            var clone = (T) ((ICloneable) orig).Clone();
+
+            Assert.That(clone.GetType(), Is.EqualTo(typeof(T)));
+            Assert.That(orig.Equals(clone), Is.True);
+            Assert.That(orig.Z.Equals(clone.Z), Is.True);
+            Assert.That(orig.M.Equals(clone.M), Is.True);
+        }
+
         [Test]
         public void TestSetCoordinate()
         {
@@ -234,14 +246,24 @@ namespace GeoAPI.Tests.Geometries
             T equalToHighest = CreateCoordinate3D(20.0, 100.0, 50.0);
             T higherStill = CreateCoordinate3D(20.0, 200.0, 50.0);
 
+            Assert.AreEqual(-1, lowest.CompareTo((object)highest));
             Assert.AreEqual(-1, lowest.CompareTo(highest));
+            Assert.AreEqual(1, highest.CompareTo((object)lowest));
             Assert.AreEqual(1, highest.CompareTo(lowest));
+            Assert.AreEqual(-1, highest.CompareTo((object)higherStill));
             Assert.AreEqual(-1, highest.CompareTo(higherStill));
+            Assert.AreEqual(0, highest.CompareTo((object)equalToHighest));
             Assert.AreEqual(0, highest.CompareTo(equalToHighest));
+
+            // Invalid arguments
+            Assert.That(() => lowest.CompareTo((object)null), Throws.InstanceOf<ArgumentNullException>());
+            Assert.That(() => lowest.CompareTo(new object()), Throws.InstanceOf<ArgumentException>());
+
+            Assert.That(() => lowest.CompareTo((T)null), Throws.InstanceOf<ArgumentNullException>());
         }
 
         /// <summary>
-        /// Expected string when calling <see cref="T.ToString()"/> method for x=100, y=200, z=50, m=25
+        /// Expected string when calling <see cref="object.ToString()"/> method for x=100, y=200, z=50, m=25
         /// </summary>
         protected abstract string ExpectedToString { get; }
 
@@ -252,14 +274,14 @@ namespace GeoAPI.Tests.Geometries
             Assert.AreEqual(ExpectedToString, actualResult);
         }
 
-        [Test]
-        public void TestClone()
-        {
-            T c = CreateCoordinate3D(100.0, 200.0, 50.0);
-            T clone = (T)c.Clone();
-            Assert.IsTrue(c.Equals(clone));
+        //[Test]
+        //public void TestClone()
+        //{
+        //    T c = CreateCoordinate3D(100.0, 200.0, 50.0);
+        //    T clone = (T)c.Clone();
+        //    Assert.IsTrue(c.Equals(clone));
 
-        }
+        //}
 
         [Test]
         public void TestDistance()

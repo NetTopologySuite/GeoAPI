@@ -30,7 +30,7 @@ namespace GeoAPI.Geometries
 #endif
     [Obsolete("Use concrete classes like CoordinateXY, CoordinateXYM, CoordinateXYZ or CoordinateXYZM")]
 #pragma warning disable 612,618
-    public class Coordinate : ICoordinate, IComparable<Coordinate>
+    public class Coordinate : IComparable<Coordinate>
     {
 
         ///<summary>
@@ -81,14 +81,6 @@ namespace GeoAPI.Geometries
         ///  Constructs a <c>Coordinate</c> at (0,0,NaN).
         /// </summary>
         public Coordinate() : this(0.0, 0.0, NullOrdinate) { }
-
-        /// <summary>
-        /// Constructs a <c>Coordinate</c> having the same (x,y,z) values as
-        /// <c>other</c>.
-        /// </summary>
-        /// <param name="c"><c>Coordinate</c> to copy.</param>
-        [Obsolete]
-        public Coordinate(ICoordinate c) : this(c.X, c.Y, c.Z) { }
 
         /// <summary>
         /// Constructs a <c>Coordinate</c> having the same (x,y,z) values as
@@ -201,18 +193,14 @@ namespace GeoAPI.Geometries
         /// </summary>
         /// <param name="other"><c>Coordinate</c> with which to do the comparison.</param>
         /// <returns><c>true</c> if <c>other</c> is a <c>Coordinate</c> with the same values for the x and y ordinates.</returns>
-        public override bool Equals(object other)
+        public override bool Equals(object o)
         {
-            if (other == null)
-                return false;
-            var otherC = other as Coordinate;
-            if (otherC != null)
-                return Equals(otherC);
-#pragma warning disable 612,618
-            if (!(other is ICoordinate))
-                return false;
-            return ((ICoordinate)this).Equals((ICoordinate)other);
-#pragma warning restore 612,618
+            if (o is Coordinate other)
+                return Equals(other);
+            if (o is CoordinateXY otherXY)
+                return ((CoordinateXY) this).Equals(otherXY);
+
+            return false;
         }
 
         /// <summary>
@@ -338,16 +326,6 @@ namespace GeoAPI.Geometries
         }
 
         /// <summary>
-        /// Create a new object as copy of this instance.
-        /// </summary>
-        /// <returns></returns>
-        [Obsolete("Use Copy")]
-        public object Clone()
-        {
-            return MemberwiseClone();
-        }
-
-        /// <summary>
         /// Computes the 2-dimensional Euclidean distance to another location.
         /// </summary>
         /// <param name="c">A <see cref="Coordinate"/> with which to do the distance comparison.</param>
@@ -402,188 +380,6 @@ namespace GeoAPI.Geometries
             return (int)(f ^ (f >> 32));
             */
         }
-
-        #region ICoordinate
-
-        /// <summary>
-        /// X coordinate.
-        /// </summary>
-        [Obsolete]
-        double ICoordinate.X
-        {
-            get { return X; }
-            set { X = value; }
-        }
-
-        /// <summary>
-        /// Y coordinate.
-        /// </summary>
-        [Obsolete]
-        double ICoordinate.Y
-        {
-            get { return Y; }
-            set { Y = value; }
-        }
-
-        /// <summary>
-        /// Z coordinate.
-        /// </summary>
-        [Obsolete]
-        double ICoordinate.Z
-        {
-            get { return Z; }
-            set { Z = value; }
-        }
-
-        /// <summary>
-        /// The measure value
-        /// </summary>
-        [Obsolete]
-        double ICoordinate.M
-        {
-            get { return NullOrdinate; }
-            set { }
-        }
-
-        /// <summary>
-        /// Gets/Sets <c>Coordinate</c>s (x,y,z) values.
-        /// </summary>
-        [Obsolete]
-        ICoordinate ICoordinate.CoordinateValue
-        {
-            get { return this; }
-            set
-            {
-                X = value.X;
-                Y = value.Y;
-                Z = value.Z;
-            }
-        }
-
-        /// <summary>
-        /// Gets/Sets the ordinate value for a given index
-        /// </summary>
-        /// <param name="index">The index of the ordinate</param>
-        /// <returns>The ordinate value</returns>
-        [Obsolete]
-        Double ICoordinate.this[Ordinate index]
-        {
-            get
-            {
-                switch (index)
-                {
-                    case Ordinate.X:
-                        return X;
-                    case Ordinate.Y:
-                        return Y;
-                    case Ordinate.Z:
-                        return Z;
-                    default:
-                        return NullOrdinate;
-                }
-            }
-            set
-            {
-                switch (index)
-                {
-                    case Ordinate.X:
-                        X = value;
-                        break;
-                    case Ordinate.Y:
-                        Y = value;
-                        break;
-                    case Ordinate.Z:
-                        Z = value;
-                        break;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Returns whether the planar projections of the two <c>Coordinate</c>s are equal.
-        ///</summary>
-        /// <param name="other"><c>Coordinate</c> with which to do the 2D comparison.</param>
-        /// <returns>
-        /// <c>true</c> if the x- and y-coordinates are equal;
-        /// the Z coordinates do not have to be equal.
-        /// </returns>
-        [Obsolete]
-        bool ICoordinate.Equals2D(ICoordinate other)
-        {
-            return X == other.X && Y == other.Y;
-        }
-
-        /// <summary>
-        /// Compares this object with the specified object for order.
-        /// Since Coordinates are 2.5D, this routine ignores the z value when making the comparison.
-        /// Returns
-        ///   -1  : this.x lowerthan other.x || ((this.x == other.x) AND (this.y lowerthan other.y))
-        ///    0  : this.x == other.x AND this.y = other.y
-        ///    1  : this.x greaterthan other.x || ((this.x == other.x) AND (this.y greaterthan other.y))
-        /// </summary>
-        /// <param name="other"><c>Coordinate</c> with which this <c>Coordinate</c> is being compared.</param>
-        /// <returns>
-        /// A negative integer, zero, or a positive integer as this <c>Coordinate</c>
-        ///         is less than, equal to, or greater than the specified <c>Coordinate</c>.
-        /// </returns>
-        [Obsolete]
-        int IComparable<ICoordinate>.CompareTo(ICoordinate other)
-        {
-            if (X < other.X)
-                return -1;
-            if (X > other.X)
-                return 1;
-            if (Y < other.Y)
-                return -1;
-            return Y > other.Y ? 1 : 0;
-        }
-
-        /// <summary>
-        /// Compares this object with the specified object for order.
-        /// Since Coordinates are 2.5D, this routine ignores the z value when making the comparison.
-        /// Returns
-        ///   -1  : this.x lowerthan other.x || ((this.x == other.x) AND (this.y lowerthan other.y))
-        ///    0  : this.x == other.x AND this.y = other.y
-        ///    1  : this.x greaterthan other.x || ((this.x == other.x) AND (this.y greaterthan other.y))
-        /// </summary>
-        /// <param name="o"><c>Coordinate</c> with which this <c>Coordinate</c> is being compared.</param>
-        /// <returns>
-        /// A negative integer, zero, or a positive integer as this <c>Coordinate</c>
-        ///         is less than, equal to, or greater than the specified <c>Coordinate</c>.
-        /// </returns>
-        int IComparable.CompareTo(object o)
-        {
-            var other = (Coordinate)o;
-            return CompareTo(other);
-        }
-
-        /// <summary>
-        /// Returns <c>true</c> if <c>other</c> has the same values for x, y and z.
-        /// </summary>
-        /// <param name="other"><c>Coordinate</c> with which to do the 3D comparison.</param>
-        /// <returns><c>true</c> if <c>other</c> is a <c>Coordinate</c> with the same values for x, y and z.</returns>
-        [Obsolete]
-        bool ICoordinate.Equals3D(ICoordinate other)
-        {
-            return (X == other.X) && (Y == other.Y) &&
-                ((Z == other.Z) || (Double.IsNaN(Z) && Double.IsNaN(other.Z)));
-        }
-
-        /// <summary>
-        /// Computes the 2-dimensional Euclidean distance to another location.
-        /// The Z-ordinate is ignored.
-        /// </summary>
-        /// <param name="p"><c>Coordinate</c> with which to do the distance comparison.</param>
-        /// <returns>the 2-dimensional Euclidean distance between the locations</returns>
-        [Obsolete]
-        double ICoordinate.Distance(ICoordinate p)
-        {
-            var dx = X - p.X;
-            var dy = Y - p.Y;
-            return Math.Sqrt(dx * dx + dy * dy);
-        }
-
-        #endregion ICoordinate
 
         /// <summary>
         /// Implicit conversion operator to get a <see cref="CoordinateXY"/> from a <see cref="Coordinate"/>.

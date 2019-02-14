@@ -248,13 +248,6 @@ namespace GeoAPI.Geometries
         Envelope ExpandEnvelope(Envelope env);
 
         /// <summary>
-        /// Creates a reversed version of this coordinate sequence with cloned <see cref="Coordinate"/>s
-        /// </summary>
-        /// <returns>A reversed version of this sequence</returns>
-        [Obsolete("Not conform with JTS")]
-        ICoordinateSequence Reversed();
-
-        /// <summary>
         /// Returns a deep copy of this collection.
         /// </summary>
         /// <returns>A copy of the coordinate sequence containing copies of all points</returns>

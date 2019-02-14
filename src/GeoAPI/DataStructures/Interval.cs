@@ -44,26 +44,6 @@ namespace GeoAPI.DataStructures
             Max = max;
         }
 
-        //        /// <summary>
-        //        /// Method to expand 
-        //        /// </summary>
-        //        /// <param name="p"></param>
-        //        /// <returns></returns>
-        //        public void ExpandByValue(double p)
-        //        {
-        //#if picky
-        //            // This is not a valid value, ignore it
-        //            if (p.Equals(Coordinate.NullOrdinate))
-        //                return;
-
-        //            // This interval has not seen a valid ordinate
-        //            if (Min.Equals(Coordinate.NullOrdinate))
-        //                return;
-        //#endif
-        //            Min = p < Min ? p : Min;
-        //            Max = p > Max ? p : Max;
-        //        }
-
         /// <summary>
         /// Method to expand 
         /// </summary>
@@ -158,32 +138,6 @@ namespace GeoAPI.DataStructures
             return new Interval(min, max);
         }
 
-        ///// <summary>
-        ///// Function to compute an interval that contains this and <paramref name="interval"/> <see cref="Interval"/>
-        ///// </summary>
-        ///// <param name="interval">The interval</param>
-        ///// <returns>An interval</returns>
-        //public void ExpandByInterval(Interval interval)
-        //{
-        //    if (IsEmpty && interval.IsEmpty)
-        //        return;
-
-        //    if (!IsEmpty && interval.IsEmpty)
-        //        return;
-
-        //    if (IsEmpty)
-        //    {
-        //        Min = interval.Min;
-        //        Max = interval.Max;
-        //    }
-        //    else
-        //    {
-        //        Min = Min < interval.Min ? Min : interval.Min;
-        //        Max = Max > interval.Max ? Max : interval.Max;
-        //    }
-        //}
-
-
         /// <summary>
         /// Function to test if this <see cref="Interval"/> overlaps <paramref name="interval"/>.
         /// </summary>
@@ -197,7 +151,7 @@ namespace GeoAPI.DataStructures
         /// <summary>
         /// Function to test if this <see cref="Interval"/> overlaps the interval &#x211d;[<paramref name="min"/>, <paramref name="max"/>].
         /// </summary>
-        /// <param name="min">The mimimum value of the interval</param>
+        /// <param name="min">The minimum value of the interval</param>
         /// <param name="max">The maximum value of the interval</param>
         /// <returns><c>true</c> if this interval overlaps the interval &#x211d;[<paramref name="min"/>, <paramref name="max"/>]</returns>
         public bool Overlaps(double min, double max)
@@ -220,7 +174,7 @@ namespace GeoAPI.DataStructures
         /// Function to test if this <see cref="Interval"/> contains the interval &#x211d;[<paramref name="min"/>, <paramref name="max"/>].
         /// </summary>
         /// <remarks>This is more rigid than <see cref="Overlaps(double, double)"/></remarks>
-        /// <param name="min">The mimimum value of the interval</param>
+        /// <param name="min">The minimum value of the interval</param>
         /// <param name="max">The maximum value of the interval</param>
         /// <returns><c>true</c> if this interval contains the interval &#x211d;[<paramref name="min"/>, <paramref name="max"/>]</returns>
         public bool Contains(double min, double max)
@@ -252,7 +206,7 @@ namespace GeoAPI.DataStructures
         /// <summary>
         /// Function to test if this <see cref="Interval"/> intersects the interval &#x211d;[<paramref name="min"/>, <paramref name="max"/>].
         /// </summary>
-        /// <param name="min">The mimimum value of the interval</param>
+        /// <param name="min">The minimum value of the interval</param>
         /// <param name="max">The maximum value of the interval</param>
         /// <returns><value>true</value> if this interval intersects the interval &#x211d;[<paramref name="min"/>, <paramref name="max"/>].</returns>
         public bool Intersects(double min, double max)
@@ -261,7 +215,7 @@ namespace GeoAPI.DataStructures
         }
 
         /// <summary>
-        /// Creates an empty or uninitialzed Interval
+        /// Creates an empty or uninitialized Interval
         /// </summary>
         /// <returns>An empty or uninitialized <see cref="Interval"/></returns>
         public static Interval Create()

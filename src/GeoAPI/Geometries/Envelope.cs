@@ -1,16 +1,9 @@
 using System;
 using System.Globalization;
 using System.Text;
-using Coordinate = GeoAPI.Geometries.CoordinateXY;
 
 namespace GeoAPI.Geometries
 {
-#if HAS_SYSTEM_ICLONEABLE
-    using ICloneable = System.ICloneable;
-#else
-    using ICloneable = GeoAPI.ICloneable;
-#endif
-
     /// <summary>
     /// Defines a rectangular region of the 2D coordinate plane.
     /// </summary>
@@ -26,7 +19,7 @@ namespace GeoAPI.Geometries
     [Serializable]
 #endif
 #pragma warning disable 612,618
-    public class Envelope : IEnvelope, IComparable<Envelope>, IIntersectable<Envelope>, IExpandable<Envelope>
+    public class Envelope : IComparable<Envelope>, IIntersectable<Envelope>, IExpandable<Envelope>
 #pragma warning restore 612,618
     {
         /// <summary>
@@ -37,7 +30,7 @@ namespace GeoAPI.Geometries
         /// <param name="p2">Another extremal point of the envelope.</param>
         /// <param name="q">Point to test for intersection.</param>
         /// <returns><c>true</c> if q intersects the envelope p1-p2.</returns>
-        public static bool Intersects(Coordinate p1, Coordinate p2, Coordinate q)
+        public static bool Intersects(CoordinateXY p1, CoordinateXY p2, CoordinateXY q)
         {
             return ((q.X >= (p1.X < p2.X ? p1.X : p2.X)) && (q.X <= (p1.X > p2.X ? p1.X : p2.X))) &&
                    ((q.Y >= (p1.Y < p2.Y ? p1.Y : p2.Y)) && (q.Y <= (p1.Y > p2.Y ? p1.Y : p2.Y)));
@@ -53,50 +46,50 @@ namespace GeoAPI.Geometries
         /// <param name="q1">One extremal point of the envelope Q.</param>
         /// <param name="q2">Another extremal point of the envelope Q.</param>
         /// <returns><c>true</c> if Q intersects Point</returns>
-        public static bool Intersects(Coordinate p1, Coordinate p2, Coordinate q1, Coordinate q2)
+        public static bool Intersects(CoordinateXY p1, CoordinateXY p2, CoordinateXY q1, CoordinateXY q2)
         {
-            double minp = Math.Min(p1.X, p2.X);
-            double maxq = Math.Max(q1.X, q2.X);
-            if (minp > maxq)
+            double minP = Math.Min(p1.X, p2.X);
+            double maxQ = Math.Max(q1.X, q2.X);
+            if (minP > maxQ)
                 return false;
 
-            double minq = Math.Min(q1.X, q2.X);
-            double maxp = Math.Max(p1.X, p2.X);
-            if (maxp < minq)
+            double minQ = Math.Min(q1.X, q2.X);
+            double maxP = Math.Max(p1.X, p2.X);
+            if (maxP < minQ)
                 return false;
 
-            minp = Math.Min(p1.Y, p2.Y);
-            maxq = Math.Max(q1.Y, q2.Y);
-            if (minp > maxq)
+            minP = Math.Min(p1.Y, p2.Y);
+            maxQ = Math.Max(q1.Y, q2.Y);
+            if (minP > maxQ)
                 return false;
 
-            minq = Math.Min(q1.Y, q2.Y);
-            maxp = Math.Max(p1.Y, p2.Y);
-            if (maxp < minq)
+            minQ = Math.Min(q1.Y, q2.Y);
+            maxP = Math.Max(p1.Y, p2.Y);
+            if (maxP < minQ)
                 return false;
 
             return true;
         }
 
-        /*
-        *  the minimum x-coordinate
-        */
-        private double _minx;
+        /**
+         *  the minimum x-coordinate
+         */
+        private double _minX;
 
         /*
-        *  the maximum x-coordinate
-        */
-        private double _maxx;
+         *  the maximum x-coordinate
+         */
+        private double _maxX;
 
         /*
-        * the minimum y-coordinate
-        */
-        private double _miny;
+         * the minimum y-coordinate
+         */
+        private double _minY;
 
         /*
-        *  the maximum y-coordinate
-        */
-        private double _maxy;
+         *  the maximum y-coordinate
+         */
+        private double _maxY;
 
         /// <summary>
         /// Creates a null <c>Envelope</c>.
@@ -123,7 +116,7 @@ namespace GeoAPI.Geometries
         /// </summary>
         /// <param name="p1">The first Coordinate.</param>
         /// <param name="p2">The second Coordinate.</param>
-        public Envelope(Coordinate p1, Coordinate p2)
+        public Envelope(CoordinateXY p1, CoordinateXY p2)
         {
             Init(p1.X, p2.X, p1.Y, p2.Y);
         }
@@ -132,7 +125,7 @@ namespace GeoAPI.Geometries
         /// Creates an <c>Envelope</c> for a region defined by a single Coordinate.
         /// </summary>
         /// <param name="p">The Coordinate.</param>
-        public Envelope(Coordinate p)
+        public Envelope(CoordinateXY p)
         {
             Init(p.X, p.X, p.Y, p.Y);
         }
@@ -165,24 +158,24 @@ namespace GeoAPI.Geometries
         {
             if (x1 < x2)
             {
-                _minx = x1;
-                _maxx = x2;
+                _minX = x1;
+                _maxX = x2;
             }
             else
             {
-                _minx = x2;
-                _maxx = x1;
+                _minX = x2;
+                _maxX = x1;
             }
 
             if (y1 < y2)
             {
-                _miny = y1;
-                _maxy = y2;
+                _minY = y1;
+                _maxY = y2;
             }
             else
             {
-                _miny = y2;
-                _maxy = y1;
+                _minY = y2;
+                _maxY = y1;
             }
         }
 
@@ -191,7 +184,7 @@ namespace GeoAPI.Geometries
         /// </summary>
         /// <param name="p1">The first Coordinate.</param>
         /// <param name="p2">The second Coordinate.</param>
-        public void Init(Coordinate p1, Coordinate p2)
+        public void Init(CoordinateXY p1, CoordinateXY p2)
         {
             Init(p1.X, p2.X, p1.Y, p2.Y);
         }
@@ -200,7 +193,7 @@ namespace GeoAPI.Geometries
         /// Initialize an <c>Envelope</c> for a region defined by a single Coordinate.
         /// </summary>
         /// <param name="p">The Coordinate.</param>
-        public void Init(Coordinate p)
+        public void Init(CoordinateXY p)
         {
             Init(p.X, p.X, p.Y, p.Y);
         }
@@ -211,10 +204,10 @@ namespace GeoAPI.Geometries
         /// <param name="env">The Envelope to initialize from.</param>
         public void Init(Envelope env)
         {
-            _minx = env.MinX;
-            _maxx = env.MaxX;
-            _miny = env.MinY;
-            _maxy = env.MaxY;
+            _minX = env.MinX;
+            _maxX = env.MaxX;
+            _minY = env.MinY;
+            _maxY = env.MaxY;
         }
 
         /// <summary>
@@ -222,10 +215,10 @@ namespace GeoAPI.Geometries
         /// </summary>
         public void SetToNull()
         {
-            _minx = 0;
-            _maxx = -1;
-            _miny = 0;
-            _maxy = -1;
+            _minX = 0;
+            _maxX = -1;
+            _minY = 0;
+            _maxY = -1;
         }
 
         /// <summary>
@@ -239,7 +232,7 @@ namespace GeoAPI.Geometries
         {
             get
             {
-                return _maxx < _minx;
+                return _maxX < _minX;
             }
         }
 
@@ -253,7 +246,7 @@ namespace GeoAPI.Geometries
             {
                 if (IsNull)
                     return 0;
-                return _maxx - _minx;
+                return _maxX - _minX;
             }
         }
 
@@ -267,7 +260,7 @@ namespace GeoAPI.Geometries
             {
                 if (IsNull)
                     return 0;
-                return _maxy - _miny;
+                return _maxY - _minY;
             }
         }
 
@@ -278,7 +271,7 @@ namespace GeoAPI.Geometries
         /// <returns>The minimum x-coordinate.</returns>
         public double MinX
         {
-            get { return _minx; }
+            get { return _minX; }
         }
 
         /// <summary>
@@ -288,7 +281,7 @@ namespace GeoAPI.Geometries
         /// <returns>The maximum x-coordinate.</returns>
         public double MaxX
         {
-            get { return _maxx; }
+            get { return _maxX; }
         }
 
         /// <summary>
@@ -298,7 +291,7 @@ namespace GeoAPI.Geometries
         /// <returns>The minimum y-coordinate.</returns>
         public double MinY
         {
-            get { return _miny; }
+            get { return _minY; }
         }
 
         /// <summary>
@@ -308,7 +301,7 @@ namespace GeoAPI.Geometries
         /// <returns>The maximum y-coordinate.</returns>
         public double MaxY
         {
-            get { return _maxy; }
+            get { return _maxY; }
         }
 
         /// <summary>
@@ -344,13 +337,13 @@ namespace GeoAPI.Geometries
             if (IsNull)
                 return;
 
-            _minx -= deltaX;
-            _maxx += deltaX;
-            _miny -= deltaY;
-            _maxy += deltaY;
+            _minX -= deltaX;
+            _maxX += deltaX;
+            _minY -= deltaY;
+            _maxY += deltaY;
 
             // check for envelope disappearing
-            if (_minx > _maxx || _miny > _maxy)
+            if (_minX > _maxX || _minY > _maxY)
                 SetToNull();
         }
 
@@ -392,7 +385,7 @@ namespace GeoAPI.Geometries
         /// Has no effect if the point is already on or within the envelope.
         /// </summary>
         /// <param name="p">The Coordinate.</param>
-        public void ExpandToInclude(Coordinate p)
+        public void ExpandToInclude(CoordinateXY p)
         {
             ExpandToInclude(p.X, p.Y);
         }
@@ -408,21 +401,21 @@ namespace GeoAPI.Geometries
         {
             if (IsNull)
             {
-                _minx = x;
-                _maxx = x;
-                _miny = y;
-                _maxy = y;
+                _minX = x;
+                _maxX = x;
+                _minY = y;
+                _maxY = y;
             }
             else
             {
-                if (x < _minx)
-                    _minx = x;
-                if (x > _maxx)
-                    _maxx = x;
-                if (y < _miny)
-                    _miny = y;
-                if (y > _maxy)
-                    _maxy = y;
+                if (x < _minX)
+                    _minX = x;
+                if (x > _maxX)
+                    _maxX = x;
+                if (y < _minY)
+                    _minY = y;
+                if (y > _maxY)
+                    _maxY = y;
             }
         }
 
@@ -439,21 +432,21 @@ namespace GeoAPI.Geometries
                 return;
             if (IsNull)
             {
-                _minx = other.MinX;
-                _maxx = other.MaxX;
-                _miny = other.MinY;
-                _maxy = other.MaxY;
+                _minX = other.MinX;
+                _maxX = other.MaxX;
+                _minY = other.MinY;
+                _maxY = other.MaxY;
             }
             else
             {
-                if (other.MinX < _minx)
-                    _minx = other.MinX;
-                if (other.MaxX > _maxx)
-                    _maxx = other.MaxX;
-                if (other.MinY < _miny)
-                    _miny = other.MinY;
-                if (other.MaxY > _maxy)
-                    _maxy = other.MaxY;
+                if (other.MinX < _minX)
+                    _minX = other.MinX;
+                if (other.MaxX > _maxX)
+                    _maxX = other.MaxX;
+                if (other.MinY < _minY)
+                    _minY = other.MinY;
+                if (other.MaxY > _maxY)
+                    _maxY = other.MaxY;
             }
         }
 
@@ -471,11 +464,11 @@ namespace GeoAPI.Geometries
             if (IsNull)
                 return other;
 
-            var minx = (other._minx < _minx) ? other._minx : _minx;
-            var maxx = (other._maxx > _maxx) ? other._maxx : _maxx;
-            var miny = (other._miny < _miny) ? other._miny : _miny;
-            var maxy = (other._maxy > _maxy) ? other._maxy : _maxy;
-            return new Envelope(minx, maxx, miny, maxy);
+            double minX = (other._minX < _minX) ? other._minX : _minX;
+            double maxX = (other._maxX > _maxX) ? other._maxX : _maxX;
+            double minY = (other._minY < _minY) ? other._minY : _minY;
+            double maxY = (other._maxY > _maxY) ? other._maxY : _maxY;
+            return new Envelope(minX, maxX, minY, maxY);
         }
         /// <summary>
         /// Translates this envelope by given amounts in the X and Y direction.
@@ -496,11 +489,11 @@ namespace GeoAPI.Geometries
         /// The centre coordinate of this envelope,
         /// or <c>null</c> if the envelope is null.
         /// </returns>.
-        public Coordinate Centre
+        public CoordinateXY Centre
         {
             get
             {
-                return IsNull ? null : new Coordinate((MinX + MaxX) / 2.0, (MinY + MaxY) / 2.0);
+                return IsNull ? null : new CoordinateXY((MinX + MaxX) / 2.0, (MinY + MaxY) / 2.0);
             }
         }
 
@@ -537,43 +530,7 @@ namespace GeoAPI.Geometries
         {
             if (IsNull || other.IsNull)
                 return false;
-            return !(other.MinX > _maxx || other.MaxX < _minx || other.MinY > _maxy || other.MaxY < _miny);
-        }
-
-        /// <summary>
-        /// Use Intersects instead. In the future, Overlaps may be
-        /// changed to be a true overlap check; that is, whether the intersection is
-        /// two-dimensional.
-        /// </summary>
-        /// <param name="other"></param>
-        /// <returns></returns>
-        [Obsolete("Use Intersects instead")]
-        public bool Overlaps(Envelope other)
-        {
-            return Intersects(other);
-        }
-
-        /// <summary>
-        /// Use Intersects instead.
-        /// </summary>
-        /// <param name="p"></param>
-        /// <returns></returns>
-        [Obsolete("Use Intersects instead")]
-        public bool Overlaps(Coordinate p)
-        {
-            return Intersects(p);
-        }
-
-        /// <summary>
-        /// Use Intersects instead.
-        /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <returns></returns>
-        [Obsolete("Use Intersects instead")]
-        public bool Overlaps(double x, double y)
-        {
-            return Intersects(x, y);
+            return !(other.MinX > _maxX || other.MaxX < _minX || other.MinY > _maxY || other.MaxY < _minY);
         }
 
         /// <summary>
@@ -581,7 +538,7 @@ namespace GeoAPI.Geometries
         /// </summary>
         /// <param name="p"> the <c>Coordinate</c> to be tested.</param>
         /// <returns><c>true</c> if the point overlaps this <c>Envelope</c>.</returns>
-        public bool Intersects(Coordinate p)
+        public bool Intersects(CoordinateXY p)
         {
             return Intersects(p.X, p.Y);
         }
@@ -594,7 +551,7 @@ namespace GeoAPI.Geometries
         /// <returns><c>true</c> if the point overlaps this <c>Envelope</c>.</returns>
         public bool Intersects(double x, double y)
         {
-            return !(x > _maxx || x < _minx || y > _maxy || y < _miny);
+            return !(x > _maxX || x < _minX || y > _maxY || y < _minY);
         }
 
         /// <summary>
@@ -604,21 +561,21 @@ namespace GeoAPI.Geometries
         /// <param name="a">A point</param>
         /// <param name="b">Another point</param>
         /// <returns><c>true</c> if the extents intersect</returns>
-        public bool Intersects(Coordinate a, Coordinate b)
+        public bool Intersects(CoordinateXY a, CoordinateXY b)
         {
             if (IsNull) return false;
 
-            var envminx = (a.X < b.X) ? a.X : b.X;
-            if (envminx > _maxx) return false;
+            double envMinX = (a.X < b.X) ? a.X : b.X;
+            if (envMinX > _maxX) return false;
 
-            var envmaxx = (a.X > b.X) ? a.X : b.X;
-            if (envmaxx < _minx) return false;
+            double envMaxX = (a.X > b.X) ? a.X : b.X;
+            if (envMaxX < _minX) return false;
 
-            var envminy = (a.Y < b.Y) ? a.Y : b.Y;
-            if (envminy > _maxy) return false;
+            double envMinY = (a.Y < b.Y) ? a.Y : b.Y;
+            if (envMinY > _maxY) return false;
 
-            var envmaxy = (a.Y > b.Y) ? a.Y : b.Y;
-            if (envmaxy < _miny) return false;
+            double envMaxY = (a.Y > b.Y) ? a.Y : b.Y;
+            if (envMaxY < _minY) return false;
 
             return true;
         }
@@ -647,8 +604,8 @@ namespace GeoAPI.Geometries
         /// </remarks>
         /// <param name="p">the point which this <c>Envelope</c> is being checked for containing</param>
         /// <returns><c>true</c> if the point lies in the interior or on the boundary of this <c>Envelope</c>. </returns>
-        /// <see cref="Covers(Coordinate)"/>
-        public bool Contains(Coordinate p)
+        /// <see cref="Covers(CoordinateXY)"/>
+        public bool Contains(CoordinateXY p)
         {
             return Covers(p);
         }
@@ -679,10 +636,10 @@ namespace GeoAPI.Geometries
         public bool Covers(double x, double y)
         {
             if (IsNull) return false;
-            return x >= _minx &&
-                x <= _maxx &&
-                y >= _miny &&
-                y <= _maxy;
+            return x >= _minX &&
+                x <= _maxX &&
+                y >= _minY &&
+                y <= _maxY;
         }
 
         ///<summary>
@@ -690,7 +647,7 @@ namespace GeoAPI.Geometries
         ///</summary>
         /// <param name="p">the point which this <c>Envelope</c> is being checked for containing</param>
         /// <returns><c>true</c> if the point lies in the interior or on the boundary of this <c>Envelope</c>.</returns>
-        public bool Covers(Coordinate p)
+        public bool Covers(CoordinateXY p)
         {
             return Covers(p.X, p.Y);
         }
@@ -704,10 +661,10 @@ namespace GeoAPI.Geometries
         {
             if (IsNull || other.IsNull)
                 return false;
-            return other.MinX >= _minx &&
-                other.MaxX <= _maxx &&
-                other.MinY >= _miny &&
-                other.MaxY <= _maxy;
+            return other.MinX >= _minX &&
+                other.MaxX <= _maxX &&
+                other.MinY >= _minY &&
+                other.MaxY <= _maxY;
         }
 
         /// <summary>
@@ -724,17 +681,17 @@ namespace GeoAPI.Geometries
 
             double dx = 0.0;
 
-            if (_maxx < env.MinX)
-                dx = env.MinX - _maxx;
-            else if (_minx > env.MaxX)
-                dx = _minx - env.MaxX;
+            if (_maxX < env.MinX)
+                dx = env.MinX - _maxX;
+            else if (_minX > env.MaxX)
+                dx = _minX - env.MaxX;
 
             double dy = 0.0;
 
-            if (_maxy < env.MinY)
-                dy = env.MinY - _maxy;
-            else if (_miny > env.MaxY)
-                dy = _miny - env.MaxY;
+            if (_maxY < env.MinY)
+                dy = env.MinY - _maxY;
+            else if (_minY > env.MaxY)
+                dy = _minY - env.MaxY;
 
             // if either is zero, the envelopes overlap either vertically or horizontally
             if (dx == 0.0)
@@ -745,32 +702,22 @@ namespace GeoAPI.Geometries
             return Math.Sqrt(dx * dx + dy * dy);
         }
 
-        /// <inheritdoc/>
-        public override bool Equals(object other)
+        /// <inheritdoc />
+        public override bool Equals(object o)
         {
-            if (other == null)
-                return false;
-
-            var otherE = other as Envelope;
-            if (otherE != null)
-                return Equals(otherE);
-
-#pragma warning disable 612,618
-            if (!(other is IEnvelope))
-                return false;
-
-            return ((IEnvelope)this).Equals((IEnvelope)other);
-#pragma warning restore 612,618
+            if (o is Envelope other)
+                return Equals(other);
+            return false;
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc cref="M:System.IEquatable{Envelope}.Equals(Envelope)"/>
         public bool Equals(Envelope other)
         {
             if (IsNull)
                 return other.IsNull;
 
-            return _maxx == other.MaxX && _maxy == other.MaxY &&
-                   _minx == other.MinX && _miny == other.MinY;
+            return _maxX == other.MaxX && _maxY == other.MaxY &&
+                   _minX == other.MinX && _minY == other.MinY;
         }
 
         /// <summary>
@@ -779,10 +726,12 @@ namespace GeoAPI.Geometries
         /// comparison between the sequence of ordinates.
         /// Null envelopes are less than all non-null envelopes.
         /// </summary>
-        /// <param name="other">An envelope</param>
-        public int CompareTo(object other)
+        /// <param name="o">An envelope</param>
+        public int CompareTo(object o)
         {
-            return CompareTo((Envelope)other);
+            if (o is Envelope other)
+                return CompareTo(other);
+            return 1;
         }
 
         /// <summary>
@@ -824,39 +773,18 @@ namespace GeoAPI.Geometries
         {
             var result = 17;
             // ReSharper disable NonReadonlyFieldInGetHashCode
-            result = 37 * result + GetHashCode(_minx);
-            result = 37 * result + GetHashCode(_maxx);
-            result = 37 * result + GetHashCode(_miny);
-            result = 37 * result + GetHashCode(_maxy);
+            result = 37 * result + _minX.GetHashCode();
+            result = 37 * result + _maxX.GetHashCode();
+            result = 37 * result + _minY.GetHashCode();
+            result = 37 * result + _maxY.GetHashCode();
             // ReSharper restore NonReadonlyFieldInGetHashCode
             return result;
         }
 
-        private static int GetHashCode(double value)
-        {
-            return value.GetHashCode();
-            
-            // This was implemented as follows, but that's actually equivalent:
-            /*
-            var f = BitConverter.DoubleToInt64Bits(value);
-            return (int)(f ^ (f >> 32));
-            */
-        }
-
-        //public static bool operator ==(Envelope obj1, Envelope obj2)
-        //{
-        //    return Equals(obj1, obj2);
-        //}
-
-        //public static bool operator !=(Envelope obj1, Envelope obj2)
-        //{
-        //    return !(obj1 == obj2);
-        //}
-
-            /// <summary>
-            /// Function to get a textual representation of this envelope
-            /// </summary>
-            /// <returns>A textual representation of this envelope</returns>
+        /// <summary>
+        /// Function to get a textual representation of this envelope
+        /// </summary>
+        /// <returns>A textual representation of this envelope</returns>
         public override string ToString()
         {
             var sb = new StringBuilder("Env[");
@@ -866,21 +794,10 @@ namespace GeoAPI.Geometries
             }
             else
             {
-                sb.AppendFormat(NumberFormatInfo.InvariantInfo, "{0:R} : {1:R}, ", _minx, _maxx);
-                sb.AppendFormat(NumberFormatInfo.InvariantInfo, "{0:R} : {1:R}]", _miny, _maxy);
+                sb.AppendFormat(NumberFormatInfo.InvariantInfo, "{0:R} : {1:R}, ", _minX, _maxX);
+                sb.AppendFormat(NumberFormatInfo.InvariantInfo, "{0:R} : {1:R}]", _minY, _maxY);
             }
             return sb.ToString();
-
-            //return "Env[" + _minx + " : " + _maxx + ", " + _miny + " : " + _maxy + "]";
-        }
-
-        /// <summary>
-        /// Creates a new object that is a copy of the current instance.
-        /// </summary>
-        /// <returns>A new object that is a copy of this instance.</returns>
-        object ICloneable.Clone()
-        {
-            return MemberwiseClone();
         }
 
         /// <summary>
@@ -894,409 +811,9 @@ namespace GeoAPI.Geometries
                 // #179: This will create a new 'NULL' envelope
                 return new Envelope();
             }
-            return new Envelope(_minx, _maxx, _miny, _maxy);
+            return new Envelope(_minX, _maxX, _minY, _maxY);
         }        
         
-        #region BEGIN ADDED BY MPAUL42: monoGIS team
-
-#pragma warning disable 612,618
-
-        /// <summary>
-        /// Creates a deep copy of the current envelope.
-        /// </summary>
-        /// <returns></returns>
-        [Obsolete("Use Copy()")]
-        public Envelope Clone()
-        {
-            return Copy();
-        }
-
-        /// <summary>
-        /// Calculates the union of the current box and the given point.
-        /// </summary>
-        IEnvelope IEnvelope.Union(IPoint point)
-        {
-            return ((IEnvelope)this).Union(point.Coordinate);
-        }
-
-        /// <summary>
-        /// Calculates the union of the current box and the given coordinate.
-        /// </summary>
-        IEnvelope IEnvelope.Union(ICoordinate coord)
-        {
-            IEnvelope env = Copy();
-            env.ExpandToInclude(coord);
-            return env;
-        }
-
-        /// <summary>
-        /// Calculates the union of the current box and the given box.
-        /// </summary>
-        IEnvelope IEnvelope.Union(IEnvelope box)
-        {
-            if (box.IsNull)
-                return this;
-            if (IsNull)
-                return box;
-
-            return new Envelope(Math.Min(_minx, box.MinX),
-                                Math.Max(_maxx, box.MaxX),
-                                Math.Min(_miny, box.MinY),
-                                Math.Max(_maxy, box.MaxY));
-        }
-
-        /// <summary>
-        /// Moves the envelope to the indicated coordinate.
-        /// </summary>
-        /// <param name="centre">The new centre coordinate.</param>
-        void IEnvelope.SetCentre(ICoordinate centre)
-        {
-            ((IEnvelope)this).SetCentre(centre, Width, Height);
-        }
-
-        /// <summary>
-        /// Moves the envelope to the indicated point.
-        /// </summary>
-        /// <param name="centre">The new centre point.</param>
-        void IEnvelope.SetCentre(IPoint centre)
-        {
-            ((IEnvelope)this).SetCentre(centre.Coordinate, Width, Height);
-        }
-
-        /// <summary>
-        /// Resizes the envelope to the indicated point.
-        /// </summary>
-        /// <param name="width">The new width.</param>
-        /// <param name="height">The new height.</param>
-        void IEnvelope.SetCentre(double width, double height)
-        {
-            ((IEnvelope)this).SetCentre(Centre, width, height);
-        }
-
-        /// <summary>
-        /// Moves and resizes the current envelope.
-        /// </summary>
-        /// <param name="centre">The new centre point.</param>
-        /// <param name="width">The new width.</param>
-        /// <param name="height">The new height.</param>
-        void IEnvelope.SetCentre(IPoint centre, double width, double height)
-        {
-            ((IEnvelope)this).SetCentre(centre.Coordinate, width, height);
-        }
-
-        /// <summary>
-        /// Moves and resizes the current envelope.
-        /// </summary>
-        /// <param name="centre">The new centre coordinate.</param>
-        /// <param name="width">The new width.</param>
-        /// <param name="height">The new height.</param>
-        void IEnvelope.SetCentre(ICoordinate centre, double width, double height)
-        {
-            _minx = centre.X - (width / 2);
-            _maxx = centre.X + (width / 2);
-            _miny = centre.Y - (height / 2);
-            _maxy = centre.Y + (height / 2);
-        }
-
-        /// <summary>
-        /// Zoom the box.
-        /// Possible values are e.g. 50 (to zoom in a 50%) or -50 (to zoom out a 50%).
-        /// </summary>
-        /// <param name="perCent">
-        /// Negative do Envelope smaller.
-        /// Positive do Envelope bigger.
-        /// </param>
-        /// <example>
-        ///  perCent = -50 compact the envelope a 50% (make it smaller).
-        ///  perCent = 200 enlarge envelope by 2.
-        /// </example>
-        void IEnvelope.Zoom(double perCent)
-        {
-            double w = (Width * perCent / 100);
-            double h = (Height * perCent / 100);
-            ((IEnvelope)this).SetCentre(w, h);
-        }
-
-        /* END ADDED BY MPAUL42: monoGIS team */
-
-        /// <summary>
-        /// Initialize to a null <c>Envelope</c>.
-        /// </summary>
-        void IEnvelope.Init()
-        {
-            SetToNull();
-        }
-
-        /// <summary>
-        /// Initialize an <c>Envelope</c> for a region defined by two Coordinates.
-        /// </summary>
-        /// <param name="p1">The first Coordinate.</param>
-        /// <param name="p2">The second Coordinate.</param>
-        void IEnvelope.Init(ICoordinate p1, ICoordinate p2)
-        {
-            Init(p1.X, p2.X, p1.Y, p2.Y);
-        }
-
-        /// <summary>
-        /// Initialize an <c>Envelope</c> for a region defined by a single Coordinate.
-        /// </summary>
-        /// <param name="p">The Coordinate.</param>
-        void IEnvelope.Init(ICoordinate p)
-        {
-            Init(p.X, p.X, p.Y, p.Y);
-        }
-
-        /// <summary>
-        /// Initialize an <c>Envelope</c> from an existing Envelope.
-        /// </summary>
-        /// <param name="env">The Envelope to initialize from.</param>
-        void IEnvelope.Init(IEnvelope env)
-        {
-            _minx = env.MinX;
-            _maxx = env.MaxX;
-            _miny = env.MinY;
-            _maxy = env.MaxY;
-        }
-
-        /// <summary>
-        /// Enlarges this <code>Envelope</code> so that it contains
-        /// the given <see cref="ICoordinate"/>.
-        /// Has no effect if the point is already on or within the envelope.
-        /// </summary>
-        /// <param name="p">The Coordinate.</param>
-        void IEnvelope.ExpandToInclude(ICoordinate p)
-        {
-            ExpandToInclude(p.X, p.Y);
-        }
-
-        /// <summary>
-        /// Enlarges this <c>Envelope</c> so that it contains
-        /// the <c>other</c> Envelope.
-        /// Has no effect if <c>other</c> is wholly on or
-        /// within the envelope.
-        /// </summary>
-        /// <param name="other">the <c>Envelope</c> to expand to include.</param>
-        void IEnvelope.ExpandToInclude(IEnvelope other)
-        {
-            if (other.IsNull)
-                return;
-            if (IsNull)
-            {
-                _minx = other.MinX;
-                _maxx = other.MaxX;
-                _miny = other.MinY;
-                _maxy = other.MaxY;
-            }
-            else
-            {
-                if (other.MinX < _minx)
-                    _minx = other.MinX;
-                if (other.MaxX > _maxx)
-                    _maxx = other.MaxX;
-                if (other.MinY < _miny)
-                    _miny = other.MinY;
-                if (other.MaxY > _maxy)
-                    _maxy = other.MaxY;
-            }
-        }
-
-        /// <summary>
-        /// Computes the coordinate of the centre of this envelope (as long as it is non-null).
-        /// </summary>
-        /// <returns>
-        /// The centre coordinate of this envelope,
-        /// or <c>null</c> if the envelope is null.
-        /// </returns>.
-        ICoordinate IEnvelope.Centre
-        {
-            get
-            {
-                if (IsNull)
-                    return null;
-                return new Coordinate((MinX + MaxX) / 2.0, (MinY + MaxY) / 2.0);
-            }
-        }
-
-        /// <summary>
-        /// Computes the intersection of two <see cref="IEnvelope"/>s.
-        /// </summary>
-        /// <param name="env">The envelope to intersect with</param>
-        /// <returns>
-        /// A new Envelope representing the intersection of the envelopes (this will be
-        /// the null envelope if either argument is null, or they do not intersect
-        /// </returns>
-        IEnvelope IEnvelope.Intersection(IEnvelope env)
-        {
-            if (IsNull || env.IsNull || !((IEnvelope)this).Intersects(env))
-                return new Envelope();
-
-            return new Envelope(Math.Max(MinX, env.MinX),
-                                Math.Min(MaxX, env.MaxX),
-                                Math.Max(MinY, env.MinY),
-                                Math.Min(MaxY, env.MaxY));
-        }
-
-        /// <summary>
-        /// Check if the region defined by <c>other</c>
-        /// overlaps (intersects) the region of this <c>Envelope</c>.
-        /// </summary>
-        /// <param name="other"> the <c>Envelope</c> which this <c>Envelope</c> is
-        /// being checked for overlapping.
-        /// </param>
-        /// <returns>
-        /// <c>true</c> if the <c>Envelope</c>s overlap.
-        /// </returns>
-        bool IEnvelope.Intersects(IEnvelope other)
-        {
-            if (IsNull || other.IsNull)
-                return false;
-            return !(other.MinX > _maxx || other.MaxX < _minx || other.MinY > _maxy || other.MaxY < _miny);
-        }
-
-        /// <summary>
-        /// Use Intersects instead. In the future, Overlaps may be
-        /// changed to be a true overlap check; that is, whether the intersection is
-        /// two-dimensional.
-        /// </summary>
-        /// <param name="other"></param>
-        /// <returns></returns>
-        [Obsolete("Use Intersects instead")]
-        bool IEnvelope.Overlaps(IEnvelope other)
-        {
-            return ((IEnvelope)this).Intersects(other);
-        }
-
-        /// <summary>
-        /// Use Intersects instead.
-        /// </summary>
-        /// <param name="p"></param>
-        /// <returns></returns>
-        [Obsolete("Use Intersects instead")]
-        bool IEnvelope.Overlaps(ICoordinate p)
-        {
-            return ((IEnvelope)this).Intersects(p);
-        }
-
-        /// <summary>
-        /// Check if the point <c>p</c> overlaps (lies inside) the region of this <c>Envelope</c>.
-        /// </summary>
-        /// <param name="p"> the <c>Coordinate</c> to be tested.</param>
-        /// <returns><c>true</c> if the point overlaps this <c>Envelope</c>.</returns>
-        bool IEnvelope.Intersects(ICoordinate p)
-        {
-            return Intersects(p.X, p.Y);
-        }
-
-        ///<summary>
-        /// Tests if the <c>Envelope other</c> lies wholely inside this <c>Envelope</c> (inclusive of the boundary).
-        ///</summary>
-        /// <remarks>
-        /// Note that this is <b>not</b> the same definition as the SFS <i>contains</i>,
-        /// which would exclude the envelope boundary.
-        /// </remarks>
-        /// <para>The <c>Envelope</c> to check</para>
-        /// <returns>true if <c>other</c> is contained in this <c>Envelope</c></returns>
-        /// <see cref="IEnvelope.Covers(IEnvelope)"/>
-        bool IEnvelope.Contains(IEnvelope other)
-        {
-            return ((IEnvelope)this).Covers(other);
-        }
-
-        ///<summary>
-        /// Tests if the given point lies in or on the envelope.
-        ///</summary>
-        /// <remarks>
-        /// Note that this is <b>not</b> the same definition as the SFS <i>contains</i>,
-        /// which would exclude the envelope boundary.
-        /// </remarks>
-        /// <param name="p">the point which this <c>Envelope</c> is being checked for containing</param>
-        /// <returns><c>true</c> if the point lies in the interior or on the boundary of this <c>Envelope</c>. </returns>
-        /// <see cref="IEnvelope.Covers(ICoordinate)"/>
-        bool IEnvelope.Contains(ICoordinate p)
-        {
-            return ((IEnvelope)this).Covers(p);
-        }
-
-        ///<summary>
-        /// Tests if the given point lies in or on the envelope.
-        ///</summary>
-        /// <param name="p">the point which this <c>Envelope</c> is being checked for containing</param>
-        /// <returns><c>true</c> if the point lies in the interior or on the boundary of this <c>Envelope</c>.</returns>
-        bool IEnvelope.Covers(ICoordinate p)
-        {
-            return Covers(p.X, p.Y);
-        }
-
-        ///<summary>
-        /// Tests if the <c>Envelope other</c> lies wholely inside this <c>Envelope</c> (inclusive of the boundary).
-        ///</summary>
-        /// <param name="other">the <c>Envelope</c> to check</param>
-        /// <returns>true if this <c>Envelope</c> covers the <c>other</c></returns>
-        bool IEnvelope.Covers(IEnvelope other)
-        {
-            if (IsNull || other.IsNull)
-                return false;
-            return other.MinX >= _minx &&
-                other.MaxX <= _maxx &&
-                other.MinY >= _miny &&
-                other.MaxY <= _maxy;
-        }
-
-        /// <summary>
-        /// Computes the distance between this and another
-        /// <c>Envelope</c>.
-        /// The distance between overlapping Envelopes is 0.  Otherwise, the
-        /// distance is the Euclidean distance between the closest points.
-        /// </summary>
-        /// <returns>The distance between this and another <c>Envelope</c>.</returns>
-        double IEnvelope.Distance(IEnvelope env)
-        {
-            if (((IEnvelope)this).Intersects(env))
-                return 0;
-
-            double dx = 0.0;
-
-            if (_maxx < env.MinX)
-                dx = env.MinX - _maxx;
-            else if (_minx > env.MaxX)
-                dx = _minx - env.MaxX;
-
-            double dy = 0.0;
-
-            if (_maxy < env.MinY)
-                dy = env.MinY - _maxy;
-            else if (_miny > env.MaxY)
-                dy = _miny - env.MaxY;
-
-            // if either is zero, the envelopes overlap either vertically or horizontally
-            if (dx == 0.0)
-                return dy;
-            if (dy == 0.0)
-                return dx;
-
-            return Math.Sqrt(dx * dx + dy * dy);
-        }
-
-        int IComparable<IEnvelope>.CompareTo(IEnvelope other)
-        {
-            if (IsNull && other.IsNull)
-                return 0;
-            if (!IsNull && other.IsNull)
-                return 1;
-            if (IsNull && !other.IsNull)
-                return -1;
-
-            if (Area > other.Area)
-                return 1;
-            if (Area < other.Area)
-                return -1;
-            return 0;
-        }
-
-#pragma warning restore 612,618
-
-        #endregion BEGIN ADDED BY MPAUL42: monoGIS team
-
         /// <summary>
         /// Method to parse an envelope from its <see cref="Envelope.ToString"/> value
         /// </summary>
@@ -1305,9 +822,9 @@ namespace GeoAPI.Geometries
         public static Envelope Parse(string envelope)
         {
             if (string.IsNullOrEmpty(envelope))
-                throw new ArgumentNullException("envelope");
+                throw new ArgumentNullException(nameof(envelope));
             if (!(envelope.StartsWith("Env[") && envelope.EndsWith("]")))
-                throw new ArgumentException("Not a valid envelope string", "envelope");
+                throw new ArgumentException("Not a valid envelope string", nameof(envelope));
 
             // test for null
             envelope = envelope.Substring(4, envelope.Length - 5);
@@ -1322,19 +839,19 @@ namespace GeoAPI.Geometries
             // split into ranges
             var parts = envelope.Split(',');
             if (parts.Length != 2)
-                throw new ArgumentException("Does not provide two ranges", "envelope");
+                throw new ArgumentException("Does not provide two ranges", nameof(envelope));
 
             foreach (var part in parts)
             {
                 // Split int min/max
                 var ordinates = part.Split(':');
                 if (ordinates.Length != 2)
-                    throw new ArgumentException("Does not provide just min and max values", "envelope");
+                    throw new ArgumentException("Does not provide just min and max values", nameof(envelope));
 
                 if (!ValueParser.TryParse(ordinates[0].Trim(), NumberStyles.Number, NumberFormatInfo.InvariantInfo, out ordinatesValues[2 * j]))
-                    throw new ArgumentException(string.Format("Could not parse min {0}-Ordinate", ordinateLabel[j]), "envelope");
+                    throw new ArgumentException($"Could not parse min {ordinateLabel[j]}-Ordinate", nameof(envelope));
                 if (!ValueParser.TryParse(ordinates[1].Trim(), NumberStyles.Number, NumberFormatInfo.InvariantInfo, out ordinatesValues[2 * j + 1]))
-                    throw new ArgumentException(string.Format("Could not parse max {0}-Ordinate", ordinateLabel[j]), "envelope");
+                    throw new ArgumentException($"Could not parse max {ordinateLabel[j]}-Ordinate", nameof(envelope));
                 j++;
             }
 
