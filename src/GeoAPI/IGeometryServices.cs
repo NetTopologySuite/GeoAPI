@@ -1,20 +1,9 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using GeoAPI.Geometries;
+﻿using GeoAPI.Geometries;
 
 namespace GeoAPI
 {
     /// <summary>
-    /// Delegate function to get a coordinate system from a given initialization string
-    /// </summary>
-    /// <param name="init">The initialization string</param>
-    /// <typeparam name="TCoordinateSystem">The type of the coordinate sytem.</typeparam>
-    [Obsolete("Not used", true)]
-    public delegate TCoordinateSystem GetCoordinateSystemDelegate<TCoordinateSystem>(string init);
-    
-    /// <summary>
-    /// An interface for classes that offer access to geometry creating facillities.
+    /// An interface for classes that offer access to geometry creating facilities.
     /// </summary>
     public interface IGeometryServices
     {

@@ -21,7 +21,7 @@ namespace GeoAPI.Geometries
     [Serializable]
 #endif
 #pragma warning disable 612,618
-    public class CoordinateXY : IComparable<CoordinateXY>
+    public class CoordinateXY : IComparable, IComparable<CoordinateXY>, ICloneable
     {
 
         ///<summary>
@@ -187,28 +187,6 @@ namespace GeoAPI.Geometries
             return Equals2D(other);
         }
 
-        ///// <summary>
-        /////
-        ///// </summary>
-        ///// <param name="obj1"></param>
-        ///// <param name="obj2"></param>
-        ///// <returns></returns>
-        //public static bool operator ==(Coordinate obj1, ICoordinate obj2)
-        //{
-        //    return Equals(obj1, obj2);
-        //}
-
-        ///// <summary>
-        /////
-        ///// </summary>
-        ///// <param name="obj1"></param>
-        ///// <param name="obj2"></param>
-        ///// <returns></returns>
-        //public static bool operator !=(Coordinate obj1, ICoordinate obj2)
-        //{
-        //    return !(obj1 == obj2);
-        //}
-
         /// <summary>
         /// Compares this object with the specified object for order.
         /// Since Coordinates are 2.5D, this routine ignores the z value when making the comparison.
@@ -224,9 +202,15 @@ namespace GeoAPI.Geometries
         /// </returns>
         public int CompareTo(object o)
         {
-            if (o is CoordinateXY other)
-                return CompareTo(other);
-            return 1;
+            //Like in JTS
+            //return CompareTo((CoordinateXY) o);
+
+            if (ReferenceEquals(o, null))
+                throw new ArgumentNullException(nameof(o));
+            if (!(o is CoordinateXY oc))
+                throw new ArgumentException($"Invalid type: '{o.GetType()}'", nameof(o));
+
+            return CompareTo(oc);
         }
 
         /// <summary>
@@ -244,6 +228,9 @@ namespace GeoAPI.Geometries
         /// </returns>
         public int CompareTo(CoordinateXY other)
         {
+            if (other == null)
+                throw new ArgumentNullException(nameof(other));
+
             if (X < other.X)
                 return -1;
             if (X > other.X)
@@ -262,6 +249,11 @@ namespace GeoAPI.Geometries
             return (CoordinateXY)MemberwiseClone();
         }
 
+        object ICloneable.Clone()
+        {
+            return Copy();
+        }
+
         /// <summary>
         /// Computes the 2-dimensional Euclidean distance to another location.
         /// </summary>
@@ -270,8 +262,8 @@ namespace GeoAPI.Geometries
         /// <remarks>The Z-ordinate is ignored.</remarks>
         public double Distance(CoordinateXY c)
         {
-            var dx = X - c.X;
-            var dy = Y - c.Y;
+            double dx = X - c.X;
+            double dy = Y - c.Y;
             return Math.Sqrt(dx * dx + dy * dy);
         }
 

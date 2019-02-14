@@ -189,3 +189,4 @@ FakesAssemblies/
 *.old
 *.lock.json
 _pj_tmp_/
+/.idea/
