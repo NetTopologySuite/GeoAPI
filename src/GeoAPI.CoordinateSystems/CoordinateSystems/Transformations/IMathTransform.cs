@@ -131,7 +131,7 @@ namespace GeoAPI.CoordinateSystems.Transformations
         /// </summary>
         /// <param name="coordinate">The coordinate to transform</param>
         /// <returns>The transformed coordinate</returns>
-        CoordinateXY Transform(CoordinateXY coordinate);
+        Coordinate Transform(Coordinate coordinate);
 
 
 		/// <summary>
@@ -170,7 +170,7 @@ namespace GeoAPI.CoordinateSystems.Transformations
         /// </remarks>
         /// <param name="points"></param>
         /// <returns></returns>
-        IList<CoordinateXY> TransformList(IList<CoordinateXY> points); 
+        IList<Coordinate> TransformList(IList<Coordinate> points); 
 
 
 		/// <summary>

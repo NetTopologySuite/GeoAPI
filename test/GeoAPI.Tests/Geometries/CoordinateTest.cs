@@ -4,7 +4,7 @@ using NUnit.Framework;
 
 namespace GeoAPI.Tests.Geometries
 {
-    public abstract class CoordinateTest<T> where T:CoordinateXY
+    public abstract class CoordinateBaseTest<T> where T:Coordinate
     {
         protected bool ZIndexValid = false;
         protected bool MIndexValid = false;
@@ -62,7 +62,7 @@ namespace GeoAPI.Tests.Geometries
             Assert.AreEqual(350.2, c.X);
             Assert.AreEqual(4566.8, c.Y);
             CheckGetter(Ordinate.Z, 5266.3, c.Z);
-            CheckGetter(Ordinate.M, CoordinateXY.NullOrdinate, c.M);
+            CheckGetter(Ordinate.M, Coordinate.NullOrdinate, c.M);
         }
 
         [Test]
@@ -71,8 +71,8 @@ namespace GeoAPI.Tests.Geometries
             T c = CreateCoordinate2D(350.2, 4566.8);
             Assert.AreEqual(350.2, c.X);
             Assert.AreEqual(4566.8, c.Y);
-            CheckGetter(Ordinate.Z, CoordinateXY.NullOrdinate, c.Z);
-            CheckGetter(Ordinate.M, CoordinateXY.NullOrdinate, c.M);
+            CheckGetter(Ordinate.Z, Coordinate.NullOrdinate, c.Z);
+            CheckGetter(Ordinate.M, Coordinate.NullOrdinate, c.M);
         }
 
         [Test]
@@ -81,8 +81,8 @@ namespace GeoAPI.Tests.Geometries
             T c = CreateCoordinate();
             Assert.AreEqual(0d, c.X);
             Assert.AreEqual(0d, c.Y);
-            CheckGetter(Ordinate.Z, CoordinateXY.NullOrdinate, c.Z);
-            CheckGetter(Ordinate.M, CoordinateXY.NullOrdinate, c.M);
+            CheckGetter(Ordinate.Z, Coordinate.NullOrdinate, c.Z);
+            CheckGetter(Ordinate.M, Coordinate.NullOrdinate, c.M);
         }
 
         [Test]
@@ -93,7 +93,7 @@ namespace GeoAPI.Tests.Geometries
             Assert.AreEqual(350.2, c.X);
             Assert.AreEqual(4566.8, c.Y);
             CheckGetter(Ordinate.Z, 5266.3, c.Z);
-            CheckGetter(Ordinate.M, CoordinateXY.NullOrdinate, c.M);
+            CheckGetter(Ordinate.M, Coordinate.NullOrdinate, c.M);
         }
 
         [Test]
@@ -106,7 +106,7 @@ namespace GeoAPI.Tests.Geometries
             Assert.AreEqual(350.2, c.X);
             Assert.AreEqual(4566.8, c.Y);
             CheckGetter(Ordinate.Z, 5266.3, c.Z);
-            CheckGetter(Ordinate.M, CoordinateXY.NullOrdinate, c.M);
+            CheckGetter(Ordinate.M, Coordinate.NullOrdinate, c.M);
 
             Assert.That(ReferenceEquals(orig, c), Is.False);
         }
@@ -135,7 +135,7 @@ namespace GeoAPI.Tests.Geometries
             Assert.AreEqual(c.X, 350.2);
             Assert.AreEqual(c.Y, 4566.8);
             CheckGetter(Ordinate.Z, 5266.3, c.Z);
-            CheckGetter(Ordinate.M, CoordinateXY.NullOrdinate, c.M);
+            CheckGetter(Ordinate.M, Coordinate.NullOrdinate, c.M);
         }
 
         [Test]
@@ -215,7 +215,7 @@ namespace GeoAPI.Tests.Geometries
             T c2 = CreateCoordinate3D(1, 2, 3);
             Assert.IsTrue(c1.Equals2D(c2));
 
-            var c3 = new CoordinateXYZ(1, 22, 3);
+            var c3 = new CoordinateZ(1, 22, 3);
             Assert.IsFalse(c1.Equals2D(c3));
         }
 
@@ -331,41 +331,41 @@ namespace GeoAPI.Tests.Geometries
     }
 
     /// <summary>
-    /// Implementation for <see cref="CoordinateXY"/>
+    /// Implementation for <see cref="Coordinate"/>
     /// </summary>
-    public class CoordinateXYTest : CoordinateTest<CoordinateXY>
+    public class CoordinateTest : CoordinateBaseTest<Coordinate>
     {
-        public CoordinateXYTest()
+        public CoordinateTest()
         {
             ZIndexValid = false;
             MIndexValid = false;
         }
-        protected override CoordinateXY CreateCoordinate2D(double x, double y)
+        protected override Coordinate CreateCoordinate2D(double x, double y)
         {
-            return new CoordinateXY(x, y);
+            return new Coordinate(x, y);
         }
-        protected override CoordinateXY CreateCoordinate2DM(double x, double y, double m = double.NaN)
+        protected override Coordinate CreateCoordinate2DM(double x, double y, double m = double.NaN)
         {
-            return new CoordinateXY(x, y);
+            return new Coordinate(x, y);
         }
-        protected override CoordinateXY CreateCoordinate3D(double x, double y, double z = double.NaN)
+        protected override Coordinate CreateCoordinate3D(double x, double y, double z = double.NaN)
         {
-            return new CoordinateXY(x, y);
-        }
-
-        protected override CoordinateXY CreateCoordinate3DM(double x, double y, double z = double.NaN, double m = double.NaN)
-        {
-            return new CoordinateXY(x, y);
+            return new Coordinate(x, y);
         }
 
-        protected override CoordinateXY CreateCoordinate(CoordinateXY coordinate)
+        protected override Coordinate CreateCoordinate3DM(double x, double y, double z = double.NaN, double m = double.NaN)
         {
-            return new CoordinateXY(coordinate);
+            return new Coordinate(x, y);
         }
 
-        protected override CoordinateXY CreateCoordinate()
+        protected override Coordinate CreateCoordinate(Coordinate coordinate)
         {
-            return new CoordinateXY();
+            return new Coordinate(coordinate);
+        }
+
+        protected override Coordinate CreateCoordinate()
+        {
+            return new Coordinate();
         }
 
         protected override string ExpectedToString
@@ -375,41 +375,41 @@ namespace GeoAPI.Tests.Geometries
     }
 
     /// <summary>
-    /// Implementation for <see cref="CoordinateXYM"/>
+    /// Implementation for <see cref="CoordinateM"/>
     /// </summary>
-    public class CoordinateXYMTest : CoordinateTest<CoordinateXYM>
+    public class CoordinateMTest : CoordinateBaseTest<CoordinateM>
     {
-        public CoordinateXYMTest()
+        public CoordinateMTest()
         {
             ZIndexValid = false;
             MIndexValid = true;
         }
-        protected override CoordinateXYM CreateCoordinate2D(double x, double y)
+        protected override CoordinateM CreateCoordinate2D(double x, double y)
         {
-            return new CoordinateXYM(x, y);
+            return new CoordinateM(x, y);
         }
-        protected override CoordinateXYM CreateCoordinate2DM(double x, double y, double m = double.NaN)
+        protected override CoordinateM CreateCoordinate2DM(double x, double y, double m = double.NaN)
         {
-            return new CoordinateXYM(x, y, m);
+            return new CoordinateM(x, y, m);
         }
-        protected override CoordinateXYM CreateCoordinate3D(double x, double y, double z = double.NaN)
+        protected override CoordinateM CreateCoordinate3D(double x, double y, double z = double.NaN)
         {
-            return new CoordinateXYM(x, y);
-        }
-
-        protected override CoordinateXYM CreateCoordinate3DM(double x, double y, double z = double.NaN, double m = double.NaN)
-        {
-            return new CoordinateXYM(x, y, m);
+            return new CoordinateM(x, y);
         }
 
-        protected override CoordinateXYM CreateCoordinate(CoordinateXYM coordinate)
+        protected override CoordinateM CreateCoordinate3DM(double x, double y, double z = double.NaN, double m = double.NaN)
         {
-            return new CoordinateXYM(coordinate);
+            return new CoordinateM(x, y, m);
         }
 
-        protected override CoordinateXYM CreateCoordinate()
+        protected override CoordinateM CreateCoordinate(CoordinateM coordinate)
         {
-            return new CoordinateXYM();
+            return new CoordinateM(coordinate);
+        }
+
+        protected override CoordinateM CreateCoordinate()
+        {
+            return new CoordinateM();
         }
 
         protected override string ExpectedToString
@@ -419,39 +419,39 @@ namespace GeoAPI.Tests.Geometries
     }
 
     /// <summary>
-    /// Implementation for <see cref="CoordinateXYZ"/>
+    /// Implementation for <see cref="CoordinateZ"/>
     /// </summary>
-    public class CoordinateXYZTest : CoordinateTest<CoordinateXYZ>
+    public class CoordinateZTest : CoordinateBaseTest<CoordinateZ>
     {
-        public CoordinateXYZTest()
+        public CoordinateZTest()
         {
             ZIndexValid = true;
             MIndexValid = false;
         }
 
-        protected override CoordinateXYZ CreateCoordinate2D(double x, double y)
+        protected override CoordinateZ CreateCoordinate2D(double x, double y)
         {
-            return new CoordinateXYZ(x, y);
+            return new CoordinateZ(x, y);
         }
-        protected override CoordinateXYZ CreateCoordinate2DM(double x, double y, double m = double.NaN)
+        protected override CoordinateZ CreateCoordinate2DM(double x, double y, double m = double.NaN)
         {
-            return new CoordinateXYZ(x, y);
+            return new CoordinateZ(x, y);
         }
-        protected override CoordinateXYZ CreateCoordinate3D(double x, double y, double z = double.NaN)
+        protected override CoordinateZ CreateCoordinate3D(double x, double y, double z = double.NaN)
         {
-            return new CoordinateXYZ(x, y, z);
+            return new CoordinateZ(x, y, z);
         }
-        protected override CoordinateXYZ CreateCoordinate3DM(double x, double y, double z = double.NaN, double m = double.NaN)
+        protected override CoordinateZ CreateCoordinate3DM(double x, double y, double z = double.NaN, double m = double.NaN)
         {
-            return new CoordinateXYZ(x, y, z);
+            return new CoordinateZ(x, y, z);
         }
-        protected override CoordinateXYZ CreateCoordinate(CoordinateXYZ coordinate)
+        protected override CoordinateZ CreateCoordinate(CoordinateZ coordinate)
         {
-            return new CoordinateXYZ(coordinate);
+            return new CoordinateZ(coordinate);
         }
-        protected override CoordinateXYZ CreateCoordinate()
+        protected override CoordinateZ CreateCoordinate()
         {
-            return new CoordinateXYZ();
+            return new CoordinateZ();
         }
 
         protected override string ExpectedToString
@@ -462,8 +462,8 @@ namespace GeoAPI.Tests.Geometries
         [Test]
         public void TestDistance3D()
         {
-            var coord1 = new CoordinateXYZ(0.0, 0.0, 0.0);
-            var coord2 = new CoordinateXYZ(100.0, 200.0, 50.0);
+            var coord1 = new CoordinateZ(0.0, 0.0, 0.0);
+            var coord2 = new CoordinateZ(100.0, 200.0, 50.0);
             double distance = coord1.Distance3D(coord2);
             Assert.AreEqual(229.128784747792, distance, 0.000001);
         }
@@ -471,14 +471,14 @@ namespace GeoAPI.Tests.Geometries
         [Test]
         public void TestEquals3D()
         {
-            var c1 = new CoordinateXYZ(1, 2, 3);
-            var c2 = new CoordinateXYZ(1, 2, 3);
+            var c1 = new CoordinateZ(1, 2, 3);
+            var c2 = new CoordinateZ(1, 2, 3);
             Assert.IsTrue(c1.Equals3D(c2));
 
-            var c3 = new CoordinateXYZ(1, 22, 3);
+            var c3 = new CoordinateZ(1, 22, 3);
             Assert.IsFalse(c1.Equals3D(c3));
 
-            var c4 = new CoordinateXYZ(1, 2, 5);
+            var c4 = new CoordinateZ(1, 2, 5);
             Assert.IsFalse(c1.EqualInZ(c4, 0));
             Assert.IsFalse(c1.Equals3D(c4));
         }
@@ -488,46 +488,46 @@ namespace GeoAPI.Tests.Geometries
         public void TestEqualsInZ()
         {
 
-            var c = new CoordinateXYZ(100.0, 200.0, 50.0);
-            var withSameZ = new CoordinateXYZ(100.1, 200.1, 50.1);
+            var c = new CoordinateZ(100.0, 200.0, 50.0);
+            var withSameZ = new CoordinateZ(100.1, 200.1, 50.1);
             Assert.IsTrue(c.EqualInZ(withSameZ, 0.2));
         }
     }
 
     /// <summary>
-    /// Implementation for <see cref="CoordinateXYZM"/>
+    /// Implementation for <see cref="CoordinateZM"/>
     /// </summary>
-    public class CoordinateXYZMTest : CoordinateTest<CoordinateXYZM>
+    public class CoordinateZMTest : CoordinateBaseTest<CoordinateZM>
     {
-        public CoordinateXYZMTest()
+        public CoordinateZMTest()
         {
             ZIndexValid = true;
             MIndexValid = true;
         }
 
-        protected override CoordinateXYZM CreateCoordinate2D(double x, double y)
+        protected override CoordinateZM CreateCoordinate2D(double x, double y)
         {
-            return new CoordinateXYZM(x, y);
+            return new CoordinateZM(x, y);
         }
-        protected override CoordinateXYZM CreateCoordinate2DM(double x, double y, double m = double.NaN)
+        protected override CoordinateZM CreateCoordinate2DM(double x, double y, double m = double.NaN)
         {
-            return new CoordinateXYZM(x, y, CoordinateXY.NullOrdinate, m);
+            return new CoordinateZM(x, y, Coordinate.NullOrdinate, m);
         }
-        protected override CoordinateXYZM CreateCoordinate3D(double x, double y, double z = double.NaN)
+        protected override CoordinateZM CreateCoordinate3D(double x, double y, double z = double.NaN)
         {
-            return new CoordinateXYZM(x, y, z, CoordinateXY.NullOrdinate);
+            return new CoordinateZM(x, y, z, Coordinate.NullOrdinate);
         }
-        protected override CoordinateXYZM CreateCoordinate3DM(double x, double y, double z = double.NaN, double m = double.NaN)
+        protected override CoordinateZM CreateCoordinate3DM(double x, double y, double z = double.NaN, double m = double.NaN)
         {
-            return new CoordinateXYZM(x, y, z, m);
+            return new CoordinateZM(x, y, z, m);
         }
-        protected override CoordinateXYZM CreateCoordinate(CoordinateXYZM coordinate)
+        protected override CoordinateZM CreateCoordinate(CoordinateZM coordinate)
         {
-            return new CoordinateXYZM(coordinate);
+            return new CoordinateZM(coordinate);
         }
-        protected override CoordinateXYZM CreateCoordinate()
+        protected override CoordinateZM CreateCoordinate()
         {
-            return new CoordinateXYZM();
+            return new CoordinateZM();
         }
 
         protected override string ExpectedToString
@@ -538,8 +538,8 @@ namespace GeoAPI.Tests.Geometries
         [Test]
         public void TestDistance3D()
         {
-            var coord1 = new CoordinateXYZ(0.0, 0.0, 0.0);
-            var coord2 = new CoordinateXYZ(100.0, 200.0, 50.0);
+            var coord1 = new CoordinateZ(0.0, 0.0, 0.0);
+            var coord2 = new CoordinateZ(100.0, 200.0, 50.0);
             double distance = coord1.Distance3D(coord2);
             Assert.AreEqual(229.128784747792, distance, 0.000001);
         }
@@ -547,14 +547,14 @@ namespace GeoAPI.Tests.Geometries
         [Test]
         public void TestEquals3D()
         {
-            var c1 = new CoordinateXYZ(1, 2, 3);
-            var c2 = new CoordinateXYZ(1, 2, 3);
+            var c1 = new CoordinateZ(1, 2, 3);
+            var c2 = new CoordinateZ(1, 2, 3);
             Assert.IsTrue(c1.Equals3D(c2));
 
-            var c3 = new CoordinateXYZ(1, 22, 3);
+            var c3 = new CoordinateZ(1, 22, 3);
             Assert.IsFalse(c1.Equals3D(c3));
 
-            var c4 = new CoordinateXYZ(1, 2, 5);
+            var c4 = new CoordinateZ(1, 2, 5);
             Assert.IsFalse(c1.EqualInZ(c4, 0));
             Assert.IsFalse(c1.Equals3D(c4));
         }
@@ -564,8 +564,8 @@ namespace GeoAPI.Tests.Geometries
         public void TestEqualsInZ()
         {
 
-            var c = new CoordinateXYZ(100.0, 200.0, 50.0);
-            var withSameZ = new CoordinateXYZ(100.1, 200.1, 50.1);
+            var c = new CoordinateZ(100.0, 200.0, 50.0);
+            var withSameZ = new CoordinateZ(100.1, 200.1, 50.1);
             Assert.IsTrue(c.EqualInZ(withSameZ, 0.2));
         }
     }

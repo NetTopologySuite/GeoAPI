@@ -84,12 +84,12 @@ namespace GeoAPI.Geometries
         ///<summary>
         /// Gets a <see cref="Coordinate"/> that is guaranteed to be part of the geometry, usually the first.
         ///</summary>
-        CoordinateXY Coordinate { get; }
+        Coordinate Coordinate { get; }
         
         ///<summary>
         /// Gets an array of <see cref="Coordinate"/>s that make up this geometry.
         ///</summary>
-        CoordinateXY[] Coordinates { get; }
+        Coordinate[] Coordinates { get; }
 
         ///<summary>
         /// Gets an array of <see cref="T:System.Double"/> ordinate values.
@@ -300,7 +300,7 @@ namespace GeoAPI.Geometries
         /// <summary>
         /// Notifies this geometry that its coordinates have been changed by an external
         /// party (using a CoordinateFilter, for example). The Geometry will flush
-        /// and/or update any information it has cached (such as its <see cref="IEnvelope"/>).
+        /// and/or update any information it has cached (such as its <see cref="Envelope"/>).
         /// </summary>
         void GeometryChanged();
 

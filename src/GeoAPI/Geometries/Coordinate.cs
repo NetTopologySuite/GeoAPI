@@ -21,7 +21,7 @@ namespace GeoAPI.Geometries
     [Serializable]
 #endif
 #pragma warning disable 612,618
-    public class CoordinateXY : IComparable, IComparable<CoordinateXY>, ICloneable
+    public class Coordinate : IComparable, IComparable<Coordinate>, ICloneable
     {
 
         ///<summary>
@@ -67,27 +67,27 @@ namespace GeoAPI.Geometries
         }
 
         /// <summary>
-        /// Constructs a <c>CoordinateXY</c> at (x,y).
+        /// Constructs a <c>Coordinate</c> at (x,y).
         /// </summary>
         /// <param name="x">The X value</param>
         /// <param name="y">The Y value</param>
-        public CoordinateXY(double x, double y)
+        public Coordinate(double x, double y)
         {
             X = x;
             Y = y;
         }
 
         /// <summary>
-        ///  Constructs a <c>CoordinateXY</c> at (0,0).
+        ///  Constructs a <c>Coordinate</c> at (0,0).
         /// </summary>
-        public CoordinateXY() : this(0.0, 0.0) { }
+        public Coordinate() : this(0.0, 0.0) { }
 
         /// <summary>
         /// Constructs a <c>Coordinate</c> having the same (x,y,z) values as
         /// <paramref name="c"/>.
         /// </summary>
         /// <param name="c"><c>Coordinate</c> to copy.</param>
-        public CoordinateXY(CoordinateXY c) : this(c.X, c.Y) { }
+        public Coordinate(Coordinate c) : this(c.X, c.Y) { }
 
 
         /// <summary>
@@ -130,7 +130,7 @@ namespace GeoAPI.Geometries
         /// <summary>
         /// Gets/Sets <c>Coordinate</c>s (x,y,z) values.
         /// </summary>
-        public virtual CoordinateXY CoordinateValue
+        public virtual Coordinate CoordinateValue
         {
             get
             {
@@ -151,7 +151,7 @@ namespace GeoAPI.Geometries
         /// <c>true</c> if the x- and y-coordinates are equal;
         /// the Z coordinates do not have to be equal.
         /// </returns>
-        public bool Equals2D(CoordinateXY other)
+        public bool Equals2D(Coordinate other)
         {
             return X == other.X && Y == other.Y;
         }
@@ -163,7 +163,7 @@ namespace GeoAPI.Geometries
         /// <param name="tolerance">The tolerance value.</param>
         /// <returns><c>true</c> if the X and Y ordinates are within the given tolerance.</returns>
         /// <remarks>The Z ordinate is ignored.</remarks>
-        public bool Equals2D(CoordinateXY c, double tolerance)
+        public bool Equals2D(Coordinate c, double tolerance)
         {
             if (!EqualsWithTolerance(X, c.X, tolerance))
                 return false;
@@ -182,7 +182,7 @@ namespace GeoAPI.Geometries
         /// </summary>
         /// <param name="other"></param>
         /// <returns></returns>
-        public bool Equals(CoordinateXY other)
+        public bool Equals(Coordinate other)
         {
             return Equals2D(other);
         }
@@ -203,11 +203,11 @@ namespace GeoAPI.Geometries
         public int CompareTo(object o)
         {
             //Like in JTS
-            //return CompareTo((CoordinateXY) o);
+            //return CompareTo((Coordinate) o);
 
             if (ReferenceEquals(o, null))
                 throw new ArgumentNullException(nameof(o));
-            if (!(o is CoordinateXY oc))
+            if (!(o is Coordinate oc))
                 throw new ArgumentException($"Invalid type: '{o.GetType()}'", nameof(o));
 
             return CompareTo(oc);
@@ -226,7 +226,7 @@ namespace GeoAPI.Geometries
         /// A negative integer, zero, or a positive integer as this <c>Coordinate</c>
         ///         is less than, equal to, or greater than the specified <c>Coordinate</c>.
         /// </returns>
-        public int CompareTo(CoordinateXY other)
+        public int CompareTo(Coordinate other)
         {
             if (other == null)
                 throw new ArgumentNullException(nameof(other));
@@ -244,9 +244,9 @@ namespace GeoAPI.Geometries
         /// Create a new object as copy of this instance.
         /// </summary>
         /// <returns></returns>
-        public /*virtual*/ CoordinateXY Copy()
+        public /*virtual*/ Coordinate Copy()
         {
-            return (CoordinateXY)MemberwiseClone();
+            return (Coordinate)MemberwiseClone();
         }
 
         object ICloneable.Clone()
@@ -257,10 +257,10 @@ namespace GeoAPI.Geometries
         /// <summary>
         /// Computes the 2-dimensional Euclidean distance to another location.
         /// </summary>
-        /// <param name="c">A <see cref="CoordinateXY"/> with which to do the distance comparison.</param>
+        /// <param name="c">A <see cref="Coordinate"/> with which to do the distance comparison.</param>
         /// <returns>the 2-dimensional Euclidean distance between the locations.</returns>
         /// <remarks>The Z-ordinate is ignored.</remarks>
-        public double Distance(CoordinateXY c)
+        public double Distance(Coordinate c)
         {
             double dx = X - c.X;
             double dy = Y - c.Y;
@@ -276,7 +276,7 @@ namespace GeoAPI.Geometries
         /// <returns><c>true</c> if <c>other</c> is a <c>Coordinate</c> with the same values for the x and y ordinates.</returns>
         public sealed override bool Equals(object o)
         {
-            if (o is CoordinateXY other)
+            if (o is Coordinate other)
                 return Equals(other);
             return false;
         }

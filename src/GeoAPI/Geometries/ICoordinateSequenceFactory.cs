@@ -13,7 +13,7 @@ namespace GeoAPI.Geometries
         /// </summary>
         /// <param name="coordinates">A coordinates array, which may not be null nor contain null elements</param>
         /// <returns>A coordinate sequence.</returns>
-        ICoordinateSequence Create(CoordinateXY[] coordinates);
+        ICoordinateSequence Create(Coordinate[] coordinates);
 
         /// <summary>
         /// Creates a <see cref="ICoordinateSequence" />  which is a copy

@@ -5,73 +5,75 @@ namespace GeoAPI.Geometries
 {
     /// <summary>
     /// A lightweight class used to store coordinates on the 2-dimensional Cartesian plane
-    /// and an additional measure (<see cref="M"/>) value.
+    /// and additional z- and m-ordinate values (<see cref="CoordinateZ.Z"/>, <see cref="M"/>).
     /// </summary>
     /// <remarks>
     /// It is distinct from <see cref="IPoint"/>, which is a subclass of <see cref="IGeometry"/>.
     /// Unlike objects of type <see cref="IPoint"/> (which contain additional
     /// information such as an envelope, a precision model, and spatial reference
-    /// system information), a <c>CoordinateXYM</c> only contains ordinate values
+    /// system information), a <c>CoordinateZM</c> only contains ordinate values
     /// and properties.
     /// <para/>
-    /// <c>CoordinateXYM</c>s are two-dimensional points, with an additional M-ordinate.    
-    /// If an M-ordinate value is not specified or not defined,
-    /// constructed coordinates have a M-ordinate of <code>NaN</code>
-    /// (which is also the value of <see cref="CoordinateXY.NullOrdinate"/>).
+    /// <c>CoordinateZM</c>s are two-dimensional points, with an additional Z-ordinate.    
+    /// If an Z-ordinate value is not specified or not defined,
+    /// constructed coordinates have a Z-ordinate of <code>NaN</code>
+    /// (which is also the value of <see cref="Coordinate.NullOrdinate"/>).
+    /// <para/>
     /// Apart from the basic accessor functions, NTS supports
-    /// only specific operations involving the M-ordinate.
+    /// only specific operations involving the Z- and/or M-ordinate.
     /// <para/>
     /// Implementations may optionally support Z-ordinate and M-measure values
-    /// as appropriate for a <see cref="ICoordinateSequence"/>. Use of <see cref="CoordinateXYZ.Z"/>
-    /// and <see cref="M"/> setters or <see cref="P:GeoAPI.Geometries.CoordinateXYM.this[Ordinate]" /> indexer are recommended.
+    /// as appropriate for a <see cref="ICoordinateSequence"/>. Use of <see cref="CoordinateZ.Z"/>
+    /// and <see cref="M"/> setters or <see cref="P:GeoAPI.Geometries.CoordinateZM.this[Ordinate]" /> indexer are recommended.
     /// </remarks>
 #if HAS_SYSTEM_SERIALIZABLEATTRIBUTE
     [Serializable]
 #endif
 #pragma warning disable 612,618
-    public sealed class CoordinateXYM : CoordinateXY
+    public sealed class CoordinateZM : CoordinateZ
     {
         /// <summary>
-        /// Gets or sets the M-ordinate value.
+        /// Gets or sets the measure-ordinate value.
         /// </summary>
         public override double M { get; set; }
 
         /// <summary>
-        /// Constructs a <c>CoordinateXYM</c> at (x,y,z).
+        /// Constructs a <c>CoordinateZM</c> at (x,y,z).
         /// </summary>
         /// <param name="x">The X value</param>
         /// <param name="y">The Y value</param>
-        /// <param name="m">The measure value</param>
-        public CoordinateXYM(double x, double y, double m) : base(x, y)
+        /// <param name="z">The Z value</param>
+        /// <param name="m">The Measure value</param>
+        public CoordinateZM(double x, double y, double z, double m) : base(x, y, z)
         {
             M = m;
         }
 
         /// <summary>
-        ///  Constructs a <c>CoordinateXYM</c> at (0,0,NaN).
+        ///  Constructs a <c>CoordinateZM</c> at (0,0,NaN,NaN).
         /// </summary>
-        public CoordinateXYM() : this(0.0, 0.0, NullOrdinate) { }
+        public CoordinateZM() : this(0.0, 0.0, NullOrdinate, NullOrdinate) { }
 
         /// <summary>
-        /// Constructs a <c>CoordinateXYM</c> having the same (x,y) values as
+        /// Constructs a <c>CoordinateZM</c> having the same (x,y) values as
         /// <paramref name="c"/>.
         /// </summary>
-        /// <param name="c"><c>CoordinateXY</c> to copy.</param>
-        public CoordinateXYM(CoordinateXY c) : this(c.X, c.Y, c.M) { }
+        /// <param name="c"><c>Coordinate</c> to copy.</param>
+        public CoordinateZM(Coordinate c) : this(c.X, c.Y, c.Z, c.M) { }
 
         /// <summary>
-        /// Constructs a <c>CoordinateXYM</c> at (x,y,NaN).
+        /// Constructs a <c>CoordinateZM</c> at (x,y,NaN).
         /// </summary>
         /// <param name="x">X value.</param>
         /// <param name="y">Y value.</param>
-        public CoordinateXYM(double x, double y) : this(x, y, NullOrdinate) { }
+        public CoordinateZM(double x, double y) : this(x, y, NullOrdinate, NullOrdinate) { }
 
 
         /// <summary>
         /// Gets or sets the ordinate value for the given index.
         /// </summary>
         /// <remarks>
-        /// The base implementation supports  <see cref="Ordinate.X"/>, <see cref="Ordinate.Y"/> and <see cref="Ordinate.M"/> as values for the index.
+        /// The base implementation supports  <see cref="Ordinate.X"/>, <see cref="Ordinate.Y"/> and <see cref="Ordinate.Z"/> as values for the index.
         /// </remarks>
         /// <param name="ordinateIndex">The ordinate index</param>
         /// <returns>The ordinate value</returns>
@@ -86,6 +88,8 @@ namespace GeoAPI.Geometries
                         return X;
                     case Ordinate.Y:
                         return Y;
+                    case Ordinate.Z:
+                        return Z;
                     case Ordinate.M:
                         return M;
                 }
@@ -101,6 +105,9 @@ namespace GeoAPI.Geometries
                     case Ordinate.Y:
                         Y = value;
                         return;
+                    case Ordinate.Z:
+                        Z = value;
+                        return;
                     case Ordinate.M:
                         M = value;
                         return;
@@ -110,36 +117,36 @@ namespace GeoAPI.Geometries
         }
 
         /// <summary>
-        /// Gets/Sets <c>CoordinateXYM</c>s (x,y,z) values.
+        /// Gets/Sets <c>CoordinateZM</c>s (x,y,z) values.
         /// </summary>
-        public override CoordinateXY CoordinateValue
+        public override Coordinate CoordinateValue
         {
             get { return this; }
             set
             {
                 X = value.X;
                 Y = value.Y;
+                Z = value.Z;
                 M = value.M;
             }
         }
 
-
         /// <summary>
-        /// Returns a <c>string</c> of the form <i>(x, y, m=m)</i>.
+        /// Returns a <c>string</c> of the form <i>(x, y, z, m=m)</i> .
         /// </summary>
-        /// <returns><c>string</c> of the form <i>(x, y, m=m)</i></returns>
+        /// <returns><c>string</c> of the form <i>(x, y, z, m=m)</i></returns>
         public override string ToString()
         {
-            return string.Format(NumberFormatInfo.InvariantInfo, "({0:R}, {1:R}, m={2:R})", X, Y, M);
+            return string.Format(NumberFormatInfo.InvariantInfo, "({0:R}, {1:R}, {2:R}, m={3:R})", X, Y, Z, M);
         }
 
         ///// <summary>
         ///// Create a new object as copy of this instance.
         ///// </summary>
         ///// <returns></returns>
-        //public override CoordinateXY Copy()
+        //public override Coordinate Copy()
         //{
-        //    return new CoordinateXYM(X, Y, M);
+        //    return new CoordinateZM(X, Y, Z, M);
         //}
     }
 }
