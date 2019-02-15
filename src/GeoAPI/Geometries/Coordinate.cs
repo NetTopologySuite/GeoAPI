@@ -21,7 +21,7 @@ namespace GeoAPI.Geometries
     [Serializable]
 #endif
 #pragma warning disable 612,618
-    public class Coordinate : IComparable, IComparable<Coordinate>, ICloneable
+    public class Coordinate : IComparable, IComparable<Coordinate>
     {
 
         ///<summary>
@@ -244,14 +244,9 @@ namespace GeoAPI.Geometries
         /// Create a new object as copy of this instance.
         /// </summary>
         /// <returns></returns>
-        public /*virtual*/ Coordinate Copy()
+        public Coordinate Copy()
         {
             return (Coordinate)MemberwiseClone();
-        }
-
-        object ICloneable.Clone()
-        {
-            return Copy();
         }
 
         /// <summary>

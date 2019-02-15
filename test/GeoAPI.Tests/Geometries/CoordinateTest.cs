@@ -111,18 +111,6 @@ namespace GeoAPI.Tests.Geometries
             Assert.That(ReferenceEquals(orig, c), Is.False);
         }
 
-        [Test, Obsolete]
-        public void TestCloneable()
-        {
-            var orig = CreateCoordinate();
-            var clone = (T) ((ICloneable) orig).Clone();
-
-            Assert.That(clone.GetType(), Is.EqualTo(typeof(T)));
-            Assert.That(orig.Equals(clone), Is.True);
-            Assert.That(orig.Z.Equals(clone.Z), Is.True);
-            Assert.That(orig.M.Equals(clone.M), Is.True);
-        }
-
         [Test]
         public void TestSetCoordinate()
         {
@@ -273,15 +261,6 @@ namespace GeoAPI.Tests.Geometries
             string actualResult = CreateCoordinate3DM(100, 200, 50, 25).ToString();
             Assert.AreEqual(ExpectedToString, actualResult);
         }
-
-        //[Test]
-        //public void TestClone()
-        //{
-        //    T c = CreateCoordinate3D(100.0, 200.0, 50.0);
-        //    T clone = (T)c.Clone();
-        //    Assert.IsTrue(c.Equals(clone));
-
-        //}
 
         [Test]
         public void TestDistance()

@@ -3,16 +3,10 @@ using GeoAPI.Operation.Buffer;
 
 namespace GeoAPI.Geometries
 {
-#if HAS_SYSTEM_ICLONEABLE
-    using ICloneable = System.ICloneable;
-#else
-    using ICloneable = GeoAPI.ICloneable;
-#endif
-
     /// <summary>  
     /// Interface for basic implementation of <c>Geometry</c>.
     /// </summary>
-    public interface IGeometry : ICloneable, IComparable, IComparable<IGeometry>
+    public interface IGeometry : IComparable, IComparable<IGeometry>
     {
         ///<summary>
         /// The <see cref="IGeometryFactory"/> used to create this geometry
