@@ -95,10 +95,10 @@ namespace GeoAPI.Geometries
         /// </summary>
         /// <remarks>
         /// The coordinate is created supporting the same number of <see cref="Dimension"/> and <see cref="Measures"/>
-        /// as this sequence and is suitable for use with <see cref="GetCoordinate(int, CoordinateXY)"/>.
+        /// as this sequence and is suitable for use with <see cref="GetCoordinate(int, Coordinate)"/>.
         /// </remarks>
         /// <returns>A coordinate for use with this sequence</returns>
-        CoordinateXY CreateCoordinate();
+        Coordinate CreateCoordinate();
 
         /// <summary>
         /// Returns (possibly a copy of) the ith Coordinate in this collection.
@@ -111,7 +111,7 @@ namespace GeoAPI.Geometries
         /// </summary>
         /// <param name="i"></param>
         /// <returns></returns>
-        CoordinateXY GetCoordinate(int i);
+        Coordinate GetCoordinate(int i);
 
         /// <summary>
         /// Returns a copy of the i'th coordinate in this sequence.
@@ -121,7 +121,7 @@ namespace GeoAPI.Geometries
         /// </summary>
         /// <param name="i">The index of the coordinate to retrieve.</param>
         /// <returns>A copy of the i'th coordinate in the sequence</returns>
-        CoordinateXY GetCoordinateCopy(int i);             
+        Coordinate GetCoordinateCopy(int i);             
 
         /// <summary>
         /// Copies the i'th coordinate in the sequence to the supplied Coordinate.  
@@ -129,7 +129,7 @@ namespace GeoAPI.Geometries
         /// </summary>
         /// <param name="index">The index of the coordinate to copy.</param>
         /// <param name="coord">A Coordinate to receive the value.</param>
-        void GetCoordinate(int index, CoordinateXY coord);
+        void GetCoordinate(int index, Coordinate coord);
 
         /// <summary>
         /// Returns ordinate X (0) of the specified coordinate.
@@ -237,7 +237,7 @@ namespace GeoAPI.Geometries
         /// be built from scratch.
         /// </summary>
         /// <returns></returns>
-        CoordinateXY[] ToCoordinateArray();
+        Coordinate[] ToCoordinateArray();
 
         /// <summary>
         /// Expands the given Envelope to include the coordinates in the sequence.

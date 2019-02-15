@@ -66,7 +66,7 @@ namespace GeoAPI.Geometries
         /// </summary>
         /// <param name="coordinate">The coordinate</param>
         /// <returns>A Point</returns>
-        IPoint CreatePoint(CoordinateXY coordinate);
+        IPoint CreatePoint(Coordinate coordinate);
 
         /// <summary>
         /// Creates a <c>Point</c> using the given <c>CoordinateSequence</c>; a null or empty
@@ -88,7 +88,7 @@ namespace GeoAPI.Geometries
         /// </summary>
         /// <param name="coordinates">An array without null elements, or an empty array, or null.</param>
         /// <returns>A LineString</returns>
-        ILineString CreateLineString(CoordinateXY[] coordinates);
+        ILineString CreateLineString(Coordinate[] coordinates);
 
         /// <summary> 
         /// Creates a LineString using the given Coordinates; a null or empty array will
@@ -110,7 +110,7 @@ namespace GeoAPI.Geometries
         /// LineString. Consecutive points must not be equal.
         /// </summary>
         /// <param name="coordinates">An array without null elements, or an empty array, or null.</param>
-        ILinearRing CreateLinearRing(CoordinateXY[] coordinates);
+        ILinearRing CreateLinearRing(Coordinate[] coordinates);
 
         /// <summary> 
         /// Creates a <c>LinearRing</c> using the given <c>CoordinateSequence</c>; a null or empty CoordinateSequence will
@@ -159,7 +159,7 @@ namespace GeoAPI.Geometries
         /// <c>null</c> or an empty <c>LinearRing</c> if
         /// the empty geometry is to be created.</param>
         /// <returns>The polygon</returns>
-        IPolygon CreatePolygon(CoordinateXY[] coordinates);
+        IPolygon CreatePolygon(Coordinate[] coordinates);
 
         /// <summary>
         /// Constructs a <c>Polygon</c> with the given exterior boundary.
@@ -182,7 +182,7 @@ namespace GeoAPI.Geometries
         /// </summary>
         /// <param name="coordinates">An array (without null elements), or an empty array, or <c>null</c></param>
         /// <returns>A <see cref="IMultiPoint"/> object</returns>
-        IMultiPoint CreateMultiPointFromCoords(CoordinateXY[] coordinates);
+        IMultiPoint CreateMultiPointFromCoords(Coordinate[] coordinates);
 
         /// <summary> 
         /// Creates a <see cref="IMultiPoint"/> using the given Points.

@@ -10,26 +10,26 @@ namespace GeoAPI.Geometries
     /// It is distinct from <see cref="IPoint"/>, which is a subclass of <see cref="IGeometry"/>.
     /// Unlike objects of type <see cref="IPoint"/> (which contain additional
     /// information such as an envelope, a precision model, and spatial reference
-    /// system information), a <c>CoordinateXYZ</c> only contains ordinate values
+    /// system information), a <c>CoordinateZ</c> only contains ordinate values
     /// and properties.
     /// <para/>
-    /// <c>CoordinateXYZ</c>s are two-dimensional points, with an additional Z-ordinate.    
+    /// <c>CoordinateZ</c>s are two-dimensional points, with an additional Z-ordinate.    
     /// If an Z-ordinate value is not specified or not defined,
     /// constructed coordinates have a Z-ordinate of <code>NaN</code>
-    /// (which is also the value of <see cref="CoordinateXY.NullOrdinate"/>).
+    /// (which is also the value of <see cref="Coordinate.NullOrdinate"/>).
     /// <para/>
     /// Apart from the basic accessor functions, NTS supports
     /// only specific operations involving the Z-ordinate.
     /// <para/>
     /// Implementations may optionally support Z-ordinate and M-measure values
     /// as appropriate for a <see cref="ICoordinateSequence"/>. Use of <see cref="Z"/>
-    /// and <see cref="CoordinateXY.M"/> setters or <see cref="P:GeoAPI.Geometries.CoordinateXYZ.this[Ordinate]" /> indexer are recommended.
+    /// and <see cref="Coordinate.M"/> setters or <see cref="P:GeoAPI.Geometries.CoordinateZ.this[Ordinate]" /> indexer are recommended.
     /// </remarks>
 #if HAS_SYSTEM_SERIALIZABLEATTRIBUTE
     [Serializable]
 #endif
 #pragma warning disable 612,618
-    public class CoordinateXYZ : CoordinateXY
+    public class CoordinateZ : Coordinate
     {
         /// <summary>
         /// Gets or sets the Z-ordinate value.
@@ -37,34 +37,34 @@ namespace GeoAPI.Geometries
         public sealed override double Z { get; set; }
 
         /// <summary>
-        /// Constructs a <c>CoordinateXYZ</c> at (x,y,z).
+        /// Constructs a <c>CoordinateZ</c> at (x,y,z).
         /// </summary>
         /// <param name="x">The X value</param>
         /// <param name="y">The Y value</param>
         /// <param name="z">The Z value</param>
-        public CoordinateXYZ(double x, double y, double z) : base(x, y)
+        public CoordinateZ(double x, double y, double z) : base(x, y)
         {
             Z = z;
         }
 
         /// <summary>
-        ///  Constructs a <c>CoordinateXYZ</c> at (0,0,NaN).
+        ///  Constructs a <c>CoordinateZ</c> at (0,0,NaN).
         /// </summary>
-        public CoordinateXYZ() : this(0.0, 0.0, NullOrdinate) { }
+        public CoordinateZ() : this(0.0, 0.0, NullOrdinate) { }
 
         /// <summary>
-        /// Constructs a <c>CoordinateXYZ</c> having the same (x,y) values as
+        /// Constructs a <c>CoordinateZ</c> having the same (x,y) values as
         /// <paramref name="c"/>.
         /// </summary>
-        /// <param name="c"><c>CoordinateXY</c> to copy.</param>
-        public CoordinateXYZ(CoordinateXY c) : this(c.X, c.Y, c.Z) { }
+        /// <param name="c"><c>Coordinate</c> to copy.</param>
+        public CoordinateZ(Coordinate c) : this(c.X, c.Y, c.Z) { }
 
         /// <summary>
-        /// Constructs a <c>CoordinateXYZ</c> at (x,y,NaN).
+        /// Constructs a <c>CoordinateZ</c> at (x,y,NaN).
         /// </summary>
         /// <param name="x">X value.</param>
         /// <param name="y">Y value.</param>
-        public CoordinateXYZ(double x, double y) : this(x, y, NullOrdinate) { }
+        public CoordinateZ(double x, double y) : this(x, y, NullOrdinate) { }
 
 
         /// <summary>
@@ -110,9 +110,9 @@ namespace GeoAPI.Geometries
         }
 
         /// <summary>
-        /// Gets/Sets <c>CoordinateXYZ</c>s (x,y,z) values.
+        /// Gets/Sets <c>CoordinateZ</c>s (x,y,z) values.
         /// </summary>
-        public override CoordinateXY CoordinateValue
+        public override Coordinate CoordinateValue
         {
             get { return this; }
             set
@@ -127,24 +127,24 @@ namespace GeoAPI.Geometries
         /// Returns <c>true</c> if <paramref name="other"/> 
         /// has the same values for X, Y and Z.
         /// </summary>
-        /// <param name="other">A <see cref="CoordinateXYZ"/> with which to do the 3D comparison.</param>
+        /// <param name="other">A <see cref="CoordinateZ"/> with which to do the 3D comparison.</param>
         /// <returns>
-        /// <c>true</c> if <paramref name="other"/> is a <see cref="CoordinateXYZ"/> 
+        /// <c>true</c> if <paramref name="other"/> is a <see cref="CoordinateZ"/> 
         /// with the same values for X, Y and Z.
         /// </returns>
-        public bool Equals3D(CoordinateXYZ other)
+        public bool Equals3D(CoordinateZ other)
         {
             return (X == other.X) && (Y == other.Y) &&
                 ((Z == other.Z) || (double.IsNaN(Z) && double.IsNaN(other.Z)));
         }
 
         /// <summary>
-        /// Tests if another CoordinateXYZ has the same value for Z, within a tolerance.
+        /// Tests if another CoordinateZ has the same value for Z, within a tolerance.
         /// </summary>
-        /// <param name="c">A <see cref="CoordinateXYZ"/>.</param>
+        /// <param name="c">A <see cref="CoordinateZ"/>.</param>
         /// <param name="tolerance">The tolerance value.</param>
         /// <returns><c>true</c> if the Z ordinates are within the given tolerance.</returns>
-        public bool EqualInZ(CoordinateXYZ c, double tolerance)
+        public bool EqualInZ(CoordinateZ c, double tolerance)
         {
             return EqualsWithTolerance(this.Z, c.Z, tolerance);
         }
@@ -161,17 +161,17 @@ namespace GeoAPI.Geometries
         ///// <summary>
         ///// Create a new object as copy of this instance.
         ///// </summary>
-        //public override CoordinateXY Copy()
+        //public override Coordinate Copy()
         //{
-        //    return new CoordinateXYZ(X, Y, Z);
+        //    return new CoordinateZ(X, Y, Z);
         //}
 
         /// <summary>
         /// Computes the 3-dimensional Euclidean distance to another location.
         /// </summary>
-        /// <param name="c">A <see cref="CoordinateXYZ"/> with which to do the distance comparison.</param>
+        /// <param name="c">A <see cref="CoordinateZ"/> with which to do the distance comparison.</param>
         /// <returns>the 3-dimensional Euclidean distance between the locations.</returns>
-        public double Distance3D(CoordinateXYZ c)
+        public double Distance3D(CoordinateZ c)
         {
             double dx = X - c.X;
             double dy = Y - c.Y;

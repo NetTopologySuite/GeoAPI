@@ -4,6 +4,6 @@ namespace GeoAPI.Geometries
     {
         IPoint GetPointN(int n);
 
-        CoordinateXY GetCoordinateN(int n);
+        Coordinate GetCoordinateN(int n);
     }
 }

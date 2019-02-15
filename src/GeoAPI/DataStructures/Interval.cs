@@ -53,11 +53,11 @@ namespace GeoAPI.DataStructures
         {
 #if picky
             // This is not a valid value, ignore it
-            if (p.Equals(CoordinateXY.NullOrdinate))
+            if (p.Equals(Coordinate.NullOrdinate))
                 return this;
 
             // This interval has not seen a valid ordinate
-            if (Min.Equals(CoordinateXY.NullOrdinate))
+            if (Min.Equals(Coordinate.NullOrdinate))
                 return new Interval(p, p);
 #endif
             var min = p < Min ? p : Min;
@@ -68,7 +68,7 @@ namespace GeoAPI.DataStructures
         /// <summary>
         /// Gets a value if this interval is empty/undefined
         /// </summary>
-        bool IsEmpty { get { return Min.Equals(CoordinateXY.NullOrdinate); } }
+        bool IsEmpty { get { return Min.Equals(Coordinate.NullOrdinate); } }
 
         ///<inheritdoc/>
         public override int GetHashCode()
@@ -220,7 +220,7 @@ namespace GeoAPI.DataStructures
         /// <returns>An empty or uninitialized <see cref="Interval"/></returns>
         public static Interval Create()
         {
-            return new Interval(CoordinateXY.NullOrdinate);
+            return new Interval(Coordinate.NullOrdinate);
         }
 
         /// <summary>

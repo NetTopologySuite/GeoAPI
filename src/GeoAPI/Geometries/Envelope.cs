@@ -30,7 +30,7 @@ namespace GeoAPI.Geometries
         /// <param name="p2">Another extremal point of the envelope.</param>
         /// <param name="q">Point to test for intersection.</param>
         /// <returns><c>true</c> if q intersects the envelope p1-p2.</returns>
-        public static bool Intersects(CoordinateXY p1, CoordinateXY p2, CoordinateXY q)
+        public static bool Intersects(Coordinate p1, Coordinate p2, Coordinate q)
         {
             return ((q.X >= (p1.X < p2.X ? p1.X : p2.X)) && (q.X <= (p1.X > p2.X ? p1.X : p2.X))) &&
                    ((q.Y >= (p1.Y < p2.Y ? p1.Y : p2.Y)) && (q.Y <= (p1.Y > p2.Y ? p1.Y : p2.Y)));
@@ -46,7 +46,7 @@ namespace GeoAPI.Geometries
         /// <param name="q1">One extremal point of the envelope Q.</param>
         /// <param name="q2">Another extremal point of the envelope Q.</param>
         /// <returns><c>true</c> if Q intersects Point</returns>
-        public static bool Intersects(CoordinateXY p1, CoordinateXY p2, CoordinateXY q1, CoordinateXY q2)
+        public static bool Intersects(Coordinate p1, Coordinate p2, Coordinate q1, Coordinate q2)
         {
             double minP = Math.Min(p1.X, p2.X);
             double maxQ = Math.Max(q1.X, q2.X);
@@ -116,7 +116,7 @@ namespace GeoAPI.Geometries
         /// </summary>
         /// <param name="p1">The first Coordinate.</param>
         /// <param name="p2">The second Coordinate.</param>
-        public Envelope(CoordinateXY p1, CoordinateXY p2)
+        public Envelope(Coordinate p1, Coordinate p2)
         {
             Init(p1.X, p2.X, p1.Y, p2.Y);
         }
@@ -125,7 +125,7 @@ namespace GeoAPI.Geometries
         /// Creates an <c>Envelope</c> for a region defined by a single Coordinate.
         /// </summary>
         /// <param name="p">The Coordinate.</param>
-        public Envelope(CoordinateXY p)
+        public Envelope(Coordinate p)
         {
             Init(p.X, p.X, p.Y, p.Y);
         }
@@ -184,7 +184,7 @@ namespace GeoAPI.Geometries
         /// </summary>
         /// <param name="p1">The first Coordinate.</param>
         /// <param name="p2">The second Coordinate.</param>
-        public void Init(CoordinateXY p1, CoordinateXY p2)
+        public void Init(Coordinate p1, Coordinate p2)
         {
             Init(p1.X, p2.X, p1.Y, p2.Y);
         }
@@ -193,7 +193,7 @@ namespace GeoAPI.Geometries
         /// Initialize an <c>Envelope</c> for a region defined by a single Coordinate.
         /// </summary>
         /// <param name="p">The Coordinate.</param>
-        public void Init(CoordinateXY p)
+        public void Init(Coordinate p)
         {
             Init(p.X, p.X, p.Y, p.Y);
         }
@@ -385,7 +385,7 @@ namespace GeoAPI.Geometries
         /// Has no effect if the point is already on or within the envelope.
         /// </summary>
         /// <param name="p">The Coordinate.</param>
-        public void ExpandToInclude(CoordinateXY p)
+        public void ExpandToInclude(Coordinate p)
         {
             ExpandToInclude(p.X, p.Y);
         }
@@ -489,11 +489,11 @@ namespace GeoAPI.Geometries
         /// The centre coordinate of this envelope,
         /// or <c>null</c> if the envelope is null.
         /// </returns>.
-        public CoordinateXY Centre
+        public Coordinate Centre
         {
             get
             {
-                return IsNull ? null : new CoordinateXY((MinX + MaxX) / 2.0, (MinY + MaxY) / 2.0);
+                return IsNull ? null : new Coordinate((MinX + MaxX) / 2.0, (MinY + MaxY) / 2.0);
             }
         }
 
@@ -538,7 +538,7 @@ namespace GeoAPI.Geometries
         /// </summary>
         /// <param name="p"> the <c>Coordinate</c> to be tested.</param>
         /// <returns><c>true</c> if the point overlaps this <c>Envelope</c>.</returns>
-        public bool Intersects(CoordinateXY p)
+        public bool Intersects(Coordinate p)
         {
             return Intersects(p.X, p.Y);
         }
@@ -561,7 +561,7 @@ namespace GeoAPI.Geometries
         /// <param name="a">A point</param>
         /// <param name="b">Another point</param>
         /// <returns><c>true</c> if the extents intersect</returns>
-        public bool Intersects(CoordinateXY a, CoordinateXY b)
+        public bool Intersects(Coordinate a, Coordinate b)
         {
             if (IsNull) return false;
 
@@ -604,8 +604,8 @@ namespace GeoAPI.Geometries
         /// </remarks>
         /// <param name="p">the point which this <c>Envelope</c> is being checked for containing</param>
         /// <returns><c>true</c> if the point lies in the interior or on the boundary of this <c>Envelope</c>. </returns>
-        /// <see cref="Covers(CoordinateXY)"/>
-        public bool Contains(CoordinateXY p)
+        /// <see cref="Covers(Coordinate)"/>
+        public bool Contains(Coordinate p)
         {
             return Covers(p);
         }
@@ -647,7 +647,7 @@ namespace GeoAPI.Geometries
         ///</summary>
         /// <param name="p">the point which this <c>Envelope</c> is being checked for containing</param>
         /// <returns><c>true</c> if the point lies in the interior or on the boundary of this <c>Envelope</c>.</returns>
-        public bool Covers(CoordinateXY p)
+        public bool Covers(Coordinate p)
         {
             return Covers(p.X, p.Y);
         }

@@ -13,14 +13,6 @@ namespace GeoAPI.Geometries
     /// system information), a <c>Coordinate</c> only contains ordinate values
     /// and properties.
     /// <para/>
-    /// <c>Coordinate</c>s are two-dimensional points, with an additional Z-ordinate.    
-    /// If an Z-ordinate value is not specified or not defined,
-    /// constructed coordinates have a Z-ordinate of <code>NaN</code>
-    /// (which is also the value of <see cref="NullOrdinate"/>).
-    /// <para/>
-    /// Apart from the basic accessor functions, NTS supports
-    /// only specific operations involving the Z-ordinate.
-    /// <para/>
     /// Implementations may optionally support Z-ordinate and M-measure values
     /// as appropriate for a <see cref="ICoordinateSequence"/>. Use of <see cref="Z"/>
     /// and <see cref="M"/> setters or <see cref="P:GeoAPI.Geometries.Coordinate.this[Ordinate]" /> indexer are recommended.
@@ -28,9 +20,8 @@ namespace GeoAPI.Geometries
 #if HAS_SYSTEM_SERIALIZABLEATTRIBUTE
     [Serializable]
 #endif
-    [Obsolete("Use concrete classes like CoordinateXY, CoordinateXYM, CoordinateXYZ or CoordinateXYZM")]
 #pragma warning disable 612,618
-    public class Coordinate : IComparable<Coordinate>
+    public class Coordinate : IComparable, IComparable<Coordinate>, ICloneable
     {
 
         ///<summary>
@@ -38,8 +29,7 @@ namespace GeoAPI.Geometries
         /// In particular, used for the value of ordinates for dimensions
         /// greater than the defined dimension of a coordinate.
         ///</summary>
-        public const double NullOrdinate = Double.NaN;
-
+        public const double NullOrdinate = double.NaN;
         /// <summary>
         /// Gets or sets the X-ordinate value.
         /// </summary>
@@ -51,62 +41,65 @@ namespace GeoAPI.Geometries
         public double Y { get; set; }
 
         /// <summary>
-        /// Gets or sets the Z-ordinate value.
+        /// Gets or sets the Z-ordinate value (<see cref="NullOrdinate"/>).
         /// </summary>
-        public virtual double Z { get; set; }
+        /// <remarks>The Z-ordinate is not supported</remarks>
+        /// <exception cref="InvalidOperationException">
+        /// Thrown if an attempt is made to <b>set</b> the Z-ordinate value
+        /// </exception>
+        public virtual double Z
+        {
+            get => NullOrdinate; 
+            set { throw new InvalidOperationException($"{GetType().Name} does not support setting Z-ordinate");}
+        }
 
         /// <summary>
-        /// Gets the default m-measure (<see cref="NullOrdinate"/>).
+        /// Gets or sets the default m-measure (<see cref="NullOrdinate"/>) if supported.
         /// </summary>
+        /// <remarks>The M-measure is not supported</remarks>
+        /// <exception cref="InvalidOperationException">
+        /// Thrown if an attempt is made to <b>set</b> the M-Measure value
+        /// </exception>
         public virtual double M
         {
             get => NullOrdinate;
-            set { throw new InvalidOperationException($"{nameof(Coordinate)} does not support setting M-measure"); }
+            set { throw new InvalidOperationException($"{GetType().Name} does not support setting M-measure"); }
         }
 
         /// <summary>
-        /// Constructs a <c>Coordinate</c> at (x,y,z).
+        /// Constructs a <c>Coordinate</c> at (x,y).
         /// </summary>
         /// <param name="x">The X value</param>
         /// <param name="y">The Y value</param>
-        /// <param name="z">The Z value</param>
-        public Coordinate(double x, double y, double z)
+        public Coordinate(double x, double y)
         {
             X = x;
             Y = y;
-            Z = z;
         }
 
         /// <summary>
-        ///  Constructs a <c>Coordinate</c> at (0,0,NaN).
+        ///  Constructs a <c>Coordinate</c> at (0,0).
         /// </summary>
-        public Coordinate() : this(0.0, 0.0, NullOrdinate) { }
+        public Coordinate() : this(0.0, 0.0) { }
 
         /// <summary>
         /// Constructs a <c>Coordinate</c> having the same (x,y,z) values as
-        /// <c>other</c>.
+        /// <paramref name="c"/>.
         /// </summary>
         /// <param name="c"><c>Coordinate</c> to copy.</param>
-        public Coordinate(Coordinate c) : this(c.X, c.Y, c.Z) { }
-
-        /// <summary>
-        /// Constructs a <c>Coordinate</c> at (x,y,NaN).
-        /// </summary>
-        /// <param name="x">X value.</param>
-        /// <param name="y">Y value.</param>
-        public Coordinate(double x, double y) : this(x, y, NullOrdinate) { }
+        public Coordinate(Coordinate c) : this(c.X, c.Y) { }
 
 
         /// <summary>
         /// Gets or sets the ordinate value for the given index.
         /// </summary>
         /// <remarks>
-        /// The base implementation supports  <see cref="Ordinate.X"/>, <see cref="Ordinate.Y"/> and <see cref="Ordinate.Z"/> as values for the index.
+        /// The base implementation supports <see cref="Ordinate.X"/> and <see cref="Ordinate.Y"/> as values for the index.
         /// </remarks>
         /// <param name="ordinateIndex">The ordinate index</param>
         /// <returns>The ordinate value</returns>
         /// <exception cref="ArgumentOutOfRangeException">Thrown if <paramref name="ordinateIndex"/> is not in the valid range.</exception>
-        public double this[Ordinate ordinateIndex]
+        public virtual double this[Ordinate ordinateIndex]
         {
             get
             {
@@ -116,8 +109,6 @@ namespace GeoAPI.Geometries
                         return X;
                     case Ordinate.Y:
                         return Y;
-                    case Ordinate.Z:
-                        return Z;
                 }
                 throw new ArgumentOutOfRangeException(nameof(ordinateIndex));
             }
@@ -131,9 +122,6 @@ namespace GeoAPI.Geometries
                     case Ordinate.Y:
                         Y = value;
                         return;
-                    case Ordinate.Z:
-                        Z = value;
-                        return;
                 }
                 throw new ArgumentOutOfRangeException(nameof(ordinateIndex));
             }
@@ -142,14 +130,16 @@ namespace GeoAPI.Geometries
         /// <summary>
         /// Gets/Sets <c>Coordinate</c>s (x,y,z) values.
         /// </summary>
-        public Coordinate CoordinateValue
+        public virtual Coordinate CoordinateValue
         {
-            get { return this; }
+            get
+            {
+                return this;
+            }
             set
             {
                 X = value.X;
                 Y = value.Y;
-                Z = value.Z;
             }
         }
 
@@ -182,25 +172,9 @@ namespace GeoAPI.Geometries
             return true;
         }
 
-        private static bool EqualsWithTolerance(double v1, double v2, double tolerance)
+        protected static bool EqualsWithTolerance(double v1, double v2, double tolerance)
         {
             return Math.Abs(v1 - v2) <= tolerance;
-        }
-
-        /// <summary>
-        /// Returns <c>true</c> if <c>other</c> has the same values for the x and y ordinates.
-        /// Since Coordinates are 2.5D, this routine ignores the z value when making the comparison.
-        /// </summary>
-        /// <param name="other"><c>Coordinate</c> with which to do the comparison.</param>
-        /// <returns><c>true</c> if <c>other</c> is a <c>Coordinate</c> with the same values for the x and y ordinates.</returns>
-        public override bool Equals(object o)
-        {
-            if (o is Coordinate other)
-                return Equals(other);
-            if (o is CoordinateXY otherXY)
-                return ((CoordinateXY) this).Equals(otherXY);
-
-            return false;
         }
 
         /// <summary>
@@ -208,32 +182,10 @@ namespace GeoAPI.Geometries
         /// </summary>
         /// <param name="other"></param>
         /// <returns></returns>
-        public Boolean Equals(Coordinate other)
+        public bool Equals(Coordinate other)
         {
             return Equals2D(other);
         }
-
-        ///// <summary>
-        /////
-        ///// </summary>
-        ///// <param name="obj1"></param>
-        ///// <param name="obj2"></param>
-        ///// <returns></returns>
-        //public static bool operator ==(Coordinate obj1, ICoordinate obj2)
-        //{
-        //    return Equals(obj1, obj2);
-        //}
-
-        ///// <summary>
-        /////
-        ///// </summary>
-        ///// <param name="obj1"></param>
-        ///// <param name="obj2"></param>
-        ///// <returns></returns>
-        //public static bool operator !=(Coordinate obj1, ICoordinate obj2)
-        //{
-        //    return !(obj1 == obj2);
-        //}
 
         /// <summary>
         /// Compares this object with the specified object for order.
@@ -250,9 +202,15 @@ namespace GeoAPI.Geometries
         /// </returns>
         public int CompareTo(object o)
         {
-            if (o is Coordinate other)
-                return CompareTo(other);
-            return 1;
+            //Like in JTS
+            //return CompareTo((Coordinate) o);
+
+            if (ReferenceEquals(o, null))
+                throw new ArgumentNullException(nameof(o));
+            if (!(o is Coordinate oc))
+                throw new ArgumentException($"Invalid type: '{o.GetType()}'", nameof(o));
+
+            return CompareTo(oc);
         }
 
         /// <summary>
@@ -270,6 +228,9 @@ namespace GeoAPI.Geometries
         /// </returns>
         public int CompareTo(Coordinate other)
         {
+            if (other == null)
+                throw new ArgumentNullException(nameof(other));
+
             if (X < other.X)
                 return -1;
             if (X > other.X)
@@ -280,49 +241,17 @@ namespace GeoAPI.Geometries
         }
 
         /// <summary>
-        /// Returns <c>true</c> if <paramref name="other"/> 
-        /// has the same values for X, Y and Z.
-        /// </summary>
-        /// <param name="other">A <see cref="Coordinate"/> with which to do the 3D comparison.</param>
-        /// <returns>
-        /// <c>true</c> if <paramref name="other"/> is a <see cref="Coordinate"/> 
-        /// with the same values for X, Y and Z.
-        /// </returns>
-        public bool Equals3D(Coordinate other)
-        {
-            return (X == other.X) && (Y == other.Y) &&
-                ((Z == other.Z) || (Double.IsNaN(Z) && Double.IsNaN(other.Z)));
-        }
-
-        /// <summary>
-        /// Tests if another coordinate has the same value for Z, within a tolerance.
-        /// </summary>
-        /// <param name="c">A <see cref="Coordinate"/>.</param>
-        /// <param name="tolerance">The tolerance value.</param>
-        /// <returns><c>true</c> if the Z ordinates are within the given tolerance.</returns>
-        public bool EqualInZ(Coordinate c, double tolerance)
-        {
-            return EqualsWithTolerance(this.Z, c.Z, tolerance);
-        }
-
-        /// <summary>
-        /// Returns a <c>string</c> of the form <I>(x,y,z)</I> .
-        /// </summary>
-        /// <returns><c>string</c> of the form <I>(x,y,z)</I></returns>
-        public override string ToString()
-        {
-            return "(" + X.ToString("R", NumberFormatInfo.InvariantInfo) + ", " +
-                         Y.ToString("R", NumberFormatInfo.InvariantInfo) + ", " +
-                         Z.ToString("R", NumberFormatInfo.InvariantInfo) + ")";
-        }
-
-        /// <summary>
         /// Create a new object as copy of this instance.
         /// </summary>
         /// <returns></returns>
-        public virtual Coordinate Copy()
+        public /*virtual*/ Coordinate Copy()
         {
-            return new Coordinate(X, Y, Z);
+            return (Coordinate)MemberwiseClone();
+        }
+
+        object ICloneable.Clone()
+        {
+            return Copy();
         }
 
         /// <summary>
@@ -333,89 +262,47 @@ namespace GeoAPI.Geometries
         /// <remarks>The Z-ordinate is ignored.</remarks>
         public double Distance(Coordinate c)
         {
-            var dx = X - c.X;
-            var dy = Y - c.Y;
+            double dx = X - c.X;
+            double dy = Y - c.Y;
             return Math.Sqrt(dx * dx + dy * dy);
         }
 
+#region System.Object overrides
         /// <summary>
-        /// Computes the 3-dimensional Euclidean distance to another location.
+        /// Returns <c>true</c> if <c>other</c> has the same values for the x and y ordinates.
+        /// Since Coordinates are 2.5D, this routine ignores the z value when making the comparison.
         /// </summary>
-        /// <param name="c">A <see cref="Coordinate"/> with which to do the distance comparison.</param>
-        /// <returns>the 3-dimensional Euclidean distance between the locations.</returns>
-        public double Distance3D(Coordinate c)
+        /// <param name="o"><c>Coordinate</c> with which to do the comparison.</param>
+        /// <returns><c>true</c> if <c>other</c> is a <c>Coordinate</c> with the same values for the x and y ordinates.</returns>
+        public sealed override bool Equals(object o)
         {
-            double dx = X - c.X;
-            double dy = Y - c.Y;
-            double dz = Z - c.Z;
-            return Math.Sqrt(dx * dx + dy * dy + dz * dz);
+            if (o is Coordinate other)
+                return Equals(other);
+            return false;
         }
 
         /// <summary>
         /// Gets a hashcode for this coordinate.
         /// </summary>
         /// <returns>A hashcode for this coordinate.</returns>
-        public override int GetHashCode()
+        public sealed override int GetHashCode()
         {
-            int result = 17;
+            var result = 17;
             // ReSharper disable NonReadonlyFieldInGetHashCode
-            result = 37 * result + GetHashCode(X);
-            result = 37 * result + GetHashCode(Y);
+            result = 37 * result + X.GetHashCode();
+            result = 37 * result + Y.GetHashCode();
             // ReSharper restore NonReadonlyFieldInGetHashCode
             return result;
         }
 
         /// <summary>
-        /// Computes a hash code for a double value, using the algorithm from
-        /// Joshua Bloch's book <i>Effective Java"</i>
+        /// Returns a <c>string</c> of the form <I>(x,y,z)</I> .
         /// </summary>
-        /// <param name="value">A hashcode for the double value</param>
-        public static int GetHashCode(double value)
+        /// <returns><c>string</c> of the form <I>(x,y,z)</I></returns>
+        public override string ToString()
         {
-            return value.GetHashCode();
-
-            // This was implemented as follows, but that's actually equivalent:
-            /*
-            var f = BitConverter.DoubleToInt64Bits(value);
-            return (int)(f ^ (f >> 32));
-            */
+            return string.Format(NumberFormatInfo.InvariantInfo, "({0:R}, {1:R})", X, Y);
         }
-
-        /// <summary>
-        /// Implicit conversion operator to get a <see cref="CoordinateXY"/> from a <see cref="Coordinate"/>.
-        /// </summary>
-        /// <param name="c">The coordinate</param>
-        public static implicit operator CoordinateXY(Coordinate c)
-        {
-            return new CoordinateXY(c.X, c.Y);
-        }
-
-        /// <summary>
-        /// Implicit conversion operator to get a <see cref="Coordinate"/> from a <see cref="CoordinateXY"/>.
-        /// </summary>
-        /// <param name="c">The coordinate</param>
-        public static implicit operator Coordinate(CoordinateXY c)
-        {
-            return new Coordinate(c.X, c.Y);
-        }
-
-        /// <summary>
-        /// Explicit conversion operator to get a <see cref="CoordinateXYZ"/> from a <see cref="Coordinate"/>.
-        /// </summary>
-        /// <param name="c">The coordinate</param>
-        public static explicit operator CoordinateXYZ(Coordinate c)
-        {
-            return new CoordinateXYZ(c.X, c.Y, c.Z);
-        }
-
-        /// <summary>
-        /// Implicit conversion operator to get a <see cref="Coordinate"/> from a <see cref="CoordinateXYZ"/>.
-        /// </summary>
-        /// <param name="c">The coordinate</param>
-        public static explicit operator Coordinate(CoordinateXYZ c)
-        {
-            return new Coordinate(c.X, c.Y, c.Z);
-        }
-
+#endregion
     }
 }
