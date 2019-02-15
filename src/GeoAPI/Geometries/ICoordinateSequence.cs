@@ -1,13 +1,5 @@
-using System;
-
 namespace GeoAPI.Geometries
 {
-#if HAS_SYSTEM_ICLONEABLE
-    using ICloneable = System.ICloneable;
-#else
-    using ICloneable = GeoAPI.ICloneable;
-#endif
-
     /// <summary>
     /// The internal representation of a list of coordinates inside a Geometry.
     /// <para>
@@ -35,7 +27,6 @@ namespace GeoAPI.Geometries
     ///// <seealso cref="NetTopologySuite.Geometries.Implementation.ExtendedCoordinateExample"/>
     ///// <seealso cref="NetTopologySuite.Geometries.Implementation.PackedCoordinateSequenceFactory"/>
     public interface ICoordinateSequence 
-        : ICloneable
     {
         /// <summary>
         /// Returns the dimension (number of ordinates in each coordinate) for this sequence.
