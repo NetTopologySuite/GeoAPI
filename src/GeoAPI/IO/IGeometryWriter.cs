@@ -14,21 +14,30 @@ namespace GeoAPI.IO
         bool HandleSRID { get; set; }
 
         /// <summary>
-        /// Gets and <see cref="Ordinates"/> flag that indicate which ordinates can be handled.
+        /// Gets a value indicating whether or not Z can possibly be handled.
+        /// <para>
+        /// If <see langword="false"/>, then setting <see cref="HandleZ"/> is a no-op.
+        /// </para>
         /// </summary>
-        /// <remarks>
-        /// This flag must always return at least <see cref="Ordinates.XY"/>.
-        /// </remarks>
-        Ordinates AllowedOrdinates { get; }
+        bool AllowsZ { get; }
 
         /// <summary>
-        /// Gets and sets <see cref="Ordinates"/> flag that indicate which ordinates shall be handled.
+        /// Gets a value indicating whether or not M can possibly be handled.
+        /// <para>
+        /// If <see langword="false"/>, then setting <see cref="HandleM"/> is a no-op.
+        /// </para>
         /// </summary>
-        /// <remarks>
-        /// No matter which <see cref="Ordinates"/> flag you supply, <see cref="Ordinates.XY"/> are always processed,
-        /// the rest is binary and 'ed with <see cref="AllowedOrdinates"/>.
-        /// </remarks>
-        Ordinates HandleOrdinates { get; set; }
+        bool AllowsM { get; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether or not Z shall be handled.
+        /// </summary>
+        bool HandleZ { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether or not M shall be handled.
+        /// </summary>
+        bool HandleM { get; set; }
     }
     
     /// <summary>

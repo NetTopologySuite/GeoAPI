@@ -6,8 +6,10 @@ namespace GeoAPI.Tests.Geometries
 {
     public abstract class CoordinateBaseTest<T> where T:Coordinate
     {
-        protected bool ZIndexValid = false;
-        protected bool MIndexValid = false;
+        protected int? ZOrdinateIndex = null;
+        protected int? MOrdinateIndex = null;
+
+        protected int OrdinateCount => 2 + (ZOrdinateIndex.HasValue ? 1 : 0) + (MOrdinateIndex.HasValue ? 1 : 0);
 
         protected abstract T CreateCoordinate2D(double x, double y);
         protected abstract T CreateCoordinate2DM(double x, double y, double m = double.NaN);
@@ -17,72 +19,67 @@ namespace GeoAPI.Tests.Geometries
 
         protected abstract T CreateCoordinate();
 
-        protected void CheckIndexer(T coordinate, Ordinate index, double value)
+        protected void CheckIndexer(T coordinate, int index, double value)
         {
-            double val = double.NaN;
-            if (IsIndexValid(index))
+            if (index < OrdinateCount)
+            {
                 Assert.AreEqual(value, coordinate[index]);
+            }
             else
-                Assert.Throws<ArgumentOutOfRangeException>(() => val = coordinate[index]);
+            {
+                double val;
+                Assert.That(() => val = coordinate[index], Throws.InstanceOf<ArgumentOutOfRangeException>());
+            }
         }
 
-        protected void CheckGetter(Ordinate index, double expected, double actual)
+        protected void CheckXYZM(Coordinate c, double expectedX, double expectedY, double expectedZ, double expectedM)
         {
-            expected = CorrectExpected(index, expected);
-            Assert.AreEqual(expected, actual);
-        }
+            Assert.AreEqual(expectedX, c.X);
+            Assert.AreEqual(expectedX, c[0]);
 
-        private double CorrectExpected(Ordinate index, double expected)
-        {
-            if (!IsIndexValid(index))
-                return GetDefault(index);
-            return expected;
-        }
+            Assert.AreEqual(expectedY, c.Y);
+            Assert.AreEqual(expectedY, c[1]);
 
-        private double GetDefault(Ordinate index)
-        {
-            return double.NaN;
-        }
+            if (ZOrdinateIndex.HasValue)
+            {
+                Assert.AreEqual(expectedZ, c.Z);
+                Assert.AreEqual(expectedZ, c[ZOrdinateIndex.Value]);
+            }
+            else
+            {
+                Assert.AreEqual(Coordinate.NullOrdinate, c.Z);
+            }
 
-        protected bool IsIndexValid(Ordinate ordinate)
-        {
-            if (ordinate < Ordinate.Ordinate2)
-                return true;
-            if (ordinate == Ordinate.Z && ZIndexValid)
-                return true;
-            if (ordinate == Ordinate.M && MIndexValid)
-                return true;
-            return false;
+            if (MOrdinateIndex.HasValue)
+            {
+                Assert.AreEqual(expectedM, c.M);
+                Assert.AreEqual(expectedM, c[MOrdinateIndex.Value]);
+            }
+            else
+            {
+                Assert.AreEqual(Coordinate.NullOrdinate, c.M);
+            }
         }
 
         [Test]
         public void TestConstructor3D()
         {
             T c = CreateCoordinate3D(350.2, 4566.8, 5266.3);
-            Assert.AreEqual(350.2, c.X);
-            Assert.AreEqual(4566.8, c.Y);
-            CheckGetter(Ordinate.Z, 5266.3, c.Z);
-            CheckGetter(Ordinate.M, Coordinate.NullOrdinate, c.M);
+            CheckXYZM(c, 350.2, 4566.8, 5266.3, Coordinate.NullOrdinate);
         }
 
         [Test]
         public void TestConstructor2D()
         {
             T c = CreateCoordinate2D(350.2, 4566.8);
-            Assert.AreEqual(350.2, c.X);
-            Assert.AreEqual(4566.8, c.Y);
-            CheckGetter(Ordinate.Z, Coordinate.NullOrdinate, c.Z);
-            CheckGetter(Ordinate.M, Coordinate.NullOrdinate, c.M);
+            CheckXYZM(c, 350.2, 4566.8, Coordinate.NullOrdinate, Coordinate.NullOrdinate);
         }
 
         [Test]
         public void TestDefaultConstructor()
         {
             T c = CreateCoordinate();
-            Assert.AreEqual(0d, c.X);
-            Assert.AreEqual(0d, c.Y);
-            CheckGetter(Ordinate.Z, Coordinate.NullOrdinate, c.Z);
-            CheckGetter(Ordinate.M, Coordinate.NullOrdinate, c.M);
+            CheckXYZM(c, 0, 0, Coordinate.NullOrdinate, Coordinate.NullOrdinate);
         }
 
         [Test]
@@ -90,10 +87,7 @@ namespace GeoAPI.Tests.Geometries
         {
             T orig = CreateCoordinate3D(350.2, 4566.8, 5266.3);
             T c = CreateCoordinate(orig);
-            Assert.AreEqual(350.2, c.X);
-            Assert.AreEqual(4566.8, c.Y);
-            CheckGetter(Ordinate.Z, 5266.3, c.Z);
-            CheckGetter(Ordinate.M, Coordinate.NullOrdinate, c.M);
+            CheckXYZM(c, 350.2, 4566.8, 5266.3, Coordinate.NullOrdinate);
         }
 
         [Test]
@@ -101,14 +95,11 @@ namespace GeoAPI.Tests.Geometries
         {
             var orig = CreateCoordinate3D(350.2, 4566.8, 5266.3);
             var c = orig.Copy();
-            Assert.That(c is T, Is.True);
+            Assert.That(c, Is.TypeOf<T>());
 
-            Assert.AreEqual(350.2, c.X);
-            Assert.AreEqual(4566.8, c.Y);
-            CheckGetter(Ordinate.Z, 5266.3, c.Z);
-            CheckGetter(Ordinate.M, Coordinate.NullOrdinate, c.M);
+            CheckXYZM(c, 350.2, 4566.8, 5266.3, Coordinate.NullOrdinate);
 
-            Assert.That(ReferenceEquals(orig, c), Is.False);
+            Assert.That(c, Is.Not.SameAs(orig));
         }
 
         [Test]
@@ -120,76 +111,83 @@ namespace GeoAPI.Tests.Geometries
 
             Assert.AreNotSame(orig, c);
 
-            Assert.AreEqual(c.X, 350.2);
-            Assert.AreEqual(c.Y, 4566.8);
-            CheckGetter(Ordinate.Z, 5266.3, c.Z);
-            CheckGetter(Ordinate.M, Coordinate.NullOrdinate, c.M);
+            CheckXYZM(c, 350.2, 4566.8, 5266.3, Coordinate.NullOrdinate);
         }
 
         [Test]
         public void TestGetOrdinate2D()
         {
             T c = CreateCoordinate2D(350.2, 4566.8);
-            Assert.AreEqual(c[Ordinate.X], 350.2);
-            Assert.AreEqual(c[Ordinate.Y], 4566.8);
-            CheckIndexer(c, Ordinate.Z, double.NaN);
-            CheckIndexer(c, Ordinate.M, double.NaN);
+            CheckXYZM(c, 350.2, 4566.8, Coordinate.NullOrdinate, Coordinate.NullOrdinate);
         }
 
         [Test]
         public void TestGetOrdinate3D()
         {
             T c = CreateCoordinate3D(350.2, 4566.8, 5266.3);
-            Assert.AreEqual(c[Ordinate.X], 350.2);
-            Assert.AreEqual(c[Ordinate.Y], 4566.8);
-            CheckIndexer(c, Ordinate.Z, 5266.3);
-            CheckIndexer(c, Ordinate.M, double.NaN);
+            CheckXYZM(c, 350.2, 4566.8, 5266.3, Coordinate.NullOrdinate);
         }
 
         [Test]
         public void TestGetOrdinate3DM()
         {
             T c = CreateCoordinate3DM(350.2, 4566.8, 5266.3, 6226.4);
-            Assert.AreEqual(c[Ordinate.X], 350.2);
-            Assert.AreEqual(c[Ordinate.Y], 4566.8);
-            CheckIndexer(c, Ordinate.Z, 5266.3);
-            CheckIndexer(c, Ordinate.M, 6226.4);
+            CheckXYZM(c, 350.2, 4566.8, 5266.3, 6226.4);
         }
 
         [Test]
         public void TestGetOrdinate2DM()
         {
             T c = CreateCoordinate2DM(350.2, 4566.8, 6226.4);
-            Assert.AreEqual(c[Ordinate.X], 350.2);
-            Assert.AreEqual(c[Ordinate.Y], 4566.8);
-            CheckIndexer(c, Ordinate.Z, double.NaN);
-            CheckIndexer(c, Ordinate.M, 6226.4);
+            CheckXYZM(c, 350.2, 4566.8, Coordinate.NullOrdinate, 6226.4);
         }
 
         [Test]
         public void TestSetOrdinate()
         {
             T c = CreateCoordinate();
-            c[Ordinate.X] = 111;
-            c[Ordinate.Y] = 222;
-            if (ZIndexValid)
-                c[Ordinate.Z] = 333;
-            else {
-                Assert.Throws<ArgumentOutOfRangeException>(() => c[Ordinate.Z] = 333);
-                Assert.Throws<InvalidOperationException>(() => c.Z = 333);
+            c[0] = 111;
+            c[1] = 222;
+
+            if (ZOrdinateIndex.HasValue)
+            {
+                c[ZOrdinateIndex.Value] = 333;
+            }
+            else
+            {
+                Assert.That(() => c.Z = 333, Throws.InvalidOperationException);
             }
 
-            if (MIndexValid)
-                c[Ordinate.M] = 444;
-            else {
-                Assert.Throws<ArgumentOutOfRangeException>(() => c[Ordinate.M] = 444);
-                Assert.Throws<InvalidOperationException>(() => c.M = 444);
+            if (MOrdinateIndex.HasValue)
+            {
+                c[MOrdinateIndex.Value] = 444;
+            }
+            else
+            {
+                Assert.That(() => c.M = 444, Throws.InvalidOperationException);
             }
 
-            Assert.AreEqual(c[Ordinate.X], 111.0);
-            Assert.AreEqual(c[Ordinate.Y], 222.0);
-            CheckIndexer(c, Ordinate.Z, 333d);
-            CheckIndexer(c, Ordinate.M, 444d);
+            CheckXYZM(c, 111, 222, 333, 444);
+
+            if (2 < OrdinateCount)
+            {
+                c[2] = 555;
+                Assert.AreEqual(555, c[2]);
+            }
+            else
+            {
+                Assert.That(() => c[2] = 555, Throws.TypeOf<ArgumentOutOfRangeException>());
+            }
+
+            if (3 < OrdinateCount)
+            {
+                c[3] = 666;
+                Assert.AreEqual(666, c[3]);
+            }
+            else
+            {
+                Assert.That(() => c[3] = 666, Throws.TypeOf<ArgumentOutOfRangeException>());
+            }
         }
 
         [Test]
@@ -270,43 +268,6 @@ namespace GeoAPI.Tests.Geometries
             double distance = coord1.Distance(coord2);
             Assert.AreEqual(223.60679774997897, distance, 0.00001);
         }
-
-
-
-        [Test]
-        public void TestSettingOrdinateValuesViaIndexer()
-        {
-            var c = CreateCoordinate();
-            Assert.DoesNotThrow(() => c[Ordinate.X] = 1);
-            Assert.AreEqual(1d, c.X);
-            Assert.AreEqual(c.X, c[Ordinate.X]);
-
-            Assert.DoesNotThrow(() => c[Ordinate.Y] = 2);
-            Assert.AreEqual(2d, c.Y);
-            Assert.AreEqual(c.Y, c[Ordinate.Y]);
-
-            if (ZIndexValid)
-            {
-                Assert.DoesNotThrow(() => c[Ordinate.Z] = 3);
-                Assert.AreEqual(3d, c.Z);
-                Assert.AreEqual(c.Z, c[Ordinate.Z]);
-            }
-            else
-            {
-                Assert.Throws<ArgumentOutOfRangeException>(() => c[Ordinate.Z] = 3);
-            }
-            if (MIndexValid)
-            {
-                Assert.DoesNotThrow(() => c[Ordinate.M] = 4);
-                Assert.AreEqual(4d, c.M);
-                Assert.AreEqual(4d, c[Ordinate.M]);
-            }
-            else
-            {
-                Assert.Throws<ArgumentOutOfRangeException>(() => c[Ordinate.M] = 4);
-            }
-
-        }
     }
 
     /// <summary>
@@ -316,8 +277,8 @@ namespace GeoAPI.Tests.Geometries
     {
         public CoordinateTest()
         {
-            ZIndexValid = false;
-            MIndexValid = false;
+            ZOrdinateIndex = null;
+            MOrdinateIndex = null;
         }
         protected override Coordinate CreateCoordinate2D(double x, double y)
         {
@@ -360,8 +321,8 @@ namespace GeoAPI.Tests.Geometries
     {
         public CoordinateMTest()
         {
-            ZIndexValid = false;
-            MIndexValid = true;
+            ZOrdinateIndex = null;
+            MOrdinateIndex = 2;
         }
         protected override CoordinateM CreateCoordinate2D(double x, double y)
         {
@@ -404,8 +365,8 @@ namespace GeoAPI.Tests.Geometries
     {
         public CoordinateZTest()
         {
-            ZIndexValid = true;
-            MIndexValid = false;
+            ZOrdinateIndex = 2;
+            MOrdinateIndex = null;
         }
 
         protected override CoordinateZ CreateCoordinate2D(double x, double y)
@@ -480,8 +441,8 @@ namespace GeoAPI.Tests.Geometries
     {
         public CoordinateZMTest()
         {
-            ZIndexValid = true;
-            MIndexValid = true;
+            ZOrdinateIndex = 2;
+            MOrdinateIndex = 3;
         }
 
         protected override CoordinateZM CreateCoordinate2D(double x, double y)

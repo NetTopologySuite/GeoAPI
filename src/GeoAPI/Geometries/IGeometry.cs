@@ -85,11 +85,6 @@ namespace GeoAPI.Geometries
         ///</summary>
         Coordinate[] Coordinates { get; }
 
-        ///<summary>
-        /// Gets an array of <see cref="T:System.Double"/> ordinate values.
-        ///</summary>
-        Double[] GetOrdinates(Ordinate ordinate);
-        
         /// <summary>
         /// Gets the <see cref="Dimension"/> of this geometry
         /// </summary>

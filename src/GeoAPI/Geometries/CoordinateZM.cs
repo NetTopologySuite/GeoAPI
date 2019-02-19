@@ -73,24 +73,24 @@ namespace GeoAPI.Geometries
         /// Gets or sets the ordinate value for the given index.
         /// </summary>
         /// <remarks>
-        /// The base implementation supports  <see cref="Ordinate.X"/>, <see cref="Ordinate.Y"/> and <see cref="Ordinate.Z"/> as values for the index.
+        /// The base implementation supports 0, 1, 2, and 3 as values for the index.
         /// </remarks>
         /// <param name="ordinateIndex">The ordinate index</param>
         /// <returns>The ordinate value</returns>
         /// <exception cref="ArgumentOutOfRangeException">Thrown if <paramref name="ordinateIndex"/> is not in the valid range.</exception>
-        public override double this[Ordinate ordinateIndex]
+        public override double this[int ordinateIndex]
         {
             get
             {
                 switch (ordinateIndex)
                 {
-                    case Ordinate.X:
+                    case 0:
                         return X;
-                    case Ordinate.Y:
+                    case 1:
                         return Y;
-                    case Ordinate.Z:
+                    case 2:
                         return Z;
-                    case Ordinate.M:
+                    case 3:
                         return M;
                 }
                 throw new ArgumentOutOfRangeException(nameof(ordinateIndex));
@@ -99,16 +99,16 @@ namespace GeoAPI.Geometries
             {
                 switch (ordinateIndex)
                 {
-                    case Ordinate.X:
+                    case 0:
                         X = value;
                         return;
-                    case Ordinate.Y:
+                    case 1:
                         Y = value;
                         return;
-                    case Ordinate.Z:
+                    case 2:
                         Z = value;
                         return;
-                    case Ordinate.M:
+                    case 3:
                         M = value;
                         return;
                 }

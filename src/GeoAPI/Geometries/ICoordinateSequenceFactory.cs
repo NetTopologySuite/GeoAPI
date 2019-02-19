@@ -64,21 +64,5 @@ namespace GeoAPI.Geometries
         /// otherwise ignored)</param>
         /// 
         ICoordinateSequence Create(int size, int dimension, int measures);
-
-        /// <summary>
-        /// Creates a <see cref="ICoordinateSequence" /> of the specified size and ordinates.
-        /// For this to be useful, the <see cref="ICoordinateSequence" /> implementation must be mutable.
-        /// </summary>        
-        /// <param name="size">The number of coordinates.</param>
-        /// <param name="ordinates">
-        /// The ordinates each coordinate has. <see cref="GeoAPI.Geometries.Ordinates.XY"/> is fix, <see cref="GeoAPI.Geometries.Ordinates.Z"/> and <see cref="GeoAPI.Geometries.Ordinates.M"/> can be set.
-        /// </param>
-        /// <returns>A coordinate sequence.</returns>
-        ICoordinateSequence Create(int size, Ordinates ordinates);
-
-        /// <summary>
-        /// Gets the Ordinate flags that sequences created by this factory can maximal cope with.
-        /// </summary>
-        Ordinates Ordinates { get; }
     }
 }

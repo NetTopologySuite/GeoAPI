@@ -30,6 +30,7 @@ namespace GeoAPI.Geometries
         /// greater than the defined dimension of a coordinate.
         ///</summary>
         public const double NullOrdinate = double.NaN;
+
         /// <summary>
         /// Gets or sets the X-ordinate value.
         /// </summary>
@@ -94,20 +95,20 @@ namespace GeoAPI.Geometries
         /// Gets or sets the ordinate value for the given index.
         /// </summary>
         /// <remarks>
-        /// The base implementation supports <see cref="Ordinate.X"/> and <see cref="Ordinate.Y"/> as values for the index.
+        /// The base implementation supports 0 and 1 as values for the index.
         /// </remarks>
         /// <param name="ordinateIndex">The ordinate index</param>
         /// <returns>The ordinate value</returns>
         /// <exception cref="ArgumentOutOfRangeException">Thrown if <paramref name="ordinateIndex"/> is not in the valid range.</exception>
-        public virtual double this[Ordinate ordinateIndex]
+        public virtual double this[int ordinateIndex]
         {
             get
             {
                 switch (ordinateIndex)
                 {
-                    case Ordinate.X:
+                    case 0:
                         return X;
-                    case Ordinate.Y:
+                    case 1:
                         return Y;
                 }
                 throw new ArgumentOutOfRangeException(nameof(ordinateIndex));
@@ -116,10 +117,10 @@ namespace GeoAPI.Geometries
             {
                 switch (ordinateIndex)
                 {
-                    case Ordinate.X:
+                    case 0:
                         X = value;
                         return;
-                    case Ordinate.Y:
+                    case 1:
                         Y = value;
                         return;
                 }
