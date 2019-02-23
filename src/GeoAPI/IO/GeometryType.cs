@@ -19,11 +19,21 @@ namespace GeoAPI.IO
         }
 
         /// <summary>
+        /// Inititalizes this instance based on a geometry and an Ordinates flag.
+        /// </summary>
+        /// <param name="geometry">The geometry.</param>
+        /// <param name="ordinates">The ordinates flag.</param>
+        public GeometryType(IGeometry geometry, Ordinates ordinates)
+            : this(geometry.OgcGeometryType, ordinates, geometry.SRID >= 0)
+        {
+        }
+
+        /// <summary>
         /// Inititalizes this instance based on an <see cref="OgcGeometryType"/>
         /// </summary>
         /// <param name="ogcGeometryType">The OGC geometry type</param>
         public GeometryType(OgcGeometryType ogcGeometryType)
-            : this(ogcGeometryType, false, false, false)
+            : this(ogcGeometryType, Ordinates.XY, false)
         {
 
         }
@@ -34,7 +44,7 @@ namespace GeoAPI.IO
         /// <param name="ogcGeometryType">The OGC geometry type</param>
         /// <param name="hasSrid">Indicator if a SRID is supplied.</param>
         public GeometryType(OgcGeometryType ogcGeometryType, bool hasSrid)
-            :this(ogcGeometryType, false, false, hasSrid)
+            :this(ogcGeometryType, Ordinates.XY, hasSrid)
         {
         }
 
@@ -42,22 +52,21 @@ namespace GeoAPI.IO
         /// Inititalizes this instance based on an <see cref="OgcGeometryType"/> and an SRID indicator
         /// </summary>
         /// <param name="ogcGeometryType">The OGC geometry type</param>
-        /// <param name="hasZ">Indicator if a Z value is present.</param>
-        /// <param name="hasM">Indicator if an M value is present.</param>
+        /// <param name="ordinates">The ordinates flag.</param>
         /// <param name="hasSrid">Indicator if a SRID is supplied.</param>
-        public GeometryType(OgcGeometryType ogcGeometryType, bool hasZ, bool hasM, bool hasSrid)
+        public GeometryType(OgcGeometryType ogcGeometryType, Ordinates ordinates, bool hasSrid)
         {
             _geometrytype = (uint) ogcGeometryType;
             
-            if (hasZ)
+            if ((ordinates & Ordinates.Z) != 0)
             {
                 HasWkbZ = true;
-                HasEwkbZ = true;
+                HasEwkbM = true;
             }
 
-            if (hasM)
+            if ((ordinates & Ordinates.M) != 0)
             {
-                HasWkbM = true;
+                HasWkbZ = true;
                 HasEwkbM = true;
             }
 
@@ -184,7 +193,7 @@ namespace GeoAPI.IO
         }
 
         /// <summary>
-        /// Gets or sets whether m-ordinates are stored along with the geometry.
+        /// Gets or sets whether z-ordinates are stored along with the geometry.
         /// <para>PostGis EWKB format.</para>
         /// </summary>
         public bool HasEwkbM
@@ -200,7 +209,7 @@ namespace GeoAPI.IO
         }
 
         /// <summary>
-        /// Gets or sets whether a SRID is stored along with the geometry.
+        /// Gets or sets whether z-ordinates are stored along with the geometry.
         /// <para>PostGis EWKB format.</para>
         /// </summary>
         public bool HasEwkbSrid
