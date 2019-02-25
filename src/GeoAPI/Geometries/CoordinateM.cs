@@ -69,9 +69,18 @@ namespace GeoAPI.Geometries
 
         /// <summary>
         /// Gets or sets the ordinate value for the given index.
+        /// <para>
+        /// Do not use <see cref="Ordinate.M"/> to try to get or set the value of <see cref="M"/>.
+        /// Use <see cref="Ordinate.Ordinate2"/> instead.
+        /// </para>
+        /// <para>
+        /// <see cref="Ordinate.M"/> is the "standard" name of <see cref="Ordinate.Ordinate3"/> in
+        /// the XYZM space.  Since this does not have Z, the "standard" names of everything after it
+        /// (i.e., M) shift down by 1.
+        /// </para>
         /// </summary>
         /// <remarks>
-        /// The base implementation supports  <see cref="Ordinate.X"/>, <see cref="Ordinate.Y"/> and <see cref="Ordinate.M"/> as values for the index.
+        /// The base implementation supports <see cref="Ordinate.X"/>, <see cref="Ordinate.Y"/> and <see cref="Ordinate.Ordinate2"/> as values for the index.
         /// </remarks>
         /// <param name="ordinateIndex">The ordinate index</param>
         /// <returns>The ordinate value</returns>
@@ -86,7 +95,7 @@ namespace GeoAPI.Geometries
                         return X;
                     case Ordinate.Y:
                         return Y;
-                    case Ordinate.M:
+                    case Ordinate.Ordinate2:
                         return M;
                 }
                 throw new ArgumentOutOfRangeException(nameof(ordinateIndex));
@@ -101,7 +110,7 @@ namespace GeoAPI.Geometries
                     case Ordinate.Y:
                         Y = value;
                         return;
-                    case Ordinate.M:
+                    case Ordinate.Ordinate2:
                         M = value;
                         return;
                 }
