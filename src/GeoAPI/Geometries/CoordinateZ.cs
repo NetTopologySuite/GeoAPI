@@ -86,7 +86,7 @@ namespace GeoAPI.Geometries
                         return X;
                     case Ordinate.Y:
                         return Y;
-                    case Ordinate.Ordinate2:
+                    case Ordinate.Z:
                         return Z;
                 }
                 throw new ArgumentOutOfRangeException(nameof(ordinateIndex));
@@ -101,7 +101,7 @@ namespace GeoAPI.Geometries
                     case Ordinate.Y:
                         Y = value;
                         return;
-                    case Ordinate.Ordinate2:
+                    case Ordinate.Z:
                         Z = value;
                         return;
                 }
