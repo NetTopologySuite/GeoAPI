@@ -6,6 +6,10 @@ namespace GeoAPI.Geometries
     /// <summary>
     /// A lightweight class used to store coordinates on the 2-dimensional Cartesian plane
     /// and an additional measure (<see cref="M"/>) value.
+    /// <para>
+    /// This data object is suitable for use with coordinate sequences with
+    /// <c>dimension</c> = 3 and <c>measures</c> = 1.
+    /// </para>
     /// </summary>
     /// <remarks>
     /// It is distinct from <see cref="IPoint"/>, which is a subclass of <see cref="IGeometry"/>.
@@ -63,7 +67,6 @@ namespace GeoAPI.Geometries
         /// <param name="x">X value.</param>
         /// <param name="y">Y value.</param>
         public CoordinateM(double x, double y) : this(x, y, NullOrdinate) { }
-
 
         /// <summary>
         /// Gets or sets the ordinate value for the given index.
@@ -129,7 +132,6 @@ namespace GeoAPI.Geometries
                 M = value.M;
             }
         }
-
 
         /// <summary>
         /// Returns a <c>string</c> of the form <i>(x, y, m=m)</i>.
