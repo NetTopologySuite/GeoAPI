@@ -11,7 +11,7 @@ GeoAPI.CoordinateSystems | [![LGPL licensed](https://img.shields.io/badge/licens
 
 ### Supported platforms
 
-GeoAPI supports a wide range of .NET versions:
+GeoAPI 1.x supports a wide range of .NET versions:
 
 - net20
 - net35-client
@@ -24,6 +24,8 @@ GeoAPI supports a wide range of .NET versions:
 - portable40-net40+sl5+win8+wp8+wpa81
 - portable40-net403+sl5+win8+wp8+wpa81
 
+GeoAPI 2.x will support only the platforms that implement .NET Standard 2.0.  See [.NET implementation support](https://docs.microsoft.com/en-us/dotnet/standard/net-standard#net-implementation-support) for the up-to-date list of which platforms this includes.
+
 ### Development & building
 
-Because of the wide support of platforms, building GeoAPI can be a pain. Make sure you install all the targeting packs. We provided a few scripts for this in the root folder of this repo.
+Because of the wide support of platforms, building GeoAPI 1.x can be a pain. Make sure you install all the targeting packs. We provided a few scripts for this in the root folder of this repo.
