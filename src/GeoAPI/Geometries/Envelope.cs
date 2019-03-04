@@ -15,9 +15,7 @@ namespace GeoAPI.Geometries
     /// When Envelope objects are created or initialized,
     /// the supplied extent values are automatically sorted into the correct order.
     /// </remarks>
-#if HAS_SYSTEM_SERIALIZABLEATTRIBUTE
     [Serializable]
-#endif
 #pragma warning disable 612,618
     public class Envelope : IComparable<Envelope>, IIntersectable<Envelope>, IExpandable<Envelope>
 #pragma warning restore 612,618
@@ -848,9 +846,9 @@ namespace GeoAPI.Geometries
                 if (ordinates.Length != 2)
                     throw new ArgumentException("Does not provide just min and max values", nameof(envelope));
 
-                if (!ValueParser.TryParse(ordinates[0].Trim(), NumberStyles.Number, NumberFormatInfo.InvariantInfo, out ordinatesValues[2 * j]))
+                if (!double.TryParse(ordinates[0].Trim(), NumberStyles.Number, NumberFormatInfo.InvariantInfo, out ordinatesValues[2 * j]))
                     throw new ArgumentException($"Could not parse min {ordinateLabel[j]}-Ordinate", nameof(envelope));
-                if (!ValueParser.TryParse(ordinates[1].Trim(), NumberStyles.Number, NumberFormatInfo.InvariantInfo, out ordinatesValues[2 * j + 1]))
+                if (!double.TryParse(ordinates[1].Trim(), NumberStyles.Number, NumberFormatInfo.InvariantInfo, out ordinatesValues[2 * j + 1]))
                     throw new ArgumentException($"Could not parse max {ordinateLabel[j]}-Ordinate", nameof(envelope));
                 j++;
             }

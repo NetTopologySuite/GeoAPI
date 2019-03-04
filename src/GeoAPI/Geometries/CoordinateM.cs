@@ -25,9 +25,7 @@ namespace GeoAPI.Geometries
     /// as appropriate for a <see cref="ICoordinateSequence"/>. Use of <see cref="CoordinateZ.Z"/>
     /// and <see cref="M"/> setters or <see cref="P:GeoAPI.Geometries.CoordinateM.this[Ordinate]" /> indexer are recommended.
     /// </remarks>
-#if HAS_SYSTEM_SERIALIZABLEATTRIBUTE
     [Serializable]
-#endif
 #pragma warning disable 612,618
     public sealed class CoordinateM : Coordinate
     {

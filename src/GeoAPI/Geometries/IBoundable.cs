@@ -3,11 +3,7 @@
     /// <summary>
     /// A spatial object in an AbstractSTRtree.
     /// </summary>
-#if FEATURE_INTERFACE_VARIANCE
     public interface IBoundable<out T, out TItem>
-#else
-    public interface IBoundable<T, TItem>
-#endif
         where T: IIntersectable<T>, IExpandable<T>
     {
         /// <summary> 

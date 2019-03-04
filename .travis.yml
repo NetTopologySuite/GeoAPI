@@ -1,10 +1,7 @@
 language: csharp
-sudo: required  
-dist: trusty  
-dotnet: 2.0.0
-mono:  
-  - latest
-install:  
-  - nuget install NUnit.Runners -version 3.6.0 -OutputDirectory .testRunner
+mono: none
+sudo: false
+dotnet: 2.2
+dist: xenial
 script:
   - ./build.sh

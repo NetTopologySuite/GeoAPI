@@ -36,29 +36,13 @@ namespace GeoAPI.Geometries
             return Ordinates.XY;
         }
 
-#if !FEATURE_DEFAULT_PARAMETERS
-        /// <summary>
-        /// Converts an <see cref="Ordinates"/> encoded flag to an array of <see cref="Ordinate"/> indices.
-        /// </summary>
-        /// <param name="ordinates">The ordinate flags</param>
-        /// <returns>The ordinate indices</returns>
-        public static Ordinate[] ToOrdinateArray(Ordinates ordinates)
-        {
-            return ToOrdinateArray(ordinates, 4);
-        }
-#endif
-
         /// <summary>
         /// Converts an <see cref="Ordinates"/> encoded flag to an array of <see cref="Ordinate"/> indices.
         /// </summary>
         /// <param name="ordinates">The ordinate flags</param>
         /// <param name="maxEval">The maximum oridinate flag that is to be checked</param>
         /// <returns>The ordinate indices</returns>
-#if FEATURE_DEFAULT_PARAMETERS
         public static Ordinate[] ToOrdinateArray(Ordinates ordinates, int maxEval = 4)
-#else
-        public static Ordinate[] ToOrdinateArray(Ordinates ordinates, int maxEval)
-#endif
         {
             if (maxEval > 32) maxEval = 32;
             var intOrdinates = (int) ordinates;

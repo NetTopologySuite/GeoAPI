@@ -5,8 +5,8 @@ set -e
 
 # Build the project
 #
-msbuild GeoAPI.sln "/t:Restore;Build" /p:Configuration=Release "/p:FrameworkPathOverride=$(dirname $(which mono))/../lib/mono/4.5/" /v:minimal /p:WarningLevel=3
+dotnet msbuild GeoAPI.sln /m "/t:Restore;Build" /p:Configuration=Release /v:minimal /p:WarningLevel=3
 
 # Run unit tests
 #
-mono .testRunner/NUnit.ConsoleRunner.3.6.0/tools/nunit3-console.exe ./test/GeoAPI.Tests/bin/Release/net45/GeoAPI.Tests.dll
+dotnet test test/GeoAPI.Tests --no-build --no-restore -c Release

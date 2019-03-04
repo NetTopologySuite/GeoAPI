@@ -1,9 +1,4 @@
 using System;
-#if HAS_SYSTEM_APPLICATIONEXCEPTION
-using ApplicationException = System.ApplicationException;
-#else
-using ApplicationException = System.Exception;
-#endif
 
 namespace GeoAPI.IO
 {
