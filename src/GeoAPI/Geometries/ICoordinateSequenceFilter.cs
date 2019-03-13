@@ -43,8 +43,8 @@ namespace GeoAPI.Geometries
         /// Reports whether the application of this filter can be terminated.
         ///</summary>
         ///<remarks>
-        /// Once this method returns <c>false</c>, it should 
-        /// continue to return <c>false</c> on every subsequent call.
+        /// Once this method returns <c>true</c>, it must
+        /// continue to return <c>true</c> on every subsequent call.
         ///</remarks>
         Boolean Done { get; }
 

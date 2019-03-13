@@ -6,6 +6,10 @@ namespace GeoAPI.Geometries
     /// <summary>
     /// A lightweight class used to store coordinates on the 2-dimensional Cartesian plane
     /// and additional z- and m-ordinate values (<see cref="CoordinateZ.Z"/>, <see cref="M"/>).
+    /// <para>
+    /// This data object is suitable for use with coordinate sequences with
+    /// <c>dimension</c> = 4 and <c>measures</c> = 1.
+    /// </para>
     /// </summary>
     /// <remarks>
     /// It is distinct from <see cref="IPoint"/>, which is a subclass of <see cref="IGeometry"/>.

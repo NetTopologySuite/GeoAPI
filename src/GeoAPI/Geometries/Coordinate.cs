@@ -5,6 +5,10 @@ namespace GeoAPI.Geometries
 {
     /// <summary>
     /// A lightweight class used to store coordinates on the 2-dimensional Cartesian plane.
+    /// <para>
+    /// The base data object is suitable for use with coordinate sequences with
+    /// <c>dimension</c> = 2 and <c>measures</c> = 0.
+    /// </para>
     /// </summary>
     /// <remarks>
     /// It is distinct from <see cref="IPoint"/>, which is a subclass of <see cref="IGeometry"/>.
@@ -21,13 +25,13 @@ namespace GeoAPI.Geometries
 #pragma warning disable 612,618
     public class Coordinate : IComparable, IComparable<Coordinate>
     {
-
         ///<summary>
         /// The value used to indicate a null or missing ordinate value.
         /// In particular, used for the value of ordinates for dimensions
         /// greater than the defined dimension of a coordinate.
         ///</summary>
         public const double NullOrdinate = double.NaN;
+
         /// <summary>
         /// Gets or sets the X-ordinate value.
         /// </summary>
@@ -39,11 +43,12 @@ namespace GeoAPI.Geometries
         public double Y { get; set; }
 
         /// <summary>
-        /// Gets or sets the Z-ordinate value (<see cref="NullOrdinate"/>).
+        /// Gets or sets the Z-ordinate value, if supported.
+        /// If no Z value is present, returns <see cref="NullOrdinate"/>.
         /// </summary>
-        /// <remarks>The Z-ordinate is not supported</remarks>
         /// <exception cref="InvalidOperationException">
-        /// Thrown if an attempt is made to <b>set</b> the Z-ordinate value
+        /// Thrown if an attempt is made to <b>set</b> the Z-ordinate value on an instance where
+        /// the Z-ordinate value is not supported.
         /// </exception>
         public virtual double Z
         {
@@ -52,11 +57,12 @@ namespace GeoAPI.Geometries
         }
 
         /// <summary>
-        /// Gets or sets the default m-measure (<see cref="NullOrdinate"/>) if supported.
+        /// Gets or sets the value of the measure, if supported.
+        /// If no measure value is present, returns <see cref="NullOrdinate"/>.
         /// </summary>
-        /// <remarks>The M-measure is not supported</remarks>
         /// <exception cref="InvalidOperationException">
-        /// Thrown if an attempt is made to <b>set</b> the M-Measure value
+        /// Thrown if an attempt is made to <b>set</b> the measure value on an instance where
+        /// measures are not supported.
         /// </exception>
         public virtual double M
         {
@@ -86,7 +92,6 @@ namespace GeoAPI.Geometries
         /// </summary>
         /// <param name="c"><c>Coordinate</c> to copy.</param>
         public Coordinate(Coordinate c) : this(c.X, c.Y) { }
-
 
         /// <summary>
         /// Gets or sets the ordinate value for the given index.
@@ -155,10 +160,11 @@ namespace GeoAPI.Geometries
         }
 
         /// <summary>
-        /// Tests if another coordinate has the same value for X and Y, within a tolerance.
+        /// Tests if another Coordinate has the same values for the X and Y ordinates,
+        /// within a specified tolerance value.  The Z ordinate is ignored.
         /// </summary>
         /// <param name="c">A <see cref="Coordinate"/>.</param>
-        /// <param name="tolerance">The tolerance value.</param>
+        /// <param name="tolerance">The tolerance value to use.</param>
         /// <returns><c>true</c> if the X and Y ordinates are within the given tolerance.</returns>
         /// <remarks>The Z ordinate is ignored.</remarks>
         public bool Equals2D(Coordinate c, double tolerance)
@@ -239,9 +245,9 @@ namespace GeoAPI.Geometries
         }
 
         /// <summary>
-        /// Create a new object as copy of this instance.
+        /// Create a copy of this <see cref="Coordinate"/>.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A copy of this coordinate.</returns>
         public Coordinate Copy()
         {
             return (Coordinate)MemberwiseClone();

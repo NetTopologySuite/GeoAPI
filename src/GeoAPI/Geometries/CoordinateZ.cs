@@ -6,6 +6,10 @@ namespace GeoAPI.Geometries
     /// <summary>
     /// A lightweight class used to store coordinates on the 2-dimensional Cartesian plane
     /// and an additional z-ordinate (<see cref="Z"/>) value.
+    /// <para>
+    /// This base data object is suitable for use with coordinate sequences with
+    /// <c>dimension</c> = 3 and <c>measures</c> = 0.
+    /// </para>
     /// </summary><remarks>
     /// It is distinct from <see cref="IPoint"/>, which is a subclass of <see cref="IGeometry"/>.
     /// Unlike objects of type <see cref="IPoint"/> (which contain additional
@@ -63,7 +67,6 @@ namespace GeoAPI.Geometries
         /// <param name="x">X value.</param>
         /// <param name="y">Y value.</param>
         public CoordinateZ(double x, double y) : this(x, y, NullOrdinate) { }
-
 
         /// <summary>
         /// Gets or sets the ordinate value for the given index.
